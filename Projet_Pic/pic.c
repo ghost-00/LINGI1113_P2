@@ -10,7 +10,7 @@
 #include "Include/LCDBlocking.h"
 //#include "Include/TCPIP_Stack/Delay.h"
 
-#define CLOCK 23297 
+#define CLOCK 23297
 //  23297.5136
 #define FIRST_LINE 0
 #define SECOND_LINE 16
@@ -53,56 +53,64 @@ unsigned int count = 0;
 char temp1[]="               ";
 char temp2[]="               ";
 
+/**
+ Fonction appelé à chaque interruption :
+ - Soit qqn a appuyé sur un bouton -> Appel de la méthode relative au bouton
+ - Soit il s'est écoulé 1 seconde
+ **/
 void HighISR (void) __interrupt (1)
-{	
-
+{
+    
 	if(INTCON3bits.INT1F)
 	{
 		//interruption Bouton 1
 		actionButton1();
-        	INTCON3bits.INT1F  = 0;  
-		//reset flag 
-	}	
-	if(INTCON3bits.INT3F)
-	{	
-		//interruption Bouton 2
-		actionButton2();
-    		INTCON3bits.INT3F  = 0;	
+        INTCON3bits.INT1F  = 0;
 		//reset flag
 	}
-
+	if(INTCON3bits.INT3F)
+	{
+		//interruption Bouton 2
+		actionButton2();
+        INTCON3bits.INT3F  = 0;
+		//reset flag
+	}
+    
 	if(INTCONbits.TMR0IF)
 	{
-		//interruption timer 0
-    		count++;
-    		if(count>=CLOCK) 
+		//interruption timer
+        count++;
+        if(count>=CLOCK)
 		{
-    			count=count-CLOCK;
+            count=count-CLOCK;
 			if(currentMode==MODE0)
 			{
-				DisplayString(FIRST_LINE,textFirstLine);			
+				DisplayString(FIRST_LINE,textFirstLine);
 				DisplayString(SECOND_LINE,textSecondLine);
 			}
-			else			
+			else
 				blink();
-
+            
 			if(isAlarm)
 			{
-				checkAlarm();		
+				checkAlarm();
 			}
 			if(ringtone>0)
 			{
-				ringtone--;		
+				ringtone--;
 				LED2_IO ^= 1;
 			}
 			increment();
  		}
     	INTCONbits.TMR0IF = 0;
-	//reset flag
+        //reset flag
 	}
 }
 
 
+/**
+ Ajout d'une seconde en comptant l'éventuel décalage ou passe d'un jour
+ **/
 void increment()
 {
 	textFirstLine[13]++;
@@ -110,17 +118,17 @@ void increment()
 	{
 		textFirstLine[13]='0';
 		textFirstLine[12]++;
-
+        
 		if(textFirstLine[12]=='6')// 60 sec
 		{
 			textFirstLine[12]='0';
 			textFirstLine[10]++;
-
+            
 			if(textFirstLine[10]==':')
 			{
 				textFirstLine[10]='0';
 				textFirstLine[9]++;
-			
+                
 				if(textFirstLine[9]=='6')
 				{
 					textFirstLine[9]='0';
@@ -133,43 +141,52 @@ void increment()
 						{
 							textFirstLine[6]='0';
 						}
-					}				
+					}
 				}
 			}
-
+            
 		}
 	}
 	
 }
 
 
-
+/**
+ Déclenchement de l'alarme pendant 30sec si c'est l'heure
+ **/
 void checkAlarm()
 {
 	if((textFirstLine[6]==textSecondLine[9])&&(textFirstLine[7]==textSecondLine[10])&&(textFirstLine[9]==textSecondLine[12])
-		&&(textFirstLine[10]==textSecondLine[13])&&(textFirstLine[12]=='0')&&(textFirstLine[13]=='0'))
+       &&(textFirstLine[10]==textSecondLine[13])&&(textFirstLine[12]=='0')&&(textFirstLine[13]=='0'))
 	{
-		ringtone=30;//30 seconds of ringtone	
-	}	
+		ringtone=30;//30 seconds of ringtone
+	}
 }
 
 
+/**
+ Incrémentation de l'élement où on se trouve en tenant compte d'un éventuel repport
+ **/
 void changeTime()
 {
 	textFirstLine[tabFirst[posC]]++;
 	//Interruption possible ici => double incrémentation => >= sur toutes les conditions
 	if((textFirstLine[13]>=':')||(textFirstLine[10]>=':')||(textFirstLine[12]>='6')||(textFirstLine[9]>='6')||(textFirstLine[7]>=':'))
 		textFirstLine[tabFirst[posC]]='0';
-	if(((textFirstLine[6]>='2')&&(textFirstLine[7]>='4'))||(textFirstLine[6]>='3'))//24h 
+	if(((textFirstLine[6]>='2')&&(textFirstLine[7]>='4'))||(textFirstLine[6]>='3'))//24h
 		textFirstLine[tabFirst[posC]]='0';
-		
+    
 }
 
+/**
+ - Soit incrémentation de l'heure de l'alarme
+ - Soit Activation ou désactivation de l'alarme
+ (en fonction de la position du curseur)
+ **/
 void setAlarm()
 {
-	
 	if(posA!=0)
-	{	
+	{
 		textSecondLine[tabSecond[posA]]++;
 		if((textSecondLine[13]>=':')||(textSecondLine[10]>=':')||(textSecondLine[12]>='6')||(textSecondLine[9]>=':'))
 			textSecondLine[tabSecond[posA]]='0';
@@ -186,12 +203,15 @@ void setAlarm()
 		else
 		{
 			textSecondLine[7]='N';
-			isAlarm=0;		
+			isAlarm=0;
 		}
 	}
-
+    
 }
 
+/**
+ Déplacement position curseur + Ajustement mode si nécéssaire
+ **/
 void move()
 {
 	if(currentMode==MODE3)
@@ -199,84 +219,93 @@ void move()
 		if(posC==LONGC)
 		{
 			posC=0;
-			currentMode=MODE0;	
+			currentMode=MODE0;
 		}
-		else		
-		posC++;
-	}	
-
-	else if(currentMode==MODE4)	
+		else
+            posC++;
+	}
+    
+	else if(currentMode==MODE4)
 	{
 		if(posA==LONGA)
 		{
 			posA=0;
-			currentMode=MODE0;		
+			currentMode=MODE0;
 		}
-		else	
-		posA++;
+		else
+            posA++;
 	}
 }
 
+/**
+ Ajustement du mode en fonction du bouton utilisé + déplacement si nécéssaire
+ **/
 void actionButton1()
 {
 	switch(currentMode)
-	{	
+	{
 		case MODE0:
 			currentMode=MODE1;
-		break;
+            break;
 		case MODE1:
 			currentMode=MODE2;
-		break;
+            break;
 		case MODE2:
 			currentMode=MODE1;
-		break;
+            break;
 		case MODE3:
 			move();
-		break;
+            break;
 		case MODE4:
 			move();
-		break;
-
-		default:			
-		break;
+            break;
+            
+		default:
+            break;
 	}
 	
 }
 
+/**
+ Ajustement du mode en fonction du bouton utilisé + déplacement si nécéssaire
+ **/
 
 void actionButton2()
 {
 	switch(currentMode)
-	{	
+	{
 		case MODE0:
 			currentMode=MODE1;
-		break;
+            break;
 		case MODE1:
 			currentMode=MODE3;
-		break;
+            break;
 		case MODE2:
 			currentMode=MODE4;
-		break;
+            break;
 		case MODE3:
 			changeTime();
-		break;
+            break;
 		case MODE4:
 			setAlarm();
-		break;
-
-		default:			
-		break;
+            break;
+            
+		default:
+            break;
 	}
 	
 }
 
+/**
+ Affichage clignotement
+ **/
 void blink()
 {
 	strlcpy(temp1,textFirstLine,16);
 	strlcpy(temp2,textSecondLine,16);
-
-	if(bin)
-	{	
+    
+	if(bin)//Rentre si bin = 1 => Déjà afficher quelque chose sur écran sans "trou"/curseur
+	{
 		if(currentMode==MODE1)
 		{
 			temp1[0]=' ';
@@ -284,43 +313,43 @@ void blink()
 			temp1[2]=' ';
 			temp1[3]=' ';
 			temp1[4]=' ';
-			DisplayString(FIRST_LINE,temp1);			
+			DisplayString(FIRST_LINE,temp1);
 			DisplayString(SECOND_LINE,temp2);
-		}	
+		}
 		else if(currentMode==MODE2)
 		{
 			temp2[0]=' ';
 			temp2[1]=' ';
 			temp2[2]=' ';
 			temp2[3]=' ';
-			temp2[4]=' ';		
-			DisplayString(FIRST_LINE,temp1);			
+			temp2[4]=' ';
+			DisplayString(FIRST_LINE,temp1);
 			DisplayString(SECOND_LINE,temp2);
-		}		
+		}
 		else if(currentMode==MODE3)
 		{
 			temp1[tabFirst[posC]]=' ';
-			DisplayString(FIRST_LINE,temp1);			
+			DisplayString(FIRST_LINE,temp1);
 			DisplayString(SECOND_LINE,temp2);
-		}	
+		}
 		else if(currentMode==MODE4)
 		{
 			temp2[tabSecond[posA]]=' ';
-			DisplayString(FIRST_LINE,temp1);			
+			DisplayString(FIRST_LINE,temp1);
 			DisplayString(SECOND_LINE,temp2);
-
-		}	
-		bin--;	
+            
+		}
+		bin--;
 	}
 	else
 	{
 		DisplayString(FIRST_LINE,textFirstLine);
 		DisplayString(SECOND_LINE,textSecondLine);
 		bin++;
-	}	
+	}
 }
 
-void main(void) 
+void main(void)
 {
 	LED0_TRIS = 0; // Configure 1st led pin as output (yellow)
 	LED1_TRIS = 0; // Configure 2nd led pin as output (red)
@@ -328,18 +357,18 @@ void main(void)
 	
 	BUTTON0_TRIS = 1; // Configure button0 as input
 	BUTTON1_TRIS = 1; // Configure button1 as input
-
+    
 	RCONbits.IPEN      = 1;   // Enable interrupts priority levels
 	INTCON3bits.INT1F  = 0;   // Clear INT1 flag
 	INTCON3bits.INT3F  = 0;   // Clear INT3 flag
 	INTCON3bits.INT1P  = 1;   // Connect INT1 interrupt (button 1) to high priority
-
+    
 	INTCON2bits.INTEDG1= 0;   // INT1 interrupts on falling edge
 	INTCON2bits.INTEDG3= 0;   // INT3 interrupts on falling edge
 	INTCONbits.GIE     = 1;   // Enable high priority interrupts
 	INTCON3bits.INT1E  = 1;   // Enable INT1 interrupt (button 1)
 	INTCON3bits.INT3E  = 1;   // Enable INT3 interupt (button 0)
-
+    
 	T0CONbits.T0CS   = 0; //use timer0 instruction cycle clock
 	LCDInit();
 	init_board();
@@ -366,12 +395,12 @@ void init_board(void) {
 /*************************************************
  Function DisplayWORD:
  writes a WORD in hexa on the position indicated by
- pos. 
+ pos.
  - pos=0 -> 1st line of the LCD
  - pos=16 -> 2nd line of the LCD
-
+ 
  __SDCC__ only: for debugging
-*************************************************/
+ *************************************************/
 #if defined(__SDCC__)
 void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
 {
@@ -379,29 +408,29 @@ void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
     BYTE j;
     BYTE LCDPos=0;  //write on first line of LCD
     unsigned radix=10; //type expected by sdcc's ultoa()
-
+    
     LCDPos=pos;
-    ultoa(w, WDigit, radix);      
+    ultoa(w, WDigit, radix);
     for(j = 0; j < strlen((char*)WDigit); j++)
     {
-       LCDText[LCDPos++] = WDigit[j];
+        LCDText[LCDPos++] = WDigit[j];
     }
     if(LCDPos < 32u)
-       LCDText[LCDPos] = 0;
+        LCDText[LCDPos] = 0;
     LCDUpdate();
 }
 /*************************************************
- Function DisplayString: 
+ Function DisplayString:
  Writes an IP address to string to the LCD display
  starting at pos
-*************************************************/
+ *************************************************/
 void DisplayString(BYTE pos, char* text)
 {
-   BYTE l= strlen(text)+1;
-   BYTE max= 32-pos;
-   strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
-   LCDUpdate();
-
+    BYTE l= strlen(text)+1;
+    BYTE max= 32-pos;
+    strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+    LCDUpdate();
+    
 }
 #endif
 
@@ -433,7 +462,7 @@ void DisplayString(BYTE pos, char* text)
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
- 
+
 /*
  * Copy src to string dst of size siz.  At most siz-1 characters
  * will be copied.  Always NUL terminates (unless siz == 0).
@@ -445,7 +474,7 @@ size_t strlcpy(char *dst, const char *src, size_t siz)
     char       *d = dst;
     const char *s = src;
     size_t      n = siz;
-
+    
     /* Copy as many bytes as will fit */
     if (n != 0)
     {
@@ -455,7 +484,7 @@ size_t strlcpy(char *dst, const char *src, size_t siz)
                 break;
         }
     }
-
+    
     /* Not enough room in dst, add NUL and traverse rest of src */
     if (n == 0)
     {
@@ -464,8 +493,8 @@ size_t strlcpy(char *dst, const char *src, size_t siz)
         while (*s++)
             ;
     }
-
-
-
+    
+    
+    
     return (s - src - 1);       /* count does not include NUL */
 }
