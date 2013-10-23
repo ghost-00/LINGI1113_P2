@@ -1,0 +1,10 @@
+XL
+H 1 areas 3 global symbols
+S __div16 Ref0000
+S .__.ABS. Def0000
+A _CODE size 9 flags 0 addr 0
+S __divsint_rrx_s Def0000
+T 00 00
+R 00 00 00 00
+T 00 00 F1 E1 D1 D5 E5 F5 C3 00 00
+R 00 00 00 00 02 09 00 00

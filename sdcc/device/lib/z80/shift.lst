@@ -1,0 +1,75 @@
+                              1         ;;
+   0000                       2 __rrulong_rrx_s::
+   0000 21 06 00              3         ld      hl,#2+4
+   0003 39                    4         add     hl,sp
+                              5 
+   0004 7E                    6         ld      a,(hl)
+   0005 B7                    7         or      a,a
+   0006 C1                    8 	pop     bc
+   0007 E1                    9 	pop     hl
+   0008 D1                   10 	pop     de
+   0009 D5                   11 	push    de
+   000A E5                   12 	push    hl
+   000B C5                   13 	push    bc
+   000C C8                   14         ret     Z
+   000D 47                   15         ld      b,a
+   000E 7B                   16         ld      a,e
+   000F                      17 1$:
+   000F CB 3A                18         srl     d
+   0011 1F                   19         rra
+   0012 CB 1C                20         rr	h
+   0014 CB 1D                21         rr      l
+                             22 
+   0016 10 F7                23         djnz    1$
+   0018 5F                   24         ld      e,a
+   0019 C9                   25         ret
+                             26 
+   001A                      27 __rrslong_rrx_s::
+   001A 21 06 00             28         ld      hl,#2+4
+   001D 39                   29         add     hl,sp
+                             30 
+   001E 7E                   31         ld      a,(hl)
+   001F B7                   32         or      a,a
+   0020 C1                   33 	pop     bc
+   0021 E1                   34 	pop     hl
+   0022 D1                   35 	pop     de
+   0023 D5                   36 	push    de
+   0024 E5                   37 	push    hl
+   0025 C5                   38 	push    bc
+   0026 C8                   39         ret     Z
+   0027 47                   40         ld      b,a
+   0028 7B                   41         ld      a,e
+   0029                      42 2$:
+   0029 CB 2A                43         sra     d
+   002B 1F                   44         rra
+   002C CB 1C                45         rr	h
+   002E CB 1D                46         rr      l
+                             47 
+   0030 10 F7                48         djnz    2$
+   0032 5F                   49         ld      e,a
+   0033 C9                   50         ret
+                             51 
+   0034                      52 __rlslong_rrx_s::
+   0034                      53 __rlulong_rrx_s::
+   0034 21 06 00             54         ld      hl,#2+4
+   0037 39                   55         add     hl,sp
+                             56 
+   0038 7E                   57         ld      a,(hl)
+   0039 B7                   58         or      a,a
+   003A C1                   59 	pop     bc
+   003B E1                   60 	pop     hl
+   003C D1                   61 	pop     de
+   003D D5                   62 	push    de
+   003E E5                   63 	push    hl
+   003F C5                   64 	push    bc
+   0040 C8                   65         ret     Z
+   0041 47                   66         ld      b,a
+   0042 7B                   67         ld      a,e
+   0043                      68 3$:
+   0043 29                   69         add     hl,hl
+   0044 17                   70         rla
+   0045 CB 12                71         rl	d
+                             72 
+   0047 10 FA                73         djnz    3$
+   0049 5F                   74         ld      e,a
+   004A C9                   75         ret

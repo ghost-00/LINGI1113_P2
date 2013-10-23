@@ -1,0 +1,3858 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:25:35 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module printf_large
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl __print_format_PARM_4
+                             31 	.globl __print_format_PARM_3
+                             32 	.globl __print_format_PARM_2
+                             33 	.globl _output_float_PARM_3
+                             34 	.globl _output_float_PARM_2
+                             35 	.globl _output_float_PARM_7
+                             36 	.globl _output_float_PARM_6
+                             37 	.globl _output_float_PARM_5
+                             38 	.globl _output_float_PARM_4
+                             39 	.globl __print_format
+                             40 ;--------------------------------------------------------
+                             41 ; special function registers
+                             42 ;--------------------------------------------------------
+                    0080     43 _P4	=	0x0080
+                    0081     44 _SP	=	0x0081
+                    0082     45 _DPL	=	0x0082
+                    0083     46 _DPH	=	0x0083
+                    0084     47 _DPL1	=	0x0084
+                    0085     48 _DPH1	=	0x0085
+                    0086     49 _DPS	=	0x0086
+                    0087     50 _PCON	=	0x0087
+                    0088     51 _TCON	=	0x0088
+                    0089     52 _TMOD	=	0x0089
+                    008A     53 _TL0	=	0x008a
+                    008B     54 _TL1	=	0x008b
+                    008C     55 _TH0	=	0x008c
+                    008D     56 _TH1	=	0x008d
+                    008E     57 _CKCON	=	0x008e
+                    0090     58 _P1	=	0x0090
+                    0091     59 _EXIF	=	0x0091
+                    0092     60 _P4CNT	=	0x0092
+                    0093     61 _DPX	=	0x0093
+                    0095     62 _DPX1	=	0x0095
+                    0098     63 _SCON0	=	0x0098
+                    0099     64 _SBUF0	=	0x0099
+                    009B     65 _ESP	=	0x009b
+                    009C     66 _AP	=	0x009c
+                    009D     67 _ACON	=	0x009d
+                    00A0     68 _P2	=	0x00a0
+                    00A1     69 _P5	=	0x00a1
+                    00A2     70 _P5CNT	=	0x00a2
+                    00A8     71 _IE	=	0x00a8
+                    00B0     72 _P3	=	0x00b0
+                    00B8     73 _IP	=	0x00b8
+                    00C0     74 _SCON1	=	0x00c0
+                    00C1     75 _SBUF1	=	0x00c1
+                    00C4     76 _PMR	=	0x00c4
+                    00C6     77 _MCON	=	0x00c6
+                    00C7     78 _TA	=	0x00c7
+                    00C8     79 _T2CON	=	0x00c8
+                    00C9     80 _T2MOD	=	0x00c9
+                    00CA     81 _RCAP2L	=	0x00ca
+                    00CA     82 _RTL2	=	0x00ca
+                    00CB     83 _RCAP2H	=	0x00cb
+                    00CB     84 _RTH2	=	0x00cb
+                    00CC     85 _TL2	=	0x00cc
+                    00CD     86 _TH2	=	0x00cd
+                    00D0     87 _PSW	=	0x00d0
+                    00D1     88 _MCNT0	=	0x00d1
+                    00D2     89 _MCNT1	=	0x00d2
+                    00D3     90 _MA	=	0x00d3
+                    00D4     91 _MB	=	0x00d4
+                    00D5     92 _MC	=	0x00d5
+                    00D8     93 _WDCON	=	0x00d8
+                    00E0     94 _ACC	=	0x00e0
+                    00E8     95 _EIE	=	0x00e8
+                    00EA     96 _MXAX	=	0x00ea
+                    00F0     97 _B	=	0x00f0
+                    00F8     98 _EIP	=	0x00f8
+                    8C8A     99 _TMR0	=	0x8c8a
+                    8D8B    100 _TMR1	=	0x8d8b
+                    CDCC    101 _TMR2	=	0xcdcc
+                    CBCA    102 _RCAP2	=	0xcbca
+                            103 ;--------------------------------------------------------
+                            104 ; special function bits
+                            105 ;--------------------------------------------------------
+                    0088    106 _IT0	=	0x0088
+                    0089    107 _IE0	=	0x0089
+                    008A    108 _IT1	=	0x008a
+                    008B    109 _IE1	=	0x008b
+                    008C    110 _TR0	=	0x008c
+                    008D    111 _TF0	=	0x008d
+                    008E    112 _TR1	=	0x008e
+                    008F    113 _TF1	=	0x008f
+                    0090    114 _T2	=	0x0090
+                    0091    115 _T2EX	=	0x0091
+                    0092    116 _RXD1	=	0x0092
+                    0093    117 _TXD1	=	0x0093
+                    0094    118 _INT2	=	0x0094
+                    0095    119 _INT3	=	0x0095
+                    0096    120 _INT4	=	0x0096
+                    0097    121 _INT5	=	0x0097
+                    0098    122 _RI_0	=	0x0098
+                    0099    123 _TI_0	=	0x0099
+                    009A    124 _RB8_0	=	0x009a
+                    009B    125 _TB8_0	=	0x009b
+                    009C    126 _REN_0	=	0x009c
+                    009D    127 _SM2_0	=	0x009d
+                    009E    128 _SM1_0	=	0x009e
+                    009F    129 _SM0_0	=	0x009f
+                    009F    130 _FE_0	=	0x009f
+                    00A8    131 _EX0	=	0x00a8
+                    00A9    132 _ET0	=	0x00a9
+                    00AA    133 _EX1	=	0x00aa
+                    00AB    134 _ET1	=	0x00ab
+                    00AC    135 _ES0	=	0x00ac
+                    00AD    136 _ET2	=	0x00ad
+                    00AE    137 _ES1	=	0x00ae
+                    00AF    138 _EA	=	0x00af
+                    00B0    139 _RXD0	=	0x00b0
+                    00B1    140 _TXD0	=	0x00b1
+                    00B2    141 _INT0	=	0x00b2
+                    00B3    142 _INT1	=	0x00b3
+                    00B4    143 _T0	=	0x00b4
+                    00B5    144 _T1	=	0x00b5
+                    00B6    145 _WR	=	0x00b6
+                    00B7    146 _RD	=	0x00b7
+                    00B8    147 _PX0	=	0x00b8
+                    00B9    148 _PT0	=	0x00b9
+                    00BA    149 _PX1	=	0x00ba
+                    00BB    150 _PT1	=	0x00bb
+                    00BC    151 _PS0	=	0x00bc
+                    00BD    152 _PT2	=	0x00bd
+                    00BE    153 _PS1	=	0x00be
+                    00C0    154 _RI_1	=	0x00c0
+                    00C1    155 _TI_1	=	0x00c1
+                    00C2    156 _RB8_1	=	0x00c2
+                    00C3    157 _TB8_1	=	0x00c3
+                    00C4    158 _REN_1	=	0x00c4
+                    00C5    159 _SM2_1	=	0x00c5
+                    00C6    160 _SM1_1	=	0x00c6
+                    00C7    161 _SM0_1	=	0x00c7
+                    00C7    162 _FE_1	=	0x00c7
+                    00C8    163 _CP_RL	=	0x00c8
+                    00C9    164 _C_T	=	0x00c9
+                    00CA    165 _TR2	=	0x00ca
+                    00CB    166 _EXEN2	=	0x00cb
+                    00CC    167 _TCLK	=	0x00cc
+                    00CD    168 _RCLK	=	0x00cd
+                    00CE    169 _EXF2	=	0x00ce
+                    00CF    170 _TF2	=	0x00cf
+                    00D0    171 _P	=	0x00d0
+                    00D1    172 _F1	=	0x00d1
+                    00D2    173 _OV	=	0x00d2
+                    00D3    174 _RS0	=	0x00d3
+                    00D4    175 _RS1	=	0x00d4
+                    00D5    176 _F0	=	0x00d5
+                    00D6    177 _AC	=	0x00d6
+                    00D7    178 _CY	=	0x00d7
+                    00D8    179 _RWT	=	0x00d8
+                    00D9    180 _EWT	=	0x00d9
+                    00DA    181 _WDRF	=	0x00da
+                    00DB    182 _WDIF	=	0x00db
+                    00DC    183 _PFI	=	0x00dc
+                    00DD    184 _EPFI	=	0x00dd
+                    00DE    185 _POR	=	0x00de
+                    00DF    186 _SMOD_1	=	0x00df
+                    00E8    187 _EX2	=	0x00e8
+                    00E9    188 _EX3	=	0x00e9
+                    00EA    189 _EX4	=	0x00ea
+                    00EB    190 _EX5	=	0x00eb
+                    00EC    191 _EWDI	=	0x00ec
+                    00ED    192 _C1IE	=	0x00ed
+                    00EE    193 _C0IE	=	0x00ee
+                    00EF    194 _CANBIE	=	0x00ef
+                    00F8    195 _PX2	=	0x00f8
+                    00F9    196 _PX3	=	0x00f9
+                    00FA    197 _PX4	=	0x00fa
+                    00FB    198 _PX5	=	0x00fb
+                    00FC    199 _PWDI	=	0x00fc
+                    00FD    200 _C1IP	=	0x00fd
+                    00FE    201 _C0IP	=	0x00fe
+                    00FF    202 _CANBIP	=	0x00ff
+                            203 ;--------------------------------------------------------
+                            204 ; overlayable register banks
+                            205 ;--------------------------------------------------------
+                            206 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     207 	.ds 8
+                            208 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                     209 	.ds 8
+                            210 ;--------------------------------------------------------
+                            211 ; internal ram data
+                            212 ;--------------------------------------------------------
+                            213 	.area DSEG    (DATA)
+                            214 ;--------------------------------------------------------
+                            215 ; overlayable items in internal ram 
+                            216 ;--------------------------------------------------------
+                            217 	.area	OSEG    (OVR,DATA)
+                            218 ;--------------------------------------------------------
+                            219 ; indirectly addressable internal ram data
+                            220 ;--------------------------------------------------------
+                            221 	.area ISEG    (DATA)
+                            222 ;--------------------------------------------------------
+                            223 ; absolute internal ram data
+                            224 ;--------------------------------------------------------
+                            225 	.area IABS    (ABS,DATA)
+                            226 	.area IABS    (ABS,DATA)
+                            227 ;--------------------------------------------------------
+                            228 ; bit data
+                            229 ;--------------------------------------------------------
+                            230 	.area BSEG    (BIT)
+   0000                     231 _lower_case:
+   0000                     232 	.ds 1
+   0001                     233 _output_float_PARM_4:
+   0001                     234 	.ds 1
+   0002                     235 _output_float_PARM_5:
+   0002                     236 	.ds 1
+   0003                     237 _output_float_PARM_6:
+   0003                     238 	.ds 1
+   0004                     239 _output_float_PARM_7:
+   0004                     240 	.ds 1
+   0005                     241 _output_float_negative_1_1:
+   0005                     242 	.ds 1
+   0006                     243 __print_format_left_justify_1_1:
+   0006                     244 	.ds 1
+   0007                     245 __print_format_zero_padding_1_1:
+   0007                     246 	.ds 1
+   0008                     247 __print_format_prefix_sign_1_1:
+   0008                     248 	.ds 1
+   0009                     249 __print_format_prefix_space_1_1:
+   0009                     250 	.ds 1
+   000A                     251 __print_format_signed_argument_1_1:
+   000A                     252 	.ds 1
+   000B                     253 __print_format_char_argument_1_1:
+   000B                     254 	.ds 1
+   000C                     255 __print_format_long_argument_1_1:
+   000C                     256 	.ds 1
+   000D                     257 __print_format_float_argument_1_1:
+   000D                     258 	.ds 1
+   000E                     259 __print_format_lsd_1_1:
+   000E                     260 	.ds 1
+                            261 ;--------------------------------------------------------
+                            262 ; paged external ram data
+                            263 ;--------------------------------------------------------
+                            264 	.area PSEG    (PAG,XDATA)
+                            265 ;--------------------------------------------------------
+                            266 ; external ram data
+                            267 ;--------------------------------------------------------
+                            268 	.area XSEG    (XDATA)
+   0000                     269 _output_char:
+   0000                     270 	.ds 3
+   0003                     271 _p:
+   0003                     272 	.ds 4
+   0007                     273 _value:
+   0007                     274 	.ds 5
+   000C                     275 _charsOutputted:
+   000C                     276 	.ds 2
+   000E                     277 _output_float_PARM_2:
+   000E                     278 	.ds 1
+   000F                     279 _output_float_PARM_3:
+   000F                     280 	.ds 1
+   0010                     281 _output_float_f_1_1:
+   0010                     282 	.ds 4
+   0014                     283 _output_float_fpBuffer_1_1:
+   0014                     284 	.ds 128
+   0094                     285 _output_float_integerPart_1_1:
+   0094                     286 	.ds 4
+   0098                     287 _output_float_rounding_1_1:
+   0098                     288 	.ds 4
+   009C                     289 _output_float_decimalPart_1_1:
+   009C                     290 	.ds 4
+   00A0                     291 __print_format_PARM_2:
+   00A0                     292 	.ds 4
+   00A4                     293 __print_format_PARM_3:
+   00A4                     294 	.ds 4
+   00A8                     295 __print_format_PARM_4:
+   00A8                     296 	.ds 4
+   00AC                     297 __print_format_radix_1_1:
+   00AC                     298 	.ds 1
+   00AD                     299 __print_format_width_1_1:
+   00AD                     300 	.ds 1
+   00AE                     301 __print_format_store_4_23:
+   00AE                     302 	.ds 6
+   00B4                     303 __print_format_pstore_4_23:
+   00B4                     304 	.ds 3
+   00B7                     305 __print_format_sloc0_1_0:
+   00B7                     306 	.ds 1
+                            307 ;--------------------------------------------------------
+                            308 ; absolute external ram data
+                            309 ;--------------------------------------------------------
+                            310 	.area XABS    (ABS,XDATA)
+                            311 ;--------------------------------------------------------
+                            312 ; external initialized ram data
+                            313 ;--------------------------------------------------------
+                            314 	.area XISEG   (XDATA)
+                            315 ;--------------------------------------------------------
+                            316 ; global & static initialisations
+                            317 ;--------------------------------------------------------
+                            318 	.area HOME    (CODE)
+                            319 	.area GSINIT  (CODE)
+                            320 	.area GSFINAL (CODE)
+                            321 	.area GSINIT  (CODE)
+                            322 ;--------------------------------------------------------
+                            323 ; Home
+                            324 ;--------------------------------------------------------
+                            325 	.area HOME    (CODE)
+                            326 	.area HOME    (CODE)
+                            327 ;--------------------------------------------------------
+                            328 ; code
+                            329 ;--------------------------------------------------------
+                            330 	.area CSEG    (CODE)
+                            331 ;------------------------------------------------------------
+                            332 ;Allocation info for local variables in function '_output_char'
+                            333 ;------------------------------------------------------------
+                            334 ;c                         Allocated to registers r2 
+                            335 ;------------------------------------------------------------
+                            336 ;	printf_large.c:100: static void _output_char( unsigned char c )
+                            337 ;	-----------------------------------------
+                            338 ;	 function _output_char
+                            339 ;	-----------------------------------------
+   0000                     340 __output_char:
+                    0002    341 	ar2 = 0x02
+                    0003    342 	ar3 = 0x03
+                    0004    343 	ar4 = 0x04
+                    0005    344 	ar5 = 0x05
+                    0006    345 	ar6 = 0x06
+                    0007    346 	ar7 = 0x07
+                    0000    347 	ar0 = 0x00
+                    0001    348 	ar1 = 0x01
+   0000 AA 82               349 	mov	r2,dpl
+                            350 ;	printf_large.c:102: output_char( c, p );
+   0002 90s00r00r03         351 	mov	dptr,#_p
+   0006 E0                  352 	movx	a,@dptr
+   0007 C0 E0               353 	push	acc
+   0009 A3                  354 	inc	dptr
+   000A E0                  355 	movx	a,@dptr
+   000B C0 E0               356 	push	acc
+   000D A3                  357 	inc	dptr
+   000E E0                  358 	movx	a,@dptr
+   000F C0 E0               359 	push	acc
+   0011 A3                  360 	inc	dptr
+   0012 E0                  361 	movx	a,@dptr
+   0013 C0 E0               362 	push	acc
+   0015 74r33               363 	mov	a,#00103$
+   0017 C0 E0               364 	push	acc
+   0019 74s00               365 	mov	a,#(00103$ >> 8)
+   001B C0 E0               366 	push	acc
+   001D 74s00               367 	mov	a,#(00103$ >> 16)
+   001F C0 E0               368 	push	acc
+   0021 90s00r00r00         369 	mov	dptr,#_output_char
+   0025 E0                  370 	movx	a,@dptr
+   0026 C0 E0               371 	push	acc
+   0028 A3                  372 	inc	dptr
+   0029 E0                  373 	movx	a,@dptr
+   002A C0 E0               374 	push	acc
+   002C A3                  375 	inc	dptr
+   002D E0                  376 	movx	a,@dptr
+   002E C0 E0               377 	push	acc
+   0030 8A 82               378 	mov	dpl,r2
+   0032 22                  379 	ret
+   0033                     380 00103$:
+                            381 ;	stack adjustment for parms
+   0033 D0 E0               382 	pop	acc
+   0035 D0 E0               383 	pop	acc
+   0037 D0 E0               384 	pop	acc
+   0039 D0 E0               385 	pop	acc
+                            386 ;	printf_large.c:103: charsOutputted++;
+   003B 90s00r00r0C         387 	mov	dptr,#_charsOutputted
+   003F E0                  388 	movx	a,@dptr
+   0040 24 01               389 	add	a,#0x01
+   0042 F0                  390 	movx	@dptr,a
+   0043 A3                  391 	inc	dptr
+   0044 E0                  392 	movx	a,@dptr
+   0045 34 00               393 	addc	a,#0x00
+   0047 F0                  394 	movx	@dptr,a
+   0048                     395 00101$:
+   0048 22                  396 	ret
+                            397 ;------------------------------------------------------------
+                            398 ;Allocation info for local variables in function 'output_digit'
+                            399 ;------------------------------------------------------------
+                            400 ;c                         Allocated to registers r2 
+                            401 ;n                         Allocated to registers r2 
+                            402 ;------------------------------------------------------------
+                            403 ;	printf_large.c:123: static void output_digit( unsigned char n )
+                            404 ;	-----------------------------------------
+                            405 ;	 function output_digit
+                            406 ;	-----------------------------------------
+   0049                     407 _output_digit:
+   0049 AA 82               408 	mov	r2,dpl
+                            409 ;	printf_large.c:125: register unsigned char c = n + (unsigned char)'0';
+   004B 74 30               410 	mov	a,#0x30
+   004D 2A                  411 	add	a,r2
+   004E FA                  412 	mov	r2,a
+                            413 ;	printf_large.c:127: if (c > (unsigned char)'9')
+   004F C3                  414 	clr	c
+   0050 74 39               415 	mov	a,#0x39
+   0052 9A                  416 	subb	a,r2
+   0053 50 0A               417 	jnc  00104$
+   0055                     418 00109$:
+                            419 ;	printf_large.c:129: c += (unsigned char)('A' - '0' - 10);
+   0055 74 07               420 	mov	a,#0x07
+   0057 2A                  421 	add	a,r2
+   0058 FA                  422 	mov	r2,a
+                            423 ;	printf_large.c:130: if (lower_case)
+   0059 30*00 03            424 	jnb  _lower_case,00104$
+   005C                     425 00110$:
+                            426 ;	printf_large.c:131: c = tolower(c);
+   005C 43 02 20            427 	orl	ar2,#0x20
+   005F                     428 00104$:
+                            429 ;	printf_large.c:133: _output_char( c );
+   005F 8A 82               430 	mov	dpl,r2
+   0061 12s00r00r00         431 	lcall	__output_char
+   0065                     432 00105$:
+   0065 22                  433 	ret
+                            434 ;------------------------------------------------------------
+                            435 ;Allocation info for local variables in function 'output_2digits'
+                            436 ;------------------------------------------------------------
+                            437 ;b                         Allocated to registers r2 
+                            438 ;------------------------------------------------------------
+                            439 ;	printf_large.c:148: static void output_2digits( unsigned char b )
+                            440 ;	-----------------------------------------
+                            441 ;	 function output_2digits
+                            442 ;	-----------------------------------------
+   0066                     443 _output_2digits:
+   0066 AA 82               444 	mov	r2,dpl
+                            445 ;	printf_large.c:150: output_digit( b>>4   );
+   0068 EA                  446 	mov	a,r2
+   0069 C4                  447 	swap	a
+   006A 54 0F               448 	anl	a,#0x0F
+   006C FB                  449 	mov	r3,a
+   006D C0 02               450 	push	ar2
+   006F 8B 82               451 	mov	dpl,r3
+   0071 12s00r00r49         452 	lcall	_output_digit
+   0075 D0 02               453 	pop	ar2
+                            454 ;	printf_large.c:151: output_digit( b&0x0F );
+   0077 53 02 0F            455 	anl	ar2,#0x0F
+   007A 8A 82               456 	mov	dpl,r2
+   007C 12s00r00r49         457 	lcall	_output_digit
+   0080                     458 00101$:
+   0080 22                  459 	ret
+                            460 ;------------------------------------------------------------
+                            461 ;Allocation info for local variables in function 'calculate_digit'
+                            462 ;------------------------------------------------------------
+                            463 ;radix                     Allocated to registers r2 
+                            464 ;ul                        Allocated to registers r3 r4 r5 r6 
+                            465 ;b4                        Allocated to registers r7 
+                            466 ;i                         Allocated to registers r0 
+                            467 ;------------------------------------------------------------
+                            468 ;	printf_large.c:178: static void calculate_digit( unsigned char radix )
+                            469 ;	-----------------------------------------
+                            470 ;	 function calculate_digit
+                            471 ;	-----------------------------------------
+   0081                     472 _calculate_digit:
+   0081 AA 82               473 	mov	r2,dpl
+                            474 ;	printf_large.c:180: register unsigned long ul = value.ul;
+   0083 90s00r00r07         475 	mov	dptr,#_value
+   0087 E0                  476 	movx	a,@dptr
+   0088 A3                  477 	inc	dptr
+   0089 FB                  478 	mov	r3,a
+   008A E0                  479 	movx	a,@dptr
+   008B A3                  480 	inc	dptr
+   008C FC                  481 	mov	r4,a
+   008D E0                  482 	movx	a,@dptr
+   008E A3                  483 	inc	dptr
+   008F FD                  484 	mov	r5,a
+   0090 E0                  485 	movx	a,@dptr
+   0091 FE                  486 	mov	r6,a
+                            487 ;	printf_large.c:181: register unsigned char b4 = value.byte[4];
+   0092 90s00r00r0B         488 	mov	dptr,#(_value + 0x000004)
+   0096 E0                  489 	movx	a,@dptr
+   0097 FF                  490 	mov	r7,a
+                            491 ;	printf_large.c:184: do
+                            492 ;	genAssign: resultIsFar = FALSE
+   0098 78 20               493 	mov	r0,#0x20
+   009A                     494 00103$:
+                            495 ;	printf_large.c:186: b4 = (b4 << 1);
+   009A EF                  496 	mov	a,r7
+   009B 25 E0               497 	add	a,acc
+   009D FF                  498 	mov	r7,a
+                            499 ;	printf_large.c:187: b4 |= (ul >> 31) & 0x01;
+   009E EE                  500 	mov	a,r6
+   009F 23                  501 	rl	a
+   00A0 54 01               502 	anl	a,#0x01
+   00A2 F9                  503 	mov  r1,a
+   00A3 42 07               504 	orl	ar7,a
+                            505 ;	printf_large.c:188: ul <<= 1;
+   00A5 75 F0 02            506 	mov	b,#0x02
+   00A8 80 0D               507 	sjmp	00113$
+   00AA                     508 00112$:
+   00AA EB                  509 	mov	a,r3
+   00AB 25 E0               510 	add	a,acc
+   00AD FB                  511 	mov	r3,a
+   00AE EC                  512 	mov	a,r4
+   00AF 33                  513 	rlc	a
+   00B0 FC                  514 	mov	r4,a
+   00B1 ED                  515 	mov	a,r5
+   00B2 33                  516 	rlc	a
+   00B3 FD                  517 	mov	r5,a
+   00B4 EE                  518 	mov	a,r6
+   00B5 33                  519 	rlc	a
+   00B6 FE                  520 	mov	r6,a
+   00B7                     521 00113$:
+   00B7 D5 F0 F0            522 	djnz	b,00112$
+                            523 ;	printf_large.c:190: if (radix <= b4 )
+   00BA C3                  524 	clr	c
+   00BB EF                  525 	mov	a,r7
+   00BC 9A                  526 	subb	a,r2
+   00BD 40 07               527 	jc   00104$
+   00BF                     528 00114$:
+                            529 ;	printf_large.c:192: b4 -= radix;
+   00BF C3                  530 	clr	c
+   00C0 EF                  531 	mov	a,r7
+   00C1 9A                  532 	subb	a,r2
+   00C2 FF                  533 	mov	r7,a
+                            534 ;	printf_large.c:193: ul |= 1;
+   00C3 43 03 01            535 	orl	ar3,#0x01
+   00C6                     536 00104$:
+                            537 ;	printf_large.c:195: } while (--i);
+   00C6 D8 D2               538 	djnz  r0,00103$
+   00C8                     539 00115$:
+   00C8                     540 00116$:
+                            541 ;	printf_large.c:196: value.ul = ul;
+   00C8 90s00r00r07         542 	mov	dptr,#_value
+   00CC EB                  543 	mov	a,r3
+   00CD F0                  544 	movx	@dptr,a
+   00CE A3                  545 	inc	dptr
+   00CF EC                  546 	mov	a,r4
+   00D0 F0                  547 	movx	@dptr,a
+   00D1 A3                  548 	inc	dptr
+   00D2 ED                  549 	mov	a,r5
+   00D3 F0                  550 	movx	@dptr,a
+   00D4 A3                  551 	inc	dptr
+   00D5 EE                  552 	mov	a,r6
+   00D6 F0                  553 	movx	@dptr,a
+                            554 ;	printf_large.c:197: value.byte[4] = b4;
+   00D7 90s00r00r0B         555 	mov	dptr,#(_value + 0x000004)
+   00DB EF                  556 	mov	a,r7
+   00DC F0                  557 	movx	@dptr,a
+   00DD                     558 00106$:
+   00DD 22                  559 	ret
+                            560 ;------------------------------------------------------------
+                            561 ;Allocation info for local variables in function 'output_float'
+                            562 ;------------------------------------------------------------
+                            563 ;reqWidth                  Allocated with name '_output_float_PARM_2'
+                            564 ;reqDecimals               Allocated with name '_output_float_PARM_3'
+                            565 ;f                         Allocated with name '_output_float_f_1_1'
+                            566 ;fpBuffer                  Allocated with name '_output_float_fpBuffer_1_1'
+                            567 ;integerPart               Allocated with name '_output_float_integerPart_1_1'
+                            568 ;rounding                  Allocated with name '_output_float_rounding_1_1'
+                            569 ;decimalPart               Allocated with name '_output_float_decimalPart_1_1'
+                            570 ;fpBI                      Allocated to registers r6 
+                            571 ;fpBD                      Allocated to registers 
+                            572 ;minWidth                  Allocated to registers r3 
+                            573 ;i                         Allocated to registers r2 
+                            574 ;exp                       Allocated to registers r7 
+                            575 ;sloc0                     Allocated with name '_output_float_sloc0_1_0'
+                            576 ;sloc1                     Allocated with name '_output_float_sloc1_1_0'
+                            577 ;sloc2                     Allocated with name '_output_float_sloc2_1_0'
+                            578 ;------------------------------------------------------------
+                            579 ;	printf_large.c:230: output_float (float f, unsigned char reqWidth,
+                            580 ;	-----------------------------------------
+                            581 ;	 function output_float
+                            582 ;	-----------------------------------------
+   00DE                     583 _output_float:
+   00DE 75 86 01            584 	mov     dps, #1
+   00E1 90s00r00r10         585 	mov     dptr, #_output_float_f_1_1
+   00E5 E5 82               586 	mov	a,dpl
+   00E7 F0                  587 	movx	@dptr,a
+   00E8 A3                  588 	inc	dptr
+   00E9 E5 83               589 	mov	a,dph
+   00EB F0                  590 	movx	@dptr,a
+   00EC A3                  591 	inc	dptr
+   00ED E5 93               592 	mov	a,dpx
+   00EF F0                  593 	movx	@dptr,a
+   00F0 A3                  594 	inc	dptr
+   00F1 E5 F0               595 	mov	a,b
+   00F3 F0                  596 	movx	@dptr,a
+   00F4 75 86 00            597 	mov	dps,#0
+                            598 ;	printf_large.c:236: BOOL negative = 0;
+                            599 ;	genAssign: resultIsFar = FALSE
+   00F7 C2*05               600 	clr	_output_float_negative_1_1
+                            601 ;	printf_large.c:240: char fpBI=0, fpBD;
+                            602 ;	genAssign: resultIsFar = TRUE
+   00F9 7E 00               603 	mov	r6,#0x00
+                            604 ;	printf_large.c:242: signed char exp = -128;
+                            605 ;	genAssign: resultIsFar = TRUE
+   00FB 7F 80               606 	mov	r7,#0x80
+                            607 ;	printf_large.c:245: if (f<0) {
+                            608 ;	genAssign: resultIsFar = TRUE
+   00FD 90s00r00r00         609 	mov	dptr,#___fslt_PARM_2
+   0101 E4                  610 	clr  a
+   0102 F0                  611 	movx @dptr,a
+   0103 A3                  612 	inc  dptr
+   0104 F0                  613 	movx @dptr,a
+   0105 A3                  614 	inc	dptr
+   0106 E4                  615 	clr  a
+   0107 F0                  616 	movx @dptr,a
+   0108 A3                  617 	inc  dptr
+   0109 F0                  618 	movx @dptr,a
+   010A C0 07               619 	push	ar7
+   010C 05 86               620 	inc	dps
+   010E 90s00r00r10         621 	mov	dptr,#_output_float_f_1_1
+   0112 E0                  622 	movx	a,@dptr
+   0113 F5 82               623 	mov	dpl,a
+   0115 A3                  624 	inc	dptr
+   0116 E0                  625 	movx	a,@dptr
+   0117 F5 83               626 	mov	dph,a
+   0119 A3                  627 	inc	dptr
+   011A E0                  628 	movx	a,@dptr
+   011B F5 93               629 	mov	dpx,a
+   011D A3                  630 	inc	dptr
+   011E E0                  631 	movx	a,@dptr
+   011F F5 F0               632 	mov	b,a
+   0121 75 86 00            633 	mov	dps,#0
+   0124 12s00r00r00         634 	lcall	___fslt
+   0128 D0 07               635 	pop	ar7
+   012A E5 82               636 	mov	a,dpl
+   012C 60 30               637 	jz  00102$
+   012E                     638 00257$:
+                            639 ;	printf_large.c:246: negative=1;
+                            640 ;	genAssign: resultIsFar = FALSE
+   012E D2*05               641 	setb	_output_float_negative_1_1
+                            642 ;	printf_large.c:247: f=-f;
+   0130 90s00r00r10         643 	mov	dptr,#_output_float_f_1_1
+   0134 75 86 01            644 	mov	dps, #1
+   0137 90s00r00r10         645 	mov	dptr, #_output_float_f_1_1
+   013B 15 86               646 	dec	dps
+   013D E0                  647 	movx	a,@dptr
+   013E 05 86               648 	inc	dps
+   0140 F0                  649 	movx	@dptr,a
+   0141 15 86               650 	dec	dps
+   0143 A3                  651 	inc	dptr
+   0144 E0                  652 	movx	a,@dptr
+   0145 05 86               653 	inc	dps
+   0147 A3                  654 	inc	dptr
+   0148 F0                  655 	movx	@dptr,a
+   0149 15 86               656 	dec	dps
+   014B A3                  657 	inc	dptr
+   014C E0                  658 	movx	a,@dptr
+   014D 05 86               659 	inc	dps
+   014F A3                  660 	inc	dptr
+   0150 F0                  661 	movx	@dptr,a
+   0151 15 86               662 	dec	dps
+   0153 A3                  663 	inc	dptr
+   0154 E0                  664 	movx	a,@dptr
+   0155 B2 E7               665 	cpl	acc.7
+   0157 05 86               666 	inc	dps
+   0159 A3                  667 	inc	dptr
+   015A F0                  668 	movx	@dptr,a
+   015B 75 86 00            669 	mov	dps,#0
+   015E                     670 00102$:
+                            671 ;	printf_large.c:250: if (f>0x00ffffff) {
+                            672 ;	genAssign: resultIsFar = TRUE
+   015E 90s00r00r00         673 	mov	dptr,#___fsgt_PARM_2
+   0162 74 FF               674 	mov  a,#0xFF
+   0164 F0                  675 	movx @dptr,a
+   0165 A3                  676 	inc  dptr
+   0166 F0                  677 	movx @dptr,a
+   0167 A3                  678 	inc	dptr
+   0168 74 7F               679 	mov	a,#0x7F
+   016A F0                  680 	movx	@dptr,a
+   016B A3                  681 	inc	dptr
+   016C 74 4B               682 	mov	a,#0x4B
+   016E F0                  683 	movx	@dptr,a
+   016F C0 07               684 	push	ar7
+   0171 05 86               685 	inc	dps
+   0173 90s00r00r10         686 	mov	dptr,#_output_float_f_1_1
+   0177 E0                  687 	movx	a,@dptr
+   0178 F5 82               688 	mov	dpl,a
+   017A A3                  689 	inc	dptr
+   017B E0                  690 	movx	a,@dptr
+   017C F5 83               691 	mov	dph,a
+   017E A3                  692 	inc	dptr
+   017F E0                  693 	movx	a,@dptr
+   0180 F5 93               694 	mov	dpx,a
+   0182 A3                  695 	inc	dptr
+   0183 E0                  696 	movx	a,@dptr
+   0184 F5 F0               697 	mov	b,a
+   0186 75 86 00            698 	mov	dps,#0
+   0189 12s00r00r00         699 	lcall	___fsgt
+   018D D0 07               700 	pop	ar7
+   018F E5 82               701 	mov	a,dpl
+   0191 70 04               702 	jnz	00258$
+   0193 02s00r02rCB         703 	ljmp	00109$
+   0197                     704 00258$:
+                            705 ;	printf_large.c:253: for (exp = 0; f >= 10.0; exp++) f /=10.0;
+                            706 ;	genAssign: resultIsFar = TRUE
+   0197 7F 00               707 	mov	r7,#0x00
+                            708 ;	genAssign: resultIsFar = FALSE
+   0199 7E 00               709 	mov	r6,#0x00
+   019B                     710 00176$:
+                            711 ;	genAssign: resultIsFar = TRUE
+   019B 90s00r00r00         712 	mov	dptr,#___fslt_PARM_2
+   019F E4                  713 	clr  a
+   01A0 F0                  714 	movx @dptr,a
+   01A1 A3                  715 	inc  dptr
+   01A2 F0                  716 	movx @dptr,a
+   01A3 A3                  717 	inc	dptr
+   01A4 74 20               718 	mov	a,#0x20
+   01A6 F0                  719 	movx	@dptr,a
+   01A7 A3                  720 	inc	dptr
+   01A8 74 41               721 	mov	a,#0x41
+   01AA F0                  722 	movx	@dptr,a
+   01AB C0 06               723 	push	ar6
+   01AD 05 86               724 	inc	dps
+   01AF 90s00r00r10         725 	mov	dptr,#_output_float_f_1_1
+   01B3 E0                  726 	movx	a,@dptr
+   01B4 F5 82               727 	mov	dpl,a
+   01B6 A3                  728 	inc	dptr
+   01B7 E0                  729 	movx	a,@dptr
+   01B8 F5 83               730 	mov	dph,a
+   01BA A3                  731 	inc	dptr
+   01BB E0                  732 	movx	a,@dptr
+   01BC F5 93               733 	mov	dpx,a
+   01BE A3                  734 	inc	dptr
+   01BF E0                  735 	movx	a,@dptr
+   01C0 F5 F0               736 	mov	b,a
+   01C2 75 86 00            737 	mov	dps,#0
+   01C5 12s00r00r00         738 	lcall	___fslt
+   01C9 D0 06               739 	pop	ar6
+   01CB E5 82               740 	mov	a,dpl
+   01CD 70 4E               741 	jnz  00205$
+   01CF                     742 00259$:
+                            743 ;	genAssign: resultIsFar = TRUE
+   01CF 90s00r00r00         744 	mov	dptr,#___fsdiv_PARM_2
+   01D3 E4                  745 	clr  a
+   01D4 F0                  746 	movx @dptr,a
+   01D5 A3                  747 	inc  dptr
+   01D6 F0                  748 	movx @dptr,a
+   01D7 A3                  749 	inc	dptr
+   01D8 74 20               750 	mov	a,#0x20
+   01DA F0                  751 	movx	@dptr,a
+   01DB A3                  752 	inc	dptr
+   01DC 74 41               753 	mov	a,#0x41
+   01DE F0                  754 	movx	@dptr,a
+   01DF C0 06               755 	push	ar6
+   01E1 05 86               756 	inc	dps
+   01E3 90s00r00r10         757 	mov	dptr,#_output_float_f_1_1
+   01E7 E0                  758 	movx	a,@dptr
+   01E8 F5 82               759 	mov	dpl,a
+   01EA A3                  760 	inc	dptr
+   01EB E0                  761 	movx	a,@dptr
+   01EC F5 83               762 	mov	dph,a
+   01EE A3                  763 	inc	dptr
+   01EF E0                  764 	movx	a,@dptr
+   01F0 F5 93               765 	mov	dpx,a
+   01F2 A3                  766 	inc	dptr
+   01F3 E0                  767 	movx	a,@dptr
+   01F4 F5 F0               768 	mov	b,a
+   01F6 75 86 00            769 	mov	dps,#0
+   01F9 12s00r00r00         770 	lcall	___fsdiv
+   01FD AA 82               771 	mov	r2,dpl
+   01FF AB 83               772 	mov	r3,dph
+   0201 AC 93               773 	mov	r4,dpx
+   0203 AD F0               774 	mov	r5,b
+   0205 D0 06               775 	pop	ar6
+                            776 ;	genAssign: resultIsFar = TRUE
+   0207 90s00r00r10         777 	mov	dptr,#_output_float_f_1_1
+   020B EA                  778 	mov	a,r2
+   020C F0                  779 	movx	@dptr,a
+   020D A3                  780 	inc	dptr
+   020E EB                  781 	mov	a,r3
+   020F F0                  782 	movx	@dptr,a
+   0210 A3                  783 	inc	dptr
+   0211 EC                  784 	mov	a,r4
+   0212 F0                  785 	movx	@dptr,a
+   0213 A3                  786 	inc	dptr
+   0214 ED                  787 	mov	a,r5
+   0215 F0                  788 	movx	@dptr,a
+   0216 0E                  789 	inc	r6
+                            790 ;	genAssign: resultIsFar = TRUE
+   0217 8E 07               791 	mov	ar7,r6
+   0219 02s00r01r9B         792 	ljmp	00176$
+   021D                     793 00205$:
+                            794 ;	genAssign: resultIsFar = FALSE
+   021D                     795 00180$:
+                            796 ;	printf_large.c:254: for (       ; f < 1.0;   exp--) f *=10.0;
+                            797 ;	genAssign: resultIsFar = TRUE
+   021D 90s00r00r00         798 	mov	dptr,#___fslt_PARM_2
+   0221 E4                  799 	clr  a
+   0222 F0                  800 	movx @dptr,a
+   0223 A3                  801 	inc  dptr
+   0224 F0                  802 	movx @dptr,a
+   0225 A3                  803 	inc	dptr
+   0226 74 80               804 	mov	a,#0x80
+   0228 F0                  805 	movx	@dptr,a
+   0229 A3                  806 	inc	dptr
+   022A 74 3F               807 	mov	a,#0x3F
+   022C F0                  808 	movx	@dptr,a
+   022D C0 06               809 	push	ar6
+   022F 05 86               810 	inc	dps
+   0231 90s00r00r10         811 	mov	dptr,#_output_float_f_1_1
+   0235 E0                  812 	movx	a,@dptr
+   0236 F5 82               813 	mov	dpl,a
+   0238 A3                  814 	inc	dptr
+   0239 E0                  815 	movx	a,@dptr
+   023A F5 83               816 	mov	dph,a
+   023C A3                  817 	inc	dptr
+   023D E0                  818 	movx	a,@dptr
+   023E F5 93               819 	mov	dpx,a
+   0240 A3                  820 	inc	dptr
+   0241 E0                  821 	movx	a,@dptr
+   0242 F5 F0               822 	mov	b,a
+   0244 75 86 00            823 	mov	dps,#0
+   0247 12s00r00r00         824 	lcall	___fslt
+   024B D0 06               825 	pop	ar6
+   024D E5 82               826 	mov	a,dpl
+   024F 60 4C               827 	jz  00248$
+   0251                     828 00260$:
+   0251 90s00r00r10         829 	mov	dptr,#_output_float_f_1_1
+                            830 ;	genAssign: resultIsFar = TRUE
+   0255 75 86 21            831 	mov	dps,#0x21
+   0258 90s00r00r00         832 	mov	dptr,#___fsmul_PARM_2
+   025C E0                  833 	movx	a,@dptr
+   025D F0                  834 	movx	@dptr,a
+   025E A3                  835 	inc	dptr
+   025F A3                  836 	inc	dptr
+   0260 E0                  837 	movx	a,@dptr
+   0261 F0                  838 	movx	@dptr,a
+   0262 A3                  839 	inc	dptr
+   0263 A3                  840 	inc	dptr
+   0264 E0                  841 	movx	a,@dptr
+   0265 F0                  842 	movx	@dptr,a
+   0266 A3                  843 	inc	dptr
+   0267 A3                  844 	inc	dptr
+   0268 E0                  845 	movx	a,@dptr
+   0269 F0                  846 	movx	@dptr,a
+   026A 75 86 00            847 	mov	dps,#0
+   026D C0 06               848 	push	ar6
+   026F 90 00 00 00         849 	mov  dptr,#0x0000
+   0273 75 93 20            850 	mov	dpx,#0x20
+   0276 75 F0 41            851 	mov	b,#0x41
+   0279 12s00r00r00         852 	lcall	___fsmul
+   027D AA 82               853 	mov	r2,dpl
+   027F AB 83               854 	mov	r3,dph
+   0281 AC 93               855 	mov	r4,dpx
+   0283 AD F0               856 	mov	r5,b
+   0285 D0 06               857 	pop	ar6
+                            858 ;	genAssign: resultIsFar = TRUE
+   0287 90s00r00r10         859 	mov	dptr,#_output_float_f_1_1
+   028B EA                  860 	mov	a,r2
+   028C F0                  861 	movx	@dptr,a
+   028D A3                  862 	inc	dptr
+   028E EB                  863 	mov	a,r3
+   028F F0                  864 	movx	@dptr,a
+   0290 A3                  865 	inc	dptr
+   0291 EC                  866 	mov	a,r4
+   0292 F0                  867 	movx	@dptr,a
+   0293 A3                  868 	inc	dptr
+   0294 ED                  869 	mov	a,r5
+   0295 F0                  870 	movx	@dptr,a
+   0296 1E                  871 	dec	r6
+                            872 ;	genAssign: resultIsFar = TRUE
+   0297 8E 07               873 	mov	ar7,r6
+   0299 02s00r02r1D         874 	ljmp	00180$
+   029D                     875 00248$:
+                            876 ;	genAssign: resultIsFar = TRUE
+   029D 8E 07               877 	mov	ar7,r6
+                            878 ;	printf_large.c:256: if (negative) {
+   029F 30*05 0D            879 	jnb  _output_float_negative_1_1,00106$
+   02A2                     880 00261$:
+                            881 ;	printf_large.c:257: OUTPUT_CHAR ('-', p);
+   02A2 C0 07               882 	push	ar7
+   02A4 75 82 2D            883 	mov	dpl,#0x2D
+   02A7 12s00r00r00         884 	lcall	__output_char
+   02AB D0 07               885 	pop	ar7
+   02AD 80 0E               886 	sjmp 00107$
+   02AF                     887 00106$:
+                            888 ;	printf_large.c:259: if (sign) {
+   02AF 30*03 0B            889 	jnb  _output_float_PARM_6,00107$
+   02B2                     890 00262$:
+                            891 ;	printf_large.c:260: OUTPUT_CHAR ('+', p);
+   02B2 C0 07               892 	push	ar7
+   02B4 75 82 2B            893 	mov	dpl,#0x2B
+   02B7 12s00r00r00         894 	lcall	__output_char
+   02BB D0 07               895 	pop	ar7
+   02BD                     896 00107$:
+                            897 ;	printf_large.c:263: reqWidth = 0;
+                            898 ;	genAssign: resultIsFar = TRUE
+   02BD 90s00r00r0E         899 	mov	dptr,#_output_float_PARM_2
+   02C1 E4                  900 	clr  a
+   02C2 F0                  901 	movx	@dptr,a
+                            902 ;	printf_large.c:264: left = 0;
+                            903 ;	genAssign: resultIsFar = FALSE
+   02C3 C2*01               904 	clr	_output_float_PARM_4
+                            905 ;	printf_large.c:265: zero = 0;
+                            906 ;	genAssign: resultIsFar = FALSE
+   02C5 C2*02               907 	clr	_output_float_PARM_5
+                            908 ;	printf_large.c:266: sign = 0;
+                            909 ;	genAssign: resultIsFar = FALSE
+   02C7 C2*03               910 	clr	_output_float_PARM_6
+                            911 ;	printf_large.c:267: space = 0;
+                            912 ;	genAssign: resultIsFar = FALSE
+   02C9 C2*04               913 	clr	_output_float_PARM_7
+   02CB                     914 00109$:
+                            915 ;	printf_large.c:271: if (reqDecimals==-1)
+   02CB 90s00r00r0F         916 	mov	dptr,#_output_float_PARM_3
+   02CF E0                  917 	movx	a,@dptr
+   02D0 B4 FF 07            918 	cjne a,#0xFF,00111$
+   02D3                     919 00264$:
+                            920 ;	printf_large.c:272: reqDecimals=DEFAULT_FLOAT_PRECISION;
+                            921 ;	genAssign: resultIsFar = TRUE
+   02D3 90s00r00r0F         922 	mov	dptr,#_output_float_PARM_3
+   02D7 74 06               923 	mov	a,#0x06
+   02D9 F0                  924 	movx	@dptr,a
+   02DA                     925 00111$:
+                            926 ;	printf_large.c:275: rounding = 0.5;
+                            927 ;	genAssign: resultIsFar = TRUE
+   02DA 90s00r00r98         928 	mov	dptr,#_output_float_rounding_1_1
+   02DE E4                  929 	clr  a
+   02DF F0                  930 	movx @dptr,a
+   02E0 A3                  931 	inc  dptr
+   02E1 F0                  932 	movx @dptr,a
+   02E2 A3                  933 	inc	dptr
+   02E3 E4                  934 	clr  a
+   02E4 F0                  935 	movx	@dptr,a
+   02E5 A3                  936 	inc	dptr
+   02E6 74 3F               937 	mov	a,#0x3F
+   02E8 F0                  938 	movx	@dptr,a
+                            939 ;	printf_large.c:276: for (i=reqDecimals; i>0; i--) {
+   02E9 90s00r00r0F         940 	mov	dptr,#_output_float_PARM_3
+                            941 ;	genAssign: resultIsFar = TRUE
+   02ED E0                  942 	movx	a,@dptr
+   02EE F8                  943 	mov	r0,a
+                            944 ;	genAssign: resultIsFar = FALSE
+   02EF                     945 00184$:
+   02EF E8                  946 	mov	a,r0
+   02F0 60 04               947 	jz  00194$
+   02F2                     948 00265$:
+                            949 ;	genAssign: resultIsFar = FALSE
+   02F2 79 01               950 	mov	r1,#0x01
+   02F4 80 02               951 	sjmp 00195$
+   02F6                     952 00194$:
+                            953 ;	genAssign: resultIsFar = FALSE
+   02F6 79 00               954 	mov	r1,#0x00
+   02F8                     955 00195$:
+   02F8 E9                  956 	mov	a,r1
+   02F9 60 4E               957 	jz  00187$
+   02FB                     958 00266$:
+                            959 ;	printf_large.c:277: rounding /= 10.0;
+   02FB C0 07               960 	push	ar7
+                            961 ;	genAssign: resultIsFar = TRUE
+   02FD 90s00r00r00         962 	mov	dptr,#___fsdiv_PARM_2
+   0301 E4                  963 	clr  a
+   0302 F0                  964 	movx @dptr,a
+   0303 A3                  965 	inc  dptr
+   0304 F0                  966 	movx @dptr,a
+   0305 A3                  967 	inc	dptr
+   0306 74 20               968 	mov	a,#0x20
+   0308 F0                  969 	movx	@dptr,a
+   0309 A3                  970 	inc	dptr
+   030A 74 41               971 	mov	a,#0x41
+   030C F0                  972 	movx	@dptr,a
+   030D C0 00               973 	push	ar0
+   030F 05 86               974 	inc	dps
+   0311 90s00r00r98         975 	mov	dptr,#_output_float_rounding_1_1
+   0315 E0                  976 	movx	a,@dptr
+   0316 F5 82               977 	mov	dpl,a
+   0318 A3                  978 	inc	dptr
+   0319 E0                  979 	movx	a,@dptr
+   031A F5 83               980 	mov	dph,a
+   031C A3                  981 	inc	dptr
+   031D E0                  982 	movx	a,@dptr
+   031E F5 93               983 	mov	dpx,a
+   0320 A3                  984 	inc	dptr
+   0321 E0                  985 	movx	a,@dptr
+   0322 F5 F0               986 	mov	b,a
+   0324 75 86 00            987 	mov	dps,#0
+   0327 12s00r00r00         988 	lcall	___fsdiv
+   032B A9 82               989 	mov	r1,dpl
+   032D AF 83               990 	mov	r7,dph
+   032F AA 93               991 	mov	r2,dpx
+   0331 AB F0               992 	mov	r3,b
+   0333 D0 00               993 	pop	ar0
+                            994 ;	genAssign: resultIsFar = TRUE
+   0335 90s00r00r98         995 	mov	dptr,#_output_float_rounding_1_1
+   0339 E9                  996 	mov	a,r1
+   033A F0                  997 	movx	@dptr,a
+   033B A3                  998 	inc	dptr
+   033C EF                  999 	mov	a,r7
+   033D F0                 1000 	movx	@dptr,a
+   033E A3                 1001 	inc	dptr
+   033F EA                 1002 	mov	a,r2
+   0340 F0                 1003 	movx	@dptr,a
+   0341 A3                 1004 	inc	dptr
+   0342 EB                 1005 	mov	a,r3
+   0343 F0                 1006 	movx	@dptr,a
+                           1007 ;	printf_large.c:276: for (i=reqDecimals; i>0; i--) {
+   0344 18                 1008 	dec	r0
+   0345 D0 07              1009 	pop	ar7
+   0347 80 A6              1010 	sjmp 00184$
+   0349                    1011 00187$:
+                           1012 ;	printf_large.c:279: f += rounding;
+   0349 C0 07              1013 	push	ar7
+   034B 90s00r00r98        1014 	mov	dptr,#_output_float_rounding_1_1
+                           1015 ;	genAssign: resultIsFar = TRUE
+   034F 75 86 21           1016 	mov	dps,#0x21
+   0352 90s00r00r00        1017 	mov	dptr,#___fsadd_PARM_2
+   0356 E0                 1018 	movx	a,@dptr
+   0357 F0                 1019 	movx	@dptr,a
+   0358 A3                 1020 	inc	dptr
+   0359 A3                 1021 	inc	dptr
+   035A E0                 1022 	movx	a,@dptr
+   035B F0                 1023 	movx	@dptr,a
+   035C A3                 1024 	inc	dptr
+   035D A3                 1025 	inc	dptr
+   035E E0                 1026 	movx	a,@dptr
+   035F F0                 1027 	movx	@dptr,a
+   0360 A3                 1028 	inc	dptr
+   0361 A3                 1029 	inc	dptr
+   0362 E0                 1030 	movx	a,@dptr
+   0363 F0                 1031 	movx	@dptr,a
+   0364 75 86 00           1032 	mov	dps,#0
+   0367 C0 07              1033 	push	ar7
+   0369 05 86              1034 	inc	dps
+   036B 90s00r00r10        1035 	mov	dptr,#_output_float_f_1_1
+   036F E0                 1036 	movx	a,@dptr
+   0370 F5 82              1037 	mov	dpl,a
+   0372 A3                 1038 	inc	dptr
+   0373 E0                 1039 	movx	a,@dptr
+   0374 F5 83              1040 	mov	dph,a
+   0376 A3                 1041 	inc	dptr
+   0377 E0                 1042 	movx	a,@dptr
+   0378 F5 93              1043 	mov	dpx,a
+   037A A3                 1044 	inc	dptr
+   037B E0                 1045 	movx	a,@dptr
+   037C F5 F0              1046 	mov	b,a
+   037E 75 86 00           1047 	mov	dps,#0
+   0381 12s00r00r00        1048 	lcall	___fsadd
+   0385 AA 82              1049 	mov	r2,dpl
+   0387 AB 83              1050 	mov	r3,dph
+   0389 AC 93              1051 	mov	r4,dpx
+   038B AD F0              1052 	mov	r5,b
+   038D D0 07              1053 	pop	ar7
+                           1054 ;	genAssign: resultIsFar = TRUE
+   038F 90s00r00r10        1055 	mov	dptr,#_output_float_f_1_1
+   0393 EA                 1056 	mov	a,r2
+   0394 F0                 1057 	movx	@dptr,a
+   0395 A3                 1058 	inc	dptr
+   0396 EB                 1059 	mov	a,r3
+   0397 F0                 1060 	movx	@dptr,a
+   0398 A3                 1061 	inc	dptr
+   0399 EC                 1062 	mov	a,r4
+   039A F0                 1063 	movx	@dptr,a
+   039B A3                 1064 	inc	dptr
+   039C ED                 1065 	mov	a,r5
+   039D F0                 1066 	movx	@dptr,a
+                           1067 ;	printf_large.c:282: integerPart = f;
+   039E C0 07              1068 	push	ar7
+   03A0 05 86              1069 	inc	dps
+   03A2 90s00r00r10        1070 	mov	dptr,#_output_float_f_1_1
+   03A6 E0                 1071 	movx	a,@dptr
+   03A7 F5 82              1072 	mov	dpl,a
+   03A9 A3                 1073 	inc	dptr
+   03AA E0                 1074 	movx	a,@dptr
+   03AB F5 83              1075 	mov	dph,a
+   03AD A3                 1076 	inc	dptr
+   03AE E0                 1077 	movx	a,@dptr
+   03AF F5 93              1078 	mov	dpx,a
+   03B1 A3                 1079 	inc	dptr
+   03B2 E0                 1080 	movx	a,@dptr
+   03B3 F5 F0              1081 	mov	b,a
+   03B5 75 86 00           1082 	mov	dps,#0
+   03B8 12s00r00r00        1083 	lcall	___fs2ulong
+   03BC AA 82              1084 	mov	r2,dpl
+   03BE AB 83              1085 	mov	r3,dph
+   03C0 AC 93              1086 	mov	r4,dpx
+   03C2 AD F0              1087 	mov	r5,b
+   03C4 D0 07              1088 	pop	ar7
+                           1089 ;	genAssign: resultIsFar = TRUE
+   03C6 90s00r00r94        1090 	mov	dptr,#_output_float_integerPart_1_1
+   03CA EA                 1091 	mov	a,r2
+   03CB F0                 1092 	movx	@dptr,a
+   03CC A3                 1093 	inc	dptr
+   03CD EB                 1094 	mov	a,r3
+   03CE F0                 1095 	movx	@dptr,a
+   03CF A3                 1096 	inc	dptr
+   03D0 EC                 1097 	mov	a,r4
+   03D1 F0                 1098 	movx	@dptr,a
+   03D2 A3                 1099 	inc	dptr
+   03D3 ED                 1100 	mov	a,r5
+   03D4 F0                 1101 	movx	@dptr,a
+                           1102 ;	printf_large.c:283: decimalPart = f - integerPart;
+   03D5 05 86              1103 	inc	dps
+   03D7 90s00r00r94        1104 	mov	dptr,#_output_float_integerPart_1_1
+   03DB E0                 1105 	movx	a,@dptr
+   03DC F5 82              1106 	mov	dpl,a
+   03DE A3                 1107 	inc	dptr
+   03DF E0                 1108 	movx	a,@dptr
+   03E0 F5 83              1109 	mov	dph,a
+   03E2 A3                 1110 	inc	dptr
+   03E3 E0                 1111 	movx	a,@dptr
+   03E4 F5 93              1112 	mov	dpx,a
+   03E6 A3                 1113 	inc	dptr
+   03E7 E0                 1114 	movx	a,@dptr
+   03E8 F5 F0              1115 	mov	b,a
+   03EA 75 86 00           1116 	mov	dps,#0
+   03ED 12s00r00r00        1117 	lcall	___ulong2fs
+   03F1 A8 82              1118 	mov	r0,dpl
+   03F3 A9 83              1119 	mov	r1,dph
+   03F5 AF 93              1120 	mov	r7,dpx
+   03F7 AA F0              1121 	mov	r2,b
+                           1122 ;	genAssign: resultIsFar = TRUE
+   03F9 90s00r00r00        1123 	mov	dptr,#___fssub_PARM_2
+   03FD E8                 1124 	mov	a,r0
+   03FE F0                 1125 	movx	@dptr,a
+   03FF A3                 1126 	inc	dptr
+   0400 E9                 1127 	mov	a,r1
+   0401 F0                 1128 	movx	@dptr,a
+   0402 A3                 1129 	inc	dptr
+   0403 EF                 1130 	mov	a,r7
+   0404 F0                 1131 	movx	@dptr,a
+   0405 A3                 1132 	inc	dptr
+   0406 EA                 1133 	mov	a,r2
+   0407 F0                 1134 	movx	@dptr,a
+   0408 C0 07              1135 	push	ar7
+   040A 05 86              1136 	inc	dps
+   040C 90s00r00r10        1137 	mov	dptr,#_output_float_f_1_1
+   0410 E0                 1138 	movx	a,@dptr
+   0411 F5 82              1139 	mov	dpl,a
+   0413 A3                 1140 	inc	dptr
+   0414 E0                 1141 	movx	a,@dptr
+   0415 F5 83              1142 	mov	dph,a
+   0417 A3                 1143 	inc	dptr
+   0418 E0                 1144 	movx	a,@dptr
+   0419 F5 93              1145 	mov	dpx,a
+   041B A3                 1146 	inc	dptr
+   041C E0                 1147 	movx	a,@dptr
+   041D F5 F0              1148 	mov	b,a
+   041F 75 86 00           1149 	mov	dps,#0
+   0422 12s00r00r00        1150 	lcall	___fssub
+   0426 AA 82              1151 	mov	r2,dpl
+   0428 AB 83              1152 	mov	r3,dph
+   042A AC 93              1153 	mov	r4,dpx
+   042C AD F0              1154 	mov	r5,b
+   042E D0 07              1155 	pop	ar7
+                           1156 ;	genAssign: resultIsFar = TRUE
+   0430 90s00r00r9C        1157 	mov	dptr,#_output_float_decimalPart_1_1
+   0434 EA                 1158 	mov	a,r2
+   0435 F0                 1159 	movx	@dptr,a
+   0436 A3                 1160 	inc	dptr
+   0437 EB                 1161 	mov	a,r3
+   0438 F0                 1162 	movx	@dptr,a
+   0439 A3                 1163 	inc	dptr
+   043A EC                 1164 	mov	a,r4
+   043B F0                 1165 	movx	@dptr,a
+   043C A3                 1166 	inc	dptr
+   043D ED                 1167 	mov	a,r5
+   043E F0                 1168 	movx	@dptr,a
+                           1169 ;	printf_large.c:397: return;
+   043F D0 07              1170 	pop	ar7
+                           1171 ;	printf_large.c:286: while (integerPart) {
+                           1172 ;	genAssign: resultIsFar = FALSE
+   0441 7A 00              1173 	mov	r2,#0x00
+   0443                    1174 00112$:
+   0443 90s00r00r94        1175 	mov	dptr,#_output_float_integerPart_1_1
+   0447 E0                 1176 	movx	a,@dptr
+   0448 F5 F0              1177 	mov	b,a
+   044A A3                 1178 	inc	dptr
+   044B E0                 1179 	movx	a,@dptr
+   044C 42 F0              1180 	orl	b,a
+   044E A3                 1181 	inc	dptr
+   044F E0                 1182 	movx	a,@dptr
+   0450 42 F0              1183 	orl	b,a
+   0452 A3                 1184 	inc	dptr
+   0453 E0                 1185 	movx	a,@dptr
+   0454 45 F0              1186 	orl	a,b
+   0456 70 04              1187 	jnz	00267$
+   0458 02s00r05r05        1188 	ljmp	00250$
+   045C                    1189 00267$:
+                           1190 ;	printf_large.c:287: fpBuffer[fpBI++]='0' + integerPart%10;
+                           1191 ;	genAssign: resultIsFar = FALSE
+   045C 8A 03              1192 	mov	ar3,r2
+   045E 0A                 1193 	inc	r2
+                           1194 ;	genAssign: resultIsFar = TRUE
+   045F 8A 06              1195 	mov	ar6,r2
+   0461 EB                 1196 	mov	a,r3
+   0462 24r14              1197 	add	a,#_output_float_fpBuffer_1_1
+   0464 FB                 1198 	mov	r3,a
+   0465 E4                 1199 	clr	a
+   0466 34s00              1200 	addc	a,#(_output_float_fpBuffer_1_1 >> 8)
+   0468 FC                 1201 	mov	r4,a
+   0469 E4                 1202 	clr	a
+   046A 34s00              1203 	addc	a,#(_output_float_fpBuffer_1_1 >> 16)
+   046C FD                 1204 	mov	r5,a
+                           1205 ;	genAssign: resultIsFar = TRUE
+   046D 90s00r00r00        1206 	mov	dptr,#__modulong_PARM_2
+   0471 74 0A              1207 	mov	a,#0x0A
+   0473 F0                 1208 	movx	@dptr,a
+   0474 E4                 1209 	clr	a
+   0475 A3                 1210 	inc	dptr
+   0476 F0                 1211 	movx	@dptr,a
+   0477 A3                 1212 	inc	dptr
+   0478 F0                 1213 	movx	@dptr,a
+   0479 A3                 1214 	inc	dptr
+   047A F0                 1215 	movx	@dptr,a
+   047B C0 02              1216 	push	ar2
+   047D C0 03              1217 	push	ar3
+   047F C0 04              1218 	push	ar4
+   0481 C0 05              1219 	push	ar5
+   0483 C0 07              1220 	push	ar7
+   0485 05 86              1221 	inc	dps
+   0487 90s00r00r94        1222 	mov	dptr,#_output_float_integerPart_1_1
+   048B E0                 1223 	movx	a,@dptr
+   048C F5 82              1224 	mov	dpl,a
+   048E A3                 1225 	inc	dptr
+   048F E0                 1226 	movx	a,@dptr
+   0490 F5 83              1227 	mov	dph,a
+   0492 A3                 1228 	inc	dptr
+   0493 E0                 1229 	movx	a,@dptr
+   0494 F5 93              1230 	mov	dpx,a
+   0496 A3                 1231 	inc	dptr
+   0497 E0                 1232 	movx	a,@dptr
+   0498 F5 F0              1233 	mov	b,a
+   049A 75 86 00           1234 	mov	dps,#0
+   049D 12s00r00r00        1235 	lcall	__modulong
+   04A1 D0 07              1236 	pop	ar7
+   04A3 D0 05              1237 	pop	ar5
+   04A5 D0 04              1238 	pop	ar4
+   04A7 D0 03              1239 	pop	ar3
+   04A9 D0 02              1240 	pop	ar2
+   04AB A8 82              1241 	mov	r0,dpl
+   04AD 74 30              1242 	mov	a,#0x30
+   04AF 28                 1243 	add	a,r0
+   04B0 F8                 1244 	mov  r0,a
+   04B1 8B 82              1245 	mov  dpl,r3
+   04B3 8C 83              1246 	mov  dph,r4
+   04B5 8D 93              1247 	mov  dpx,r5
+   04B7 F0                 1248 	movx	@dptr,a
+                           1249 ;	printf_large.c:288: integerPart /= 10;
+                           1250 ;	genAssign: resultIsFar = TRUE
+   04B8 90s00r00r00        1251 	mov	dptr,#__divulong_PARM_2
+   04BC 74 0A              1252 	mov	a,#0x0A
+   04BE F0                 1253 	movx	@dptr,a
+   04BF E4                 1254 	clr	a
+   04C0 A3                 1255 	inc	dptr
+   04C1 F0                 1256 	movx	@dptr,a
+   04C2 A3                 1257 	inc	dptr
+   04C3 F0                 1258 	movx	@dptr,a
+   04C4 A3                 1259 	inc	dptr
+   04C5 F0                 1260 	movx	@dptr,a
+   04C6 C0 02              1261 	push	ar2
+   04C8 C0 07              1262 	push	ar7
+   04CA 05 86              1263 	inc	dps
+   04CC 90s00r00r94        1264 	mov	dptr,#_output_float_integerPart_1_1
+   04D0 E0                 1265 	movx	a,@dptr
+   04D1 F5 82              1266 	mov	dpl,a
+   04D3 A3                 1267 	inc	dptr
+   04D4 E0                 1268 	movx	a,@dptr
+   04D5 F5 83              1269 	mov	dph,a
+   04D7 A3                 1270 	inc	dptr
+   04D8 E0                 1271 	movx	a,@dptr
+   04D9 F5 93              1272 	mov	dpx,a
+   04DB A3                 1273 	inc	dptr
+   04DC E0                 1274 	movx	a,@dptr
+   04DD F5 F0              1275 	mov	b,a
+   04DF 75 86 00           1276 	mov	dps,#0
+   04E2 12s00r00r00        1277 	lcall	__divulong
+   04E6 AB 82              1278 	mov	r3,dpl
+   04E8 AC 83              1279 	mov	r4,dph
+   04EA AD 93              1280 	mov	r5,dpx
+   04EC A8 F0              1281 	mov	r0,b
+   04EE D0 07              1282 	pop	ar7
+   04F0 D0 02              1283 	pop	ar2
+                           1284 ;	genAssign: resultIsFar = TRUE
+   04F2 90s00r00r94        1285 	mov	dptr,#_output_float_integerPart_1_1
+   04F6 EB                 1286 	mov	a,r3
+   04F7 F0                 1287 	movx	@dptr,a
+   04F8 A3                 1288 	inc	dptr
+   04F9 EC                 1289 	mov	a,r4
+   04FA F0                 1290 	movx	@dptr,a
+   04FB A3                 1291 	inc	dptr
+   04FC ED                 1292 	mov	a,r5
+   04FD F0                 1293 	movx	@dptr,a
+   04FE A3                 1294 	inc	dptr
+   04FF E8                 1295 	mov	a,r0
+   0500 F0                 1296 	movx	@dptr,a
+   0501 02s00r04r43        1297 	ljmp	00112$
+   0505                    1298 00250$:
+                           1299 ;	genAssign: resultIsFar = TRUE
+   0505 8A 06              1300 	mov	ar6,r2
+                           1301 ;	printf_large.c:290: if (!fpBI) {
+   0507 EA                 1302 	mov	a,r2
+   0508 70 16              1303 	jnz  00116$
+   050A                    1304 00268$:
+                           1305 ;	printf_large.c:292: fpBuffer[fpBI++]='0';
+   050A 74 01              1306 	mov	a,#0x01
+   050C 2A                 1307 	add	a,r2
+   050D FE                 1308 	mov	r6,a
+   050E EA                 1309 	mov	a,r2
+   050F 24r14              1310 	add	a,#_output_float_fpBuffer_1_1
+   0511 F5 82              1311 	mov	dpl,a
+   0513 E4                 1312 	clr	a
+   0514 34s00              1313 	addc	a,#(_output_float_fpBuffer_1_1 >> 8)
+   0516 F5 83              1314 	mov	dph,a
+   0518 E4                 1315 	clr	a
+   0519 34s00              1316 	addc	a,#(_output_float_fpBuffer_1_1 >> 16)
+   051B F5 93              1317 	mov	dpx,a
+   051D 74 30              1318 	mov	a,#0x30
+   051F F0                 1319 	movx	@dptr,a
+   0520                    1320 00116$:
+                           1321 ;	printf_large.c:298: for (i=reqDecimals; i>0; i--) {
+   0520 90s00r00r0F        1322 	mov	dptr,#_output_float_PARM_3
+                           1323 ;	genAssign: resultIsFar = TRUE
+   0524 E0                 1324 	movx	a,@dptr
+   0525 FA                 1325 	mov	r2,a
+                           1326 ;	genAssign: resultIsFar = FALSE
+   0526 8E 03              1327 	mov	ar3,r6
+                           1328 ;	genAssign: resultIsFar = FALSE
+   0528                    1329 00188$:
+   0528 EA                 1330 	mov	a,r2
+   0529 60 04              1331 	jz  00196$
+   052B                    1332 00269$:
+                           1333 ;	genAssign: resultIsFar = FALSE
+   052B 7C 01              1334 	mov	r4,#0x01
+   052D 80 02              1335 	sjmp 00197$
+   052F                    1336 00196$:
+                           1337 ;	genAssign: resultIsFar = FALSE
+   052F 7C 00              1338 	mov	r4,#0x00
+   0531                    1339 00197$:
+   0531 EC                 1340 	mov	a,r4
+   0532 70 04              1341 	jnz	00270$
+   0534 02s00r06r77        1342 	ljmp	00251$
+   0538                    1343 00270$:
+                           1344 ;	printf_large.c:299: decimalPart *= 10.0;
+   0538 90s00r00r9C        1345 	mov	dptr,#_output_float_decimalPart_1_1
+                           1346 ;	genAssign: resultIsFar = TRUE
+   053C 75 86 21           1347 	mov	dps,#0x21
+   053F 90s00r00r00        1348 	mov	dptr,#___fsmul_PARM_2
+   0543 E0                 1349 	movx	a,@dptr
+   0544 F0                 1350 	movx	@dptr,a
+   0545 A3                 1351 	inc	dptr
+   0546 A3                 1352 	inc	dptr
+   0547 E0                 1353 	movx	a,@dptr
+   0548 F0                 1354 	movx	@dptr,a
+   0549 A3                 1355 	inc	dptr
+   054A A3                 1356 	inc	dptr
+   054B E0                 1357 	movx	a,@dptr
+   054C F0                 1358 	movx	@dptr,a
+   054D A3                 1359 	inc	dptr
+   054E A3                 1360 	inc	dptr
+   054F E0                 1361 	movx	a,@dptr
+   0550 F0                 1362 	movx	@dptr,a
+   0551 75 86 00           1363 	mov	dps,#0
+   0554 C0 02              1364 	push	ar2
+   0556 C0 03              1365 	push	ar3
+   0558 C0 06              1366 	push	ar6
+   055A C0 07              1367 	push	ar7
+   055C 90 00 00 00        1368 	mov  dptr,#0x0000
+   0560 75 93 20           1369 	mov	dpx,#0x20
+   0563 75 F0 41           1370 	mov	b,#0x41
+   0566 12s00r00r00        1371 	lcall	___fsmul
+   056A AC 82              1372 	mov	r4,dpl
+   056C AD 83              1373 	mov	r5,dph
+   056E A8 93              1374 	mov	r0,dpx
+   0570 A9 F0              1375 	mov	r1,b
+   0572 D0 07              1376 	pop	ar7
+   0574 D0 06              1377 	pop	ar6
+   0576 D0 03              1378 	pop	ar3
+   0578 D0 02              1379 	pop	ar2
+                           1380 ;	genAssign: resultIsFar = TRUE
+   057A 90s00r00r9C        1381 	mov	dptr,#_output_float_decimalPart_1_1
+   057E EC                 1382 	mov	a,r4
+   057F F0                 1383 	movx	@dptr,a
+   0580 A3                 1384 	inc	dptr
+   0581 ED                 1385 	mov	a,r5
+   0582 F0                 1386 	movx	@dptr,a
+   0583 A3                 1387 	inc	dptr
+   0584 E8                 1388 	mov	a,r0
+   0585 F0                 1389 	movx	@dptr,a
+   0586 A3                 1390 	inc	dptr
+   0587 E9                 1391 	mov	a,r1
+   0588 F0                 1392 	movx	@dptr,a
+                           1393 ;	printf_large.c:301: integerPart = decimalPart;
+   0589 C0 02              1394 	push	ar2
+   058B C0 03              1395 	push	ar3
+   058D C0 06              1396 	push	ar6
+   058F C0 07              1397 	push	ar7
+   0591 05 86              1398 	inc	dps
+   0593 90s00r00r9C        1399 	mov	dptr,#_output_float_decimalPart_1_1
+   0597 E0                 1400 	movx	a,@dptr
+   0598 F5 82              1401 	mov	dpl,a
+   059A A3                 1402 	inc	dptr
+   059B E0                 1403 	movx	a,@dptr
+   059C F5 83              1404 	mov	dph,a
+   059E A3                 1405 	inc	dptr
+   059F E0                 1406 	movx	a,@dptr
+   05A0 F5 93              1407 	mov	dpx,a
+   05A2 A3                 1408 	inc	dptr
+   05A3 E0                 1409 	movx	a,@dptr
+   05A4 F5 F0              1410 	mov	b,a
+   05A6 75 86 00           1411 	mov	dps,#0
+   05A9 12s00r00r00        1412 	lcall	___fs2ulong
+   05AD AC 82              1413 	mov	r4,dpl
+   05AF AD 83              1414 	mov	r5,dph
+   05B1 A8 93              1415 	mov	r0,dpx
+   05B3 A9 F0              1416 	mov	r1,b
+   05B5 D0 07              1417 	pop	ar7
+   05B7 D0 06              1418 	pop	ar6
+   05B9 D0 03              1419 	pop	ar3
+   05BB D0 02              1420 	pop	ar2
+                           1421 ;	genAssign: resultIsFar = TRUE
+   05BD 90s00r00r94        1422 	mov	dptr,#_output_float_integerPart_1_1
+   05C1 EC                 1423 	mov	a,r4
+   05C2 F0                 1424 	movx	@dptr,a
+   05C3 A3                 1425 	inc	dptr
+   05C4 ED                 1426 	mov	a,r5
+   05C5 F0                 1427 	movx	@dptr,a
+   05C6 A3                 1428 	inc	dptr
+   05C7 E8                 1429 	mov	a,r0
+   05C8 F0                 1430 	movx	@dptr,a
+   05C9 A3                 1431 	inc	dptr
+   05CA E9                 1432 	mov	a,r1
+   05CB F0                 1433 	movx	@dptr,a
+                           1434 ;	printf_large.c:302: fpBuffer[fpBD++] = '0' + integerPart;
+                           1435 ;	genAssign: resultIsFar = FALSE
+   05CC 8B 04              1436 	mov	ar4,r3
+   05CE 0B                 1437 	inc	r3
+   05CF EC                 1438 	mov	a,r4
+   05D0 24r14              1439 	add	a,#_output_float_fpBuffer_1_1
+   05D2 F5 84              1440 	mov	dpl1,a
+   05D4 E4                 1441 	clr	a
+   05D5 34s00              1442 	addc	a,#(_output_float_fpBuffer_1_1 >> 8)
+   05D7 F5 85              1443 	mov	dph1,a
+   05D9 E4                 1444 	clr	a
+   05DA 34s00              1445 	addc	a,#(_output_float_fpBuffer_1_1 >> 16)
+   05DC F5 95              1446 	mov	dpx1,a
+   05DE 90s00r00r94        1447 	mov	dptr,#_output_float_integerPart_1_1
+   05E2 E0                 1448 	movx	a,@dptr
+   05E3 24 30              1449 	add  a,#0x30
+   05E5 F9                 1450 	mov  r1,a
+   05E6 05 86              1451 	inc	dps
+   05E8 F0                 1452 	movx	@dptr,a
+   05E9 75 86 00           1453 	mov	dps,#0
+                           1454 ;	printf_large.c:303: decimalPart -= integerPart;
+   05EC C0 02              1455 	push	ar2
+   05EE C0 03              1456 	push	ar3
+   05F0 C0 06              1457 	push	ar6
+   05F2 C0 07              1458 	push	ar7
+   05F4 05 86              1459 	inc	dps
+   05F6 90s00r00r94        1460 	mov	dptr,#_output_float_integerPart_1_1
+   05FA E0                 1461 	movx	a,@dptr
+   05FB F5 82              1462 	mov	dpl,a
+   05FD A3                 1463 	inc	dptr
+   05FE E0                 1464 	movx	a,@dptr
+   05FF F5 83              1465 	mov	dph,a
+   0601 A3                 1466 	inc	dptr
+   0602 E0                 1467 	movx	a,@dptr
+   0603 F5 93              1468 	mov	dpx,a
+   0605 A3                 1469 	inc	dptr
+   0606 E0                 1470 	movx	a,@dptr
+   0607 F5 F0              1471 	mov	b,a
+   0609 75 86 00           1472 	mov	dps,#0
+   060C 12s00r00r00        1473 	lcall	___ulong2fs
+   0610 AC 82              1474 	mov	r4,dpl
+   0612 AD 83              1475 	mov	r5,dph
+   0614 A8 93              1476 	mov	r0,dpx
+   0616 A9 F0              1477 	mov	r1,b
+   0618 D0 07              1478 	pop	ar7
+   061A D0 06              1479 	pop	ar6
+   061C D0 03              1480 	pop	ar3
+   061E D0 02              1481 	pop	ar2
+                           1482 ;	genAssign: resultIsFar = TRUE
+   0620 90s00r00r00        1483 	mov	dptr,#___fssub_PARM_2
+   0624 EC                 1484 	mov	a,r4
+   0625 F0                 1485 	movx	@dptr,a
+   0626 A3                 1486 	inc	dptr
+   0627 ED                 1487 	mov	a,r5
+   0628 F0                 1488 	movx	@dptr,a
+   0629 A3                 1489 	inc	dptr
+   062A E8                 1490 	mov	a,r0
+   062B F0                 1491 	movx	@dptr,a
+   062C A3                 1492 	inc	dptr
+   062D E9                 1493 	mov	a,r1
+   062E F0                 1494 	movx	@dptr,a
+   062F C0 02              1495 	push	ar2
+   0631 C0 03              1496 	push	ar3
+   0633 C0 06              1497 	push	ar6
+   0635 C0 07              1498 	push	ar7
+   0637 05 86              1499 	inc	dps
+   0639 90s00r00r9C        1500 	mov	dptr,#_output_float_decimalPart_1_1
+   063D E0                 1501 	movx	a,@dptr
+   063E F5 82              1502 	mov	dpl,a
+   0640 A3                 1503 	inc	dptr
+   0641 E0                 1504 	movx	a,@dptr
+   0642 F5 83              1505 	mov	dph,a
+   0644 A3                 1506 	inc	dptr
+   0645 E0                 1507 	movx	a,@dptr
+   0646 F5 93              1508 	mov	dpx,a
+   0648 A3                 1509 	inc	dptr
+   0649 E0                 1510 	movx	a,@dptr
+   064A F5 F0              1511 	mov	b,a
+   064C 75 86 00           1512 	mov	dps,#0
+   064F 12s00r00r00        1513 	lcall	___fssub
+   0653 AC 82              1514 	mov	r4,dpl
+   0655 AD 83              1515 	mov	r5,dph
+   0657 A8 93              1516 	mov	r0,dpx
+   0659 A9 F0              1517 	mov	r1,b
+   065B D0 07              1518 	pop	ar7
+   065D D0 06              1519 	pop	ar6
+   065F D0 03              1520 	pop	ar3
+   0661 D0 02              1521 	pop	ar2
+                           1522 ;	genAssign: resultIsFar = TRUE
+   0663 90s00r00r9C        1523 	mov	dptr,#_output_float_decimalPart_1_1
+   0667 EC                 1524 	mov	a,r4
+   0668 F0                 1525 	movx	@dptr,a
+   0669 A3                 1526 	inc	dptr
+   066A ED                 1527 	mov	a,r5
+   066B F0                 1528 	movx	@dptr,a
+   066C A3                 1529 	inc	dptr
+   066D E8                 1530 	mov	a,r0
+   066E F0                 1531 	movx	@dptr,a
+   066F A3                 1532 	inc	dptr
+   0670 E9                 1533 	mov	a,r1
+   0671 F0                 1534 	movx	@dptr,a
+                           1535 ;	printf_large.c:298: for (i=reqDecimals; i>0; i--) {
+   0672 1A                 1536 	dec	r2
+   0673 02s00r05r28        1537 	ljmp	00188$
+   0677                    1538 00251$:
+                           1539 ;	genAssign: resultIsFar = TRUE
+                           1540 ;	printf_large.c:306: minWidth=fpBI; // we need at least these
+                           1541 ;	genAssign: resultIsFar = TRUE
+   0677 8E 03              1542 	mov	ar3,r6
+                           1543 ;	printf_large.c:307: minWidth+=reqDecimals?reqDecimals+1:0; // maybe these
+   0679 90s00r00r0F        1544 	mov	dptr,#_output_float_PARM_3
+   067D E0                 1545 	movx	a,@dptr
+   067E 60 0A              1546 	jz  00198$
+   0680                    1547 00271$:
+   0680 90s00r00r0F        1548 	mov	dptr,#_output_float_PARM_3
+   0684 E0                 1549 	movx	a,@dptr
+   0685 24 01              1550 	add	a,#0x01
+   0687 FC                 1551 	mov	r4,a
+   0688 80 02              1552 	sjmp 00199$
+   068A                    1553 00198$:
+                           1554 ;	genAssign: resultIsFar = FALSE
+   068A 7C 00              1555 	mov	r4,#0x00
+   068C                    1556 00199$:
+   068C EC                 1557 	mov	a,r4
+   068D 2B                 1558 	add	a,r3
+   068E FB                 1559 	mov	r3,a
+                           1560 ;	printf_large.c:308: if (negative || sign || space)
+   068F 20*05 06           1561 	jb   _output_float_negative_1_1,00117$
+   0692                    1562 00272$:
+   0692 20*03 03           1563 	jb   _output_float_PARM_6,00117$
+   0695                    1564 00273$:
+   0695 30*04 01           1565 	jnb  _output_float_PARM_7,00118$
+   0698                    1566 00274$:
+   0698                    1567 00117$:
+                           1568 ;	printf_large.c:309: minWidth++; // and maybe even this :)
+   0698 0B                 1569 	inc	r3
+   0699                    1570 00118$:
+                           1571 ;	printf_large.c:311: if (!left && reqWidth>i) {
+   0699 30*01 04           1572 	jnb	_output_float_PARM_4,00275$
+   069C 02s00r07rAA        1573 	ljmp	00155$
+   06A0                    1574 00275$:
+   06A0 90s00r00r0E        1575 	mov	dptr,#_output_float_PARM_2
+   06A4 C3                 1576 	clr	c
+   06A5 EA                 1577 	mov	a,r2
+   06A6 C5 F0              1578 	xch	a, b
+   06A8 E0                 1579 	movx	a,@dptr
+   06A9 C5 F0              1580 	xch	a, b
+   06AB 95 F0              1581 	subb	a,b
+   06AD 40 04              1582 	jc	00276$
+   06AF 02s00r07rAA        1583 	ljmp	00155$
+   06B3                    1584 00276$:
+                           1585 ;	printf_large.c:312: if (zero) {
+   06B3 30*02 77           1586 	jnb  _output_float_PARM_5,00230$
+   06B6                    1587 00277$:
+                           1588 ;	printf_large.c:313: if (negative)
+   06B6 30*05 15           1589 	jnb  _output_float_negative_1_1,00127$
+   06B9                    1590 00278$:
+                           1591 ;	printf_large.c:315: OUTPUT_CHAR('-', p);
+   06B9 C0 03              1592 	push	ar3
+   06BB C0 06              1593 	push	ar6
+   06BD C0 07              1594 	push	ar7
+   06BF 75 82 2D           1595 	mov	dpl,#0x2D
+   06C2 12s00r00r00        1596 	lcall	__output_char
+   06C6 D0 07              1597 	pop	ar7
+   06C8 D0 06              1598 	pop	ar6
+   06CA D0 03              1599 	pop	ar3
+   06CC 80 2E              1600 	sjmp 00228$
+   06CE                    1601 00127$:
+                           1602 ;	printf_large.c:317: else if (sign)
+   06CE 30*03 15           1603 	jnb  _output_float_PARM_6,00124$
+   06D1                    1604 00279$:
+                           1605 ;	printf_large.c:319: OUTPUT_CHAR('+', p);
+   06D1 C0 03              1606 	push	ar3
+   06D3 C0 06              1607 	push	ar6
+   06D5 C0 07              1608 	push	ar7
+   06D7 75 82 2B           1609 	mov	dpl,#0x2B
+   06DA 12s00r00r00        1610 	lcall	__output_char
+   06DE D0 07              1611 	pop	ar7
+   06E0 D0 06              1612 	pop	ar6
+   06E2 D0 03              1613 	pop	ar3
+   06E4 80 16              1614 	sjmp 00228$
+   06E6                    1615 00124$:
+                           1616 ;	printf_large.c:321: else if (space)
+   06E6 30*04 13           1617 	jnb  _output_float_PARM_7,00228$
+   06E9                    1618 00280$:
+                           1619 ;	printf_large.c:323: OUTPUT_CHAR(' ', p);
+   06E9 C0 03              1620 	push	ar3
+   06EB C0 06              1621 	push	ar6
+   06ED C0 07              1622 	push	ar7
+   06EF 75 82 20           1623 	mov	dpl,#0x20
+   06F2 12s00r00r00        1624 	lcall	__output_char
+   06F6 D0 07              1625 	pop	ar7
+   06F8 D0 06              1626 	pop	ar6
+   06FA D0 03              1627 	pop	ar3
+                           1628 ;	printf_large.c:325: while (reqWidth-->minWidth)
+   06FC                    1629 00228$:
+   06FC 90s00r00r0E        1630 	mov	dptr,#_output_float_PARM_2
+                           1631 ;	genAssign: resultIsFar = FALSE
+   0700 E0                 1632 	movx	a,@dptr
+   0701 FC                 1633 	mov	r4,a
+   0702                    1634 00129$:
+                           1635 ;	genAssign: resultIsFar = FALSE
+   0702 8C 05              1636 	mov	ar5,r4
+   0704 1C                 1637 	dec	r4
+                           1638 ;	genAssign: resultIsFar = TRUE
+   0705 90s00r00r0E        1639 	mov	dptr,#_output_float_PARM_2
+   0709 EC                 1640 	mov	a,r4
+   070A F0                 1641 	movx	@dptr,a
+   070B C3                 1642 	clr	c
+   070C EB                 1643 	mov	a,r3
+   070D 9D                 1644 	subb	a,r5
+   070E 40 04              1645 	jc	00281$
+   0710 02s00r07rF2        1646 	ljmp	00252$
+   0714                    1647 00281$:
+                           1648 ;	printf_large.c:327: OUTPUT_CHAR('0', p);
+   0714 C0 03              1649 	push	ar3
+   0716 C0 04              1650 	push	ar4
+   0718 C0 06              1651 	push	ar6
+   071A C0 07              1652 	push	ar7
+   071C 75 82 30           1653 	mov	dpl,#0x30
+   071F 12s00r00r00        1654 	lcall	__output_char
+   0723 D0 07              1655 	pop	ar7
+   0725 D0 06              1656 	pop	ar6
+   0727 D0 04              1657 	pop	ar4
+   0729 D0 03              1658 	pop	ar3
+                           1659 ;	printf_large.c:330: while (reqWidth-->minWidth)
+   072B 80 D5              1660 	sjmp 00129$
+   072D                    1661 00230$:
+   072D 90s00r00r0E        1662 	mov	dptr,#_output_float_PARM_2
+                           1663 ;	genAssign: resultIsFar = FALSE
+   0731 E0                 1664 	movx	a,@dptr
+   0732 FD                 1665 	mov	r5,a
+   0733                    1666 00132$:
+                           1667 ;	genAssign: resultIsFar = FALSE
+   0733 8D 00              1668 	mov	ar0,r5
+   0735 1D                 1669 	dec	r5
+                           1670 ;	genAssign: resultIsFar = TRUE
+   0736 90s00r00r0E        1671 	mov	dptr,#_output_float_PARM_2
+   073A ED                 1672 	mov	a,r5
+   073B F0                 1673 	movx	@dptr,a
+   073C C3                 1674 	clr	c
+   073D EB                 1675 	mov	a,r3
+   073E 98                 1676 	subb	a,r0
+   073F 50 19              1677 	jnc  00253$
+   0741                    1678 00282$:
+                           1679 ;	printf_large.c:332: OUTPUT_CHAR(' ', p);
+   0741 C0 03              1680 	push	ar3
+   0743 C0 05              1681 	push	ar5
+   0745 C0 06              1682 	push	ar6
+   0747 C0 07              1683 	push	ar7
+   0749 75 82 20           1684 	mov	dpl,#0x20
+   074C 12s00r00r00        1685 	lcall	__output_char
+   0750 D0 07              1686 	pop	ar7
+   0752 D0 06              1687 	pop	ar6
+   0754 D0 05              1688 	pop	ar5
+   0756 D0 03              1689 	pop	ar3
+   0758 80 D9              1690 	sjmp 00132$
+   075A                    1691 00253$:
+                           1692 ;	genAssign: resultIsFar = TRUE
+   075A 90s00r00r0E        1693 	mov	dptr,#_output_float_PARM_2
+   075E ED                 1694 	mov	a,r5
+   075F F0                 1695 	movx	@dptr,a
+                           1696 ;	printf_large.c:334: if (negative)
+   0760 30*05 17           1697 	jnb  _output_float_negative_1_1,00141$
+   0763                    1698 00283$:
+                           1699 ;	printf_large.c:336: OUTPUT_CHAR('-', p);
+   0763 C0 03              1700 	push	ar3
+   0765 C0 06              1701 	push	ar6
+   0767 C0 07              1702 	push	ar7
+   0769 75 82 2D           1703 	mov	dpl,#0x2D
+   076C 12s00r00r00        1704 	lcall	__output_char
+   0770 D0 07              1705 	pop	ar7
+   0772 D0 06              1706 	pop	ar6
+   0774 D0 03              1707 	pop	ar3
+   0776 02s00r07rF8        1708 	ljmp	00156$
+   077A                    1709 00141$:
+                           1710 ;	printf_large.c:338: else if (sign)
+   077A 30*03 15           1711 	jnb  _output_float_PARM_6,00138$
+   077D                    1712 00284$:
+                           1713 ;	printf_large.c:340: OUTPUT_CHAR('+', p);
+   077D C0 03              1714 	push	ar3
+   077F C0 06              1715 	push	ar6
+   0781 C0 07              1716 	push	ar7
+   0783 75 82 2B           1717 	mov	dpl,#0x2B
+   0786 12s00r00r00        1718 	lcall	__output_char
+   078A D0 07              1719 	pop	ar7
+   078C D0 06              1720 	pop	ar6
+   078E D0 03              1721 	pop	ar3
+   0790 80 66              1722 	sjmp 00156$
+   0792                    1723 00138$:
+                           1724 ;	printf_large.c:342: else if (space)
+   0792 30*04 63           1725 	jnb  _output_float_PARM_7,00156$
+   0795                    1726 00285$:
+                           1727 ;	printf_large.c:344: OUTPUT_CHAR(' ', p);
+   0795 C0 03              1728 	push	ar3
+   0797 C0 06              1729 	push	ar6
+   0799 C0 07              1730 	push	ar7
+   079B 75 82 20           1731 	mov	dpl,#0x20
+   079E 12s00r00r00        1732 	lcall	__output_char
+   07A2 D0 07              1733 	pop	ar7
+   07A4 D0 06              1734 	pop	ar6
+   07A6 D0 03              1735 	pop	ar3
+   07A8 80 4E              1736 	sjmp 00156$
+   07AA                    1737 00155$:
+                           1738 ;	printf_large.c:348: if (negative)
+   07AA 30*05 15           1739 	jnb  _output_float_negative_1_1,00152$
+   07AD                    1740 00286$:
+                           1741 ;	printf_large.c:350: OUTPUT_CHAR('-', p);
+   07AD C0 03              1742 	push	ar3
+   07AF C0 06              1743 	push	ar6
+   07B1 C0 07              1744 	push	ar7
+   07B3 75 82 2D           1745 	mov	dpl,#0x2D
+   07B6 12s00r00r00        1746 	lcall	__output_char
+   07BA D0 07              1747 	pop	ar7
+   07BC D0 06              1748 	pop	ar6
+   07BE D0 03              1749 	pop	ar3
+   07C0 80 36              1750 	sjmp 00156$
+   07C2                    1751 00152$:
+                           1752 ;	printf_large.c:352: else if (sign)
+   07C2 30*03 15           1753 	jnb  _output_float_PARM_6,00149$
+   07C5                    1754 00287$:
+                           1755 ;	printf_large.c:354: OUTPUT_CHAR('+', p);
+   07C5 C0 03              1756 	push	ar3
+   07C7 C0 06              1757 	push	ar6
+   07C9 C0 07              1758 	push	ar7
+   07CB 75 82 2B           1759 	mov	dpl,#0x2B
+   07CE 12s00r00r00        1760 	lcall	__output_char
+   07D2 D0 07              1761 	pop	ar7
+   07D4 D0 06              1762 	pop	ar6
+   07D6 D0 03              1763 	pop	ar3
+   07D8 80 1E              1764 	sjmp 00156$
+   07DA                    1765 00149$:
+                           1766 ;	printf_large.c:356: else if (space)
+   07DA 30*04 1B           1767 	jnb  _output_float_PARM_7,00156$
+   07DD                    1768 00288$:
+                           1769 ;	printf_large.c:358: OUTPUT_CHAR(' ', p);
+   07DD C0 03              1770 	push	ar3
+   07DF C0 06              1771 	push	ar6
+   07E1 C0 07              1772 	push	ar7
+   07E3 75 82 20           1773 	mov	dpl,#0x20
+   07E6 12s00r00r00        1774 	lcall	__output_char
+   07EA D0 07              1775 	pop	ar7
+   07EC D0 06              1776 	pop	ar6
+   07EE D0 03              1777 	pop	ar3
+                           1778 ;	printf_large.c:397: return;
+                           1779 ;	printf_large.c:358: OUTPUT_CHAR(' ', p);
+   07F0 80 06              1780 	sjmp 00156$
+   07F2                    1781 00252$:
+                           1782 ;	genAssign: resultIsFar = TRUE
+   07F2 90s00r00r0E        1783 	mov	dptr,#_output_float_PARM_2
+   07F6 EC                 1784 	mov	a,r4
+   07F7 F0                 1785 	movx	@dptr,a
+   07F8                    1786 00156$:
+                           1787 ;	printf_large.c:363: i=fpBI-1;
+   07F8 EE                 1788 	mov	a,r6
+   07F9 14                 1789 	dec	a
+                           1790 ;	genAssign: resultIsFar = TRUE
+   07FA FA                 1791 	mov	r2,a
+                           1792 ;	printf_large.c:364: do {
+                           1793 ;	genAssign: resultIsFar = FALSE
+   07FB                    1794 00158$:
+                           1795 ;	printf_large.c:365: OUTPUT_CHAR (fpBuffer[i], p);
+   07FB EA                 1796 	mov	a,r2
+   07FC 24r14              1797 	add	a,#_output_float_fpBuffer_1_1
+   07FE F5 82              1798 	mov	dpl,a
+   0800 E4                 1799 	clr	a
+   0801 34s00              1800 	addc	a,#(_output_float_fpBuffer_1_1 >> 8)
+   0803 F5 83              1801 	mov	dph,a
+   0805 E4                 1802 	clr	a
+   0806 34s00              1803 	addc	a,#(_output_float_fpBuffer_1_1 >> 16)
+   0808 F5 93              1804 	mov	dpx,a
+   080A E0                 1805 	movx	a,@dptr
+   080B FC                 1806 	mov	r4,a
+   080C C0 02              1807 	push	ar2
+   080E C0 03              1808 	push	ar3
+   0810 C0 06              1809 	push	ar6
+   0812 C0 07              1810 	push	ar7
+   0814 8C 82              1811 	mov	dpl,r4
+   0816 12s00r00r00        1812 	lcall	__output_char
+   081A D0 07              1813 	pop	ar7
+   081C D0 06              1814 	pop	ar6
+   081E D0 03              1815 	pop	ar3
+   0820 D0 02              1816 	pop	ar2
+                           1817 ;	printf_large.c:366: } while (i--);
+                           1818 ;	genAssign: resultIsFar = FALSE
+   0822 8A 04              1819 	mov	ar4,r2
+   0824 1A                 1820 	dec	r2
+   0825 EC                 1821 	mov	a,r4
+   0826 70 D3              1822 	jnz  00158$
+   0828                    1823 00289$:
+                           1824 ;	printf_large.c:369: if (reqDecimals) {
+   0828 90s00r00r0F        1825 	mov	dptr,#_output_float_PARM_3
+   082C E0                 1826 	movx	a,@dptr
+   082D 60 4D              1827 	jz  00165$
+   082F                    1828 00290$:
+                           1829 ;	printf_large.c:370: OUTPUT_CHAR ('.', p);
+   082F C0 03              1830 	push	ar3
+   0831 C0 06              1831 	push	ar6
+   0833 C0 07              1832 	push	ar7
+   0835 75 82 2E           1833 	mov	dpl,#0x2E
+   0838 12s00r00r00        1834 	lcall	__output_char
+   083C D0 07              1835 	pop	ar7
+   083E D0 06              1836 	pop	ar6
+   0840 D0 03              1837 	pop	ar3
+                           1838 ;	printf_large.c:372: while (reqDecimals--)
+                           1839 ;	genAssign: resultIsFar = FALSE
+   0842 8E 02              1840 	mov	ar2,r6
+   0844 90s00r00r0F        1841 	mov	dptr,#_output_float_PARM_3
+                           1842 ;	genAssign: resultIsFar = FALSE
+   0848 E0                 1843 	movx	a,@dptr
+   0849 FC                 1844 	mov	r4,a
+   084A                    1845 00161$:
+                           1846 ;	genAssign: resultIsFar = FALSE
+   084A 8C 05              1847 	mov	ar5,r4
+   084C 1C                 1848 	dec	r4
+   084D ED                 1849 	mov	a,r5
+   084E 60 2C              1850 	jz  00165$
+   0850                    1851 00291$:
+                           1852 ;	printf_large.c:374: OUTPUT_CHAR (fpBuffer[i++], p);
+                           1853 ;	genAssign: resultIsFar = FALSE
+   0850 8A 05              1854 	mov	ar5,r2
+   0852 0A                 1855 	inc	r2
+   0853 ED                 1856 	mov	a,r5
+   0854 24r14              1857 	add	a,#_output_float_fpBuffer_1_1
+   0856 F5 82              1858 	mov	dpl,a
+   0858 E4                 1859 	clr	a
+   0859 34s00              1860 	addc	a,#(_output_float_fpBuffer_1_1 >> 8)
+   085B F5 83              1861 	mov	dph,a
+   085D E4                 1862 	clr	a
+   085E 34s00              1863 	addc	a,#(_output_float_fpBuffer_1_1 >> 16)
+   0860 F5 93              1864 	mov	dpx,a
+   0862 E0                 1865 	movx	a,@dptr
+   0863 FD                 1866 	mov	r5,a
+   0864 C0 02              1867 	push	ar2
+   0866 C0 03              1868 	push	ar3
+   0868 C0 04              1869 	push	ar4
+   086A C0 07              1870 	push	ar7
+   086C 8D 82              1871 	mov	dpl,r5
+   086E 12s00r00r00        1872 	lcall	__output_char
+   0872 D0 07              1873 	pop	ar7
+   0874 D0 04              1874 	pop	ar4
+   0876 D0 03              1875 	pop	ar3
+   0878 D0 02              1876 	pop	ar2
+   087A 80 CE              1877 	sjmp 00161$
+   087C                    1878 00165$:
+                           1879 ;	printf_large.c:378: if (left && reqWidth>minWidth) {
+   087C 30*01 32           1880 	jnb  _output_float_PARM_4,00170$
+   087F                    1881 00292$:
+   087F 90s00r00r0E        1882 	mov	dptr,#_output_float_PARM_2
+   0883 C3                 1883 	clr	c
+   0884 EB                 1884 	mov	a,r3
+   0885 C5 F0              1885 	xch	a, b
+   0887 E0                 1886 	movx	a,@dptr
+   0888 C5 F0              1887 	xch	a, b
+   088A 95 F0              1888 	subb	a,b
+   088C 50 23              1889 	jnc  00170$
+   088E                    1890 00293$:
+                           1891 ;	printf_large.c:379: while (reqWidth-->minWidth)
+   088E 90s00r00r0E        1892 	mov	dptr,#_output_float_PARM_2
+                           1893 ;	genAssign: resultIsFar = FALSE
+   0892 E0                 1894 	movx	a,@dptr
+   0893 FA                 1895 	mov	r2,a
+   0894                    1896 00166$:
+                           1897 ;	genAssign: resultIsFar = FALSE
+   0894 8A 04              1898 	mov	ar4,r2
+   0896 1A                 1899 	dec	r2
+   0897 C3                 1900 	clr	c
+   0898 EB                 1901 	mov	a,r3
+   0899 9C                 1902 	subb	a,r4
+   089A 50 15              1903 	jnc  00170$
+   089C                    1904 00294$:
+                           1905 ;	printf_large.c:381: OUTPUT_CHAR(' ', p);
+   089C C0 02              1906 	push	ar2
+   089E C0 03              1907 	push	ar3
+   08A0 C0 07              1908 	push	ar7
+   08A2 75 82 20           1909 	mov	dpl,#0x20
+   08A5 12s00r00r00        1910 	lcall	__output_char
+   08A9 D0 07              1911 	pop	ar7
+   08AB D0 03              1912 	pop	ar3
+   08AD D0 02              1913 	pop	ar2
+   08AF 80 E3              1914 	sjmp 00166$
+   08B1                    1915 00170$:
+                           1916 ;	printf_large.c:385: if (exp != -128) {
+   08B1 EF                 1917 	mov	a,r7
+   08B2 B4 80 02           1918 	cjne	a,#0x80,00295$
+   08B5 80 5E              1919 	sjmp 00175$
+   08B7                    1920 00295$:
+                           1921 ;	printf_large.c:386: OUTPUT_CHAR ('e', p);
+   08B7 C0 07              1922 	push	ar7
+   08B9 75 82 65           1923 	mov	dpl,#0x65
+   08BC 12s00r00r00        1924 	lcall	__output_char
+   08C0 D0 07              1925 	pop	ar7
+                           1926 ;	printf_large.c:387: if (exp<0) {
+   08C2 EF                 1927 	mov	a,r7
+   08C3 30 E7 0F           1928 	jnb  acc.7,00173$
+   08C6                    1929 00296$:
+                           1930 ;	printf_large.c:388: OUTPUT_CHAR ('-', p);
+   08C6 C0 07              1931 	push	ar7
+   08C8 75 82 2D           1932 	mov	dpl,#0x2D
+   08CB 12s00r00r00        1933 	lcall	__output_char
+   08CF D0 07              1934 	pop	ar7
+                           1935 ;	printf_large.c:389: exp = -exp;
+   08D1 C3                 1936 	clr	c
+   08D2 E4                 1937 	clr	a
+   08D3 9F                 1938 	subb	a,r7
+   08D4 FF                 1939 	mov	r7,a
+   08D5                    1940 00173$:
+                           1941 ;	printf_large.c:391: OUTPUT_CHAR ('0'+exp/10, p);
+   08D5 C2 D5              1942 	clr	F0
+   08D7 75 F0 0A           1943 	mov	b,#0x0a
+   08DA EF                 1944 	mov	a,r7
+   08DB 30 E7 04           1945 	jnb	acc.7,00297$
+   08DE B2 D5              1946 	cpl	F0
+   08E0 F4                 1947 	cpl	a
+   08E1 04                 1948 	inc	a
+   08E2                    1949 00297$:
+   08E2 00                 1950 	nop	; workaround for DS80C390 div bug.
+   08E3 84                 1951 	div	ab
+   08E4 30 D5 02           1952 	jnb	F0,00298$
+   08E7 F4                 1953 	cpl	a
+   08E8 04                 1954 	inc	a
+   08E9                    1955 00298$:
+   08E9 24 30              1956 	add  a,#0x30
+   08EB FA                 1957 	mov  r2,a
+   08EC C0 07              1958 	push	ar7
+   08EE 8A 82              1959 	mov	dpl,r2
+   08F0 12s00r00r00        1960 	lcall	__output_char
+   08F4 D0 07              1961 	pop	ar7
+                           1962 ;	printf_large.c:392: OUTPUT_CHAR ('0'+exp%10, p);
+   08F6 75 F0 0A           1963 	mov	b,#0x0a
+   08F9 EF                 1964 	mov	a,r7
+   08FA C2 D5              1965 	clr	F0
+   08FC 30 E7 04           1966 	jnb	acc.7,00299$
+   08FF D2 D5              1967 	setb	F0
+   0901 F4                 1968 	cpl	a
+   0902 04                 1969 	inc	a
+   0903                    1970 00299$:
+   0903 00                 1971 	nop	; workaround for DS80C390 div bug.
+   0904 84                 1972 	div	ab
+   0905 E5 F0              1973 	mov	a,b
+   0907 30 D5 02           1974 	jnb	F0,00300$
+   090A F4                 1975 	cpl	a
+   090B 04                 1976 	inc	a
+   090C                    1977 00300$:
+   090C 24 30              1978 	add  a,#0x30
+   090E FF                 1979 	mov  r7,a
+   090F 8F 82              1980 	mov	dpl,r7
+   0911 12s00r00r00        1981 	lcall	__output_char
+   0915                    1982 00175$:
+                           1983 ;	printf_large.c:397: return;
+   0915                    1984 00192$:
+   0915 22                 1985 	ret
+                           1986 ;------------------------------------------------------------
+                           1987 ;Allocation info for local variables in function '_print_format'
+                           1988 ;------------------------------------------------------------
+                           1989 ;pvoid                     Allocated with name '__print_format_PARM_2'
+                           1990 ;format                    Allocated with name '__print_format_PARM_3'
+                           1991 ;ap                        Allocated with name '__print_format_PARM_4'
+                           1992 ;pfn                       Allocated to registers 
+                           1993 ;radix                     Allocated with name '__print_format_radix_1_1'
+                           1994 ;width                     Allocated with name '__print_format_width_1_1'
+                           1995 ;decimals                  Allocated to registers r4 
+                           1996 ;length                    Allocated to registers r5 
+                           1997 ;c                         Allocated to registers r2 
+                           1998 ;memtype                   Allocated to registers r2 
+                           1999 ;store                     Allocated with name '__print_format_store_4_23'
+                           2000 ;pstore                    Allocated with name '__print_format_pstore_4_23'
+                           2001 ;sloc0                     Allocated with name '__print_format_sloc0_1_0'
+                           2002 ;sloc1                     Allocated with name '__print_format_sloc1_1_0'
+                           2003 ;------------------------------------------------------------
+                           2004 ;	printf_large.c:402: int _print_format (pfn_outputchar pfn, void* pvoid, const char *format, va_list ap)
+                           2005 ;	-----------------------------------------
+                           2006 ;	 function _print_format
+                           2007 ;	-----------------------------------------
+   0916                    2008 __print_format:
+   0916 75 86 01           2009 	mov     dps, #1
+   0919 90s00r00r00        2010 	mov     dptr, #_output_char
+   091D E5 82              2011 	mov	a,dpl
+   091F F0                 2012 	movx	@dptr,a
+   0920 A3                 2013 	inc	dptr
+   0921 E5 83              2014 	mov	a,dph
+   0923 F0                 2015 	movx	@dptr,a
+   0924 A3                 2016 	inc	dptr
+   0925 E5 93              2017 	mov	a,dpx
+   0927 F0                 2018 	movx	@dptr,a
+   0928 75 86 00           2019 	mov	dps,#0
+                           2020 ;	printf_large.c:430: p = pvoid;
+   092B 90s00r00rA0        2021 	mov	dptr,#__print_format_PARM_2
+                           2022 ;	genAssign: resultIsFar = FALSE
+   092F E0                 2023 	movx	a,@dptr
+   0930 FA                 2024 	mov	r2,a
+   0931 A3                 2025 	inc	dptr
+   0932 E0                 2026 	movx	a,@dptr
+   0933 FB                 2027 	mov	r3,a
+   0934 A3                 2028 	inc	dptr
+   0935 E0                 2029 	movx	a,@dptr
+   0936 FC                 2030 	mov	r4,a
+   0937 A3                 2031 	inc	dptr
+   0938 E0                 2032 	movx	a,@dptr
+   0939 FD                 2033 	mov	r5,a
+                           2034 ;	genAssign: resultIsFar = TRUE
+   093A 90s00r00r03        2035 	mov	dptr,#_p
+   093E EA                 2036 	mov	a,r2
+   093F F0                 2037 	movx	@dptr,a
+   0940 A3                 2038 	inc	dptr
+   0941 EB                 2039 	mov	a,r3
+   0942 F0                 2040 	movx	@dptr,a
+   0943 A3                 2041 	inc	dptr
+   0944 EC                 2042 	mov	a,r4
+   0945 F0                 2043 	movx	@dptr,a
+   0946 A3                 2044 	inc	dptr
+   0947 ED                 2045 	mov	a,r5
+   0948 F0                 2046 	movx	@dptr,a
+                           2047 ;	printf_large.c:434: charsOutputted = 0;
+                           2048 ;	genAssign: resultIsFar = TRUE
+   0949 90s00r00r0C        2049 	mov	dptr,#_charsOutputted
+   094D E4                 2050 	clr	a
+   094E F0                 2051 	movx	@dptr,a
+   094F A3                 2052 	inc	dptr
+   0950 F0                 2053 	movx	@dptr,a
+                           2054 ;	printf_large.c:437: if (format==0) {
+   0951 90s00r00rA4        2055 	mov	dptr,#__print_format_PARM_3
+                           2056 ;	genAssign: resultIsFar = FALSE
+   0955 E0                 2057 	movx	a,@dptr
+   0956 FA                 2058 	mov	r2,a
+   0957 A3                 2059 	inc	dptr
+   0958 E0                 2060 	movx	a,@dptr
+   0959 FB                 2061 	mov	r3,a
+   095A A3                 2062 	inc	dptr
+   095B E0                 2063 	movx	a,@dptr
+   095C FC                 2064 	mov	r4,a
+   095D A3                 2065 	inc	dptr
+   095E E0                 2066 	movx	a,@dptr
+   095F FD                 2067 	mov	r5,a
+   0960 EA                 2068 	mov	a,r2
+   0961 4B                 2069 	orl	a,r3
+   0962 4C                 2070 	orl	a,r4
+   0963 70 13              2071 	jnz  00249$
+   0965                    2072 00325$:
+                           2073 ;	printf_large.c:438: format=NULL_STRING;
+   0965 90s00r00rA4        2074 	mov	dptr,#__print_format_PARM_3
+   0969 74r00              2075 	mov	a,#__str_0
+   096B F0                 2076 	movx	@dptr,a
+   096C A3                 2077 	inc	dptr
+   096D 74s00              2078 	mov	a,#(__str_0 >> 8)
+   096F F0                 2079 	movx	@dptr,a
+   0970 A3                 2080 	inc	dptr
+   0971 74s00              2081 	mov	a,#(__str_0 >> 16)
+   0973 F0                 2082 	movx	@dptr,a
+   0974 A3                 2083 	inc	dptr
+   0975 74 80              2084 	mov	a,#0x80
+   0977 F0                 2085 	movx	@dptr,a
+                           2086 ;	printf_large.c:442: while( c=*format++ )
+   0978                    2087 00249$:
+   0978                    2088 00238$:
+   0978 90s00r00rA4        2089 	mov	dptr,#__print_format_PARM_3
+                           2090 ;	genAssign: resultIsFar = FALSE
+   097C E0                 2091 	movx	a,@dptr
+   097D FA                 2092 	mov	r2,a
+   097E A3                 2093 	inc	dptr
+   097F E0                 2094 	movx	a,@dptr
+   0980 FB                 2095 	mov	r3,a
+   0981 A3                 2096 	inc	dptr
+   0982 E0                 2097 	movx	a,@dptr
+   0983 FC                 2098 	mov	r4,a
+   0984 A3                 2099 	inc	dptr
+   0985 E0                 2100 	movx	a,@dptr
+   0986 FD                 2101 	mov	r5,a
+   0987 8A 82              2102 	mov	dpl,r2
+   0989 8B 83              2103 	mov	dph,r3
+   098B 8C 93              2104 	mov	dpx,r4
+   098D 8D F0              2105 	mov	b,r5
+   098F 12s00r00r00        2106 	lcall	__gptrget
+   0993 FE                 2107 	mov	r6,a
+   0994 90s00r00rA4        2108 	mov	dptr,#__print_format_PARM_3
+   0998 74 01              2109 	mov	a,#0x01
+   099A 2A                 2110 	add	a,r2
+   099B F0                 2111 	movx	@dptr,a
+   099C E4                 2112 	clr  a
+   099D 3B                 2113 	addc	a,r3
+   099E A3                 2114 	inc	dptr
+   099F F0                 2115 	movx	@dptr,a
+   09A0 E4                 2116 	clr  a
+   09A1 3C                 2117 	addc	a,r4
+   09A2 A3                 2118 	inc	dptr
+   09A3 F0                 2119 	movx	@dptr,a
+   09A4 A3                 2120 	inc	dptr
+   09A5 ED                 2121 	mov	a,r5
+   09A6 F0                 2122 	movx	@dptr,a
+                           2123 ;	genAssign: resultIsFar = TRUE
+   09A7 8E 02              2124 	mov	ar2,r6
+   09A9 EE                 2125 	mov	a,r6
+   09AA 70 04              2126 	jnz	00326$
+   09AC 02s00r12r90        2127 	ljmp	00240$
+   09B0                    2128 00326$:
+                           2129 ;	printf_large.c:444: if ( c=='%' )
+   09B0 EA                 2130 	mov	a,r2
+   09B1 B4 25 02           2131 	cjne	a,#0x25,00327$
+   09B4 80 04              2132 	sjmp	00328$
+   09B6                    2133 00327$:
+   09B6 02s00r12r86        2134 	ljmp	00236$
+   09BA                    2135 00328$:
+                           2136 ;	printf_large.c:446: left_justify    = 0;
+                           2137 ;	genAssign: resultIsFar = FALSE
+   09BA C2*06              2138 	clr	__print_format_left_justify_1_1
+                           2139 ;	printf_large.c:447: zero_padding    = 0;
+                           2140 ;	genAssign: resultIsFar = FALSE
+   09BC C2*07              2141 	clr	__print_format_zero_padding_1_1
+                           2142 ;	printf_large.c:448: prefix_sign     = 0;
+                           2143 ;	genAssign: resultIsFar = FALSE
+   09BE C2*08              2144 	clr	__print_format_prefix_sign_1_1
+                           2145 ;	printf_large.c:449: prefix_space    = 0;
+                           2146 ;	genAssign: resultIsFar = FALSE
+   09C0 C2*09              2147 	clr	__print_format_prefix_space_1_1
+                           2148 ;	printf_large.c:450: signed_argument = 0;
+                           2149 ;	genAssign: resultIsFar = FALSE
+   09C2 C2*0A              2150 	clr	__print_format_signed_argument_1_1
+                           2151 ;	printf_large.c:451: char_argument   = 0;
+                           2152 ;	genAssign: resultIsFar = FALSE
+   09C4 C2*0B              2153 	clr	__print_format_char_argument_1_1
+                           2154 ;	printf_large.c:452: long_argument   = 0;
+                           2155 ;	genAssign: resultIsFar = FALSE
+   09C6 C2*0C              2156 	clr	__print_format_long_argument_1_1
+                           2157 ;	printf_large.c:453: float_argument  = 0;
+                           2158 ;	genAssign: resultIsFar = FALSE
+   09C8 C2*0D              2159 	clr	__print_format_float_argument_1_1
+                           2160 ;	printf_large.c:454: radix           = 0;
+                           2161 ;	genAssign: resultIsFar = TRUE
+   09CA 90s00r00rAC        2162 	mov	dptr,#__print_format_radix_1_1
+                           2163 ;	printf_large.c:455: width           = 0;
+                           2164 ;	genAssign: resultIsFar = TRUE
+   09CE E4                 2165 	clr   a
+   09CF F0                 2166 	movx  @dptr,a
+   09D0 90s00r00rAD        2167 	mov   dptr,#__print_format_width_1_1
+   09D4 F0                 2168 	movx  @dptr,a
+                           2169 ;	printf_large.c:456: decimals        = -1;
+                           2170 ;	genAssign: resultIsFar = FALSE
+   09D5 7C FF              2171 	mov	r4,#0xFF
+                           2172 ;	printf_large.c:458: get_conversion_spec:
+   09D7 90s00r00rA4        2173 	mov	dptr,#__print_format_PARM_3
+                           2174 ;	genAssign: resultIsFar = FALSE
+   09DB E0                 2175 	movx	a,@dptr
+   09DC FE                 2176 	mov	r6,a
+   09DD A3                 2177 	inc	dptr
+   09DE E0                 2178 	movx	a,@dptr
+   09DF FF                 2179 	mov	r7,a
+   09E0 A3                 2180 	inc	dptr
+   09E1 E0                 2181 	movx	a,@dptr
+   09E2 F8                 2182 	mov	r0,a
+   09E3 A3                 2183 	inc	dptr
+   09E4 E0                 2184 	movx	a,@dptr
+   09E5 F9                 2185 	mov	r1,a
+   09E6                    2186 00103$:
+                           2187 ;	printf_large.c:460: c = *format++;
+   09E6 8E 82              2188 	mov	dpl,r6
+   09E8 8F 83              2189 	mov	dph,r7
+   09EA 88 93              2190 	mov	dpx,r0
+   09EC 89 F0              2191 	mov	b,r1
+   09EE 12s00r00r00        2192 	lcall	__gptrget
+   09F2 FB                 2193 	mov	r3,a
+   09F3 A3                 2194 	inc	dptr
+   09F4 AE 82              2195 	mov	r6,dpl
+   09F6 AF 83              2196 	mov	r7,dph
+   09F8 A8 93              2197 	mov	r0,dpx
+   09FA A9 F0              2198 	mov	r1,b
+                           2199 ;	genAssign: resultIsFar = TRUE
+   09FC 90s00r00rA4        2200 	mov	dptr,#__print_format_PARM_3
+   0A00 EE                 2201 	mov	a,r6
+   0A01 F0                 2202 	movx	@dptr,a
+   0A02 A3                 2203 	inc	dptr
+   0A03 EF                 2204 	mov	a,r7
+   0A04 F0                 2205 	movx	@dptr,a
+   0A05 A3                 2206 	inc	dptr
+   0A06 E8                 2207 	mov	a,r0
+   0A07 F0                 2208 	movx	@dptr,a
+   0A08 A3                 2209 	inc	dptr
+   0A09 E9                 2210 	mov	a,r1
+   0A0A F0                 2211 	movx	@dptr,a
+                           2212 ;	genAssign: resultIsFar = TRUE
+   0A0B 8B 02              2213 	mov	ar2,r3
+                           2214 ;	printf_large.c:462: if (c=='%') {
+   0A0D EA                 2215 	mov	a,r2
+   0A0E B4 25 0A           2216 	cjne a,#0x25,00105$
+   0A11                    2217 00330$:
+                           2218 ;	printf_large.c:463: OUTPUT_CHAR(c, p);
+   0A11 8A 82              2219 	mov	dpl,r2
+   0A13 12s00r00r00        2220 	lcall	__output_char
+                           2221 ;	printf_large.c:464: continue;
+   0A17 02s00r09r78        2222 	ljmp	00238$
+   0A1B                    2223 00105$:
+                           2224 ;	printf_large.c:467: if (isdigit(c)) {
+                           2225 ;	genAssign: resultIsFar = FALSE
+   0A1B 8A 03              2226 	mov	ar3,r2
+   0A1D BB 30 00           2227 	cjne	r3,#0x30,00331$
+   0A20                    2228 00331$:
+   0A20 40 4A              2229 	jc   00112$
+   0A22                    2230 00332$:
+                           2231 ;	genAssign: resultIsFar = FALSE
+   0A22 8A 03              2232 	mov	ar3,r2
+   0A24 C3                 2233 	clr	c
+   0A25 74 39              2234 	mov	a,#0x39
+   0A27 9B                 2235 	subb	a,r3
+   0A28 40 42              2236 	jc   00112$
+   0A2A                    2237 00333$:
+                           2238 ;	printf_large.c:468: if (decimals==-1) {
+   0A2A EC                 2239 	mov	a,r4
+   0A2B B4 FF 20           2240 	cjne a,#0xFF,00109$
+   0A2E                    2241 00335$:
+                           2242 ;	printf_large.c:469: width = 10*width + (c - '0');
+   0A2E 90s00r00rAD        2243 	mov	dptr,#__print_format_width_1_1
+   0A32 75 F0 0A           2244 	mov	b,#0x0A
+   0A35 E0                 2245 	movx	a,@dptr
+   0A36 A4                 2246 	mul	ab
+   0A37 FB                 2247 	mov	r3,a
+   0A38 EA                 2248 	mov	a,r2
+   0A39 24 D0              2249 	add	a,#0xD0
+   0A3B FD                 2250 	mov	r5,a
+   0A3C 90s00r00rAD        2251 	mov	dptr,#__print_format_width_1_1
+   0A40 ED                 2252 	mov	a,r5
+   0A41 2B                 2253 	add	a,r3
+   0A42 F0                 2254 	movx	@dptr,a
+                           2255 ;	printf_large.c:470: if (width == 0) {
+   0A43 90s00r00rAD        2256 	mov	dptr,#__print_format_width_1_1
+   0A47 E0                 2257 	movx	a,@dptr
+   0A48 70 9C              2258 	jnz  00103$
+   0A4A                    2259 00336$:
+                           2260 ;	printf_large.c:472: zero_padding = 1;
+                           2261 ;	genAssign: resultIsFar = FALSE
+   0A4A D2*07              2262 	setb	__print_format_zero_padding_1_1
+   0A4C 80 98              2263 	sjmp 00103$
+   0A4E                    2264 00109$:
+                           2265 ;	printf_large.c:475: decimals = 10*decimals + (c-'0');
+   0A4E C2 D5              2266 	clr	F0
+   0A50 75 F0 0A           2267 	mov	b,#0x0A
+   0A53 EC                 2268 	mov	a,r4
+   0A54 30 E7 04           2269 	jnb	acc.7,00337$
+   0A57 B2 D5              2270 	cpl	F0
+   0A59 F4                 2271 	cpl	a
+   0A5A 04                 2272 	inc	a
+   0A5B                    2273 00337$:
+   0A5B A4                 2274 	mul	ab
+   0A5C 30 D5 02           2275 	jnb	F0,00338$
+   0A5F F4                 2276 	cpl	a
+   0A60 04                 2277 	inc	a
+   0A61                    2278 00338$:
+   0A61 FD                 2279 	mov	r5,a
+   0A62 EA                 2280 	mov	a,r2
+   0A63 24 D0              2281 	add	a,#0xD0
+   0A65 FB                 2282 	mov  r3,a
+   0A66 2D                 2283 	add	a,r5
+   0A67 FC                 2284 	mov	r4,a
+                           2285 ;	printf_large.c:477: goto get_conversion_spec;
+   0A68 02s00r09rE6        2286 	ljmp	00103$
+   0A6C                    2287 00112$:
+                           2288 ;	printf_large.c:480: if (c=='.') {
+   0A6C EA                 2289 	mov	a,r2
+   0A6D B4 2E 10           2290 	cjne a,#0x2E,00117$
+   0A70                    2291 00340$:
+                           2292 ;	printf_large.c:481: if (decimals==-1) decimals=0;
+   0A70 EC                 2293 	mov	a,r4
+   0A71 B4 FF 02           2294 	cjne	a,#0xFF,00341$
+   0A74 80 04              2295 	sjmp	00342$
+   0A76                    2296 00341$:
+   0A76 02s00r09rE6        2297 	ljmp	00103$
+   0A7A                    2298 00342$:
+                           2299 ;	genAssign: resultIsFar = FALSE
+   0A7A 7C 00              2300 	mov	r4,#0x00
+                           2301 ;	printf_large.c:484: goto get_conversion_spec;
+   0A7C 02s00r09rE6        2302 	ljmp	00103$
+   0A80                    2303 00117$:
+                           2304 ;	printf_large.c:487: if (islower(c))
+                           2305 ;	genAssign: resultIsFar = FALSE
+   0A80 8A 05              2306 	mov	ar5,r2
+   0A82 BD 61 00           2307 	cjne	r5,#0x61,00343$
+   0A85                    2308 00343$:
+   0A85 40 0F              2309 	jc   00119$
+   0A87                    2310 00344$:
+                           2311 ;	genAssign: resultIsFar = FALSE
+   0A87 8A 05              2312 	mov	ar5,r2
+   0A89 C3                 2313 	clr	c
+   0A8A 74 7A              2314 	mov	a,#0x7A
+   0A8C 9D                 2315 	subb	a,r5
+   0A8D 40 07              2316 	jc   00119$
+   0A8F                    2317 00345$:
+                           2318 ;	printf_large.c:489: c = toupper(c);
+   0A8F 53 02 DF           2319 	anl	ar2,#0xDF
+                           2320 ;	printf_large.c:490: lower_case = 1;
+                           2321 ;	genAssign: resultIsFar = FALSE
+   0A92 D2*00              2322 	setb	_lower_case
+   0A94 80 02              2323 	sjmp 00120$
+   0A96                    2324 00119$:
+                           2325 ;	printf_large.c:493: lower_case = 0;
+                           2326 ;	genAssign: resultIsFar = FALSE
+   0A96 C2*00              2327 	clr	_lower_case
+   0A98                    2328 00120$:
+                           2329 ;	printf_large.c:495: switch( c )
+   0A98 EA                 2330 	mov	a,r2
+   0A99 B4 20 02           2331 	cjne	a,#0x20,00346$
+   0A9C 80 6E              2332 	sjmp 00124$
+   0A9E                    2333 00346$:
+   0A9E EA                 2334 	mov	a,r2
+   0A9F B4 2B 02           2335 	cjne	a,#0x2B,00347$
+   0AA2 80 62              2336 	sjmp 00123$
+   0AA4                    2337 00347$:
+   0AA4 EA                 2338 	mov	a,r2
+   0AA5 B4 2D 02           2339 	cjne	a,#0x2D,00348$
+   0AA8 80 56              2340 	sjmp 00122$
+   0AAA                    2341 00348$:
+   0AAA EA                 2342 	mov	a,r2
+   0AAB B4 42 02           2343 	cjne	a,#0x42,00349$
+   0AAE 80 62              2344 	sjmp 00125$
+   0AB0                    2345 00349$:
+   0AB0 EA                 2346 	mov	a,r2
+   0AB1 B4 43 02           2347 	cjne	a,#0x43,00350$
+   0AB4 80 68              2348 	sjmp 00127$
+   0AB6                    2349 00350$:
+   0AB6 EA                 2350 	mov	a,r2
+   0AB7 B4 44 04           2351 	cjne	a,#0x44,00351$
+   0ABA 02s00r0Er07        2352 	ljmp	00164$
+   0ABE                    2353 00351$:
+   0ABE EA                 2354 	mov	a,r2
+   0ABF B4 46 04           2355 	cjne	a,#0x46,00352$
+   0AC2 02s00r0Er2D        2356 	ljmp	00168$
+   0AC6                    2357 00352$:
+   0AC6 EA                 2358 	mov	a,r2
+   0AC7 B4 49 04           2359 	cjne	a,#0x49,00353$
+   0ACA 02s00r0Er07        2360 	ljmp	00164$
+   0ACE                    2361 00353$:
+   0ACE EA                 2362 	mov	a,r2
+   0ACF B4 4C 02           2363 	cjne	a,#0x4C,00354$
+   0AD2 80 44              2364 	sjmp 00126$
+   0AD4                    2365 00354$:
+   0AD4 EA                 2366 	mov	a,r2
+   0AD5 B4 4F 04           2367 	cjne	a,#0x4F,00355$
+   0AD8 02s00r0Er12        2368 	ljmp	00165$
+   0ADC                    2369 00355$:
+   0ADC EA                 2370 	mov	a,r2
+   0ADD B4 50 04           2371 	cjne	a,#0x50,00356$
+   0AE0 02s00r0Dr35        2372 	ljmp	00153$
+   0AE4                    2373 00356$:
+   0AE4 EA                 2374 	mov	a,r2
+   0AE5 B4 53 04           2375 	cjne	a,#0x53,00357$
+   0AE8 02s00r0BrA2        2376 	ljmp	00131$
+   0AEC                    2377 00357$:
+   0AEC EA                 2378 	mov	a,r2
+   0AED B4 55 04           2379 	cjne	a,#0x55,00358$
+   0AF0 02s00r0Er1B        2380 	ljmp	00166$
+   0AF4                    2381 00358$:
+   0AF4 EA                 2382 	mov	a,r2
+   0AF5 B4 58 04           2383 	cjne	a,#0x58,00359$
+   0AF8 02s00r0Er24        2384 	ljmp	00167$
+   0AFC                    2385 00359$:
+   0AFC 02s00r0Er31        2386 	ljmp	00169$
+                           2387 ;	printf_large.c:497: case '-':
+   0B00                    2388 00122$:
+                           2389 ;	printf_large.c:498: left_justify = 1;
+                           2390 ;	genAssign: resultIsFar = FALSE
+   0B00 D2*06              2391 	setb	__print_format_left_justify_1_1
+                           2392 ;	printf_large.c:499: goto get_conversion_spec;
+   0B02 02s00r09rE6        2393 	ljmp	00103$
+                           2394 ;	printf_large.c:500: case '+':
+   0B06                    2395 00123$:
+                           2396 ;	printf_large.c:501: prefix_sign = 1;
+                           2397 ;	genAssign: resultIsFar = FALSE
+   0B06 D2*08              2398 	setb	__print_format_prefix_sign_1_1
+                           2399 ;	printf_large.c:502: goto get_conversion_spec;
+   0B08 02s00r09rE6        2400 	ljmp	00103$
+                           2401 ;	printf_large.c:503: case ' ':
+   0B0C                    2402 00124$:
+                           2403 ;	printf_large.c:504: prefix_space = 1;
+                           2404 ;	genAssign: resultIsFar = FALSE
+   0B0C D2*09              2405 	setb	__print_format_prefix_space_1_1
+                           2406 ;	printf_large.c:505: goto get_conversion_spec;
+   0B0E 02s00r09rE6        2407 	ljmp	00103$
+                           2408 ;	printf_large.c:506: case 'B':
+   0B12                    2409 00125$:
+                           2410 ;	printf_large.c:507: char_argument = 1;
+                           2411 ;	genAssign: resultIsFar = FALSE
+   0B12 D2*0B              2412 	setb	__print_format_char_argument_1_1
+                           2413 ;	printf_large.c:508: goto get_conversion_spec;
+   0B14 02s00r09rE6        2414 	ljmp	00103$
+                           2415 ;	printf_large.c:509: case 'L':
+   0B18                    2416 00126$:
+                           2417 ;	printf_large.c:510: long_argument = 1;
+                           2418 ;	genAssign: resultIsFar = FALSE
+   0B18 D2*0C              2419 	setb	__print_format_long_argument_1_1
+                           2420 ;	printf_large.c:511: goto get_conversion_spec;
+   0B1A 02s00r09rE6        2421 	ljmp	00103$
+                           2422 ;	printf_large.c:513: case 'C':
+   0B1E                    2423 00127$:
+                           2424 ;	printf_large.c:514: if( char_argument )
+   0B1E 30*0B 38           2425 	jnb  __print_format_char_argument_1_1,00129$
+   0B21                    2426 00360$:
+                           2427 ;	printf_large.c:515: c = va_arg(ap,char);
+   0B21 90s00r00rA8        2428 	mov	dptr,#__print_format_PARM_4
+                           2429 ;	genAssign: resultIsFar = FALSE
+   0B25 E0                 2430 	movx	a,@dptr
+   0B26 FD                 2431 	mov	r5,a
+   0B27 A3                 2432 	inc	dptr
+   0B28 E0                 2433 	movx	a,@dptr
+   0B29 FE                 2434 	mov	r6,a
+   0B2A A3                 2435 	inc	dptr
+   0B2B E0                 2436 	movx	a,@dptr
+   0B2C FF                 2437 	mov	r7,a
+   0B2D A3                 2438 	inc	dptr
+   0B2E E0                 2439 	movx	a,@dptr
+   0B2F F8                 2440 	mov	r0,a
+   0B30 1D                 2441 	dec	r5
+   0B31 BD FF 05           2442 	cjne	r5,#0xFF,00361$
+   0B34 1E                 2443 	dec	r6
+   0B35 BE FF 01           2444 	cjne	r6,#0xFF,00361$
+   0B38 1F                 2445 	dec	r7
+   0B39                    2446 00361$:
+                           2447 ;	genAssign: resultIsFar = TRUE
+   0B39 90s00r00rA8        2448 	mov	dptr,#__print_format_PARM_4
+   0B3D ED                 2449 	mov	a,r5
+   0B3E F0                 2450 	movx	@dptr,a
+   0B3F A3                 2451 	inc	dptr
+   0B40 EE                 2452 	mov	a,r6
+   0B41 F0                 2453 	movx	@dptr,a
+   0B42 A3                 2454 	inc	dptr
+   0B43 EF                 2455 	mov	a,r7
+   0B44 F0                 2456 	movx	@dptr,a
+   0B45 A3                 2457 	inc	dptr
+   0B46 E8                 2458 	mov	a,r0
+   0B47 F0                 2459 	movx	@dptr,a
+   0B48 8D 82              2460 	mov	dpl,r5
+   0B4A 8E 83              2461 	mov	dph,r6
+   0B4C 8F 93              2462 	mov	dpx,r7
+   0B4E 88 F0              2463 	mov	b,r0
+   0B50 12s00r00r00        2464 	lcall	__gptrget
+   0B54 FD                 2465 	mov	r5,a
+                           2466 ;	genAssign: resultIsFar = TRUE
+   0B55 8D 02              2467 	mov	ar2,r5
+   0B57 80 3B              2468 	sjmp 00130$
+   0B59                    2469 00129$:
+                           2470 ;	printf_large.c:517: c = va_arg(ap,int);
+   0B59 90s00r00rA8        2471 	mov	dptr,#__print_format_PARM_4
+                           2472 ;	genAssign: resultIsFar = FALSE
+   0B5D E0                 2473 	movx	a,@dptr
+   0B5E FD                 2474 	mov	r5,a
+   0B5F A3                 2475 	inc	dptr
+   0B60 E0                 2476 	movx	a,@dptr
+   0B61 FE                 2477 	mov	r6,a
+   0B62 A3                 2478 	inc	dptr
+   0B63 E0                 2479 	movx	a,@dptr
+   0B64 FF                 2480 	mov	r7,a
+   0B65 A3                 2481 	inc	dptr
+   0B66 E0                 2482 	movx	a,@dptr
+   0B67 F8                 2483 	mov	r0,a
+   0B68 ED                 2484 	mov	a,r5
+   0B69 24 FE              2485 	add	a,#0xFE
+   0B6B FD                 2486 	mov	r5,a
+   0B6C EE                 2487 	mov	a,r6
+   0B6D 34 FF              2488 	addc	a,#0xFF
+   0B6F FE                 2489 	mov	r6,a
+   0B70 EF                 2490 	mov	a,r7
+   0B71 34 FF              2491 	addc	a,#0xFF
+   0B73 FF                 2492 	mov	r7,a
+                           2493 ;	genAssign: resultIsFar = TRUE
+   0B74 90s00r00rA8        2494 	mov	dptr,#__print_format_PARM_4
+   0B78 ED                 2495 	mov	a,r5
+   0B79 F0                 2496 	movx	@dptr,a
+   0B7A A3                 2497 	inc	dptr
+   0B7B EE                 2498 	mov	a,r6
+   0B7C F0                 2499 	movx	@dptr,a
+   0B7D A3                 2500 	inc	dptr
+   0B7E EF                 2501 	mov	a,r7
+   0B7F F0                 2502 	movx	@dptr,a
+   0B80 A3                 2503 	inc	dptr
+   0B81 E8                 2504 	mov	a,r0
+   0B82 F0                 2505 	movx	@dptr,a
+   0B83 8D 82              2506 	mov	dpl,r5
+   0B85 8E 83              2507 	mov	dph,r6
+   0B87 8F 93              2508 	mov	dpx,r7
+   0B89 88 F0              2509 	mov	b,r0
+   0B8B 12s00r00r00        2510 	lcall	__gptrgetWord
+   0B8F FD                 2511 	mov	r5,a
+   0B90 AE 9C              2512 	mov	r6,_ap
+   0B92 8D 02              2513 	mov	ar2,r5
+   0B94                    2514 00130$:
+                           2515 ;	printf_large.c:518: OUTPUT_CHAR( c, p );
+   0B94 C0 04              2516 	push	ar4
+   0B96 8A 82              2517 	mov	dpl,r2
+   0B98 12s00r00r00        2518 	lcall	__output_char
+   0B9C D0 04              2519 	pop	ar4
+                           2520 ;	printf_large.c:519: break;
+   0B9E 02s00r0Er43        2521 	ljmp	00170$
+                           2522 ;	printf_large.c:521: case 'S':
+   0BA2                    2523 00131$:
+                           2524 ;	printf_large.c:522: PTR = va_arg(ap,ptr_t);
+   0BA2 90s00r00rA8        2525 	mov	dptr,#__print_format_PARM_4
+                           2526 ;	genAssign: resultIsFar = FALSE
+   0BA6 E0                 2527 	movx	a,@dptr
+   0BA7 FD                 2528 	mov	r5,a
+   0BA8 A3                 2529 	inc	dptr
+   0BA9 E0                 2530 	movx	a,@dptr
+   0BAA FE                 2531 	mov	r6,a
+   0BAB A3                 2532 	inc	dptr
+   0BAC E0                 2533 	movx	a,@dptr
+   0BAD FF                 2534 	mov	r7,a
+   0BAE A3                 2535 	inc	dptr
+   0BAF E0                 2536 	movx	a,@dptr
+   0BB0 F8                 2537 	mov	r0,a
+   0BB1 ED                 2538 	mov	a,r5
+   0BB2 24 FC              2539 	add	a,#0xFC
+   0BB4 FD                 2540 	mov	r5,a
+   0BB5 EE                 2541 	mov	a,r6
+   0BB6 34 FF              2542 	addc	a,#0xFF
+   0BB8 FE                 2543 	mov	r6,a
+   0BB9 EF                 2544 	mov	a,r7
+   0BBA 34 FF              2545 	addc	a,#0xFF
+   0BBC FF                 2546 	mov	r7,a
+                           2547 ;	genAssign: resultIsFar = TRUE
+   0BBD 90s00r00rA8        2548 	mov	dptr,#__print_format_PARM_4
+   0BC1 ED                 2549 	mov	a,r5
+   0BC2 F0                 2550 	movx	@dptr,a
+   0BC3 A3                 2551 	inc	dptr
+   0BC4 EE                 2552 	mov	a,r6
+   0BC5 F0                 2553 	movx	@dptr,a
+   0BC6 A3                 2554 	inc	dptr
+   0BC7 EF                 2555 	mov	a,r7
+   0BC8 F0                 2556 	movx	@dptr,a
+   0BC9 A3                 2557 	inc	dptr
+   0BCA E8                 2558 	mov	a,r0
+   0BCB F0                 2559 	movx	@dptr,a
+   0BCC 8D 82              2560 	mov	dpl,r5
+   0BCE 8E 83              2561 	mov	dph,r6
+   0BD0 8F 93              2562 	mov	dpx,r7
+   0BD2 88 F0              2563 	mov	b,r0
+   0BD4 12s00r00r00        2564 	lcall	__gptrgetWord
+   0BD8 FD                 2565 	mov	r5,a
+   0BD9 AE 9C              2566 	mov	r6,_ap
+   0BDB A3                 2567 	inc	dptr
+   0BDC 12s00r00r00        2568 	lcall	__gptrgetWord
+   0BE0 FF                 2569 	mov	r7,a
+   0BE1 A8 9C              2570 	mov	r0,_ap
+   0BE3 90s00r00r07        2571 	mov	dptr,#_value
+   0BE7 ED                 2572 	mov	a,r5
+   0BE8 F0                 2573 	movx	@dptr,a
+   0BE9 A3                 2574 	inc	dptr
+   0BEA EE                 2575 	mov	a,r6
+   0BEB F0                 2576 	movx	@dptr,a
+   0BEC A3                 2577 	inc	dptr
+   0BED EF                 2578 	mov	a,r7
+   0BEE F0                 2579 	movx	@dptr,a
+   0BEF A3                 2580 	inc	dptr
+   0BF0 E8                 2581 	mov	a,r0
+   0BF1 F0                 2582 	movx	@dptr,a
+                           2583 ;	printf_large.c:525: if (PTR==0) {
+   0BF2 ED                 2584 	mov	a,r5
+   0BF3 4E                 2585 	orl	a,r6
+   0BF4 4F                 2586 	orl	a,r7
+   0BF5 70 17              2587 	jnz  00133$
+   0BF7                    2588 00362$:
+                           2589 ;	printf_large.c:526: PTR=NULL_STRING;
+   0BF7 90s00r00r07        2590 	mov	dptr,#_value
+   0BFB 74r00              2591 	mov	a,#__str_0
+   0BFD F0                 2592 	movx	@dptr,a
+   0BFE A3                 2593 	inc	dptr
+   0BFF 74s00              2594 	mov	a,#(__str_0 >> 8)
+   0C01 F0                 2595 	movx	@dptr,a
+   0C02 A3                 2596 	inc	dptr
+   0C03 74s00              2597 	mov	a,#(__str_0 >> 16)
+   0C05 F0                 2598 	movx	@dptr,a
+   0C06 A3                 2599 	inc	dptr
+   0C07 74 80              2600 	mov	a,#0x80
+   0C09 F0                 2601 	movx	@dptr,a
+                           2602 ;	printf_large.c:527: length=NULL_STRING_LENGTH;
+                           2603 ;	genAssign: resultIsFar = TRUE
+   0C0A 7D 06              2604 	mov	r5,#0x06
+   0C0C 80 25              2605 	sjmp 00134$
+   0C0E                    2606 00133$:
+                           2607 ;	printf_large.c:529: length = strlen(PTR);
+   0C0E 90s00r00r07        2608 	mov	dptr,#_value
+   0C12 E0                 2609 	movx	a,@dptr
+   0C13 A3                 2610 	inc	dptr
+   0C14 FE                 2611 	mov	r6,a
+   0C15 E0                 2612 	movx	a,@dptr
+   0C16 A3                 2613 	inc	dptr
+   0C17 FF                 2614 	mov	r7,a
+   0C18 E0                 2615 	movx	a,@dptr
+   0C19 A3                 2616 	inc	dptr
+   0C1A F8                 2617 	mov	r0,a
+   0C1B E0                 2618 	movx	a,@dptr
+   0C1C F9                 2619 	mov	r1,a
+   0C1D C0 04              2620 	push	ar4
+   0C1F 8E 82              2621 	mov	dpl,r6
+   0C21 8F 83              2622 	mov	dph,r7
+   0C23 88 93              2623 	mov	dpx,r0
+   0C25 89 F0              2624 	mov	b,r1
+   0C27 12s00r00r00        2625 	lcall	_strlen
+   0C2B AE 82              2626 	mov	r6,dpl
+   0C2D AF 83              2627 	mov	r7,dph
+   0C2F D0 04              2628 	pop	ar4
+   0C31 8E 05              2629 	mov	ar5,r6
+   0C33                    2630 00134$:
+                           2631 ;	printf_large.c:534: if ( decimals == -1 )
+   0C33 EC                 2632 	mov	a,r4
+   0C34 B4 FF 02           2633 	cjne a,#0xFF,00136$
+   0C37                    2634 00364$:
+                           2635 ;	printf_large.c:536: decimals = length;
+                           2636 ;	genAssign: resultIsFar = FALSE
+   0C37 8D 04              2637 	mov	ar4,r5
+   0C39                    2638 00136$:
+                           2639 ;	printf_large.c:538: if ( ( !left_justify ) && (length < width) )
+   0C39 20*06 44           2640 	jb   __print_format_left_justify_1_1,00282$
+   0C3C                    2641 00365$:
+   0C3C 90s00r00rAD        2642 	mov	dptr,#__print_format_width_1_1
+   0C40 C3                 2643 	clr	c
+   0C41 ED                 2644 	mov	a,r5
+   0C42 C5 F0              2645 	xch	a, b
+   0C44 E0                 2646 	movx	a,@dptr
+   0C45 C5 F0              2647 	xch	a, b
+   0C47 95 F0              2648 	subb	a,b
+   0C49 50 35              2649 	jnc  00282$
+   0C4B                    2650 00366$:
+                           2651 ;	printf_large.c:540: width -= length;
+   0C4B 90s00r00rAD        2652 	mov	dptr,#__print_format_width_1_1
+   0C4F C3                 2653 	clr	c
+   0C50 E0                 2654 	movx	a,@dptr
+   0C51 9D                 2655 	subb	a,r5
+   0C52 F0                 2656 	movx	@dptr,a
+                           2657 ;	printf_large.c:541: while( width-- != 0 )
+   0C53 90s00r00rAD        2658 	mov	dptr,#__print_format_width_1_1
+                           2659 ;	genAssign: resultIsFar = FALSE
+   0C57 E0                 2660 	movx	a,@dptr
+   0C58 FE                 2661 	mov	r6,a
+   0C59                    2662 00137$:
+                           2663 ;	genAssign: resultIsFar = FALSE
+   0C59 8E 07              2664 	mov	ar7,r6
+   0C5B 1E                 2665 	dec	r6
+                           2666 ;	genAssign: resultIsFar = TRUE
+   0C5C 90s00r00rAD        2667 	mov	dptr,#__print_format_width_1_1
+   0C60 EE                 2668 	mov	a,r6
+   0C61 F0                 2669 	movx	@dptr,a
+   0C62 EF                 2670 	mov	a,r7
+   0C63 60 15              2671 	jz  00318$
+   0C65                    2672 00367$:
+                           2673 ;	printf_large.c:543: OUTPUT_CHAR( ' ', p );
+   0C65 C0 04              2674 	push	ar4
+   0C67 C0 05              2675 	push	ar5
+   0C69 C0 06              2676 	push	ar6
+   0C6B 75 82 20           2677 	mov	dpl,#0x20
+   0C6E 12s00r00r00        2678 	lcall	__output_char
+   0C72 D0 06              2679 	pop	ar6
+   0C74 D0 05              2680 	pop	ar5
+   0C76 D0 04              2681 	pop	ar4
+                           2682 ;	printf_large.c:547: while ( (c = *PTR)  && (decimals-- > 0))
+   0C78 80 DF              2683 	sjmp 00137$
+   0C7A                    2684 00318$:
+                           2685 ;	genAssign: resultIsFar = TRUE
+   0C7A 90s00r00rAD        2686 	mov	dptr,#__print_format_width_1_1
+   0C7E EE                 2687 	mov	a,r6
+   0C7F F0                 2688 	movx	@dptr,a
+   0C80                    2689 00282$:
+                           2690 ;	genAssign: resultIsFar = FALSE
+   0C80 8C 06              2691 	mov	ar6,r4
+   0C82                    2692 00144$:
+   0C82 90s00r00r07        2693 	mov	dptr,#_value
+   0C86 E0                 2694 	movx	a,@dptr
+   0C87 A3                 2695 	inc	dptr
+   0C88 FF                 2696 	mov	r7,a
+   0C89 E0                 2697 	movx	a,@dptr
+   0C8A A3                 2698 	inc	dptr
+   0C8B F8                 2699 	mov	r0,a
+   0C8C E0                 2700 	movx	a,@dptr
+   0C8D A3                 2701 	inc	dptr
+   0C8E F9                 2702 	mov	r1,a
+   0C8F E0                 2703 	movx	a,@dptr
+   0C90 FB                 2704 	mov	r3,a
+   0C91 8F 82              2705 	mov	dpl,r7
+   0C93 88 83              2706 	mov	dph,r0
+   0C95 89 93              2707 	mov	dpx,r1
+   0C97 8B F0              2708 	mov	b,r3
+   0C99 12s00r00r00        2709 	lcall	__gptrget
+                           2710 ;	genAssign: resultIsFar = TRUE
+   0C9D FF                 2711 	mov  r7,a
+   0C9E 8F 02              2712 	mov  ar2,r7 
+   0CA0 60 48              2713 	jz  00319$
+   0CA2                    2714 00368$:
+                           2715 ;	genAssign: resultIsFar = FALSE
+   0CA2 8E 07              2716 	mov	ar7,r6
+   0CA4 1E                 2717 	dec	r6
+                           2718 ;	genAssign: resultIsFar = FALSE
+   0CA5 8E 04              2719 	mov	ar4,r6
+   0CA7 C3                 2720 	clr	c
+   0CA8 74 80              2721 	mov  a,#(0x00 ^ 0x80)
+   0CAA 8F F0              2722 	mov	b,r7
+   0CAC 63 F0 80           2723 	xrl	b,#0x80
+   0CAF 95 F0              2724 	subb	a,b
+   0CB1 50 37              2725 	jnc  00319$
+   0CB3                    2726 00369$:
+                           2727 ;	printf_large.c:549: OUTPUT_CHAR( c, p );
+   0CB3 C0 05              2728 	push	ar5
+   0CB5 C0 06              2729 	push	ar6
+   0CB7 8A 82              2730 	mov	dpl,r2
+   0CB9 12s00r00r00        2731 	lcall	__output_char
+   0CBD D0 06              2732 	pop	ar6
+   0CBF D0 05              2733 	pop	ar5
+                           2734 ;	printf_large.c:550: PTR++;
+   0CC1 90s00r00r07        2735 	mov	dptr,#_value
+   0CC5 E0                 2736 	movx	a,@dptr
+   0CC6 A3                 2737 	inc	dptr
+   0CC7 FF                 2738 	mov	r7,a
+   0CC8 E0                 2739 	movx	a,@dptr
+   0CC9 A3                 2740 	inc	dptr
+   0CCA F8                 2741 	mov	r0,a
+   0CCB E0                 2742 	movx	a,@dptr
+   0CCC A3                 2743 	inc	dptr
+   0CCD F9                 2744 	mov	r1,a
+   0CCE E0                 2745 	movx	a,@dptr
+   0CCF FB                 2746 	mov	r3,a
+   0CD0 0F                 2747 	inc	r7
+   0CD1 BF 00 05           2748 	cjne	r7,#0,00370$
+   0CD4 08                 2749 	inc	r0
+   0CD5 B8 00 01           2750 	cjne	r0,#0,00370$
+   0CD8 09                 2751 	inc	r1
+   0CD9                    2752 00370$:
+   0CD9 90s00r00r07        2753 	mov	dptr,#_value
+   0CDD EF                 2754 	mov	a,r7
+   0CDE F0                 2755 	movx	@dptr,a
+   0CDF A3                 2756 	inc	dptr
+   0CE0 E8                 2757 	mov	a,r0
+   0CE1 F0                 2758 	movx	@dptr,a
+   0CE2 A3                 2759 	inc	dptr
+   0CE3 E9                 2760 	mov	a,r1
+   0CE4 F0                 2761 	movx	@dptr,a
+   0CE5 A3                 2762 	inc	dptr
+   0CE6 EB                 2763 	mov	a,r3
+   0CE7 F0                 2764 	movx	@dptr,a
+   0CE8 80 98              2765 	sjmp 00144$
+   0CEA                    2766 00319$:
+                           2767 ;	genAssign: resultIsFar = FALSE
+   0CEA 8E 04              2768 	mov	ar4,r6
+                           2769 ;	printf_large.c:553: if ( left_justify && (length < width))
+   0CEC 20*06 04           2770 	jb	__print_format_left_justify_1_1,00371$
+   0CEF 02s00r0Er43        2771 	ljmp	00170$
+   0CF3                    2772 00371$:
+   0CF3 90s00r00rAD        2773 	mov	dptr,#__print_format_width_1_1
+   0CF7 C3                 2774 	clr	c
+   0CF8 ED                 2775 	mov	a,r5
+   0CF9 C5 F0              2776 	xch	a, b
+   0CFB E0                 2777 	movx	a,@dptr
+   0CFC C5 F0              2778 	xch	a, b
+   0CFE 95 F0              2779 	subb	a,b
+   0D00 40 04              2780 	jc	00372$
+   0D02 02s00r0Er43        2781 	ljmp	00170$
+   0D06                    2782 00372$:
+                           2783 ;	printf_large.c:555: width -= length;
+   0D06 90s00r00rAD        2784 	mov	dptr,#__print_format_width_1_1
+   0D0A C3                 2785 	clr	c
+   0D0B E0                 2786 	movx	a,@dptr
+   0D0C 9D                 2787 	subb	a,r5
+   0D0D F0                 2788 	movx	@dptr,a
+                           2789 ;	printf_large.c:556: while( width-- != 0 )
+   0D0E 90s00r00rAD        2790 	mov	dptr,#__print_format_width_1_1
+                           2791 ;	genAssign: resultIsFar = FALSE
+   0D12 E0                 2792 	movx	a,@dptr
+   0D13 FE                 2793 	mov	r6,a
+   0D14                    2794 00147$:
+                           2795 ;	genAssign: resultIsFar = FALSE
+   0D14 8E 07              2796 	mov	ar7,r6
+   0D16 1E                 2797 	dec	r6
+                           2798 ;	genAssign: resultIsFar = TRUE
+   0D17 90s00r00rAD        2799 	mov	dptr,#__print_format_width_1_1
+   0D1B EE                 2800 	mov	a,r6
+   0D1C F0                 2801 	movx	@dptr,a
+   0D1D EF                 2802 	mov	a,r7
+   0D1E 70 04              2803 	jnz	00373$
+   0D20 02s00r0Er3D        2804 	ljmp	00320$
+   0D24                    2805 00373$:
+                           2806 ;	printf_large.c:558: OUTPUT_CHAR( ' ', p );
+   0D24 C0 04              2807 	push	ar4
+   0D26 C0 06              2808 	push	ar6
+   0D28 75 82 20           2809 	mov	dpl,#0x20
+   0D2B 12s00r00r00        2810 	lcall	__output_char
+   0D2F D0 06              2811 	pop	ar6
+   0D31 D0 04              2812 	pop	ar4
+                           2813 ;	printf_large.c:563: case 'P':
+   0D33 80 DF              2814 	sjmp 00147$
+   0D35                    2815 00153$:
+                           2816 ;	printf_large.c:564: PTR = va_arg(ap,ptr_t);
+   0D35 90s00r00rA8        2817 	mov	dptr,#__print_format_PARM_4
+                           2818 ;	genAssign: resultIsFar = FALSE
+   0D39 E0                 2819 	movx	a,@dptr
+   0D3A FF                 2820 	mov	r7,a
+   0D3B A3                 2821 	inc	dptr
+   0D3C E0                 2822 	movx	a,@dptr
+   0D3D F8                 2823 	mov	r0,a
+   0D3E A3                 2824 	inc	dptr
+   0D3F E0                 2825 	movx	a,@dptr
+   0D40 F9                 2826 	mov	r1,a
+   0D41 A3                 2827 	inc	dptr
+   0D42 E0                 2828 	movx	a,@dptr
+   0D43 FB                 2829 	mov	r3,a
+   0D44 EF                 2830 	mov	a,r7
+   0D45 24 FC              2831 	add	a,#0xFC
+   0D47 FF                 2832 	mov	r7,a
+   0D48 E8                 2833 	mov	a,r0
+   0D49 34 FF              2834 	addc	a,#0xFF
+   0D4B F8                 2835 	mov	r0,a
+   0D4C E9                 2836 	mov	a,r1
+   0D4D 34 FF              2837 	addc	a,#0xFF
+   0D4F F9                 2838 	mov	r1,a
+                           2839 ;	genAssign: resultIsFar = TRUE
+   0D50 90s00r00rA8        2840 	mov	dptr,#__print_format_PARM_4
+   0D54 EF                 2841 	mov	a,r7
+   0D55 F0                 2842 	movx	@dptr,a
+   0D56 A3                 2843 	inc	dptr
+   0D57 E8                 2844 	mov	a,r0
+   0D58 F0                 2845 	movx	@dptr,a
+   0D59 A3                 2846 	inc	dptr
+   0D5A E9                 2847 	mov	a,r1
+   0D5B F0                 2848 	movx	@dptr,a
+   0D5C A3                 2849 	inc	dptr
+   0D5D EB                 2850 	mov	a,r3
+   0D5E F0                 2851 	movx	@dptr,a
+   0D5F 8F 82              2852 	mov	dpl,r7
+   0D61 88 83              2853 	mov	dph,r0
+   0D63 89 93              2854 	mov	dpx,r1
+   0D65 8B F0              2855 	mov	b,r3
+   0D67 12s00r00r00        2856 	lcall	__gptrgetWord
+   0D6B FF                 2857 	mov	r7,a
+   0D6C A8 9C              2858 	mov	r0,_ap
+   0D6E A3                 2859 	inc	dptr
+   0D6F 12s00r00r00        2860 	lcall	__gptrgetWord
+   0D73 F9                 2861 	mov	r1,a
+   0D74 AB 9C              2862 	mov	r3,_ap
+   0D76 90s00r00r07        2863 	mov	dptr,#_value
+   0D7A EF                 2864 	mov	a,r7
+   0D7B F0                 2865 	movx	@dptr,a
+   0D7C A3                 2866 	inc	dptr
+   0D7D E8                 2867 	mov	a,r0
+   0D7E F0                 2868 	movx	@dptr,a
+   0D7F A3                 2869 	inc	dptr
+   0D80 E9                 2870 	mov	a,r1
+   0D81 F0                 2871 	movx	@dptr,a
+   0D82 A3                 2872 	inc	dptr
+   0D83 EB                 2873 	mov	a,r3
+   0D84 F0                 2874 	movx	@dptr,a
+                           2875 ;	printf_large.c:568: unsigned char memtype = value.byte[3];
+   0D85 90s00r00r0A        2876 	mov	dptr,#(_value + 0x000003)
+   0D89 E0                 2877 	movx	a,@dptr
+   0D8A FB                 2878 	mov	r3,a
+                           2879 ;	genAssign: resultIsFar = FALSE
+   0D8B 8B 02              2880 	mov	ar2,r3
+                           2881 ;	printf_large.c:569: if (memtype >= 0x80)
+   0D8D BA 80 00           2882 	cjne	r2,#0x80,00374$
+   0D90                    2883 00374$:
+   0D90 40 04              2884 	jc   00161$
+   0D92                    2885 00375$:
+                           2886 ;	printf_large.c:570: c = 'C';
+                           2887 ;	genAssign: resultIsFar = TRUE
+   0D92 7A 43              2888 	mov	r2,#0x43
+   0D94 80 14              2889 	sjmp 00162$
+   0D96                    2890 00161$:
+                           2891 ;	printf_large.c:571: else if (memtype >= 0x60)
+   0D96 BA 60 00           2892 	cjne	r2,#0x60,00376$
+   0D99                    2893 00376$:
+   0D99 40 04              2894 	jc   00158$
+   0D9B                    2895 00377$:
+                           2896 ;	printf_large.c:572: c = 'P';
+                           2897 ;	genAssign: resultIsFar = TRUE
+   0D9B 7A 50              2898 	mov	r2,#0x50
+   0D9D 80 0B              2899 	sjmp 00162$
+   0D9F                    2900 00158$:
+                           2901 ;	printf_large.c:573: else if (memtype >= 0x40)
+   0D9F BA 40 00           2902 	cjne	r2,#0x40,00378$
+   0DA2                    2903 00378$:
+   0DA2 40 04              2904 	jc   00155$
+   0DA4                    2905 00379$:
+                           2906 ;	printf_large.c:574: c = 'I';
+                           2907 ;	genAssign: resultIsFar = TRUE
+   0DA4 7A 49              2908 	mov	r2,#0x49
+   0DA6 80 02              2909 	sjmp 00162$
+   0DA8                    2910 00155$:
+                           2911 ;	printf_large.c:576: c = 'X';
+                           2912 ;	genAssign: resultIsFar = TRUE
+   0DA8 7A 58              2913 	mov	r2,#0x58
+   0DAA                    2914 00162$:
+                           2915 ;	printf_large.c:578: OUTPUT_CHAR(c, p);
+   0DAA C0 04              2916 	push	ar4
+   0DAC 8A 82              2917 	mov	dpl,r2
+   0DAE 12s00r00r00        2918 	lcall	__output_char
+   0DB2 D0 04              2919 	pop	ar4
+                           2920 ;	printf_large.c:579: OUTPUT_CHAR(':', p);
+   0DB4 C0 04              2921 	push	ar4
+   0DB6 75 82 3A           2922 	mov	dpl,#0x3A
+   0DB9 12s00r00r00        2923 	lcall	__output_char
+   0DBD D0 04              2924 	pop	ar4
+                           2925 ;	printf_large.c:580: OUTPUT_CHAR('0', p);
+   0DBF C0 04              2926 	push	ar4
+   0DC1 75 82 30           2927 	mov	dpl,#0x30
+   0DC4 12s00r00r00        2928 	lcall	__output_char
+   0DC8 D0 04              2929 	pop	ar4
+                           2930 ;	printf_large.c:581: OUTPUT_CHAR('x', p);
+   0DCA C0 04              2931 	push	ar4
+   0DCC 75 82 78           2932 	mov	dpl,#0x78
+   0DCF 12s00r00r00        2933 	lcall	__output_char
+   0DD3 D0 04              2934 	pop	ar4
+                           2935 ;	printf_large.c:582: OUTPUT_2DIGITS( value.byte[2] );
+   0DD5 90s00r00r09        2936 	mov	dptr,#(_value + 0x000002)
+   0DD9 E0                 2937 	movx	a,@dptr
+   0DDA FF                 2938 	mov	r7,a
+   0DDB C0 04              2939 	push	ar4
+   0DDD 8F 82              2940 	mov	dpl,r7
+   0DDF 12s00r00r66        2941 	lcall	_output_2digits
+   0DE3 D0 04              2942 	pop	ar4
+                           2943 ;	printf_large.c:583: OUTPUT_2DIGITS( value.byte[1] );
+   0DE5 90s00r00r08        2944 	mov	dptr,#(_value + 0x000001)
+   0DE9 E0                 2945 	movx	a,@dptr
+   0DEA FF                 2946 	mov	r7,a
+   0DEB C0 04              2947 	push	ar4
+   0DED 8F 82              2948 	mov	dpl,r7
+   0DEF 12s00r00r66        2949 	lcall	_output_2digits
+   0DF3 D0 04              2950 	pop	ar4
+                           2951 ;	printf_large.c:584: OUTPUT_2DIGITS( value.byte[0] );
+   0DF5 90s00r00r07        2952 	mov	dptr,#_value
+   0DF9 E0                 2953 	movx	a,@dptr
+   0DFA FF                 2954 	mov	r7,a
+   0DFB C0 04              2955 	push	ar4
+   0DFD 8F 82              2956 	mov	dpl,r7
+   0DFF 12s00r00r66        2957 	lcall	_output_2digits
+   0E03 D0 04              2958 	pop	ar4
+                           2959 ;	printf_large.c:613: break;
+                           2960 ;	printf_large.c:616: case 'I':
+   0E05 80 3C              2961 	sjmp 00170$
+   0E07                    2962 00164$:
+                           2963 ;	printf_large.c:617: signed_argument = 1;
+                           2964 ;	genAssign: resultIsFar = FALSE
+   0E07 D2*0A              2965 	setb	__print_format_signed_argument_1_1
+                           2966 ;	printf_large.c:618: radix = 10;
+                           2967 ;	genAssign: resultIsFar = TRUE
+   0E09 90s00r00rAC        2968 	mov	dptr,#__print_format_radix_1_1
+   0E0D 74 0A              2969 	mov	a,#0x0A
+   0E0F F0                 2970 	movx	@dptr,a
+                           2971 ;	printf_large.c:619: break;
+                           2972 ;	printf_large.c:621: case 'O':
+   0E10 80 31              2973 	sjmp 00170$
+   0E12                    2974 00165$:
+                           2975 ;	printf_large.c:622: radix = 8;
+                           2976 ;	genAssign: resultIsFar = TRUE
+   0E12 90s00r00rAC        2977 	mov	dptr,#__print_format_radix_1_1
+   0E16 74 08              2978 	mov	a,#0x08
+   0E18 F0                 2979 	movx	@dptr,a
+                           2980 ;	printf_large.c:623: break;
+                           2981 ;	printf_large.c:625: case 'U':
+   0E19 80 28              2982 	sjmp 00170$
+   0E1B                    2983 00166$:
+                           2984 ;	printf_large.c:626: radix = 10;
+                           2985 ;	genAssign: resultIsFar = TRUE
+   0E1B 90s00r00rAC        2986 	mov	dptr,#__print_format_radix_1_1
+   0E1F 74 0A              2987 	mov	a,#0x0A
+   0E21 F0                 2988 	movx	@dptr,a
+                           2989 ;	printf_large.c:627: break;
+                           2990 ;	printf_large.c:629: case 'X':
+   0E22 80 1F              2991 	sjmp 00170$
+   0E24                    2992 00167$:
+                           2993 ;	printf_large.c:630: radix = 16;
+                           2994 ;	genAssign: resultIsFar = TRUE
+   0E24 90s00r00rAC        2995 	mov	dptr,#__print_format_radix_1_1
+   0E28 74 10              2996 	mov	a,#0x10
+   0E2A F0                 2997 	movx	@dptr,a
+                           2998 ;	printf_large.c:631: break;
+                           2999 ;	printf_large.c:633: case 'F':
+   0E2B 80 16              3000 	sjmp 00170$
+   0E2D                    3001 00168$:
+                           3002 ;	printf_large.c:634: float_argument=1;
+                           3003 ;	genAssign: resultIsFar = FALSE
+   0E2D D2*0D              3004 	setb	__print_format_float_argument_1_1
+                           3005 ;	printf_large.c:635: break;
+                           3006 ;	printf_large.c:637: default:
+   0E2F 80 12              3007 	sjmp 00170$
+   0E31                    3008 00169$:
+                           3009 ;	printf_large.c:639: OUTPUT_CHAR( c, p );
+   0E31 C0 04              3010 	push	ar4
+   0E33 8A 82              3011 	mov	dpl,r2
+   0E35 12s00r00r00        3012 	lcall	__output_char
+   0E39 D0 04              3013 	pop	ar4
+                           3014 ;	printf_large.c:816: return charsOutputted;
+                           3015 ;	printf_large.c:641: }
+   0E3B 80 06              3016 	sjmp 00170$
+   0E3D                    3017 00320$:
+                           3018 ;	genAssign: resultIsFar = TRUE
+   0E3D 90s00r00rAD        3019 	mov	dptr,#__print_format_width_1_1
+   0E41 EE                 3020 	mov	a,r6
+   0E42 F0                 3021 	movx	@dptr,a
+   0E43                    3022 00170$:
+                           3023 ;	printf_large.c:643: if (float_argument) {
+   0E43 20*0D 04           3024 	jb	__print_format_float_argument_1_1,00380$
+   0E46 02s00r0ErD5        3025 	ljmp	00233$
+   0E4A                    3026 00380$:
+                           3027 ;	printf_large.c:644: value.f=va_arg(ap,float);
+   0E4A 90s00r00rA8        3028 	mov	dptr,#__print_format_PARM_4
+                           3029 ;	genAssign: resultIsFar = FALSE
+   0E4E E0                 3030 	movx	a,@dptr
+   0E4F FE                 3031 	mov	r6,a
+   0E50 A3                 3032 	inc	dptr
+   0E51 E0                 3033 	movx	a,@dptr
+   0E52 FF                 3034 	mov	r7,a
+   0E53 A3                 3035 	inc	dptr
+   0E54 E0                 3036 	movx	a,@dptr
+   0E55 F8                 3037 	mov	r0,a
+   0E56 A3                 3038 	inc	dptr
+   0E57 E0                 3039 	movx	a,@dptr
+   0E58 F9                 3040 	mov	r1,a
+   0E59 EE                 3041 	mov	a,r6
+   0E5A 24 FC              3042 	add	a,#0xFC
+   0E5C FE                 3043 	mov	r6,a
+   0E5D EF                 3044 	mov	a,r7
+   0E5E 34 FF              3045 	addc	a,#0xFF
+   0E60 FF                 3046 	mov	r7,a
+   0E61 E8                 3047 	mov	a,r0
+   0E62 34 FF              3048 	addc	a,#0xFF
+   0E64 F8                 3049 	mov	r0,a
+                           3050 ;	genAssign: resultIsFar = TRUE
+   0E65 90s00r00rA8        3051 	mov	dptr,#__print_format_PARM_4
+   0E69 EE                 3052 	mov	a,r6
+   0E6A F0                 3053 	movx	@dptr,a
+   0E6B A3                 3054 	inc	dptr
+   0E6C EF                 3055 	mov	a,r7
+   0E6D F0                 3056 	movx	@dptr,a
+   0E6E A3                 3057 	inc	dptr
+   0E6F E8                 3058 	mov	a,r0
+   0E70 F0                 3059 	movx	@dptr,a
+   0E71 A3                 3060 	inc	dptr
+   0E72 E9                 3061 	mov	a,r1
+   0E73 F0                 3062 	movx	@dptr,a
+   0E74 8E 82              3063 	mov	dpl,r6
+   0E76 8F 83              3064 	mov	dph,r7
+   0E78 88 93              3065 	mov	dpx,r0
+   0E7A 89 F0              3066 	mov	b,r1
+   0E7C 12s00r00r00        3067 	lcall	__gptrgetWord
+   0E80 FE                 3068 	mov	r6,a
+   0E81 AF 9C              3069 	mov	r7,_ap
+   0E83 A3                 3070 	inc	dptr
+   0E84 12s00r00r00        3071 	lcall	__gptrgetWord
+   0E88 F8                 3072 	mov	r0,a
+   0E89 A9 9C              3073 	mov	r1,_ap
+   0E8B 90s00r00r07        3074 	mov	dptr,#_value
+   0E8F EE                 3075 	mov	a,r6
+   0E90 F0                 3076 	movx	@dptr,a
+   0E91 A3                 3077 	inc	dptr
+   0E92 EF                 3078 	mov	a,r7
+   0E93 F0                 3079 	movx	@dptr,a
+   0E94 A3                 3080 	inc	dptr
+   0E95 E8                 3081 	mov	a,r0
+   0E96 F0                 3082 	movx	@dptr,a
+   0E97 A3                 3083 	inc	dptr
+   0E98 E9                 3084 	mov	a,r1
+   0E99 F0                 3085 	movx	@dptr,a
+                           3086 ;	printf_large.c:662: OUTPUT_FLOAT(value.f, width, decimals, left_justify,
+   0E9A 90s00r00r07        3087 	mov	dptr,#_value
+   0E9E E0                 3088 	movx	a,@dptr
+   0E9F A3                 3089 	inc	dptr
+   0EA0 E0                 3090 	movx	a,@dptr
+   0EA1 A3                 3091 	inc	dptr
+   0EA2 E0                 3092 	movx	a,@dptr
+   0EA3 A3                 3093 	inc	dptr
+   0EA4 E0                 3094 	movx	a,@dptr
+   0EA5 90s00r00rAD        3095 	mov	dptr,#__print_format_width_1_1
+                           3096 ;	genAssign: resultIsFar = TRUE
+   0EA9 E0                 3097 	movx	a,@dptr
+   0EAA 90s00r00r0E        3098 	mov	dptr,#_output_float_PARM_2
+   0EAE F0                 3099 	movx	@dptr,a
+                           3100 ;	genAssign: resultIsFar = TRUE
+   0EAF 90s00r00r0F        3101 	mov	dptr,#_output_float_PARM_3
+   0EB3 EC                 3102 	mov	a,r4
+   0EB4 F0                 3103 	movx	@dptr,a
+                           3104 ;	genAssign: resultIsFar = FALSE
+   0EB5 A2*06              3105 	mov	c,__print_format_left_justify_1_1
+   0EB7 92*01              3106 	mov	_output_float_PARM_4,c
+                           3107 ;	genAssign: resultIsFar = FALSE
+   0EB9 A2*07              3108 	mov	c,__print_format_zero_padding_1_1
+   0EBB 92*02              3109 	mov	_output_float_PARM_5,c
+                           3110 ;	genAssign: resultIsFar = FALSE
+   0EBD A2*08              3111 	mov	c,__print_format_prefix_sign_1_1
+   0EBF 92*03              3112 	mov	_output_float_PARM_6,c
+                           3113 ;	genAssign: resultIsFar = FALSE
+   0EC1 A2*09              3114 	mov	c,__print_format_prefix_space_1_1
+   0EC3 92*04              3115 	mov	_output_float_PARM_7,c
+   0EC5 8E 82              3116 	mov	dpl,r6
+   0EC7 8F 83              3117 	mov	dph,r7
+   0EC9 88 93              3118 	mov	dpx,r0
+   0ECB 89 F0              3119 	mov	b,r1
+   0ECD 12s00r00rDE        3120 	lcall	_output_float
+   0ED1 02s00r09r78        3121 	ljmp	00238$
+   0ED5                    3122 00233$:
+                           3123 ;	printf_large.c:666: } else if (radix != 0)
+   0ED5 90s00r00rAC        3124 	mov	dptr,#__print_format_radix_1_1
+   0ED9 E0                 3125 	movx	a,@dptr
+   0EDA 70 04              3126 	jnz	00381$
+   0EDC 02s00r09r78        3127 	ljmp	00238$
+   0EE0                    3128 00381$:
+                           3129 ;	printf_large.c:671: unsigned char MEM_SPACE_BUF_PP *pstore = &store[5];
+                           3130 ;	genAssign: resultIsFar = TRUE
+   0EE0 90s00r00rB4        3131 	mov	dptr,#__print_format_pstore_4_23
+   0EE4 74rB3              3132 	mov	a,#(__print_format_store_4_23 + 0x000005)
+   0EE6 F0                 3133 	movx	@dptr,a
+   0EE7 A3                 3134 	inc	dptr
+   0EE8 74s00              3135 	mov	a,#((__print_format_store_4_23 + 0x000005) >> 8)
+   0EEA F0                 3136 	movx	@dptr,a
+   0EEB A3                 3137 	inc	dptr
+   0EEC 74s00              3138 	mov	a,#((__print_format_store_4_23 + 0x000005) >> 16)
+   0EEE F0                 3139 	movx	@dptr,a
+                           3140 ;	printf_large.c:674: if (char_argument)
+   0EEF 30*0B 7A           3141 	jnb  __print_format_char_argument_1_1,00179$
+   0EF2                    3142 00382$:
+                           3143 ;	printf_large.c:676: value.l = va_arg(ap,char);
+   0EF2 90s00r00rA8        3144 	mov	dptr,#__print_format_PARM_4
+                           3145 ;	genAssign: resultIsFar = FALSE
+   0EF6 E0                 3146 	movx	a,@dptr
+   0EF7 F9                 3147 	mov	r1,a
+   0EF8 A3                 3148 	inc	dptr
+   0EF9 E0                 3149 	movx	a,@dptr
+   0EFA FE                 3150 	mov	r6,a
+   0EFB A3                 3151 	inc	dptr
+   0EFC E0                 3152 	movx	a,@dptr
+   0EFD FF                 3153 	mov	r7,a
+   0EFE A3                 3154 	inc	dptr
+   0EFF E0                 3155 	movx	a,@dptr
+   0F00 F8                 3156 	mov	r0,a
+   0F01 19                 3157 	dec	r1
+   0F02 B9 FF 05           3158 	cjne	r1,#0xFF,00383$
+   0F05 1E                 3159 	dec	r6
+   0F06 BE FF 01           3160 	cjne	r6,#0xFF,00383$
+   0F09 1F                 3161 	dec	r7
+   0F0A                    3162 00383$:
+                           3163 ;	genAssign: resultIsFar = TRUE
+   0F0A 90s00r00rA8        3164 	mov	dptr,#__print_format_PARM_4
+   0F0E E9                 3165 	mov	a,r1
+   0F0F F0                 3166 	movx	@dptr,a
+   0F10 A3                 3167 	inc	dptr
+   0F11 EE                 3168 	mov	a,r6
+   0F12 F0                 3169 	movx	@dptr,a
+   0F13 A3                 3170 	inc	dptr
+   0F14 EF                 3171 	mov	a,r7
+   0F15 F0                 3172 	movx	@dptr,a
+   0F16 A3                 3173 	inc	dptr
+   0F17 E8                 3174 	mov	a,r0
+   0F18 F0                 3175 	movx	@dptr,a
+   0F19 89 82              3176 	mov	dpl,r1
+   0F1B 8E 83              3177 	mov	dph,r6
+   0F1D 8F 93              3178 	mov	dpx,r7
+   0F1F 88 F0              3179 	mov	b,r0
+   0F21 12s00r00r00        3180 	lcall	__gptrget
+   0F25 F9                 3181 	mov  r1,a
+   0F26 89 06              3182 	mov  ar6,r1 
+   0F28 33                 3183 	rlc	a
+   0F29 95 E0              3184 	subb	a,acc
+   0F2B FF                 3185 	mov	r7,a
+   0F2C F8                 3186 	mov	r0,a
+   0F2D F9                 3187 	mov	r1,a
+   0F2E 90s00r00r07        3188 	mov	dptr,#_value
+   0F32 EE                 3189 	mov	a,r6
+   0F33 F0                 3190 	movx	@dptr,a
+   0F34 A3                 3191 	inc	dptr
+   0F35 EF                 3192 	mov	a,r7
+   0F36 F0                 3193 	movx	@dptr,a
+   0F37 A3                 3194 	inc	dptr
+   0F38 E8                 3195 	mov	a,r0
+   0F39 F0                 3196 	movx	@dptr,a
+   0F3A A3                 3197 	inc	dptr
+   0F3B E9                 3198 	mov	a,r1
+   0F3C F0                 3199 	movx	@dptr,a
+                           3200 ;	printf_large.c:677: if (!signed_argument)
+   0F3D 30*0A 04           3201 	jnb	__print_format_signed_argument_1_1,00384$
+   0F40 02s00r10r36        3202 	ljmp	00180$
+   0F44                    3203 00384$:
+                           3204 ;	printf_large.c:679: value.l &= 0xFF;
+   0F44 90s00r00r07        3205 	mov	dptr,#_value
+   0F48 E0                 3206 	movx	a,@dptr
+   0F49 A3                 3207 	inc	dptr
+   0F4A F9                 3208 	mov	r1,a
+   0F4B E0                 3209 	movx	a,@dptr
+   0F4C A3                 3210 	inc	dptr
+   0F4D FE                 3211 	mov	r6,a
+   0F4E E0                 3212 	movx	a,@dptr
+   0F4F A3                 3213 	inc	dptr
+   0F50 FF                 3214 	mov	r7,a
+   0F51 E0                 3215 	movx	a,@dptr
+   0F52 F8                 3216 	mov	r0,a
+   0F53 7E 00              3217 	mov	r6,#0
+   0F55 7F 00              3218 	mov	r7,#0
+   0F57 78 00              3219 	mov	r0,#0
+   0F59 90s00r00r07        3220 	mov	dptr,#_value
+   0F5D E9                 3221 	mov	a,r1
+   0F5E F0                 3222 	movx	@dptr,a
+   0F5F A3                 3223 	inc	dptr
+   0F60 EE                 3224 	mov	a,r6
+   0F61 F0                 3225 	movx	@dptr,a
+   0F62 A3                 3226 	inc	dptr
+   0F63 EF                 3227 	mov	a,r7
+   0F64 F0                 3228 	movx	@dptr,a
+   0F65 A3                 3229 	inc	dptr
+   0F66 E8                 3230 	mov	a,r0
+   0F67 F0                 3231 	movx	@dptr,a
+   0F68 02s00r10r36        3232 	ljmp	00180$
+   0F6C                    3233 00179$:
+                           3234 ;	printf_large.c:682: else if (long_argument)
+   0F6C 30*0C 52           3235 	jnb  __print_format_long_argument_1_1,00176$
+   0F6F                    3236 00385$:
+                           3237 ;	printf_large.c:684: value.l = va_arg(ap,long);
+   0F6F 90s00r00rA8        3238 	mov	dptr,#__print_format_PARM_4
+                           3239 ;	genAssign: resultIsFar = FALSE
+   0F73 E0                 3240 	movx	a,@dptr
+   0F74 F9                 3241 	mov	r1,a
+   0F75 A3                 3242 	inc	dptr
+   0F76 E0                 3243 	movx	a,@dptr
+   0F77 FE                 3244 	mov	r6,a
+   0F78 A3                 3245 	inc	dptr
+   0F79 E0                 3246 	movx	a,@dptr
+   0F7A FF                 3247 	mov	r7,a
+   0F7B A3                 3248 	inc	dptr
+   0F7C E0                 3249 	movx	a,@dptr
+   0F7D F8                 3250 	mov	r0,a
+   0F7E E9                 3251 	mov	a,r1
+   0F7F 24 FC              3252 	add	a,#0xFC
+   0F81 F9                 3253 	mov	r1,a
+   0F82 EE                 3254 	mov	a,r6
+   0F83 34 FF              3255 	addc	a,#0xFF
+   0F85 FE                 3256 	mov	r6,a
+   0F86 EF                 3257 	mov	a,r7
+   0F87 34 FF              3258 	addc	a,#0xFF
+   0F89 FF                 3259 	mov	r7,a
+                           3260 ;	genAssign: resultIsFar = TRUE
+   0F8A 90s00r00rA8        3261 	mov	dptr,#__print_format_PARM_4
+   0F8E E9                 3262 	mov	a,r1
+   0F8F F0                 3263 	movx	@dptr,a
+   0F90 A3                 3264 	inc	dptr
+   0F91 EE                 3265 	mov	a,r6
+   0F92 F0                 3266 	movx	@dptr,a
+   0F93 A3                 3267 	inc	dptr
+   0F94 EF                 3268 	mov	a,r7
+   0F95 F0                 3269 	movx	@dptr,a
+   0F96 A3                 3270 	inc	dptr
+   0F97 E8                 3271 	mov	a,r0
+   0F98 F0                 3272 	movx	@dptr,a
+   0F99 89 82              3273 	mov	dpl,r1
+   0F9B 8E 83              3274 	mov	dph,r6
+   0F9D 8F 93              3275 	mov	dpx,r7
+   0F9F 88 F0              3276 	mov	b,r0
+   0FA1 12s00r00r00        3277 	lcall	__gptrgetWord
+   0FA5 F9                 3278 	mov	r1,a
+   0FA6 AE 9C              3279 	mov	r6,_ap
+   0FA8 A3                 3280 	inc	dptr
+   0FA9 12s00r00r00        3281 	lcall	__gptrgetWord
+   0FAD FF                 3282 	mov	r7,a
+   0FAE A8 9C              3283 	mov	r0,_ap
+   0FB0 90s00r00r07        3284 	mov	dptr,#_value
+   0FB4 E9                 3285 	mov	a,r1
+   0FB5 F0                 3286 	movx	@dptr,a
+   0FB6 A3                 3287 	inc	dptr
+   0FB7 EE                 3288 	mov	a,r6
+   0FB8 F0                 3289 	movx	@dptr,a
+   0FB9 A3                 3290 	inc	dptr
+   0FBA EF                 3291 	mov	a,r7
+   0FBB F0                 3292 	movx	@dptr,a
+   0FBC A3                 3293 	inc	dptr
+   0FBD E8                 3294 	mov	a,r0
+   0FBE F0                 3295 	movx	@dptr,a
+   0FBF 80 75              3296 	sjmp 00180$
+   0FC1                    3297 00176$:
+                           3298 ;	printf_large.c:688: value.l = va_arg(ap,int);
+   0FC1 90s00r00rA8        3299 	mov	dptr,#__print_format_PARM_4
+                           3300 ;	genAssign: resultIsFar = FALSE
+   0FC5 E0                 3301 	movx	a,@dptr
+   0FC6 F9                 3302 	mov	r1,a
+   0FC7 A3                 3303 	inc	dptr
+   0FC8 E0                 3304 	movx	a,@dptr
+   0FC9 FE                 3305 	mov	r6,a
+   0FCA A3                 3306 	inc	dptr
+   0FCB E0                 3307 	movx	a,@dptr
+   0FCC FF                 3308 	mov	r7,a
+   0FCD A3                 3309 	inc	dptr
+   0FCE E0                 3310 	movx	a,@dptr
+   0FCF F8                 3311 	mov	r0,a
+   0FD0 E9                 3312 	mov	a,r1
+   0FD1 24 FE              3313 	add	a,#0xFE
+   0FD3 F9                 3314 	mov	r1,a
+   0FD4 EE                 3315 	mov	a,r6
+   0FD5 34 FF              3316 	addc	a,#0xFF
+   0FD7 FE                 3317 	mov	r6,a
+   0FD8 EF                 3318 	mov	a,r7
+   0FD9 34 FF              3319 	addc	a,#0xFF
+   0FDB FF                 3320 	mov	r7,a
+                           3321 ;	genAssign: resultIsFar = TRUE
+   0FDC 90s00r00rA8        3322 	mov	dptr,#__print_format_PARM_4
+   0FE0 E9                 3323 	mov	a,r1
+   0FE1 F0                 3324 	movx	@dptr,a
+   0FE2 A3                 3325 	inc	dptr
+   0FE3 EE                 3326 	mov	a,r6
+   0FE4 F0                 3327 	movx	@dptr,a
+   0FE5 A3                 3328 	inc	dptr
+   0FE6 EF                 3329 	mov	a,r7
+   0FE7 F0                 3330 	movx	@dptr,a
+   0FE8 A3                 3331 	inc	dptr
+   0FE9 E8                 3332 	mov	a,r0
+   0FEA F0                 3333 	movx	@dptr,a
+   0FEB 89 82              3334 	mov	dpl,r1
+   0FED 8E 83              3335 	mov	dph,r6
+   0FEF 8F 93              3336 	mov	dpx,r7
+   0FF1 88 F0              3337 	mov	b,r0
+   0FF3 12s00r00r00        3338 	lcall	__gptrgetWord
+   0FF7 F9                 3339 	mov	r1,a
+   0FF8 AE 9C              3340 	mov	r6,_ap
+   0FFA 89 07              3341 	mov	ar7,r1
+   0FFC EE                 3342 	mov	a,r6
+   0FFD 33                 3343 	rlc	a
+   0FFE 95 E0              3344 	subb	a,acc
+   1000 F8                 3345 	mov	r0,a
+   1001 F9                 3346 	mov	r1,a
+   1002 90s00r00r07        3347 	mov	dptr,#_value
+   1006 EF                 3348 	mov	a,r7
+   1007 F0                 3349 	movx	@dptr,a
+   1008 A3                 3350 	inc	dptr
+   1009 EE                 3351 	mov	a,r6
+   100A F0                 3352 	movx	@dptr,a
+   100B A3                 3353 	inc	dptr
+   100C E8                 3354 	mov	a,r0
+   100D F0                 3355 	movx	@dptr,a
+   100E A3                 3356 	inc	dptr
+   100F E9                 3357 	mov	a,r1
+   1010 F0                 3358 	movx	@dptr,a
+                           3359 ;	printf_large.c:689: if (!signed_argument)
+   1011 20*0A 22           3360 	jb   __print_format_signed_argument_1_1,00180$
+   1014                    3361 00386$:
+                           3362 ;	printf_large.c:691: value.l &= 0xFFFF;
+   1014 90s00r00r07        3363 	mov	dptr,#_value
+   1018 E0                 3364 	movx	a,@dptr
+   1019 A3                 3365 	inc	dptr
+   101A F9                 3366 	mov	r1,a
+   101B E0                 3367 	movx	a,@dptr
+   101C A3                 3368 	inc	dptr
+   101D FE                 3369 	mov	r6,a
+   101E E0                 3370 	movx	a,@dptr
+   101F A3                 3371 	inc	dptr
+   1020 FF                 3372 	mov	r7,a
+   1021 E0                 3373 	movx	a,@dptr
+   1022 F8                 3374 	mov	r0,a
+   1023 7F 00              3375 	mov	r7,#0
+   1025 78 00              3376 	mov	r0,#0
+   1027 90s00r00r07        3377 	mov	dptr,#_value
+   102B E9                 3378 	mov	a,r1
+   102C F0                 3379 	movx	@dptr,a
+   102D A3                 3380 	inc	dptr
+   102E EE                 3381 	mov	a,r6
+   102F F0                 3382 	movx	@dptr,a
+   1030 A3                 3383 	inc	dptr
+   1031 EF                 3384 	mov	a,r7
+   1032 F0                 3385 	movx	@dptr,a
+   1033 A3                 3386 	inc	dptr
+   1034 E8                 3387 	mov	a,r0
+   1035 F0                 3388 	movx	@dptr,a
+                           3389 ;	printf_large.c:816: return charsOutputted;
+                           3390 ;	printf_large.c:691: value.l &= 0xFFFF;
+   1036                    3391 00180$:
+                           3392 ;	printf_large.c:695: if ( signed_argument )
+   1036 30*0A 32           3393 	jnb  __print_format_signed_argument_1_1,00185$
+   1039                    3394 00387$:
+                           3395 ;	printf_large.c:697: if (value.l < 0)
+   1039 90s00r00r07        3396 	mov	dptr,#_value
+   103D E0                 3397 	movx	a,@dptr
+   103E A3                 3398 	inc	dptr
+   103F F9                 3399 	mov	r1,a
+   1040 E0                 3400 	movx	a,@dptr
+   1041 A3                 3401 	inc	dptr
+   1042 FE                 3402 	mov	r6,a
+   1043 E0                 3403 	movx	a,@dptr
+   1044 A3                 3404 	inc	dptr
+   1045 FF                 3405 	mov	r7,a
+   1046 E0                 3406 	movx	a,@dptr
+   1047 F8                 3407 	mov  r0,a
+   1048 30 E7 1E           3408 	jnb  acc.7,00182$
+   104B                    3409 00388$:
+                           3410 ;	printf_large.c:698: value.l = -value.l;
+   104B C3                 3411 	clr	c
+   104C E4                 3412 	clr	a
+   104D 99                 3413 	subb	a,r1
+   104E F9                 3414 	mov	r1,a
+   104F E4                 3415 	clr	a
+   1050 9E                 3416 	subb	a,r6
+   1051 FE                 3417 	mov	r6,a
+   1052 E4                 3418 	clr	a
+   1053 9F                 3419 	subb	a,r7
+   1054 FF                 3420 	mov	r7,a
+   1055 E4                 3421 	clr	a
+   1056 98                 3422 	subb	a,r0
+   1057 F8                 3423 	mov	r0,a
+   1058 90s00r00r07        3424 	mov	dptr,#_value
+   105C E9                 3425 	mov	a,r1
+   105D F0                 3426 	movx	@dptr,a
+   105E A3                 3427 	inc	dptr
+   105F EE                 3428 	mov	a,r6
+   1060 F0                 3429 	movx	@dptr,a
+   1061 A3                 3430 	inc	dptr
+   1062 EF                 3431 	mov	a,r7
+   1063 F0                 3432 	movx	@dptr,a
+   1064 A3                 3433 	inc	dptr
+   1065 E8                 3434 	mov	a,r0
+   1066 F0                 3435 	movx	@dptr,a
+   1067 80 02              3436 	sjmp 00185$
+   1069                    3437 00182$:
+                           3438 ;	printf_large.c:700: signed_argument = 0;
+                           3439 ;	genAssign: resultIsFar = FALSE
+   1069 C2*0A              3440 	clr	__print_format_signed_argument_1_1
+   106B                    3441 00185$:
+                           3442 ;	printf_large.c:704: lsd = 1;
+                           3443 ;	genAssign: resultIsFar = FALSE
+   106B D2*0E              3444 	setb	__print_format_lsd_1_1
+                           3445 ;	printf_large.c:706: do {
+   106D 90s00r00rB4        3446 	mov	dptr,#__print_format_pstore_4_23
+                           3447 ;	genAssign: resultIsFar = FALSE
+   1071 E0                 3448 	movx	a,@dptr
+   1072 FA                 3449 	mov	r2,a
+   1073 A3                 3450 	inc	dptr
+   1074 E0                 3451 	movx	a,@dptr
+   1075 FF                 3452 	mov	r7,a
+   1076 A3                 3453 	inc	dptr
+   1077 E0                 3454 	movx	a,@dptr
+   1078 F8                 3455 	mov	r0,a
+                           3456 ;	genAssign: resultIsFar = TRUE
+   1079 90s00r00rB7        3457 	mov	dptr,#__print_format_sloc0_1_0
+   107D E4                 3458 	clr  a
+   107E F0                 3459 	movx	@dptr,a
+   107F                    3460 00189$:
+                           3461 ;	printf_large.c:707: value.byte[4] = 0;
+   107F 90s00r00r0B        3462 	mov	dptr,#(_value + 0x000004)
+   1083 E4                 3463 	clr  a
+   1084 F0                 3464 	movx	@dptr,a
+                           3465 ;	printf_large.c:711: calculate_digit(radix);
+   1085 C0 02              3466 	push	ar2
+   1087 C0 07              3467 	push	ar7
+   1089 C0 00              3468 	push	ar0
+   108B 90s00r00rAC        3469 	mov	dptr,#__print_format_radix_1_1
+   108F E0                 3470 	movx	a,@dptr
+   1090 F5 82              3471 	mov	dpl,a
+   1092 12s00r00r81        3472 	lcall	_calculate_digit
+   1096 D0 00              3473 	pop	ar0
+   1098 D0 07              3474 	pop	ar7
+   109A D0 02              3475 	pop	ar2
+                           3476 ;	printf_large.c:713: if (!lsd)
+   109C 20*0E 31           3477 	jb   __print_format_lsd_1_1,00187$
+   109F                    3478 00389$:
+                           3479 ;	printf_large.c:715: *pstore = (value.byte[4] << 4) | (value.byte[4] >> 4) | *pstore;
+   109F 90s00r00r0B        3480 	mov	dptr,#(_value + 0x000004)
+   10A3 E0                 3481 	movx	a,@dptr
+   10A4 FB                 3482 	mov  r3,a
+   10A5 C4                 3483 	swap	a
+   10A6 FB                 3484 	mov	r3,a
+   10A7 8A 82              3485 	mov	dpl,r2
+   10A9 8F 83              3486 	mov	dph,r7
+   10AB 88 93              3487 	mov	dpx,r0
+   10AD E0                 3488 	movx	a,@dptr
+   10AE FC                 3489 	mov  r4,a
+   10AF 42 03              3490 	orl	ar3,a
+   10B1 8A 82              3491 	mov	dpl,r2
+   10B3 8F 83              3492 	mov	dph,r7
+   10B5 88 93              3493 	mov	dpx,r0
+   10B7 EB                 3494 	mov	a,r3
+   10B8 F0                 3495 	movx	@dptr,a
+                           3496 ;	printf_large.c:716: pstore--;
+   10B9 1A                 3497 	dec	r2
+   10BA BA FF 05           3498 	cjne	r2,#0xFF,00390$
+   10BD 1F                 3499 	dec	r7
+   10BE BF FF 01           3500 	cjne	r7,#0xFF,00390$
+   10C1 18                 3501 	dec	r0
+   10C2                    3502 00390$:
+                           3503 ;	genAssign: resultIsFar = TRUE
+   10C2 90s00r00rB4        3504 	mov	dptr,#__print_format_pstore_4_23
+   10C6 EA                 3505 	mov	a,r2
+   10C7 F0                 3506 	movx	@dptr,a
+   10C8 A3                 3507 	inc	dptr
+   10C9 EF                 3508 	mov	a,r7
+   10CA F0                 3509 	movx	@dptr,a
+   10CB A3                 3510 	inc	dptr
+   10CC E8                 3511 	mov	a,r0
+   10CD F0                 3512 	movx	@dptr,a
+   10CE 80 0D              3513 	sjmp 00188$
+   10D0                    3514 00187$:
+                           3515 ;	printf_large.c:720: *pstore = value.byte[4];
+   10D0 90s00r00r0B        3516 	mov	dptr,#(_value + 0x000004)
+   10D4 E0                 3517 	movx	a,@dptr
+   10D5 FC                 3518 	mov  r4,a
+   10D6 8A 82              3519 	mov  dpl,r2
+   10D8 8F 83              3520 	mov  dph,r7
+   10DA 88 93              3521 	mov  dpx,r0
+   10DC F0                 3522 	movx	@dptr,a
+   10DD                    3523 00188$:
+                           3524 ;	printf_large.c:722: length++;
+   10DD 90s00r00rB7        3525 	mov	dptr,#__print_format_sloc0_1_0
+   10E1 E0                 3526 	movx	a,@dptr
+   10E2 24 01              3527 	add	a,#0x01
+   10E4 F0                 3528 	movx	@dptr,a
+   10E5 90s00r00rB7        3529 	mov	dptr,#__print_format_sloc0_1_0
+                           3530 ;	genAssign: resultIsFar = TRUE
+   10E9 E0                 3531 	movx	a,@dptr
+   10EA FD                 3532 	mov	r5,a
+                           3533 ;	printf_large.c:723: lsd = !lsd;
+   10EB B2*0E              3534 	cpl	__print_format_lsd_1_1
+                           3535 ;	printf_large.c:724: } while( value.ul );
+   10ED 90s00r00r07        3536 	mov	dptr,#_value
+   10F1 E0                 3537 	movx	a,@dptr
+   10F2 A3                 3538 	inc	dptr
+   10F3 FC                 3539 	mov	r4,a
+   10F4 E0                 3540 	movx	a,@dptr
+   10F5 A3                 3541 	inc	dptr
+   10F6 FB                 3542 	mov	r3,a
+   10F7 E0                 3543 	movx	a,@dptr
+   10F8 A3                 3544 	inc	dptr
+   10F9 F9                 3545 	mov	r1,a
+   10FA E0                 3546 	movx	a,@dptr
+   10FB FE                 3547 	mov	r6,a
+   10FC EC                 3548 	mov	a,r4
+   10FD 4B                 3549 	orl	a,r3
+   10FE 49                 3550 	orl	a,r1
+   10FF 4E                 3551 	orl	a,r6
+   1100 60 04              3552 	jz	00391$
+   1102 02s00r10r7F        3553 	ljmp	00189$
+   1106                    3554 00391$:
+                           3555 ;	printf_large.c:726: if (width == 0)
+                           3556 ;	genAssign: resultIsFar = TRUE
+   1106 90s00r00rB4        3557 	mov	dptr,#__print_format_pstore_4_23
+   110A EA                 3558 	mov	a,r2
+   110B F0                 3559 	movx	@dptr,a
+   110C A3                 3560 	inc	dptr
+   110D EF                 3561 	mov	a,r7
+   110E F0                 3562 	movx	@dptr,a
+   110F A3                 3563 	inc	dptr
+   1110 E8                 3564 	mov	a,r0
+   1111 F0                 3565 	movx	@dptr,a
+   1112 90s00r00rB7        3566 	mov	dptr,#__print_format_sloc0_1_0
+                           3567 ;	genAssign: resultIsFar = TRUE
+   1116 E0                 3568 	movx	a,@dptr
+   1117 FD                 3569 	mov	r5,a
+   1118 90s00r00rAD        3570 	mov	dptr,#__print_format_width_1_1
+   111C E0                 3571 	movx	a,@dptr
+   111D 70 07              3572 	jnz  00193$
+   111F                    3573 00392$:
+                           3574 ;	printf_large.c:731: width=1;
+                           3575 ;	genAssign: resultIsFar = TRUE
+   111F 90s00r00rAD        3576 	mov	dptr,#__print_format_width_1_1
+   1123 74 01              3577 	mov	a,#0x01
+   1125 F0                 3578 	movx	@dptr,a
+   1126                    3579 00193$:
+                           3580 ;	printf_large.c:735: if (!zero_padding && !left_justify)
+   1126 20*07 2E           3581 	jb   __print_format_zero_padding_1_1,00198$
+   1129                    3582 00393$:
+   1129 20*06 2B           3583 	jb   __print_format_left_justify_1_1,00198$
+   112C                    3584 00394$:
+                           3585 ;	printf_large.c:737: while ( width > (unsigned char) (length+1) )
+   112C 74 01              3586 	mov	a,#0x01
+   112E 2D                 3587 	add	a,r5
+   112F FB                 3588 	mov	r3,a
+   1130 90s00r00rAD        3589 	mov	dptr,#__print_format_width_1_1
+                           3590 ;	genAssign: resultIsFar = FALSE
+   1134 E0                 3591 	movx	a,@dptr
+   1135 FC                 3592 	mov	r4,a
+   1136                    3593 00194$:
+   1136 C3                 3594 	clr	c
+   1137 EB                 3595 	mov	a,r3
+   1138 9C                 3596 	subb	a,r4
+   1139 50 16              3597 	jnc  00322$
+   113B                    3598 00395$:
+                           3599 ;	printf_large.c:739: OUTPUT_CHAR( ' ', p );
+   113B C0 03              3600 	push	ar3
+   113D C0 04              3601 	push	ar4
+   113F C0 05              3602 	push	ar5
+   1141 75 82 20           3603 	mov	dpl,#0x20
+   1144 12s00r00r00        3604 	lcall	__output_char
+   1148 D0 05              3605 	pop	ar5
+   114A D0 04              3606 	pop	ar4
+   114C D0 03              3607 	pop	ar3
+                           3608 ;	printf_large.c:740: width--;
+   114E 1C                 3609 	dec	r4
+   114F 80 E5              3610 	sjmp 00194$
+   1151                    3611 00322$:
+                           3612 ;	genAssign: resultIsFar = TRUE
+   1151 90s00r00rAD        3613 	mov	dptr,#__print_format_width_1_1
+   1155 EC                 3614 	mov	a,r4
+   1156 F0                 3615 	movx	@dptr,a
+   1157                    3616 00198$:
+                           3617 ;	printf_large.c:744: if (signed_argument) // this now means the original value was negative
+   1157 30*0A 18           3618 	jnb  __print_format_signed_argument_1_1,00208$
+   115A                    3619 00396$:
+                           3620 ;	printf_large.c:746: OUTPUT_CHAR( '-', p );
+   115A C0 05              3621 	push	ar5
+   115C 75 82 2D           3622 	mov	dpl,#0x2D
+   115F 12s00r00r00        3623 	lcall	__output_char
+   1163 D0 05              3624 	pop	ar5
+                           3625 ;	printf_large.c:748: width--;
+   1165 90s00r00rAD        3626 	mov	dptr,#__print_format_width_1_1
+   1169 E0                 3627 	movx	a,@dptr
+   116A 14                 3628 	dec	a
+                           3629 ;	genAssign: resultIsFar = TRUE
+   116B 90s00r00rAD        3630 	mov	dptr,#__print_format_width_1_1
+   116F F0                 3631 	movx	@dptr,a
+   1170 80 37              3632 	sjmp 00209$
+   1172                    3633 00208$:
+                           3634 ;	printf_large.c:750: else if (length != 0)
+   1172 ED                 3635 	mov	a,r5
+   1173 60 34              3636 	jz  00209$
+   1175                    3637 00397$:
+                           3638 ;	printf_large.c:753: if (prefix_sign)
+   1175 30*08 18           3639 	jnb  __print_format_prefix_sign_1_1,00203$
+   1178                    3640 00398$:
+                           3641 ;	printf_large.c:755: OUTPUT_CHAR( '+', p );
+   1178 C0 05              3642 	push	ar5
+   117A 75 82 2B           3643 	mov	dpl,#0x2B
+   117D 12s00r00r00        3644 	lcall	__output_char
+   1181 D0 05              3645 	pop	ar5
+                           3646 ;	printf_large.c:757: width--;
+   1183 90s00r00rAD        3647 	mov	dptr,#__print_format_width_1_1
+   1187 E0                 3648 	movx	a,@dptr
+   1188 14                 3649 	dec	a
+                           3650 ;	genAssign: resultIsFar = TRUE
+   1189 90s00r00rAD        3651 	mov	dptr,#__print_format_width_1_1
+   118D F0                 3652 	movx	@dptr,a
+   118E 80 19              3653 	sjmp 00209$
+   1190                    3654 00203$:
+                           3655 ;	printf_large.c:759: else if (prefix_space)
+   1190 30*09 16           3656 	jnb  __print_format_prefix_space_1_1,00209$
+   1193                    3657 00399$:
+                           3658 ;	printf_large.c:761: OUTPUT_CHAR( ' ', p );
+   1193 C0 05              3659 	push	ar5
+   1195 75 82 20           3660 	mov	dpl,#0x20
+   1198 12s00r00r00        3661 	lcall	__output_char
+   119C D0 05              3662 	pop	ar5
+                           3663 ;	printf_large.c:763: width--;
+   119E 90s00r00rAD        3664 	mov	dptr,#__print_format_width_1_1
+   11A2 E0                 3665 	movx	a,@dptr
+   11A3 14                 3666 	dec	a
+                           3667 ;	genAssign: resultIsFar = TRUE
+   11A4 90s00r00rAD        3668 	mov	dptr,#__print_format_width_1_1
+   11A8 F0                 3669 	movx	@dptr,a
+   11A9                    3670 00209$:
+                           3671 ;	printf_large.c:768: if (!left_justify)
+   11A9 20*06 2D           3672 	jb   __print_format_left_justify_1_1,00217$
+   11AC                    3673 00400$:
+                           3674 ;	printf_large.c:769: while ( width-- > length )
+   11AC 90s00r00rAD        3675 	mov	dptr,#__print_format_width_1_1
+                           3676 ;	genAssign: resultIsFar = FALSE
+   11B0 E0                 3677 	movx	a,@dptr
+   11B1 FB                 3678 	mov	r3,a
+   11B2                    3679 00210$:
+                           3680 ;	genAssign: resultIsFar = FALSE
+   11B2 8B 04              3681 	mov	ar4,r3
+   11B4 1B                 3682 	dec	r3
+                           3683 ;	genAssign: resultIsFar = TRUE
+   11B5 90s00r00rAD        3684 	mov	dptr,#__print_format_width_1_1
+   11B9 EB                 3685 	mov	a,r3
+   11BA F0                 3686 	movx	@dptr,a
+   11BB C3                 3687 	clr	c
+   11BC ED                 3688 	mov	a,r5
+   11BD 9C                 3689 	subb	a,r4
+   11BE 50 3A              3690 	jnc  00323$
+   11C0                    3691 00401$:
+                           3692 ;	printf_large.c:771: OUTPUT_CHAR( zero_padding ? '0' : ' ', p );
+   11C0 30*07 04           3693 	jnb  __print_format_zero_padding_1_1,00243$
+   11C3                    3694 00402$:
+                           3695 ;	genAssign: resultIsFar = FALSE
+   11C3 7C 30              3696 	mov	r4,#0x30
+   11C5 80 02              3697 	sjmp 00244$
+   11C7                    3698 00243$:
+                           3699 ;	genAssign: resultIsFar = FALSE
+   11C7 7C 20              3700 	mov	r4,#0x20
+   11C9                    3701 00244$:
+   11C9 C0 03              3702 	push	ar3
+   11CB C0 05              3703 	push	ar5
+   11CD 8C 82              3704 	mov	dpl,r4
+   11CF 12s00r00r00        3705 	lcall	__output_char
+   11D3 D0 05              3706 	pop	ar5
+   11D5 D0 03              3707 	pop	ar3
+   11D7 80 D9              3708 	sjmp 00210$
+   11D9                    3709 00217$:
+                           3710 ;	printf_large.c:776: if (width > length)
+   11D9 90s00r00rAD        3711 	mov	dptr,#__print_format_width_1_1
+   11DD C3                 3712 	clr	c
+   11DE ED                 3713 	mov	a,r5
+   11DF C5 F0              3714 	xch	a, b
+   11E1 E0                 3715 	movx	a,@dptr
+   11E2 C5 F0              3716 	xch	a, b
+   11E4 95 F0              3717 	subb	a,b
+   11E6 50 0A              3718 	jnc  00214$
+   11E8                    3719 00403$:
+                           3720 ;	printf_large.c:777: width -= length;
+   11E8 90s00r00rAD        3721 	mov	dptr,#__print_format_width_1_1
+   11EC C3                 3722 	clr	c
+   11ED E0                 3723 	movx	a,@dptr
+   11EE 9D                 3724 	subb	a,r5
+   11EF F0                 3725 	movx	@dptr,a
+   11F0 80 0E              3726 	sjmp 00315$
+   11F2                    3727 00214$:
+                           3728 ;	printf_large.c:779: width = 0;
+                           3729 ;	genAssign: resultIsFar = TRUE
+   11F2 90s00r00rAD        3730 	mov	dptr,#__print_format_width_1_1
+   11F6 E4                 3731 	clr  a
+   11F7 F0                 3732 	movx	@dptr,a
+                           3733 ;	printf_large.c:816: return charsOutputted;
+                           3734 ;	printf_large.c:783: while( length-- )
+   11F8 80 06              3735 	sjmp 00315$
+   11FA                    3736 00323$:
+                           3737 ;	genAssign: resultIsFar = TRUE
+   11FA 90s00r00rAD        3738 	mov	dptr,#__print_format_width_1_1
+   11FE EB                 3739 	mov	a,r3
+   11FF F0                 3740 	movx	@dptr,a
+   1200                    3741 00315$:
+   1200 90s00r00rB4        3742 	mov	dptr,#__print_format_pstore_4_23
+                           3743 ;	genAssign: resultIsFar = FALSE
+   1204 E0                 3744 	movx	a,@dptr
+   1205 FB                 3745 	mov	r3,a
+   1206 A3                 3746 	inc	dptr
+   1207 E0                 3747 	movx	a,@dptr
+   1208 FC                 3748 	mov	r4,a
+   1209 A3                 3749 	inc	dptr
+   120A E0                 3750 	movx	a,@dptr
+   120B FE                 3751 	mov	r6,a
+                           3752 ;	genAssign: resultIsFar = FALSE
+   120C                    3753 00222$:
+                           3754 ;	genAssign: resultIsFar = FALSE
+   120C 8D 07              3755 	mov	ar7,r5
+   120E 1D                 3756 	dec	r5
+   120F EF                 3757 	mov	a,r7
+   1210 60 50              3758 	jz  00224$
+   1212                    3759 00404$:
+                           3760 ;	printf_large.c:785: lsd = !lsd;
+   1212 B2*0E              3761 	cpl	__print_format_lsd_1_1
+                           3762 ;	printf_large.c:786: if (!lsd)
+   1214 20*0E 1C           3763 	jb   __print_format_lsd_1_1,00220$
+   1217                    3764 00405$:
+                           3765 ;	printf_large.c:788: pstore++;
+   1217 0B                 3766 	inc	r3
+   1218 BB 00 05           3767 	cjne	r3,#0,00406$
+   121B 0C                 3768 	inc	r4
+   121C BC 00 01           3769 	cjne	r4,#0,00406$
+   121F 0E                 3770 	inc	r6
+   1220                    3771 00406$:
+                           3772 ;	printf_large.c:789: value.byte[4] = *pstore >> 4;
+   1220 8B 82              3773 	mov	dpl,r3
+   1222 8C 83              3774 	mov	dph,r4
+   1224 8E 93              3775 	mov	dpx,r6
+   1226 E0                 3776 	movx	a,@dptr
+   1227 FF                 3777 	mov  r7,a
+   1228 C4                 3778 	swap	a
+   1229 54 0F              3779 	anl	a,#0x0F
+   122B FF                 3780 	mov  r7,a
+   122C 90s00r00r0B        3781 	mov  dptr,#(_value + 0x000004)
+   1230 F0                 3782 	movx @dptr,a
+   1231 80 11              3783 	sjmp 00221$
+   1233                    3784 00220$:
+                           3785 ;	printf_large.c:793: value.byte[4] = *pstore & 0x0F;
+   1233 8B 82              3786 	mov	dpl,r3
+   1235 8C 83              3787 	mov	dph,r4
+   1237 8E 93              3788 	mov	dpx,r6
+   1239 E0                 3789 	movx	a,@dptr
+   123A FF                 3790 	mov	r7,a
+   123B 53 07 0F           3791 	anl	ar7,#0x0F
+   123E 90s00r00r0B        3792 	mov	dptr,#(_value + 0x000004)
+   1242 EF                 3793 	mov	a,r7
+   1243 F0                 3794 	movx	@dptr,a
+   1244                    3795 00221$:
+                           3796 ;	printf_large.c:799: output_digit( value.byte[4] );
+   1244 90s00r00r0B        3797 	mov	dptr,#(_value + 0x000004)
+   1248 E0                 3798 	movx	a,@dptr
+   1249 FF                 3799 	mov	r7,a
+   124A C0 03              3800 	push	ar3
+   124C C0 04              3801 	push	ar4
+   124E C0 05              3802 	push	ar5
+   1250 C0 06              3803 	push	ar6
+   1252 8F 82              3804 	mov	dpl,r7
+   1254 12s00r00r49        3805 	lcall	_output_digit
+   1258 D0 06              3806 	pop	ar6
+   125A D0 05              3807 	pop	ar5
+   125C D0 04              3808 	pop	ar4
+   125E D0 03              3809 	pop	ar3
+   1260 80 AA              3810 	sjmp 00222$
+   1262                    3811 00224$:
+                           3812 ;	printf_large.c:802: if (left_justify)
+   1262 20*06 04           3813 	jb	__print_format_left_justify_1_1,00407$
+   1265 02s00r09r78        3814 	ljmp	00238$
+   1269                    3815 00407$:
+                           3816 ;	printf_large.c:803: while (width-- > 0)
+   1269 90s00r00rAD        3817 	mov	dptr,#__print_format_width_1_1
+                           3818 ;	genAssign: resultIsFar = FALSE
+   126D E0                 3819 	movx	a,@dptr
+   126E FB                 3820 	mov	r3,a
+   126F                    3821 00225$:
+                           3822 ;	genAssign: resultIsFar = FALSE
+   126F 8B 04              3823 	mov	ar4,r3
+   1271 1B                 3824 	dec	r3
+   1272 EC                 3825 	mov	a,r4
+   1273 70 04              3826 	jnz	00408$
+   1275 02s00r09r78        3827 	ljmp	00238$
+   1279                    3828 00408$:
+                           3829 ;	printf_large.c:805: OUTPUT_CHAR(' ', p);
+   1279 C0 03              3830 	push	ar3
+   127B 75 82 20           3831 	mov	dpl,#0x20
+   127E 12s00r00r00        3832 	lcall	__output_char
+   1282 D0 03              3833 	pop	ar3
+   1284 80 E9              3834 	sjmp 00225$
+   1286                    3835 00236$:
+                           3836 ;	printf_large.c:812: OUTPUT_CHAR( c, p );
+   1286 8A 82              3837 	mov	dpl,r2
+   1288 12s00r00r00        3838 	lcall	__output_char
+   128C 02s00r09r78        3839 	ljmp	00238$
+   1290                    3840 00240$:
+                           3841 ;	printf_large.c:816: return charsOutputted;
+   1290 75 86 01           3842 	mov     dps, #1
+   1293 90s00r00r0C        3843 	mov     dptr, #_charsOutputted
+   1297 E0                 3844 	movx	a,@dptr
+   1298 F5 82              3845 	mov	dpl,a
+   129A A3                 3846 	inc	dptr
+   129B E0                 3847 	movx	a,@dptr
+   129C F5 83              3848 	mov	dph,a
+   129E 75 86 00           3849 	mov	dps,#0
+   12A1                    3850 00241$:
+   12A1 22                 3851 	ret
+                           3852 	.area CSEG    (CODE)
+                           3853 	.area CONST   (CODE)
+   0000                    3854 __str_0:
+   0000 3C 4E 55 4C 4C 3E  3855 	.ascii "<NULL>"
+   0006 00                 3856 	.db 0x00
+                           3857 	.area XINIT   (CODE)
+                           3858 	.area CABS    (ABS,CODE)

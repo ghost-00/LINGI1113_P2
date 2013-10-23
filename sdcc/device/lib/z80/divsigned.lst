@@ -1,0 +1,12 @@
+                              1         .area   _CODE
+                              2 
+   0000                       3 __divsint_rrx_s::
+   0000 F1                    4         pop     af
+   0001 E1                    5         pop     hl
+   0002 D1                    6         pop     de
+   0003 D5                    7         push    de
+   0004 E5                    8         push    hl
+   0005 F5                    9         push    af
+                             10 
+   0006 C3r00s00             11         jp      __div16
+                             12 

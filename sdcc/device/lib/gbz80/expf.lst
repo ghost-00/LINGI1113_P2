@@ -1,0 +1,861 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:11 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module expf
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _expf
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../expf.c:320: float expf(const float x)
+                             41 ;	---------------------------------
+                             42 ; Function expf
+                             43 ; ---------------------------------
+   0000                      44 _expf_start::
+   0000                      45 _expf:
+   0000 E8 E1                46 	lda	sp,-31(sp)
+                             47 ;../expf.c:326: if(x>=0.0)
+   0002 21 00 00             48 	ld	hl,#0x0000
+   0005 E5                   49 	push	hl
+   0006 21 00 00             50 	ld	hl,#0x0000
+   0009 E5                   51 	push	hl
+   000A F8 27                52 	lda	hl,39(sp)
+   000C 2A                   53 	ld	a,(hl+)
+   000D 66                   54 	ld	h,(hl)
+   000E 6F                   55 	ld	l,a
+   000F E5                   56 	push	hl
+   0010 F8 27                57 	lda	hl,39(sp)
+   0012 2A                   58 	ld	a,(hl+)
+   0013 66                   59 	ld	h,(hl)
+   0014 6F                   60 	ld	l,a
+   0015 E5                   61 	push	hl
+   0016 CDr00s00             62 	call	___fslt
+   0019 E8 08                63 	lda	sp,8(sp)
+   001B 4B                   64 	ld	c,e
+   001C AF                   65 	xor	a,a
+   001D B1                   66 	or	a,c
+   001E C2r39s00             67 	jp	NZ,00102$
+                             68 ;../expf.c:327: { y=x;  sign=0; }
+   0021 F8 21                69 	lda	hl,33(sp)
+   0023 54                   70 	ld	d,h
+   0024 5D                   71 	ld	e,l
+   0025 F8 09                72 	lda	hl,9(sp)
+   0027 1A                   73 	ld	a,(de)
+   0028 22                   74 	ld	(hl+),a
+   0029 13                   75 	inc	de
+   002A 1A                   76 	ld	a,(de)
+   002B 22                   77 	ld	(hl+),a
+   002C 13                   78 	inc	de
+   002D 1A                   79 	ld	a,(de)
+   002E 22                   80 	ld	(hl+),a
+   002F 13                   81 	inc	de
+   0030 1A                   82 	ld	a,(de)
+   0031 77                   83 	ld	(hl),a
+   0032 F8 08                84 	lda	hl,8(sp)
+   0034 36 00                85 	ld	(hl),#0x00
+   0036 C3r67s00             86 	jp	00103$
+   0039                      87 00102$:
+                             88 ;../expf.c:329: { y=-x; sign=1; }
+   0039 F8 24                89 	lda	hl,36(sp)
+   003B 7E                   90 	ld	a,(hl)
+   003C EE 80                91 	xor	a,#0x80
+   003E F8 07                92 	lda	hl,7(sp)
+   0040 77                   93 	ld	(hl),a
+   0041 F8 21                94 	lda	hl,33(sp)
+   0043 7E                   95 	ld	a,(hl)
+   0044 F8 04                96 	lda	hl,4(sp)
+   0046 77                   97 	ld	(hl),a
+   0047 F8 22                98 	lda	hl,34(sp)
+   0049 7E                   99 	ld	a,(hl)
+   004A F8 05               100 	lda	hl,5(sp)
+   004C 77                  101 	ld	(hl),a
+   004D F8 23               102 	lda	hl,35(sp)
+   004F 7E                  103 	ld	a,(hl)
+   0050 F8 06               104 	lda	hl,6(sp)
+   0052 32                  105 	ld	(hl-),a
+   0053 2B                  106 	dec	hl
+   0054 54                  107 	ld	d,h
+   0055 5D                  108 	ld	e,l
+   0056 F8 09               109 	lda	hl,9(sp)
+   0058 1A                  110 	ld	a,(de)
+   0059 22                  111 	ld	(hl+),a
+   005A 13                  112 	inc	de
+   005B 1A                  113 	ld	a,(de)
+   005C 22                  114 	ld	(hl+),a
+   005D 13                  115 	inc	de
+   005E 1A                  116 	ld	a,(de)
+   005F 22                  117 	ld	(hl+),a
+   0060 13                  118 	inc	de
+   0061 1A                  119 	ld	a,(de)
+   0062 77                  120 	ld	(hl),a
+   0063 F8 08               121 	lda	hl,8(sp)
+   0065 36 01               122 	ld	(hl),#0x01
+   0067                     123 00103$:
+                            124 ;../expf.c:331: if(y<EXPEPS) return 1.0;
+   0067 21 D6 33            125 	ld	hl,#0x33D6
+   006A E5                  126 	push	hl
+   006B 21 95 BF            127 	ld	hl,#0xBF95
+   006E E5                  128 	push	hl
+   006F F8 0F               129 	lda	hl,15(sp)
+   0071 2A                  130 	ld	a,(hl+)
+   0072 66                  131 	ld	h,(hl)
+   0073 6F                  132 	ld	l,a
+   0074 E5                  133 	push	hl
+   0075 F8 0F               134 	lda	hl,15(sp)
+   0077 2A                  135 	ld	a,(hl+)
+   0078 66                  136 	ld	h,(hl)
+   0079 6F                  137 	ld	l,a
+   007A E5                  138 	push	hl
+   007B CDr00s00            139 	call	___fslt
+   007E E8 08               140 	lda	sp,8(sp)
+   0080 43                  141 	ld	b,e
+   0081 AF                  142 	xor	a,a
+   0082 B0                  143 	or	a,b
+   0083 CAr8Fs00            144 	jp	Z,00105$
+   0086 11 00 00            145 	ld	de,#0x0000
+   0089 21 80 3F            146 	ld	hl,#0x3F80
+   008C C3r1Fs04            147 	jp	00118$
+   008F                     148 00105$:
+                            149 ;../expf.c:333: if(y>BIGX)
+   008F 21 B1 42            150 	ld	hl,#0x42B1
+   0092 E5                  151 	push	hl
+   0093 21 18 72            152 	ld	hl,#0x7218
+   0096 E5                  153 	push	hl
+   0097 F8 0F               154 	lda	hl,15(sp)
+   0099 2A                  155 	ld	a,(hl+)
+   009A 66                  156 	ld	h,(hl)
+   009B 6F                  157 	ld	l,a
+   009C E5                  158 	push	hl
+   009D F8 0F               159 	lda	hl,15(sp)
+   009F 2A                  160 	ld	a,(hl+)
+   00A0 66                  161 	ld	h,(hl)
+   00A1 6F                  162 	ld	l,a
+   00A2 E5                  163 	push	hl
+   00A3 CDr00s00            164 	call	___fsgt
+   00A6 E8 08               165 	lda	sp,8(sp)
+   00A8 43                  166 	ld	b,e
+   00A9 AF                  167 	xor	a,a
+   00AA B0                  168 	or	a,b
+   00AB CArD1s00            169 	jp	Z,00110$
+                            170 ;../expf.c:335: if(sign)
+   00AE AF                  171 	xor	a,a
+   00AF F8 08               172 	lda	hl,8(sp)
+   00B1 B6                  173 	or	a,(hl)
+   00B2 CArC8s00            174 	jp	Z,00107$
+                            175 ;../expf.c:337: errno=ERANGE;
+   00B5 21r00s00            176 	ld	hl,#_errno
+   00B8 36 22               177 	ld	(hl),#0x22
+   00BA 21r01s00            178 	ld	hl,#_errno + 1
+   00BD 36 00               179 	ld	(hl),#0x00
+                            180 ;../expf.c:339: ;
+   00BF 11 FF FF            181 	ld	de,#0xFFFF
+   00C2 21 7F 7F            182 	ld	hl,#0x7F7F
+   00C5 C3r1Fs04            183 	jp	00118$
+   00C8                     184 00107$:
+                            185 ;../expf.c:343: return 0.0;
+   00C8 11 00 00            186 	ld	de,#0x0000
+   00CB 21 00 00            187 	ld	hl,#0x0000
+   00CE C3r1Fs04            188 	jp	00118$
+   00D1                     189 00110$:
+                            190 ;../expf.c:347: z=y*K1;
+   00D1 F8 0B               191 	lda	hl,11(sp)
+   00D3 2A                  192 	ld	a,(hl+)
+   00D4 66                  193 	ld	h,(hl)
+   00D5 6F                  194 	ld	l,a
+   00D6 E5                  195 	push	hl
+   00D7 F8 0B               196 	lda	hl,11(sp)
+   00D9 2A                  197 	ld	a,(hl+)
+   00DA 66                  198 	ld	h,(hl)
+   00DB 6F                  199 	ld	l,a
+   00DC E5                  200 	push	hl
+   00DD 21 B8 3F            201 	ld	hl,#0x3FB8
+   00E0 E5                  202 	push	hl
+   00E1 21 3B AA            203 	ld	hl,#0xAA3B
+   00E4 E5                  204 	push	hl
+   00E5 CDr00s00            205 	call	___fsmul
+   00E8 E8 08               206 	lda	sp,8(sp)
+   00EA E5                  207 	push	hl
+   00EB F8 0F               208 	lda	hl,15(sp)
+   00ED 73                  209 	ld	(hl),e
+   00EE 23                  210 	inc	hl
+   00EF 72                  211 	ld	(hl),d
+   00F0 D1                  212 	pop	de
+   00F1 23                  213 	inc	hl
+   00F2 73                  214 	ld	(hl),e
+   00F3 23                  215 	inc	hl
+   00F4 72                  216 	ld	(hl),d
+                            217 ;../expf.c:348: n=z;
+   00F5 F8 0F               218 	lda	hl,15(sp)
+   00F7 2A                  219 	ld	a,(hl+)
+   00F8 66                  220 	ld	h,(hl)
+   00F9 6F                  221 	ld	l,a
+   00FA E5                  222 	push	hl
+   00FB F8 0F               223 	lda	hl,15(sp)
+   00FD 2A                  224 	ld	a,(hl+)
+   00FE 66                  225 	ld	h,(hl)
+   00FF 6F                  226 	ld	l,a
+   0100 E5                  227 	push	hl
+   0101 CDr00s00            228 	call	___fs2sint
+   0104 E8 04               229 	lda	sp,4(sp)
+   0106 42                  230 	ld	b,d
+   0107 4B                  231 	ld	c,e
+   0108 F8 1D               232 	lda	hl,29(sp)
+   010A 71                  233 	ld	(hl),c
+   010B 23                  234 	inc	hl
+   010C 70                  235 	ld	(hl),b
+                            236 ;../expf.c:350: if(n<0) --n;
+   010D 7E                  237 	ld	a,(hl)
+   010E CB 7F               238 	bit	7,a
+   0110 CAr1Cs01            239 	jp	Z,00112$
+   0113 2B                  240 	dec	hl
+   0114 5E                  241 	ld	e,(hl)
+   0115 23                  242 	inc	hl
+   0116 56                  243 	ld	d,(hl)
+   0117 1B                  244 	dec	de
+   0118 2B                  245 	dec	hl
+   0119 73                  246 	ld	(hl),e
+   011A 23                  247 	inc	hl
+   011B 72                  248 	ld	(hl),d
+   011C                     249 00112$:
+                            250 ;../expf.c:351: if(z-n>=0.5) ++n;
+   011C F8 1D               251 	lda	hl,29(sp)
+   011E 2A                  252 	ld	a,(hl+)
+   011F 66                  253 	ld	h,(hl)
+   0120 6F                  254 	ld	l,a
+   0121 E5                  255 	push	hl
+   0122 CDr00s00            256 	call	___sint2fs
+   0125 E8 02               257 	lda	sp,2(sp)
+   0127 E5                  258 	push	hl
+   0128 F8 06               259 	lda	hl,6(sp)
+   012A 73                  260 	ld	(hl),e
+   012B 23                  261 	inc	hl
+   012C 72                  262 	ld	(hl),d
+   012D D1                  263 	pop	de
+   012E 23                  264 	inc	hl
+   012F 73                  265 	ld	(hl),e
+   0130 23                  266 	inc	hl
+   0131 72                  267 	ld	(hl),d
+   0132 F8 06               268 	lda	hl,6(sp)
+   0134 2A                  269 	ld	a,(hl+)
+   0135 66                  270 	ld	h,(hl)
+   0136 6F                  271 	ld	l,a
+   0137 E5                  272 	push	hl
+   0138 F8 06               273 	lda	hl,6(sp)
+   013A 2A                  274 	ld	a,(hl+)
+   013B 66                  275 	ld	h,(hl)
+   013C 6F                  276 	ld	l,a
+   013D E5                  277 	push	hl
+   013E F8 13               278 	lda	hl,19(sp)
+   0140 2A                  279 	ld	a,(hl+)
+   0141 66                  280 	ld	h,(hl)
+   0142 6F                  281 	ld	l,a
+   0143 E5                  282 	push	hl
+   0144 F8 13               283 	lda	hl,19(sp)
+   0146 2A                  284 	ld	a,(hl+)
+   0147 66                  285 	ld	h,(hl)
+   0148 6F                  286 	ld	l,a
+   0149 E5                  287 	push	hl
+   014A CDr00s00            288 	call	___fssub
+   014D E8 08               289 	lda	sp,8(sp)
+   014F E5                  290 	push	hl
+   0150 F8 06               291 	lda	hl,6(sp)
+   0152 73                  292 	ld	(hl),e
+   0153 23                  293 	inc	hl
+   0154 72                  294 	ld	(hl),d
+   0155 D1                  295 	pop	de
+   0156 23                  296 	inc	hl
+   0157 73                  297 	ld	(hl),e
+   0158 23                  298 	inc	hl
+   0159 72                  299 	ld	(hl),d
+   015A 21 00 3F            300 	ld	hl,#0x3F00
+   015D E5                  301 	push	hl
+   015E 21 00 00            302 	ld	hl,#0x0000
+   0161 E5                  303 	push	hl
+   0162 F8 0A               304 	lda	hl,10(sp)
+   0164 2A                  305 	ld	a,(hl+)
+   0165 66                  306 	ld	h,(hl)
+   0166 6F                  307 	ld	l,a
+   0167 E5                  308 	push	hl
+   0168 F8 0A               309 	lda	hl,10(sp)
+   016A 2A                  310 	ld	a,(hl+)
+   016B 66                  311 	ld	h,(hl)
+   016C 6F                  312 	ld	l,a
+   016D E5                  313 	push	hl
+   016E CDr00s00            314 	call	___fslt
+   0171 E8 08               315 	lda	sp,8(sp)
+   0173 4B                  316 	ld	c,e
+   0174 AF                  317 	xor	a,a
+   0175 B1                  318 	or	a,c
+   0176 C2r80s01            319 	jp	NZ,00114$
+   0179 F8 1D               320 	lda	hl,29(sp)
+   017B 34                  321 	inc	(hl)
+   017C 20 02               322 	jr	NZ,00127$
+   017E 23                  323 	inc	hl
+   017F 34                  324 	inc	(hl)
+   0180                     325 00127$:
+   0180                     326 00114$:
+                            327 ;../expf.c:352: xn=n;
+   0180 F8 1D               328 	lda	hl,29(sp)
+   0182 2A                  329 	ld	a,(hl+)
+   0183 66                  330 	ld	h,(hl)
+   0184 6F                  331 	ld	l,a
+   0185 E5                  332 	push	hl
+   0186 CDr00s00            333 	call	___sint2fs
+   0189 E8 02               334 	lda	sp,2(sp)
+   018B E5                  335 	push	hl
+   018C F8 1B               336 	lda	hl,27(sp)
+   018E 73                  337 	ld	(hl),e
+   018F 23                  338 	inc	hl
+   0190 72                  339 	ld	(hl),d
+   0191 D1                  340 	pop	de
+   0192 23                  341 	inc	hl
+   0193 73                  342 	ld	(hl),e
+   0194 23                  343 	inc	hl
+   0195 72                  344 	ld	(hl),d
+                            345 ;../expf.c:353: g=((y-xn*C1))-xn*C2;
+   0196 F8 1B               346 	lda	hl,27(sp)
+   0198 2A                  347 	ld	a,(hl+)
+   0199 66                  348 	ld	h,(hl)
+   019A 6F                  349 	ld	l,a
+   019B E5                  350 	push	hl
+   019C F8 1B               351 	lda	hl,27(sp)
+   019E 2A                  352 	ld	a,(hl+)
+   019F 66                  353 	ld	h,(hl)
+   01A0 6F                  354 	ld	l,a
+   01A1 E5                  355 	push	hl
+   01A2 21 31 3F            356 	ld	hl,#0x3F31
+   01A5 E5                  357 	push	hl
+   01A6 21 00 80            358 	ld	hl,#0x8000
+   01A9 E5                  359 	push	hl
+   01AA CDr00s00            360 	call	___fsmul
+   01AD E8 08               361 	lda	sp,8(sp)
+   01AF E5                  362 	push	hl
+   01B0 F8 06               363 	lda	hl,6(sp)
+   01B2 73                  364 	ld	(hl),e
+   01B3 23                  365 	inc	hl
+   01B4 72                  366 	ld	(hl),d
+   01B5 D1                  367 	pop	de
+   01B6 23                  368 	inc	hl
+   01B7 73                  369 	ld	(hl),e
+   01B8 23                  370 	inc	hl
+   01B9 72                  371 	ld	(hl),d
+   01BA F8 06               372 	lda	hl,6(sp)
+   01BC 2A                  373 	ld	a,(hl+)
+   01BD 66                  374 	ld	h,(hl)
+   01BE 6F                  375 	ld	l,a
+   01BF E5                  376 	push	hl
+   01C0 F8 06               377 	lda	hl,6(sp)
+   01C2 2A                  378 	ld	a,(hl+)
+   01C3 66                  379 	ld	h,(hl)
+   01C4 6F                  380 	ld	l,a
+   01C5 E5                  381 	push	hl
+   01C6 F8 0F               382 	lda	hl,15(sp)
+   01C8 2A                  383 	ld	a,(hl+)
+   01C9 66                  384 	ld	h,(hl)
+   01CA 6F                  385 	ld	l,a
+   01CB E5                  386 	push	hl
+   01CC F8 0F               387 	lda	hl,15(sp)
+   01CE 2A                  388 	ld	a,(hl+)
+   01CF 66                  389 	ld	h,(hl)
+   01D0 6F                  390 	ld	l,a
+   01D1 E5                  391 	push	hl
+   01D2 CDr00s00            392 	call	___fssub
+   01D5 E8 08               393 	lda	sp,8(sp)
+   01D7 E5                  394 	push	hl
+   01D8 F8 06               395 	lda	hl,6(sp)
+   01DA 73                  396 	ld	(hl),e
+   01DB 23                  397 	inc	hl
+   01DC 72                  398 	ld	(hl),d
+   01DD D1                  399 	pop	de
+   01DE 23                  400 	inc	hl
+   01DF 73                  401 	ld	(hl),e
+   01E0 23                  402 	inc	hl
+   01E1 72                  403 	ld	(hl),d
+   01E2 F8 1B               404 	lda	hl,27(sp)
+   01E4 2A                  405 	ld	a,(hl+)
+   01E5 66                  406 	ld	h,(hl)
+   01E6 6F                  407 	ld	l,a
+   01E7 E5                  408 	push	hl
+   01E8 F8 1B               409 	lda	hl,27(sp)
+   01EA 2A                  410 	ld	a,(hl+)
+   01EB 66                  411 	ld	h,(hl)
+   01EC 6F                  412 	ld	l,a
+   01ED E5                  413 	push	hl
+   01EE 21 5E B9            414 	ld	hl,#0xB95E
+   01F1 E5                  415 	push	hl
+   01F2 21 83 80            416 	ld	hl,#0x8083
+   01F5 E5                  417 	push	hl
+   01F6 CDr00s00            418 	call	___fsmul
+   01F9 E8 08               419 	lda	sp,8(sp)
+   01FB E5                  420 	push	hl
+   01FC F8 02               421 	lda	hl,2(sp)
+   01FE 73                  422 	ld	(hl),e
+   01FF 23                  423 	inc	hl
+   0200 72                  424 	ld	(hl),d
+   0201 D1                  425 	pop	de
+   0202 23                  426 	inc	hl
+   0203 73                  427 	ld	(hl),e
+   0204 23                  428 	inc	hl
+   0205 72                  429 	ld	(hl),d
+   0206 F8 02               430 	lda	hl,2(sp)
+   0208 2A                  431 	ld	a,(hl+)
+   0209 66                  432 	ld	h,(hl)
+   020A 6F                  433 	ld	l,a
+   020B E5                  434 	push	hl
+   020C F8 02               435 	lda	hl,2(sp)
+   020E 2A                  436 	ld	a,(hl+)
+   020F 66                  437 	ld	h,(hl)
+   0210 6F                  438 	ld	l,a
+   0211 E5                  439 	push	hl
+   0212 F8 0A               440 	lda	hl,10(sp)
+   0214 2A                  441 	ld	a,(hl+)
+   0215 66                  442 	ld	h,(hl)
+   0216 6F                  443 	ld	l,a
+   0217 E5                  444 	push	hl
+   0218 F8 0A               445 	lda	hl,10(sp)
+   021A 2A                  446 	ld	a,(hl+)
+   021B 66                  447 	ld	h,(hl)
+   021C 6F                  448 	ld	l,a
+   021D E5                  449 	push	hl
+   021E CDr00s00            450 	call	___fssub
+   0221 E8 08               451 	lda	sp,8(sp)
+   0223 E5                  452 	push	hl
+   0224 F8 17               453 	lda	hl,23(sp)
+   0226 73                  454 	ld	(hl),e
+   0227 23                  455 	inc	hl
+   0228 72                  456 	ld	(hl),d
+   0229 D1                  457 	pop	de
+   022A 23                  458 	inc	hl
+   022B 73                  459 	ld	(hl),e
+   022C 23                  460 	inc	hl
+   022D 72                  461 	ld	(hl),d
+                            462 ;../expf.c:354: z=g*g;
+   022E F8 17               463 	lda	hl,23(sp)
+   0230 2A                  464 	ld	a,(hl+)
+   0231 66                  465 	ld	h,(hl)
+   0232 6F                  466 	ld	l,a
+   0233 E5                  467 	push	hl
+   0234 F8 17               468 	lda	hl,23(sp)
+   0236 2A                  469 	ld	a,(hl+)
+   0237 66                  470 	ld	h,(hl)
+   0238 6F                  471 	ld	l,a
+   0239 E5                  472 	push	hl
+   023A F8 1B               473 	lda	hl,27(sp)
+   023C 2A                  474 	ld	a,(hl+)
+   023D 66                  475 	ld	h,(hl)
+   023E 6F                  476 	ld	l,a
+   023F E5                  477 	push	hl
+   0240 F8 1B               478 	lda	hl,27(sp)
+   0242 2A                  479 	ld	a,(hl+)
+   0243 66                  480 	ld	h,(hl)
+   0244 6F                  481 	ld	l,a
+   0245 E5                  482 	push	hl
+   0246 CDr00s00            483 	call	___fsmul
+   0249 E8 08               484 	lda	sp,8(sp)
+   024B E5                  485 	push	hl
+   024C F8 02               486 	lda	hl,2(sp)
+   024E 73                  487 	ld	(hl),e
+   024F 23                  488 	inc	hl
+   0250 72                  489 	ld	(hl),d
+   0251 D1                  490 	pop	de
+   0252 23                  491 	inc	hl
+   0253 73                  492 	ld	(hl),e
+   0254 23                  493 	inc	hl
+   0255 72                  494 	ld	(hl),d
+   0256 F8 00               495 	lda	hl,0(sp)
+   0258 54                  496 	ld	d,h
+   0259 5D                  497 	ld	e,l
+   025A F8 0D               498 	lda	hl,13(sp)
+   025C 1A                  499 	ld	a,(de)
+   025D 22                  500 	ld	(hl+),a
+   025E 13                  501 	inc	de
+   025F 1A                  502 	ld	a,(de)
+   0260 22                  503 	ld	(hl+),a
+   0261 13                  504 	inc	de
+   0262 1A                  505 	ld	a,(de)
+   0263 22                  506 	ld	(hl+),a
+   0264 13                  507 	inc	de
+   0265 1A                  508 	ld	a,(de)
+   0266 77                  509 	ld	(hl),a
+                            510 ;../expf.c:355: r=P(z)*g;
+   0267 F8 0F               511 	lda	hl,15(sp)
+   0269 2A                  512 	ld	a,(hl+)
+   026A 66                  513 	ld	h,(hl)
+   026B 6F                  514 	ld	l,a
+   026C E5                  515 	push	hl
+   026D F8 0F               516 	lda	hl,15(sp)
+   026F 2A                  517 	ld	a,(hl+)
+   0270 66                  518 	ld	h,(hl)
+   0271 6F                  519 	ld	l,a
+   0272 E5                  520 	push	hl
+   0273 21 88 3B            521 	ld	hl,#0x3B88
+   0276 E5                  522 	push	hl
+   0277 21 08 53            523 	ld	hl,#0x5308
+   027A E5                  524 	push	hl
+   027B CDr00s00            525 	call	___fsmul
+   027E E8 08               526 	lda	sp,8(sp)
+   0280 E5                  527 	push	hl
+   0281 F8 02               528 	lda	hl,2(sp)
+   0283 73                  529 	ld	(hl),e
+   0284 23                  530 	inc	hl
+   0285 72                  531 	ld	(hl),d
+   0286 D1                  532 	pop	de
+   0287 23                  533 	inc	hl
+   0288 73                  534 	ld	(hl),e
+   0289 23                  535 	inc	hl
+   028A 72                  536 	ld	(hl),d
+   028B 21 80 3E            537 	ld	hl,#0x3E80
+   028E E5                  538 	push	hl
+   028F 21 00 00            539 	ld	hl,#0x0000
+   0292 E5                  540 	push	hl
+   0293 F8 06               541 	lda	hl,6(sp)
+   0295 2A                  542 	ld	a,(hl+)
+   0296 66                  543 	ld	h,(hl)
+   0297 6F                  544 	ld	l,a
+   0298 E5                  545 	push	hl
+   0299 F8 06               546 	lda	hl,6(sp)
+   029B 2A                  547 	ld	a,(hl+)
+   029C 66                  548 	ld	h,(hl)
+   029D 6F                  549 	ld	l,a
+   029E E5                  550 	push	hl
+   029F CDr00s00            551 	call	___fsadd
+   02A2 E8 08               552 	lda	sp,8(sp)
+   02A4 E5                  553 	push	hl
+   02A5 F8 02               554 	lda	hl,2(sp)
+   02A7 73                  555 	ld	(hl),e
+   02A8 23                  556 	inc	hl
+   02A9 72                  557 	ld	(hl),d
+   02AA D1                  558 	pop	de
+   02AB 23                  559 	inc	hl
+   02AC 73                  560 	ld	(hl),e
+   02AD 23                  561 	inc	hl
+   02AE 72                  562 	ld	(hl),d
+   02AF F8 17               563 	lda	hl,23(sp)
+   02B1 2A                  564 	ld	a,(hl+)
+   02B2 66                  565 	ld	h,(hl)
+   02B3 6F                  566 	ld	l,a
+   02B4 E5                  567 	push	hl
+   02B5 F8 17               568 	lda	hl,23(sp)
+   02B7 2A                  569 	ld	a,(hl+)
+   02B8 66                  570 	ld	h,(hl)
+   02B9 6F                  571 	ld	l,a
+   02BA E5                  572 	push	hl
+   02BB F8 06               573 	lda	hl,6(sp)
+   02BD 2A                  574 	ld	a,(hl+)
+   02BE 66                  575 	ld	h,(hl)
+   02BF 6F                  576 	ld	l,a
+   02C0 E5                  577 	push	hl
+   02C1 F8 06               578 	lda	hl,6(sp)
+   02C3 2A                  579 	ld	a,(hl+)
+   02C4 66                  580 	ld	h,(hl)
+   02C5 6F                  581 	ld	l,a
+   02C6 E5                  582 	push	hl
+   02C7 CDr00s00            583 	call	___fsmul
+   02CA E8 08               584 	lda	sp,8(sp)
+   02CC E5                  585 	push	hl
+   02CD F8 13               586 	lda	hl,19(sp)
+   02CF 73                  587 	ld	(hl),e
+   02D0 23                  588 	inc	hl
+   02D1 72                  589 	ld	(hl),d
+   02D2 D1                  590 	pop	de
+   02D3 23                  591 	inc	hl
+   02D4 73                  592 	ld	(hl),e
+   02D5 23                  593 	inc	hl
+   02D6 72                  594 	ld	(hl),d
+                            595 ;../expf.c:356: r=0.5+(r/(Q(z)-r));
+   02D7 F8 0F               596 	lda	hl,15(sp)
+   02D9 2A                  597 	ld	a,(hl+)
+   02DA 66                  598 	ld	h,(hl)
+   02DB 6F                  599 	ld	l,a
+   02DC E5                  600 	push	hl
+   02DD F8 0F               601 	lda	hl,15(sp)
+   02DF 2A                  602 	ld	a,(hl+)
+   02E0 66                  603 	ld	h,(hl)
+   02E1 6F                  604 	ld	l,a
+   02E2 E5                  605 	push	hl
+   02E3 21 4C 3D            606 	ld	hl,#0x3D4C
+   02E6 E5                  607 	push	hl
+   02E7 21 5B BF            608 	ld	hl,#0xBF5B
+   02EA E5                  609 	push	hl
+   02EB CDr00s00            610 	call	___fsmul
+   02EE E8 08               611 	lda	sp,8(sp)
+   02F0 E5                  612 	push	hl
+   02F1 F8 02               613 	lda	hl,2(sp)
+   02F3 73                  614 	ld	(hl),e
+   02F4 23                  615 	inc	hl
+   02F5 72                  616 	ld	(hl),d
+   02F6 D1                  617 	pop	de
+   02F7 23                  618 	inc	hl
+   02F8 73                  619 	ld	(hl),e
+   02F9 23                  620 	inc	hl
+   02FA 72                  621 	ld	(hl),d
+   02FB 21 00 3F            622 	ld	hl,#0x3F00
+   02FE E5                  623 	push	hl
+   02FF 21 00 00            624 	ld	hl,#0x0000
+   0302 E5                  625 	push	hl
+   0303 F8 06               626 	lda	hl,6(sp)
+   0305 2A                  627 	ld	a,(hl+)
+   0306 66                  628 	ld	h,(hl)
+   0307 6F                  629 	ld	l,a
+   0308 E5                  630 	push	hl
+   0309 F8 06               631 	lda	hl,6(sp)
+   030B 2A                  632 	ld	a,(hl+)
+   030C 66                  633 	ld	h,(hl)
+   030D 6F                  634 	ld	l,a
+   030E E5                  635 	push	hl
+   030F CDr00s00            636 	call	___fsadd
+   0312 E8 08               637 	lda	sp,8(sp)
+   0314 E5                  638 	push	hl
+   0315 F8 02               639 	lda	hl,2(sp)
+   0317 73                  640 	ld	(hl),e
+   0318 23                  641 	inc	hl
+   0319 72                  642 	ld	(hl),d
+   031A D1                  643 	pop	de
+   031B 23                  644 	inc	hl
+   031C 73                  645 	ld	(hl),e
+   031D 23                  646 	inc	hl
+   031E 72                  647 	ld	(hl),d
+   031F F8 13               648 	lda	hl,19(sp)
+   0321 2A                  649 	ld	a,(hl+)
+   0322 66                  650 	ld	h,(hl)
+   0323 6F                  651 	ld	l,a
+   0324 E5                  652 	push	hl
+   0325 F8 13               653 	lda	hl,19(sp)
+   0327 2A                  654 	ld	a,(hl+)
+   0328 66                  655 	ld	h,(hl)
+   0329 6F                  656 	ld	l,a
+   032A E5                  657 	push	hl
+   032B F8 06               658 	lda	hl,6(sp)
+   032D 2A                  659 	ld	a,(hl+)
+   032E 66                  660 	ld	h,(hl)
+   032F 6F                  661 	ld	l,a
+   0330 E5                  662 	push	hl
+   0331 F8 06               663 	lda	hl,6(sp)
+   0333 2A                  664 	ld	a,(hl+)
+   0334 66                  665 	ld	h,(hl)
+   0335 6F                  666 	ld	l,a
+   0336 E5                  667 	push	hl
+   0337 CDr00s00            668 	call	___fssub
+   033A E8 08               669 	lda	sp,8(sp)
+   033C E5                  670 	push	hl
+   033D F8 02               671 	lda	hl,2(sp)
+   033F 73                  672 	ld	(hl),e
+   0340 23                  673 	inc	hl
+   0341 72                  674 	ld	(hl),d
+   0342 D1                  675 	pop	de
+   0343 23                  676 	inc	hl
+   0344 73                  677 	ld	(hl),e
+   0345 23                  678 	inc	hl
+   0346 72                  679 	ld	(hl),d
+   0347 F8 02               680 	lda	hl,2(sp)
+   0349 2A                  681 	ld	a,(hl+)
+   034A 66                  682 	ld	h,(hl)
+   034B 6F                  683 	ld	l,a
+   034C E5                  684 	push	hl
+   034D F8 02               685 	lda	hl,2(sp)
+   034F 2A                  686 	ld	a,(hl+)
+   0350 66                  687 	ld	h,(hl)
+   0351 6F                  688 	ld	l,a
+   0352 E5                  689 	push	hl
+   0353 F8 17               690 	lda	hl,23(sp)
+   0355 2A                  691 	ld	a,(hl+)
+   0356 66                  692 	ld	h,(hl)
+   0357 6F                  693 	ld	l,a
+   0358 E5                  694 	push	hl
+   0359 F8 17               695 	lda	hl,23(sp)
+   035B 2A                  696 	ld	a,(hl+)
+   035C 66                  697 	ld	h,(hl)
+   035D 6F                  698 	ld	l,a
+   035E E5                  699 	push	hl
+   035F CDr00s00            700 	call	___fsdiv
+   0362 E8 08               701 	lda	sp,8(sp)
+   0364 E5                  702 	push	hl
+   0365 F8 02               703 	lda	hl,2(sp)
+   0367 73                  704 	ld	(hl),e
+   0368 23                  705 	inc	hl
+   0369 72                  706 	ld	(hl),d
+   036A D1                  707 	pop	de
+   036B 23                  708 	inc	hl
+   036C 73                  709 	ld	(hl),e
+   036D 23                  710 	inc	hl
+   036E 72                  711 	ld	(hl),d
+   036F 21 00 3F            712 	ld	hl,#0x3F00
+   0372 E5                  713 	push	hl
+   0373 21 00 00            714 	ld	hl,#0x0000
+   0376 E5                  715 	push	hl
+   0377 F8 06               716 	lda	hl,6(sp)
+   0379 2A                  717 	ld	a,(hl+)
+   037A 66                  718 	ld	h,(hl)
+   037B 6F                  719 	ld	l,a
+   037C E5                  720 	push	hl
+   037D F8 06               721 	lda	hl,6(sp)
+   037F 2A                  722 	ld	a,(hl+)
+   0380 66                  723 	ld	h,(hl)
+   0381 6F                  724 	ld	l,a
+   0382 E5                  725 	push	hl
+   0383 CDr00s00            726 	call	___fsadd
+   0386 E8 08               727 	lda	sp,8(sp)
+   0388 E5                  728 	push	hl
+   0389 F8 02               729 	lda	hl,2(sp)
+   038B 73                  730 	ld	(hl),e
+   038C 23                  731 	inc	hl
+   038D 72                  732 	ld	(hl),d
+   038E D1                  733 	pop	de
+   038F 23                  734 	inc	hl
+   0390 73                  735 	ld	(hl),e
+   0391 23                  736 	inc	hl
+   0392 72                  737 	ld	(hl),d
+   0393 F8 00               738 	lda	hl,0(sp)
+   0395 54                  739 	ld	d,h
+   0396 5D                  740 	ld	e,l
+   0397 F8 11               741 	lda	hl,17(sp)
+   0399 1A                  742 	ld	a,(de)
+   039A 22                  743 	ld	(hl+),a
+   039B 13                  744 	inc	de
+   039C 1A                  745 	ld	a,(de)
+   039D 22                  746 	ld	(hl+),a
+   039E 13                  747 	inc	de
+   039F 1A                  748 	ld	a,(de)
+   03A0 22                  749 	ld	(hl+),a
+   03A1 13                  750 	inc	de
+   03A2 1A                  751 	ld	a,(de)
+   03A3 77                  752 	ld	(hl),a
+                            753 ;../expf.c:358: n++;
+   03A4 F8 1D               754 	lda	hl,29(sp)
+   03A6 34                  755 	inc	(hl)
+   03A7 20 02               756 	jr	NZ,00128$
+   03A9 23                  757 	inc	hl
+   03AA 34                  758 	inc	(hl)
+   03AB                     759 00128$:
+                            760 ;../expf.c:359: z=ldexpf(r, n);
+   03AB 2B                  761 	dec	hl
+   03AC 2A                  762 	ld	a,(hl+)
+   03AD 66                  763 	ld	h,(hl)
+   03AE 6F                  764 	ld	l,a
+   03AF E5                  765 	push	hl
+   03B0 F8 15               766 	lda	hl,21(sp)
+   03B2 2A                  767 	ld	a,(hl+)
+   03B3 66                  768 	ld	h,(hl)
+   03B4 6F                  769 	ld	l,a
+   03B5 E5                  770 	push	hl
+   03B6 F8 15               771 	lda	hl,21(sp)
+   03B8 2A                  772 	ld	a,(hl+)
+   03B9 66                  773 	ld	h,(hl)
+   03BA 6F                  774 	ld	l,a
+   03BB E5                  775 	push	hl
+   03BC CDr00s00            776 	call	_ldexpf
+   03BF E8 06               777 	lda	sp,6(sp)
+   03C1 E5                  778 	push	hl
+   03C2 F8 02               779 	lda	hl,2(sp)
+   03C4 73                  780 	ld	(hl),e
+   03C5 23                  781 	inc	hl
+   03C6 72                  782 	ld	(hl),d
+   03C7 D1                  783 	pop	de
+   03C8 23                  784 	inc	hl
+   03C9 73                  785 	ld	(hl),e
+   03CA 23                  786 	inc	hl
+   03CB 72                  787 	ld	(hl),d
+   03CC F8 00               788 	lda	hl,0(sp)
+   03CE 54                  789 	ld	d,h
+   03CF 5D                  790 	ld	e,l
+   03D0 F8 0D               791 	lda	hl,13(sp)
+   03D2 1A                  792 	ld	a,(de)
+   03D3 22                  793 	ld	(hl+),a
+   03D4 13                  794 	inc	de
+   03D5 1A                  795 	ld	a,(de)
+   03D6 22                  796 	ld	(hl+),a
+   03D7 13                  797 	inc	de
+   03D8 1A                  798 	ld	a,(de)
+   03D9 22                  799 	ld	(hl+),a
+   03DA 13                  800 	inc	de
+   03DB 1A                  801 	ld	a,(de)
+   03DC 77                  802 	ld	(hl),a
+                            803 ;../expf.c:360: if(sign)
+   03DD AF                  804 	xor	a,a
+   03DE F8 08               805 	lda	hl,8(sp)
+   03E0 B6                  806 	or	a,(hl)
+   03E1 CAr15s04            807 	jp	Z,00116$
+                            808 ;../expf.c:361: return 1.0/z;
+   03E4 F8 0F               809 	lda	hl,15(sp)
+   03E6 2A                  810 	ld	a,(hl+)
+   03E7 66                  811 	ld	h,(hl)
+   03E8 6F                  812 	ld	l,a
+   03E9 E5                  813 	push	hl
+   03EA F8 0F               814 	lda	hl,15(sp)
+   03EC 2A                  815 	ld	a,(hl+)
+   03ED 66                  816 	ld	h,(hl)
+   03EE 6F                  817 	ld	l,a
+   03EF E5                  818 	push	hl
+   03F0 21 80 3F            819 	ld	hl,#0x3F80
+   03F3 E5                  820 	push	hl
+   03F4 21 00 00            821 	ld	hl,#0x0000
+   03F7 E5                  822 	push	hl
+   03F8 CDr00s00            823 	call	___fsdiv
+   03FB E8 08               824 	lda	sp,8(sp)
+   03FD E5                  825 	push	hl
+   03FE F8 02               826 	lda	hl,2(sp)
+   0400 73                  827 	ld	(hl),e
+   0401 23                  828 	inc	hl
+   0402 72                  829 	ld	(hl),d
+   0403 D1                  830 	pop	de
+   0404 23                  831 	inc	hl
+   0405 73                  832 	ld	(hl),e
+   0406 23                  833 	inc	hl
+   0407 72                  834 	ld	(hl),d
+   0408 F8 01               835 	lda	hl,1(sp)
+   040A 2B                  836 	dec	hl
+   040B 5E                  837 	ld	e,(hl)
+   040C 23                  838 	inc	hl
+   040D 56                  839 	ld	d,(hl)
+   040E 23                  840 	inc	hl
+   040F 2A                  841 	ld	a,(hl+)
+   0410 66                  842 	ld	h,(hl)
+   0411 6F                  843 	ld	l,a
+   0412 C3r1Fs04            844 	jp	00118$
+   0415                     845 00116$:
+                            846 ;../expf.c:363: return z;
+   0415 F8 0E               847 	lda	hl,14(sp)
+   0417 2B                  848 	dec	hl
+   0418 5E                  849 	ld	e,(hl)
+   0419 23                  850 	inc	hl
+   041A 56                  851 	ld	d,(hl)
+   041B 23                  852 	inc	hl
+   041C 2A                  853 	ld	a,(hl+)
+   041D 66                  854 	ld	h,(hl)
+   041E 6F                  855 	ld	l,a
+   041F                     856 00118$:
+   041F E8 1F               857 	lda	sp,31(sp)
+   0421 C9                  858 	ret
+   0422                     859 _expf_end::
+                            860 	.area _CODE
+                            861 	.area _CABS

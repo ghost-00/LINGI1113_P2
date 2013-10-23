@@ -1,0 +1,164 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:25:48 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _strpbrk
+                              7 	.optsdcc -mmcs51 --model-medium
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _strpbrk_PARM_2
+                             13 	.globl _strpbrk
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (ABS,DATA)
+   0000                      18 	.org 0x0000
+                             19 ;--------------------------------------------------------
+                             20 ; special function bits
+                             21 ;--------------------------------------------------------
+                             22 	.area RSEG    (ABS,DATA)
+   0000                      23 	.org 0x0000
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+                             33 ;--------------------------------------------------------
+                             34 ; overlayable items in internal ram 
+                             35 ;--------------------------------------------------------
+                             36 	.area OSEG    (OVR,DATA)
+                             37 ;--------------------------------------------------------
+                             38 ; indirectly addressable internal ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area ISEG    (DATA)
+                             41 ;--------------------------------------------------------
+                             42 ; absolute internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area IABS    (ABS,DATA)
+                             45 	.area IABS    (ABS,DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; bit data
+                             48 ;--------------------------------------------------------
+                             49 	.area BSEG    (BIT)
+                             50 ;--------------------------------------------------------
+                             51 ; paged external ram data
+                             52 ;--------------------------------------------------------
+                             53 	.area PSEG    (PAG,XDATA)
+   0000                      54 _strpbrk_PARM_2:
+   0000                      55 	.ds 3
+                             56 ;--------------------------------------------------------
+                             57 ; external ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area XSEG    (XDATA)
+                             60 ;--------------------------------------------------------
+                             61 ; absolute external ram data
+                             62 ;--------------------------------------------------------
+                             63 	.area XABS    (ABS,XDATA)
+                             64 ;--------------------------------------------------------
+                             65 ; external initialized ram data
+                             66 ;--------------------------------------------------------
+                             67 	.area XISEG   (XDATA)
+                             68 	.area HOME    (CODE)
+                             69 	.area GSINIT0 (CODE)
+                             70 	.area GSINIT1 (CODE)
+                             71 	.area GSINIT2 (CODE)
+                             72 	.area GSINIT3 (CODE)
+                             73 	.area GSINIT4 (CODE)
+                             74 	.area GSINIT5 (CODE)
+                             75 	.area GSINIT  (CODE)
+                             76 	.area GSFINAL (CODE)
+                             77 	.area CSEG    (CODE)
+                             78 ;--------------------------------------------------------
+                             79 ; global & static initialisations
+                             80 ;--------------------------------------------------------
+                             81 	.area HOME    (CODE)
+                             82 	.area GSINIT  (CODE)
+                             83 	.area GSFINAL (CODE)
+                             84 	.area GSINIT  (CODE)
+                             85 ;--------------------------------------------------------
+                             86 ; Home
+                             87 ;--------------------------------------------------------
+                             88 	.area HOME    (CODE)
+                             89 	.area HOME    (CODE)
+                             90 ;--------------------------------------------------------
+                             91 ; code
+                             92 ;--------------------------------------------------------
+                             93 	.area CSEG    (CODE)
+                             94 ;------------------------------------------------------------
+                             95 ;Allocation info for local variables in function 'strpbrk'
+                             96 ;------------------------------------------------------------
+                             97 ;ch                        Allocated to registers r6 
+                             98 ;------------------------------------------------------------
+                             99 ;	_strpbrk.c:26: char * strpbrk ( 
+                            100 ;	-----------------------------------------
+                            101 ;	 function strpbrk
+                            102 ;	-----------------------------------------
+   0000                     103 _strpbrk:
+                    0002    104 	ar2 = 0x02
+                    0003    105 	ar3 = 0x03
+                    0004    106 	ar4 = 0x04
+                    0005    107 	ar5 = 0x05
+                    0006    108 	ar6 = 0x06
+                    0007    109 	ar7 = 0x07
+                    0000    110 	ar0 = 0x00
+                    0001    111 	ar1 = 0x01
+   0000 AA 82               112 	mov	r2,dpl
+   0002 AB 83               113 	mov	r3,dph
+   0004 AC F0               114 	mov	r4,b
+                            115 ;	_strpbrk.c:33: while ( ch = *string ) {
+   0006                     116 00103$:
+   0006 8A 82               117 	mov	dpl,r2
+   0008 8B 83               118 	mov	dph,r3
+   000A 8C F0               119 	mov	b,r4
+   000C 12s00r00            120 	lcall	__gptrget
+   000F FD                  121 	mov	r5,a
+   0010 FE                  122 	mov	r6,a
+   0011 60 32               123 	jz	00105$
+                            124 ;	_strpbrk.c:34: if (strchr (control, ch ))
+   0013 78r00               125 	mov	r0,#_strchr_PARM_2
+   0015 EE                  126 	mov	a,r6
+   0016 F2                  127 	movx	@r0,a
+   0017 78r00               128 	mov	r0,#_strpbrk_PARM_2
+   0019 E2                  129 	movx	a,@r0
+   001A F5 82               130 	mov	dpl,a
+   001C 08                  131 	inc	r0
+   001D E2                  132 	movx	a,@r0
+   001E F5 83               133 	mov	dph,a
+   0020 08                  134 	inc	r0
+   0021 E2                  135 	movx	a,@r0
+   0022 F5 F0               136 	mov	b,a
+   0024 C0 02               137 	push	ar2
+   0026 C0 03               138 	push	ar3
+   0028 C0 04               139 	push	ar4
+   002A 12s00r00            140 	lcall	_strchr
+   002D AD 82               141 	mov	r5,dpl
+   002F AE 83               142 	mov	r6,dph
+   0031 AF F0               143 	mov	r7,b
+   0033 D0 04               144 	pop	ar4
+   0035 D0 03               145 	pop	ar3
+   0037 D0 02               146 	pop	ar2
+   0039 ED                  147 	mov	a,r5
+   003A 4E                  148 	orl	a,r6
+   003B 4F                  149 	orl	a,r7
+   003C 60 C8               150 	jz	00103$
+                            151 ;	_strpbrk.c:35: return string ;
+   003E 8A 82               152 	mov	dpl,r2
+   0040 8B 83               153 	mov	dph,r3
+   0042 8C F0               154 	mov	b,r4
+   0044 22                  155 	ret
+   0045                     156 00105$:
+                            157 ;	_strpbrk.c:38: return (NULL);
+   0045 90 00 00            158 	mov	dptr,#0x0000
+   0048 75 F0 00            159 	mov	b,#0x00
+   004B 22                  160 	ret
+                            161 	.area CSEG    (CODE)
+                            162 	.area CONST   (CODE)
+                            163 	.area XINIT   (CODE)
+                            164 	.area CABS    (ABS,CODE)

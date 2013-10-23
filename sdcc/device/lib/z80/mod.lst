@@ -1,0 +1,54 @@
+                              1         .area   _CODE
+                              2 
+   0000                       3 __moduchar_rrx_s::
+   0000 21 03 00              4         ld      hl,#2+1
+   0003 39                    5         add     hl,sp
+                              6 
+   0004 5E                    7         ld      e,(hl)
+   0005 2B                    8         dec     hl
+   0006 6E                    9         ld      l,(hl)
+                             10 
+                             11         ;; Fall through
+   0007                      12 __moduchar_rrx_hds::
+   0007 CDr00s00             13         call    __divu8
+                             14 
+   000A EB                   15         ex      de,hl
+                             16 
+   000B C9                   17         ret
+                             18 
+   000C                      19 __moduint_rrx_s::
+   000C F1                   20         pop     af
+   000D E1                   21         pop     hl
+   000E D1                   22         pop     de
+   000F D5                   23         push    de
+   0010 E5                   24         push    hl
+   0011 F5                   25         push    af
+                             26 
+                             27         ;; Fall through
+   0012                      28 __moduint_rrx_hds::
+   0012 CDr00s00             29         call    __divu16
+                             30 
+   0015 EB                   31         ex      de,hl
+                             32 
+   0016 C9                   33         ret
+                             34 
+   0017                      35 __moduschar_rrx_s::
+   0017 21 03 00             36         ld      hl,#2+1
+   001A 54                   37         ld      d, h
+   001B 39                   38         add     hl,sp
+                             39 
+   001C 5E                   40         ld      e,(hl)
+   001D 2B                   41         dec     hl
+   001E 6E                   42         ld      l,(hl)
+                             43 
+   001F 7D                   44         ld      a,l             ; Sign extend
+   0020 07                   45         rlca
+   0021 9F                   46         sbc     a
+   0022 67                   47         ld      h,a
+                             48 
+   0023 CDr00s00             49         call    __div16
+                             50 
+   0026 EB                   51         ex      de,hl
+                             52 
+   0027 C9                   53         ret
+                             54 

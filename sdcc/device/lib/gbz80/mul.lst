@@ -1,0 +1,107 @@
+                              1         ;; Originally from GBDK by Pascal Felber.
+                              2 
+                              3         .area   _CODE
+                              4 
+   0000                       5 __mulschar_rrx_s::
+   0000 21 02 00              6         ld      hl,#2
+   0003 39                    7         add     hl,sp
+                              8 
+   0004 5E                    9         ld      e,(hl)
+   0005 23                   10         inc     hl
+   0006 6E                   11         ld      l,(hl)
+                             12 
+                             13         ;; Fall through
+   0007                      14 __mulschar_rrx_hds::
+                             15         ;; Need to sign extend before going in.
+   0007 4D                   16         ld      c,l
+                             17 
+   0008 7D                   18         ld      a,l
+   0009 17                   19         rla
+   000A 9F                   20         sbc     a,a
+   000B 47                   21         ld      b,a
+                             22 
+   000C 7B                   23         ld      a,e
+   000D 17                   24         rla
+   000E 9F                   25         sbc     a,a
+   000F 57                   26         ld      d,a
+                             27 
+   0010 C3r2Es00             28         jp      .mul16
+                             29 
+   0013                      30 __muluchar_rrx_s::
+   0013 21 02 00             31         ld      hl,#2
+   0016 39                   32         add     hl,sp
+                             33 
+   0017 5E                   34         ld      e,(hl)
+                             35 
+   0018 23                   36         inc     hl
+   0019 4E                   37         ld      c,(hl)
+                             38 
+                             39         ;; Clear the top
+   001A AF                   40         xor     a
+   001B 57                   41         ld      d,a
+   001C 47                   42         ld      b,a
+                             43 
+   001D C3r2Es00             44         jp      .mul16
+                             45 
+   0020                      46 __mulint_rrx_s::
+   0020 21 02 00             47         ld      hl,#2
+   0023 39                   48         add     hl,sp
+                             49 
+   0024 5E                   50         ld      e,(hl)
+   0025 23                   51         inc     hl
+   0026 56                   52         ld      d,(hl)
+   0027 23                   53         inc     hl
+   0028 7E                   54         ld      a,(hl)
+   0029 23                   55         inc     hl
+   002A 66                   56         ld      h,(hl)
+   002B 6F                   57         ld      l,a
+                             58 
+                             59         ;; Fall through
+                             60 
+   002C                      61 __muluchar_rrx_hds::
+   002C                      62 __mulint_rrx_hds::
+                             63         ;; Parameters:
+                             64         ;;      HL, DE (left, right irrelivent)
+   002C 44                   65         ld      b,h
+   002D 4D                   66         ld      c,l
+                             67 
+                             68         ;; 16-bit multiplication
+                             69         ;;
+                             70         ;; Entry conditions
+                             71         ;;   BC = multiplicand
+                             72         ;;   DE = multiplier
+                             73         ;;
+                             74         ;; Exit conditions
+                             75         ;;   DE = less significant word of product
+                             76         ;;
+                             77         ;; Register used: AF,BC,DE,HL
+   002E                      78 .mul16:
+   002E 21 00 00             79         ld      hl,#0
+   0031 78                   80         ld      a,b
+                             81         ; ld c,c
+   0032 06 10                82         ld      b,#16
+                             83 
+                             84         ;; Optimise for the case when this side has 8 bits of data or
+                             85         ;; less.  This is often the case with support address calls.
+   0034 B7                   86         or      a
+   0035 C2r3Bs00             87         jp      NZ,1$
+                             88 
+   0038 06 08                89         ld      b,#8
+   003A 79                   90         ld      a,c
+   003B                      91 1$:
+                             92         ;; Taken from z88dk, which originally borrowed from the
+                             93         ;; Spectrum rom.
+   003B 29                   94         add     hl,hl
+   003C CB 11                95         rl      c
+   003E 17                   96         rla                     ;DLE 27/11/98
+   003F 20 01                97         jr      NZ,2$
+   0041 19                   98         add     hl,de
+   0042                      99 2$:
+   0042 05                  100         dec     b
+   0043 20 F6               101         jr      NZ,1$
+                            102 
+                            103         ;; Return in DE
+   0045 5D                  104         ld      e,l
+   0046 54                  105         ld      d,h
+                            106 
+   0047 C9                  107         ret

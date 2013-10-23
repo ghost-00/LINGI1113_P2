@@ -1,0 +1,139 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:12 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _strrchr
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _strrchr
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_strrchr.c:26: char * strrchr (
+                             41 ;	---------------------------------
+                             42 ; Function strrchr
+                             43 ; ---------------------------------
+   0000                      44 _strrchr_start::
+   0000                      45 _strrchr:
+                             46 	
+   0000 F5                   47 	push	af
+   0001 F5                   48 	push	af
+                             49 ;../_strrchr.c:31: const char * start = string;
+   0002 F8 06                50 	lda	hl,6(sp)
+   0004 2A                   51 	ld	a,(hl+)
+   0005 5E                   52 	ld	e,(hl)
+   0006 F8 02                53 	lda	hl,2(sp)
+   0008 22                   54 	ld	(hl+),a
+   0009 73                   55 	ld	(hl),e
+                             56 ;../_strrchr.c:33: while (*string++)                       /* find end of string */
+   000A 2B                   57 	dec	hl
+   000B 4E                   58 	ld	c,(hl)
+   000C 23                   59 	inc	hl
+   000D 46                   60 	ld	b,(hl)
+   000E                      61 00101$:
+   000E 0A                   62 	ld	a,(bc)
+   000F 03                   63 	inc	bc
+   0010 B7                   64 	or	a,a
+   0011 C2r0Es00             65 	jp	NZ,00101$
+                             66 ;../_strrchr.c:36: while (--string != start && *string != ch)
+   0014 F8 00                67 	lda	hl,0(sp)
+   0016 71                   68 	ld	(hl),c
+   0017 23                   69 	inc	hl
+   0018 70                   70 	ld	(hl),b
+   0019                      71 00105$:
+   0019 F8 01                72 	lda	hl,1(sp)
+   001B 2B                   73 	dec	hl
+   001C 5E                   74 	ld	e,(hl)
+   001D 23                   75 	inc	hl
+   001E 56                   76 	ld	d,(hl)
+   001F 1B                   77 	dec	de
+   0020 2B                   78 	dec	hl
+   0021 73                   79 	ld	(hl),e
+   0022 23                   80 	inc	hl
+   0023 72                   81 	ld	(hl),d
+   0024 2B                   82 	dec	hl
+   0025 2A                   83 	ld	a,(hl+)
+   0026 23                   84 	inc	hl
+   0027 96                   85 	sub	a,(hl)
+   0028 C2r32s00             86 	jp	NZ,00118$
+   002B 2B                   87 	dec	hl
+   002C 2A                   88 	ld	a,(hl+)
+   002D 23                   89 	inc	hl
+   002E 96                   90 	sub	a,(hl)
+   002F CAr45s00             91 	jp	Z,00107$
+   0032                      92 00118$:
+   0032 2B                   93 	dec	hl
+   0033 2B                   94 	dec	hl
+   0034 2B                   95 	dec	hl
+   0035 5E                   96 	ld	e,(hl)
+   0036 23                   97 	inc	hl
+   0037 56                   98 	ld	d,(hl)
+   0038 1A                   99 	ld	a,(de)
+   0039 4F                  100 	ld	c,a
+   003A F8 08               101 	lda	hl,8(sp)
+   003C 96                  102 	sub	a,(hl)
+   003D C2r19s00            103 	jp	NZ,00105$
+   0040 18 03               104 	jr	00120$
+   0042                     105 00119$:
+   0042 C3r19s00            106 	jp	00105$
+   0045                     107 00120$:
+   0045                     108 00107$:
+                            109 ;../_strrchr.c:39: if (*string == ch)                /* char found ? */
+   0045 F8 01               110 	lda	hl,1(sp)
+   0047 2B                  111 	dec	hl
+   0048 5E                  112 	ld	e,(hl)
+   0049 23                  113 	inc	hl
+   004A 56                  114 	ld	d,(hl)
+   004B 1A                  115 	ld	a,(de)
+   004C 4F                  116 	ld	c,a
+   004D F8 08               117 	lda	hl,8(sp)
+   004F 96                  118 	sub	a,(hl)
+   0050 C2r61s00            119 	jp	NZ,00109$
+   0053 18 03               120 	jr	00122$
+   0055                     121 00121$:
+   0055 C3r61s00            122 	jp	00109$
+   0058                     123 00122$:
+                            124 ;../_strrchr.c:40: return( (char *)string );
+   0058 F8 01               125 	lda	hl,1(sp)
+   005A 2B                  126 	dec	hl
+   005B 5E                  127 	ld	e,(hl)
+   005C 23                  128 	inc	hl
+   005D 56                  129 	ld	d,(hl)
+   005E C3r64s00            130 	jp	00110$
+   0061                     131 00109$:
+                            132 ;../_strrchr.c:42: return (NULL) ;
+   0061 11 00 00            133 	ld	de,#0x0000
+   0064                     134 00110$:
+   0064 E8 04               135 	lda	sp,4(sp)
+   0066 C9                  136 	ret
+   0067                     137 _strrchr_end::
+                            138 	.area _CODE
+                            139 	.area _CABS

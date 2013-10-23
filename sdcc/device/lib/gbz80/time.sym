@@ -1,0 +1,70 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24 Feb-1999  (GameBoy Z80-like CPU), page 1.
+
+Symbol Table
+
+    .__.ABS.                                                    =  0000 G
+  0 _CheckTime                                                     0072 R
+  0 _RtcRead                                                       0000 GR
+  0 _RtcRead_end                                                   0003 GR
+  0 _RtcRead_start                                                 0000 GR
+  1 ___day                                                         0024 GR
+  1 ___month                                                       000C GR
+    __divulong_rrx_s                                               **** GX
+    __initrleblock                                                 **** GX
+    __modsint_rrx_s                                                **** GX
+    __modulong_rrx_s                                               **** GX
+    __mullong_rrx_s                                                **** GX
+  0 __str_0                                                        0241 R
+  0 __str_1                                                        08E6 R
+  0 __str_10                                                       090A R
+  0 __str_11                                                       090E R
+  0 __str_12                                                       0912 R
+  0 __str_13                                                       0916 R
+  0 __str_14                                                       091A R
+  0 __str_15                                                       091E R
+  0 __str_16                                                       0922 R
+  0 __str_17                                                       0926 R
+  0 __str_18                                                       092A R
+  0 __str_19                                                       092E R
+  0 __str_2                                                        08EA R
+  0 __str_3                                                        08EE R
+  0 __str_4                                                        08F2 R
+  0 __str_5                                                        08F6 R
+  0 __str_6                                                        08FA R
+  0 __str_7                                                        08FE R
+  0 __str_8                                                        0902 R
+  0 __str_9                                                        0906 R
+  1 _ascTimeBuffer                                                 0032 R
+  0 _asctime                                                       015E GR
+  0 _asctime_end                                                   0241 GR
+  0 _asctime_start                                                 015E GR
+  0 _ctime                                                         0260 GR
+  0 _ctime_end                                                     0274 GR
+  0 _ctime_start                                                   0260 GR
+  0 _gmtime                                                        0280 GR
+  0 _gmtime_end                                                    05CA GR
+  0 _gmtime_start                                                  0280 GR
+  1 _lastTime                                                      0052 R
+  0 _localtime                                                     0274 GR
+  0 _localtime_end                                                 0280 GR
+  0 _localtime_start                                               0274 GR
+  0 _mktime                                                        05CA GR
+  0 _mktime_end                                                    08E6 GR
+  0 _mktime_start                                                  05CA GR
+  1 _monthDays                                                     0000 R
+    _sprintf                                                       **** GX
+  0 _time                                                          0003 GR
+  0 _time_end                                                      0072 GR
+  0 _time_start                                                    0003 GR
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24 Feb-1999  (GameBoy Z80-like CPU), page 2.
+
+Area Table
+
+   0 _CODE                                      size  932   flags 0
+   1 _DATA                                      size   5E   flags 0
+   2 _OVERLAY                                   size    0   flags 0
+   3 _HOME                                      size    0   flags 0
+   4 _GSINIT                                    size   D2   flags 0
+   5 _GSFINAL                                   size    0   flags 0
+   6 _CABS                                      size    0   flags 0

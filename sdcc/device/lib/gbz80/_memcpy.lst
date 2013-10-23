@@ -1,0 +1,291 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:12 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _memcpy
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _memcpy
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_memcpy.c:31: void * memcpy (
+                             41 ;	---------------------------------
+                             42 ; Function memcpy
+                             43 ; ---------------------------------
+   0000                      44 _memcpy_start::
+   0000                      45 _memcpy:
+                             46 	
+   0000 F5                   47 	push	af
+   0001 F5                   48 	push	af
+                             49 ;../_memcpy.c:41: char * d = dst;
+   0002 F8 06                50 	lda	hl,6(sp)
+   0004 2A                   51 	ld	a,(hl+)
+   0005 5E                   52 	ld	e,(hl)
+   0006 F8 02                53 	lda	hl,2(sp)
+   0008 22                   54 	ld	(hl+),a
+   0009 73                   55 	ld	(hl),e
+                             56 ;../_memcpy.c:42: char * s = src;
+   000A F8 09                57 	lda	hl,9(sp)
+   000C 2B                   58 	dec	hl
+   000D 4E                   59 	ld	c,(hl)
+   000E 23                   60 	inc	hl
+   000F 46                   61 	ld	b,(hl)
+   0010 F8 00                62 	lda	hl,0(sp)
+   0012 71                   63 	ld	(hl),c
+   0013 23                   64 	inc	hl
+   0014 70                   65 	ld	(hl),b
+                             66 ;../_memcpy.c:44: int count = -(acount >> 2);
+   0015 F8 0A                67 	lda	hl,10(sp)
+   0017 4E                   68 	ld	c,(hl)
+   0018 23                   69 	inc	hl
+   0019 46                   70 	ld	b,(hl)
+   001A CB 38                71 	srl	b
+   001C CB 19                72 	rr	c
+   001E CB 38                73 	srl	b
+   0020 CB 19                74 	rr	c
+   0022 AF                   75 	xor	a,a
+   0023 99                   76 	sbc	a,c
+   0024 4F                   77 	ld	c,a
+   0025 3E 00                78 	ld	a,#0x00
+   0027 98                   79 	sbc	a,b
+   0028 47                   80 	ld	b,a
+                             81 ;../_memcpy.c:46: while (count) {
+   0029                      82 00101$:
+   0029 79                   83 	ld	a,c
+   002A B0                   84 	or	a,b
+   002B CAr9As00             85 	jp	Z,00103$
+                             86 ;../_memcpy.c:47: *d++ = *s++;
+   002E F8 01                87 	lda	hl,1(sp)
+   0030 2B                   88 	dec	hl
+   0031 5E                   89 	ld	e,(hl)
+   0032 23                   90 	inc	hl
+   0033 56                   91 	ld	d,(hl)
+   0034 1A                   92 	ld	a,(de)
+   0035 2B                   93 	dec	hl
+   0036 34                   94 	inc	(hl)
+   0037 20 02                95 	jr	NZ,00115$
+   0039 23                   96 	inc	hl
+   003A 34                   97 	inc	(hl)
+   003B                      98 00115$:
+   003B 23                   99 	inc	hl
+   003C 23                  100 	inc	hl
+   003D 2B                  101 	dec	hl
+   003E 5E                  102 	ld	e,(hl)
+   003F 23                  103 	inc	hl
+   0040 56                  104 	ld	d,(hl)
+   0041 12                  105 	ld	(de),a
+   0042 2B                  106 	dec	hl
+   0043 34                  107 	inc	(hl)
+   0044 20 02               108 	jr	NZ,00116$
+   0046 23                  109 	inc	hl
+   0047 34                  110 	inc	(hl)
+   0048                     111 00116$:
+                            112 ;../_memcpy.c:48: *d++ = *s++;
+   0048 2B                  113 	dec	hl
+   0049 2B                  114 	dec	hl
+   004A 2B                  115 	dec	hl
+   004B 5E                  116 	ld	e,(hl)
+   004C 23                  117 	inc	hl
+   004D 56                  118 	ld	d,(hl)
+   004E 1A                  119 	ld	a,(de)
+   004F 2B                  120 	dec	hl
+   0050 34                  121 	inc	(hl)
+   0051 20 02               122 	jr	NZ,00117$
+   0053 23                  123 	inc	hl
+   0054 34                  124 	inc	(hl)
+   0055                     125 00117$:
+   0055 23                  126 	inc	hl
+   0056 23                  127 	inc	hl
+   0057 2B                  128 	dec	hl
+   0058 5E                  129 	ld	e,(hl)
+   0059 23                  130 	inc	hl
+   005A 56                  131 	ld	d,(hl)
+   005B 12                  132 	ld	(de),a
+   005C 2B                  133 	dec	hl
+   005D 34                  134 	inc	(hl)
+   005E 20 02               135 	jr	NZ,00118$
+   0060 23                  136 	inc	hl
+   0061 34                  137 	inc	(hl)
+   0062                     138 00118$:
+                            139 ;../_memcpy.c:49: *d++ = *s++;
+   0062 2B                  140 	dec	hl
+   0063 2B                  141 	dec	hl
+   0064 2B                  142 	dec	hl
+   0065 5E                  143 	ld	e,(hl)
+   0066 23                  144 	inc	hl
+   0067 56                  145 	ld	d,(hl)
+   0068 1A                  146 	ld	a,(de)
+   0069 2B                  147 	dec	hl
+   006A 34                  148 	inc	(hl)
+   006B 20 02               149 	jr	NZ,00119$
+   006D 23                  150 	inc	hl
+   006E 34                  151 	inc	(hl)
+   006F                     152 00119$:
+   006F 23                  153 	inc	hl
+   0070 23                  154 	inc	hl
+   0071 2B                  155 	dec	hl
+   0072 5E                  156 	ld	e,(hl)
+   0073 23                  157 	inc	hl
+   0074 56                  158 	ld	d,(hl)
+   0075 12                  159 	ld	(de),a
+   0076 2B                  160 	dec	hl
+   0077 34                  161 	inc	(hl)
+   0078 20 02               162 	jr	NZ,00120$
+   007A 23                  163 	inc	hl
+   007B 34                  164 	inc	(hl)
+   007C                     165 00120$:
+                            166 ;../_memcpy.c:50: *d++ = *s++;
+   007C 2B                  167 	dec	hl
+   007D 2B                  168 	dec	hl
+   007E 2B                  169 	dec	hl
+   007F 5E                  170 	ld	e,(hl)
+   0080 23                  171 	inc	hl
+   0081 56                  172 	ld	d,(hl)
+   0082 1A                  173 	ld	a,(de)
+   0083 2B                  174 	dec	hl
+   0084 34                  175 	inc	(hl)
+   0085 20 02               176 	jr	NZ,00121$
+   0087 23                  177 	inc	hl
+   0088 34                  178 	inc	(hl)
+   0089                     179 00121$:
+   0089 23                  180 	inc	hl
+   008A 23                  181 	inc	hl
+   008B 2B                  182 	dec	hl
+   008C 5E                  183 	ld	e,(hl)
+   008D 23                  184 	inc	hl
+   008E 56                  185 	ld	d,(hl)
+   008F 12                  186 	ld	(de),a
+   0090 2B                  187 	dec	hl
+   0091 34                  188 	inc	(hl)
+   0092 20 02               189 	jr	NZ,00122$
+   0094 23                  190 	inc	hl
+   0095 34                  191 	inc	(hl)
+   0096                     192 00122$:
+                            193 ;../_memcpy.c:51: count++;
+   0096 03                  194 	inc	bc
+   0097 C3r29s00            195 	jp	00101$
+   009A                     196 00103$:
+                            197 ;../_memcpy.c:54: if (acount & 2) {
+   009A F8 0A               198 	lda	hl,10(sp)
+   009C 7E                  199 	ld	a,(hl)
+   009D E6 02               200 	and	a,#0x02
+   009F 20 03               201 	jr	NZ,00123$
+   00A1 C3rD8s00            202 	jp	00105$
+   00A4                     203 00123$:
+                            204 ;../_memcpy.c:55: *d++ = *s++; 
+   00A4 F8 01               205 	lda	hl,1(sp)
+   00A6 2B                  206 	dec	hl
+   00A7 5E                  207 	ld	e,(hl)
+   00A8 23                  208 	inc	hl
+   00A9 56                  209 	ld	d,(hl)
+   00AA 1A                  210 	ld	a,(de)
+   00AB 2B                  211 	dec	hl
+   00AC 34                  212 	inc	(hl)
+   00AD 20 02               213 	jr	NZ,00124$
+   00AF 23                  214 	inc	hl
+   00B0 34                  215 	inc	(hl)
+   00B1                     216 00124$:
+   00B1 23                  217 	inc	hl
+   00B2 23                  218 	inc	hl
+   00B3 2B                  219 	dec	hl
+   00B4 5E                  220 	ld	e,(hl)
+   00B5 23                  221 	inc	hl
+   00B6 56                  222 	ld	d,(hl)
+   00B7 12                  223 	ld	(de),a
+   00B8 2B                  224 	dec	hl
+   00B9 34                  225 	inc	(hl)
+   00BA 20 02               226 	jr	NZ,00125$
+   00BC 23                  227 	inc	hl
+   00BD 34                  228 	inc	(hl)
+   00BE                     229 00125$:
+                            230 ;../_memcpy.c:56: *d++ = *s++;
+   00BE 2B                  231 	dec	hl
+   00BF 2B                  232 	dec	hl
+   00C0 2B                  233 	dec	hl
+   00C1 5E                  234 	ld	e,(hl)
+   00C2 23                  235 	inc	hl
+   00C3 56                  236 	ld	d,(hl)
+   00C4 1A                  237 	ld	a,(de)
+   00C5 2B                  238 	dec	hl
+   00C6 34                  239 	inc	(hl)
+   00C7 20 02               240 	jr	NZ,00126$
+   00C9 23                  241 	inc	hl
+   00CA 34                  242 	inc	(hl)
+   00CB                     243 00126$:
+   00CB 23                  244 	inc	hl
+   00CC 23                  245 	inc	hl
+   00CD 2B                  246 	dec	hl
+   00CE 5E                  247 	ld	e,(hl)
+   00CF 23                  248 	inc	hl
+   00D0 56                  249 	ld	d,(hl)
+   00D1 12                  250 	ld	(de),a
+   00D2 2B                  251 	dec	hl
+   00D3 34                  252 	inc	(hl)
+   00D4 20 02               253 	jr	NZ,00127$
+   00D6 23                  254 	inc	hl
+   00D7 34                  255 	inc	(hl)
+   00D8                     256 00127$:
+   00D8                     257 00105$:
+                            258 ;../_memcpy.c:58: if (acount & 1) {
+   00D8 F8 0A               259 	lda	hl,10(sp)
+   00DA 7E                  260 	ld	a,(hl)
+   00DB E6 01               261 	and	a,#0x01
+   00DD 20 03               262 	jr	NZ,00128$
+   00DF C3rF0s00            263 	jp	00107$
+   00E2                     264 00128$:
+                            265 ;../_memcpy.c:59: *d++ = *s++;
+   00E2 F8 01               266 	lda	hl,1(sp)
+   00E4 2B                  267 	dec	hl
+   00E5 5E                  268 	ld	e,(hl)
+   00E6 23                  269 	inc	hl
+   00E7 56                  270 	ld	d,(hl)
+   00E8 1A                  271 	ld	a,(de)
+   00E9 23                  272 	inc	hl
+   00EA 23                  273 	inc	hl
+   00EB 2B                  274 	dec	hl
+   00EC 5E                  275 	ld	e,(hl)
+   00ED 23                  276 	inc	hl
+   00EE 56                  277 	ld	d,(hl)
+   00EF 12                  278 	ld	(de),a
+   00F0                     279 00107$:
+                            280 ;../_memcpy.c:61: return dst;
+   00F0 F8 07               281 	lda	hl,7(sp)
+   00F2 2B                  282 	dec	hl
+   00F3 5E                  283 	ld	e,(hl)
+   00F4 23                  284 	inc	hl
+   00F5 56                  285 	ld	d,(hl)
+   00F6                     286 00108$:
+   00F6 E8 04               287 	lda	sp,4(sp)
+   00F8 C9                  288 	ret
+   00F9                     289 _memcpy_end::
+                            290 	.area _CODE
+                            291 	.area _CABS

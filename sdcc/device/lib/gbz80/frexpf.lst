@@ -1,0 +1,283 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:11 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module frexpf
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _frexpf
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../frexpf.c:24: float frexpf(const float x, int *pw2)
+                             41 ;	---------------------------------
+                             42 ; Function frexpf
+                             43 ; ---------------------------------
+   0000                      44 _frexpf_start::
+   0000                      45 _frexpf:
+   0000 E8 EE                46 	lda	sp,-18(sp)
+                             47 ;../frexpf.c:29: fl.f=x;
+   0002 F8 0E                48 	lda	hl,14(sp)
+   0004 4D                   49 	ld	c,l
+   0005 44                   50 	ld	b,h
+   0006 59                   51 	ld	e,c
+   0007 50                   52 	ld	d,b
+   0008 F8 14                53 	lda	hl,20(sp)
+   000A 7E                   54 	ld	a,(hl)
+   000B 12                   55 	ld	(de),a
+   000C 13                   56 	inc	de
+   000D 23                   57 	inc	hl
+   000E 7E                   58 	ld	a,(hl)
+   000F 12                   59 	ld	(de),a
+   0010 13                   60 	inc	de
+   0011 23                   61 	inc	hl
+   0012 7E                   62 	ld	a,(hl)
+   0013 12                   63 	ld	(de),a
+   0014 13                   64 	inc	de
+   0015 23                   65 	inc	hl
+   0016 7E                   66 	ld	a,(hl)
+   0017 12                   67 	ld	(de),a
+                             68 ;../frexpf.c:31: i  = ( fl.l >> 23) & 0x000000ff;
+   0018 F8 0E                69 	lda	hl,14(sp)
+   001A 7D                   70 	ld	a,l
+   001B 54                   71 	ld	d,h
+   001C F8 08                72 	lda	hl,8(sp)
+   001E 22                   73 	ld	(hl+),a
+   001F 72                   74 	ld	(hl),d
+   0020 5F                   75 	ld	e,a
+   0021 1A                   76 	ld	a,(de)
+   0022 F8 04                77 	lda	hl,4(sp)
+   0024 22                   78 	ld	(hl+),a
+   0025 13                   79 	inc	de
+   0026 1A                   80 	ld	a,(de)
+   0027 22                   81 	ld	(hl+),a
+   0028 13                   82 	inc	de
+   0029 1A                   83 	ld	a,(de)
+   002A 22                   84 	ld	(hl+),a
+   002B 13                   85 	inc	de
+   002C 1A                   86 	ld	a,(de)
+   002D 77                   87 	ld	(hl),a
+   002E 3E 17                88 	ld	a,#0x17
+   0030 F5                   89 	push	af
+   0031 33                   90 	inc	sp
+   0032 2B                   91 	dec	hl
+   0033 2A                   92 	ld	a,(hl+)
+   0034 66                   93 	ld	h,(hl)
+   0035 6F                   94 	ld	l,a
+   0036 E5                   95 	push	hl
+   0037 F8 07                96 	lda	hl,7(sp)
+   0039 2A                   97 	ld	a,(hl+)
+   003A 66                   98 	ld	h,(hl)
+   003B 6F                   99 	ld	l,a
+   003C E5                  100 	push	hl
+   003D CDr00s00            101 	call	__rrslong_rrx_s
+   0040 E8 05               102 	lda	sp,5(sp)
+   0042 E5                  103 	push	hl
+   0043 F8 02               104 	lda	hl,2(sp)
+   0045 73                  105 	ld	(hl),e
+   0046 23                  106 	inc	hl
+   0047 72                  107 	ld	(hl),d
+   0048 D1                  108 	pop	de
+   0049 23                  109 	inc	hl
+   004A 73                  110 	ld	(hl),e
+   004B 23                  111 	inc	hl
+   004C 72                  112 	ld	(hl),d
+   004D F8 00               113 	lda	hl,0(sp)
+   004F 7E                  114 	ld	a,(hl)
+   0050 F8 0A               115 	lda	hl,10(sp)
+   0052 22                  116 	ld	(hl+),a
+   0053 36 00               117 	ld	(hl),#0x00
+   0055 23                  118 	inc	hl
+   0056 36 00               119 	ld	(hl),#0x00
+   0058 23                  120 	inc	hl
+   0059 36 00               121 	ld	(hl),#0x00
+                            122 ;../frexpf.c:32: i -= 0x7e;
+   005B 2B                  123 	dec	hl
+   005C 2B                  124 	dec	hl
+   005D 2B                  125 	dec	hl
+   005E 5E                  126 	ld	e,(hl)
+   005F 23                  127 	inc	hl
+   0060 56                  128 	ld	d,(hl)
+   0061 7B                  129 	ld	a,e
+   0062 D6 7E               130 	sub	a,#0x7E
+   0064 5F                  131 	ld	e,a
+   0065 7A                  132 	ld	a,d
+   0066 DE 00               133 	sbc	a,#0x00
+   0068 F5                  134 	push	af
+   0069 32                  135 	ld	(hl-),a
+   006A 73                  136 	ld	(hl),e
+   006B F8 0F               137 	lda	hl,15(sp)
+   006D 2B                  138 	dec	hl
+   006E 5E                  139 	ld	e,(hl)
+   006F 23                  140 	inc	hl
+   0070 56                  141 	ld	d,(hl)
+   0071 F1                  142 	pop	af
+   0072 7B                  143 	ld	a,e
+   0073 DE 00               144 	sbc	a,#0x00
+   0075 5F                  145 	ld	e,a
+   0076 7A                  146 	ld	a,d
+   0077 DE 00               147 	sbc	a,#0x00
+   0079 32                  148 	ld	(hl-),a
+   007A 73                  149 	ld	(hl),e
+                            150 ;../frexpf.c:33: *pw2 = i;
+   007B F8 18               151 	lda	hl,24(sp)
+   007D 2A                  152 	ld	a,(hl+)
+   007E 5E                  153 	ld	e,(hl)
+   007F F8 00               154 	lda	hl,0(sp)
+   0081 22                  155 	ld	(hl+),a
+   0082 73                  156 	ld	(hl),e
+   0083 F8 0A               157 	lda	hl,10(sp)
+   0085 4E                  158 	ld	c,(hl)
+   0086 23                  159 	inc	hl
+   0087 46                  160 	ld	b,(hl)
+   0088 F8 01               161 	lda	hl,1(sp)
+   008A 2B                  162 	dec	hl
+   008B 5E                  163 	ld	e,(hl)
+   008C 23                  164 	inc	hl
+   008D 56                  165 	ld	d,(hl)
+   008E 79                  166 	ld	a,c
+   008F 12                  167 	ld	(de),a
+   0090 13                  168 	inc	de
+   0091 78                  169 	ld	a,b
+   0092 12                  170 	ld	(de),a
+                            171 ;../frexpf.c:34: fl.l &= 0x807fffff; /* strip all exponent bits */
+   0093 F8 04               172 	lda	hl,4(sp)
+   0095 7E                  173 	ld	a,(hl)
+   0096 F8 00               174 	lda	hl,0(sp)
+   0098 77                  175 	ld	(hl),a
+   0099 F8 05               176 	lda	hl,5(sp)
+   009B 7E                  177 	ld	a,(hl)
+   009C F8 01               178 	lda	hl,1(sp)
+   009E 77                  179 	ld	(hl),a
+   009F F8 06               180 	lda	hl,6(sp)
+   00A1 7E                  181 	ld	a,(hl)
+   00A2 E6 7F               182 	and	a,#0x7F
+   00A4 F8 02               183 	lda	hl,2(sp)
+   00A6 77                  184 	ld	(hl),a
+   00A7 F8 07               185 	lda	hl,7(sp)
+   00A9 7E                  186 	ld	a,(hl)
+   00AA E6 80               187 	and	a,#0x80
+   00AC F8 03               188 	lda	hl,3(sp)
+   00AE 77                  189 	ld	(hl),a
+   00AF F8 09               190 	lda	hl,9(sp)
+   00B1 2B                  191 	dec	hl
+   00B2 5E                  192 	ld	e,(hl)
+   00B3 23                  193 	inc	hl
+   00B4 56                  194 	ld	d,(hl)
+   00B5 F8 00               195 	lda	hl,0(sp)
+   00B7 7E                  196 	ld	a,(hl)
+   00B8 12                  197 	ld	(de),a
+   00B9 13                  198 	inc	de
+   00BA 23                  199 	inc	hl
+   00BB 7E                  200 	ld	a,(hl)
+   00BC 12                  201 	ld	(de),a
+   00BD 13                  202 	inc	de
+   00BE 23                  203 	inc	hl
+   00BF 7E                  204 	ld	a,(hl)
+   00C0 12                  205 	ld	(de),a
+   00C1 13                  206 	inc	de
+   00C2 23                  207 	inc	hl
+   00C3 7E                  208 	ld	a,(hl)
+   00C4 12                  209 	ld	(de),a
+                            210 ;../frexpf.c:35: fl.l |= 0x3f000000; /* mantissa between 0.5 and 1 */
+   00C5 F8 09               211 	lda	hl,9(sp)
+   00C7 2B                  212 	dec	hl
+   00C8 5E                  213 	ld	e,(hl)
+   00C9 23                  214 	inc	hl
+   00CA 56                  215 	ld	d,(hl)
+   00CB 1A                  216 	ld	a,(de)
+   00CC F8 00               217 	lda	hl,0(sp)
+   00CE 22                  218 	ld	(hl+),a
+   00CF 13                  219 	inc	de
+   00D0 1A                  220 	ld	a,(de)
+   00D1 22                  221 	ld	(hl+),a
+   00D2 13                  222 	inc	de
+   00D3 1A                  223 	ld	a,(de)
+   00D4 22                  224 	ld	(hl+),a
+   00D5 13                  225 	inc	de
+   00D6 1A                  226 	ld	a,(de)
+   00D7 77                  227 	ld	(hl),a
+   00D8 7F                  228 	ld	a,a
+   00D9 F6 3F               229 	or	a,#0x3F
+   00DB 77                  230 	ld	(hl),a
+   00DC F8 09               231 	lda	hl,9(sp)
+   00DE 2B                  232 	dec	hl
+   00DF 5E                  233 	ld	e,(hl)
+   00E0 23                  234 	inc	hl
+   00E1 56                  235 	ld	d,(hl)
+   00E2 F8 00               236 	lda	hl,0(sp)
+   00E4 7E                  237 	ld	a,(hl)
+   00E5 12                  238 	ld	(de),a
+   00E6 13                  239 	inc	de
+   00E7 23                  240 	inc	hl
+   00E8 7E                  241 	ld	a,(hl)
+   00E9 12                  242 	ld	(de),a
+   00EA 13                  243 	inc	de
+   00EB 23                  244 	inc	hl
+   00EC 7E                  245 	ld	a,(hl)
+   00ED 12                  246 	ld	(de),a
+   00EE 13                  247 	inc	de
+   00EF 23                  248 	inc	hl
+   00F0 7E                  249 	ld	a,(hl)
+   00F1 12                  250 	ld	(de),a
+                            251 ;../frexpf.c:36: return(fl.f);
+   00F2 F8 0E               252 	lda	hl,14(sp)
+   00F4 4D                  253 	ld	c,l
+   00F5 44                  254 	ld	b,h
+   00F6 59                  255 	ld	e,c
+   00F7 50                  256 	ld	d,b
+   00F8 1A                  257 	ld	a,(de)
+   00F9 F8 00               258 	lda	hl,0(sp)
+   00FB 22                  259 	ld	(hl+),a
+   00FC 13                  260 	inc	de
+   00FD 1A                  261 	ld	a,(de)
+   00FE 22                  262 	ld	(hl+),a
+   00FF 13                  263 	inc	de
+   0100 1A                  264 	ld	a,(de)
+   0101 22                  265 	ld	(hl+),a
+   0102 13                  266 	inc	de
+   0103 1A                  267 	ld	a,(de)
+   0104 32                  268 	ld	(hl-),a
+   0105 2B                  269 	dec	hl
+   0106 2B                  270 	dec	hl
+   0107 5E                  271 	ld	e,(hl)
+   0108 23                  272 	inc	hl
+   0109 56                  273 	ld	d,(hl)
+   010A 23                  274 	inc	hl
+   010B 2A                  275 	ld	a,(hl+)
+   010C 66                  276 	ld	h,(hl)
+   010D 6F                  277 	ld	l,a
+   010E                     278 00101$:
+   010E E8 12               279 	lda	sp,18(sp)
+   0110 C9                  280 	ret
+   0111                     281 _frexpf_end::
+                            282 	.area _CODE
+                            283 	.area _CABS

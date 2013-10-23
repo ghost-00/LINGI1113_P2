@@ -1,0 +1,251 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:11 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _divslong
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl __divslong
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_divslong.c:255: _divslong (long x, long y)
+                             41 ;	---------------------------------
+                             42 ; Function _divslong
+                             43 ; ---------------------------------
+   0000                      44 __divslong_start::
+   0000                      45 __divslong:
+   0000 E8 F4                46 	lda	sp,-12(sp)
+                             47 ;../_divslong.c:260: (y < 0 ? -y : y));
+   0002 F8 15                48 	lda	hl,21(sp)
+   0004 7E                   49 	ld	a,(hl)
+   0005 07                   50 	rlca
+   0006 E6 01                51 	and	a,#0x01
+   0008 4F                   52 	ld	c,a
+   0009 B7                   53 	or	a,a
+   000A CAr30s00             54 	jp	Z,00106$
+   000D 11 00 00             55 	ld	de,#0x0000
+   0010 7B                   56 	ld	a,e
+   0011 F8 12                57 	lda	hl,18(sp)
+   0013 96                   58 	sub	a,(hl)
+   0014 5F                   59 	ld	e,a
+   0015 7A                   60 	ld	a,d
+   0016 23                   61 	inc	hl
+   0017 9E                   62 	sbc	a,(hl)
+   0018 F5                   63 	push	af
+   0019 F8 07                64 	lda	hl,7(sp)
+   001B 32                   65 	ld	(hl-),a
+   001C 73                   66 	ld	(hl),e
+   001D 11 00 00             67 	ld	de,#0x0000
+   0020 F8 16                68 	lda	hl,22(sp)
+   0022 F1                   69 	pop	af
+   0023 7B                   70 	ld	a,e
+   0024 9E                   71 	sbc	a,(hl)
+   0025 5F                   72 	ld	e,a
+   0026 7A                   73 	ld	a,d
+   0027 23                   74 	inc	hl
+   0028 9E                   75 	sbc	a,(hl)
+   0029 F8 07                76 	lda	hl,7(sp)
+   002B 32                   77 	ld	(hl-),a
+   002C 73                   78 	ld	(hl),e
+   002D C3r41s00             79 	jp	00107$
+   0030                      80 00106$:
+   0030 F8 12                81 	lda	hl,18(sp)
+   0032 54                   82 	ld	d,h
+   0033 5D                   83 	ld	e,l
+   0034 F8 04                84 	lda	hl,4(sp)
+   0036 1A                   85 	ld	a,(de)
+   0037 22                   86 	ld	(hl+),a
+   0038 13                   87 	inc	de
+   0039 1A                   88 	ld	a,(de)
+   003A 22                   89 	ld	(hl+),a
+   003B 13                   90 	inc	de
+   003C 1A                   91 	ld	a,(de)
+   003D 22                   92 	ld	(hl+),a
+   003E 13                   93 	inc	de
+   003F 1A                   94 	ld	a,(de)
+   0040 77                   95 	ld	(hl),a
+   0041                      96 00107$:
+                             97 ;../_divslong.c:259: r = _divulong((x < 0 ? -x : x),
+   0041 F8 11                98 	lda	hl,17(sp)
+   0043 7E                   99 	ld	a,(hl)
+   0044 07                  100 	rlca
+   0045 E6 01               101 	and	a,#0x01
+   0047 47                  102 	ld	b,a
+   0048 B7                  103 	or	a,a
+   0049 CAr6Fs00            104 	jp	Z,00108$
+   004C 11 00 00            105 	ld	de,#0x0000
+   004F 7B                  106 	ld	a,e
+   0050 F8 0E               107 	lda	hl,14(sp)
+   0052 96                  108 	sub	a,(hl)
+   0053 5F                  109 	ld	e,a
+   0054 7A                  110 	ld	a,d
+   0055 23                  111 	inc	hl
+   0056 9E                  112 	sbc	a,(hl)
+   0057 F5                  113 	push	af
+   0058 F8 03               114 	lda	hl,3(sp)
+   005A 32                  115 	ld	(hl-),a
+   005B 73                  116 	ld	(hl),e
+   005C 11 00 00            117 	ld	de,#0x0000
+   005F F8 12               118 	lda	hl,18(sp)
+   0061 F1                  119 	pop	af
+   0062 7B                  120 	ld	a,e
+   0063 9E                  121 	sbc	a,(hl)
+   0064 5F                  122 	ld	e,a
+   0065 7A                  123 	ld	a,d
+   0066 23                  124 	inc	hl
+   0067 9E                  125 	sbc	a,(hl)
+   0068 F8 03               126 	lda	hl,3(sp)
+   006A 32                  127 	ld	(hl-),a
+   006B 73                  128 	ld	(hl),e
+   006C C3r80s00            129 	jp	00109$
+   006F                     130 00108$:
+   006F F8 0E               131 	lda	hl,14(sp)
+   0071 54                  132 	ld	d,h
+   0072 5D                  133 	ld	e,l
+   0073 F8 00               134 	lda	hl,0(sp)
+   0075 1A                  135 	ld	a,(de)
+   0076 22                  136 	ld	(hl+),a
+   0077 13                  137 	inc	de
+   0078 1A                  138 	ld	a,(de)
+   0079 22                  139 	ld	(hl+),a
+   007A 13                  140 	inc	de
+   007B 1A                  141 	ld	a,(de)
+   007C 22                  142 	ld	(hl+),a
+   007D 13                  143 	inc	de
+   007E 1A                  144 	ld	a,(de)
+   007F 77                  145 	ld	(hl),a
+   0080                     146 00109$:
+   0080 C5                  147 	push	bc
+   0081 F8 08               148 	lda	hl,8(sp)
+   0083 2A                  149 	ld	a,(hl+)
+   0084 66                  150 	ld	h,(hl)
+   0085 6F                  151 	ld	l,a
+   0086 E5                  152 	push	hl
+   0087 F8 08               153 	lda	hl,8(sp)
+   0089 2A                  154 	ld	a,(hl+)
+   008A 66                  155 	ld	h,(hl)
+   008B 6F                  156 	ld	l,a
+   008C E5                  157 	push	hl
+   008D F8 08               158 	lda	hl,8(sp)
+   008F 2A                  159 	ld	a,(hl+)
+   0090 66                  160 	ld	h,(hl)
+   0091 6F                  161 	ld	l,a
+   0092 E5                  162 	push	hl
+   0093 F8 08               163 	lda	hl,8(sp)
+   0095 2A                  164 	ld	a,(hl+)
+   0096 66                  165 	ld	h,(hl)
+   0097 6F                  166 	ld	l,a
+   0098 E5                  167 	push	hl
+   0099 CDr00s00            168 	call	__divulong
+   009C E8 08               169 	lda	sp,8(sp)
+   009E E5                  170 	push	hl
+   009F F8 04               171 	lda	hl,4(sp)
+   00A1 73                  172 	ld	(hl),e
+   00A2 23                  173 	inc	hl
+   00A3 72                  174 	ld	(hl),d
+   00A4 D1                  175 	pop	de
+   00A5 23                  176 	inc	hl
+   00A6 73                  177 	ld	(hl),e
+   00A7 23                  178 	inc	hl
+   00A8 72                  179 	ld	(hl),d
+   00A9 C1                  180 	pop	bc
+   00AA F8 00               181 	lda	hl,0(sp)
+   00AC 54                  182 	ld	d,h
+   00AD 5D                  183 	ld	e,l
+   00AE F8 08               184 	lda	hl,8(sp)
+   00B0 1A                  185 	ld	a,(de)
+   00B1 22                  186 	ld	(hl+),a
+   00B2 13                  187 	inc	de
+   00B3 1A                  188 	ld	a,(de)
+   00B4 22                  189 	ld	(hl+),a
+   00B5 13                  190 	inc	de
+   00B6 1A                  191 	ld	a,(de)
+   00B7 22                  192 	ld	(hl+),a
+   00B8 13                  193 	inc	de
+   00B9 1A                  194 	ld	a,(de)
+   00BA 77                  195 	ld	(hl),a
+                            196 ;../_divslong.c:261: if ( (x < 0) ^ (y < 0))
+   00BB 78                  197 	ld	a,b
+   00BC A9                  198 	xor	a,c
+   00BD CArECs00            199 	jp	Z,00102$
+                            200 ;../_divslong.c:262: return -r;
+   00C0 11 00 00            201 	ld	de,#0x0000
+   00C3 7B                  202 	ld	a,e
+   00C4 F8 08               203 	lda	hl,8(sp)
+   00C6 96                  204 	sub	a,(hl)
+   00C7 5F                  205 	ld	e,a
+   00C8 7A                  206 	ld	a,d
+   00C9 23                  207 	inc	hl
+   00CA 9E                  208 	sbc	a,(hl)
+   00CB F5                  209 	push	af
+   00CC F8 03               210 	lda	hl,3(sp)
+   00CE 32                  211 	ld	(hl-),a
+   00CF 73                  212 	ld	(hl),e
+   00D0 11 00 00            213 	ld	de,#0x0000
+   00D3 F8 0C               214 	lda	hl,12(sp)
+   00D5 F1                  215 	pop	af
+   00D6 7B                  216 	ld	a,e
+   00D7 9E                  217 	sbc	a,(hl)
+   00D8 5F                  218 	ld	e,a
+   00D9 7A                  219 	ld	a,d
+   00DA 23                  220 	inc	hl
+   00DB 9E                  221 	sbc	a,(hl)
+   00DC F8 03               222 	lda	hl,3(sp)
+   00DE 32                  223 	ld	(hl-),a
+   00DF 73                  224 	ld	(hl),e
+   00E0 2B                  225 	dec	hl
+   00E1 2B                  226 	dec	hl
+   00E2 5E                  227 	ld	e,(hl)
+   00E3 23                  228 	inc	hl
+   00E4 56                  229 	ld	d,(hl)
+   00E5 23                  230 	inc	hl
+   00E6 2A                  231 	ld	a,(hl+)
+   00E7 66                  232 	ld	h,(hl)
+   00E8 6F                  233 	ld	l,a
+   00E9 C3rF6s00            234 	jp	00104$
+   00EC                     235 00102$:
+                            236 ;../_divslong.c:264: return r;
+   00EC F8 09               237 	lda	hl,9(sp)
+   00EE 2B                  238 	dec	hl
+   00EF 5E                  239 	ld	e,(hl)
+   00F0 23                  240 	inc	hl
+   00F1 56                  241 	ld	d,(hl)
+   00F2 23                  242 	inc	hl
+   00F3 2A                  243 	ld	a,(hl+)
+   00F4 66                  244 	ld	h,(hl)
+   00F5 6F                  245 	ld	l,a
+   00F6                     246 00104$:
+   00F6 E8 0C               247 	lda	sp,12(sp)
+   00F8 C9                  248 	ret
+   00F9                     249 __divslong_end::
+                            250 	.area _CODE
+                            251 	.area _CABS

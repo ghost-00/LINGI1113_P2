@@ -1,0 +1,132 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:08 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module asinf
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _asinf
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ;  ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; overlayable items in  ram 
+                             22 ;--------------------------------------------------------
+                             23 	.area _OVERLAY
+                             24 ;--------------------------------------------------------
+                             25 ; external initialized ram data
+                             26 ;--------------------------------------------------------
+                             27 ;--------------------------------------------------------
+                             28 ; global & static initialisations
+                             29 ;--------------------------------------------------------
+                             30 	.area _HOME
+                             31 	.area _GSINIT
+                             32 	.area _GSFINAL
+                             33 	.area _GSINIT
+                             34 ;--------------------------------------------------------
+                             35 ; Home
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _HOME
+                             39 ;--------------------------------------------------------
+                             40 ; code
+                             41 ;--------------------------------------------------------
+                             42 	.area _CODE
+                             43 ;../asinf.c:26: float asinf(const float x) _FLOAT_FUNC_REENTRANT
+                             44 ;	---------------------------------
+                             45 ; Function asinf
+                             46 ; ---------------------------------
+   0000                      47 _asinf_start::
+   0000                      48 _asinf:
+   0000 DD E5                49 	push	ix
+   0002 DD 21 00 00          50 	ld	ix,#0
+   0006 DD 39                51 	add	ix,sp
+                             52 ;../asinf.c:28: if (x == 1.0) return  HALF_PI;
+   0008 21 80 3F             53 	ld	hl,#0x3F80
+   000B E5                   54 	push	hl
+   000C 21 00 00             55 	ld	hl,#0x0000
+   000F E5                   56 	push	hl
+   0010 DD 6E 06             57 	ld	l,6 (ix)
+   0013 DD 66 07             58 	ld	h,7 (ix)
+   0016 E5                   59 	push	hl
+   0017 DD 6E 04             60 	ld	l,4 (ix)
+   001A DD 66 05             61 	ld	h,5 (ix)
+   001D E5                   62 	push	hl
+   001E CDr00s00             63 	call	___fseq
+   0021 F1                   64 	pop	af
+   0022 F1                   65 	pop	af
+   0023 F1                   66 	pop	af
+   0024 F1                   67 	pop	af
+   0025 AF                   68 	xor	a,a
+   0026 B5                   69 	or	a,l
+   0027 28 09                70 	jr	Z,00108$
+   0029 21 DB 0F             71 	ld	hl,#0x0FDB
+   002C 11 C9 3F             72 	ld	de,#0x3FC9
+   002F C3r8Cs00             73 	jp	00110$
+   0032                      74 00108$:
+                             75 ;../asinf.c:29: else if (x ==-1.0) return -HALF_PI;
+   0032 21 80 BF             76 	ld	hl,#0xBF80
+   0035 E5                   77 	push	hl
+   0036 21 00 00             78 	ld	hl,#0x0000
+   0039 E5                   79 	push	hl
+   003A DD 6E 06             80 	ld	l,6 (ix)
+   003D DD 66 07             81 	ld	h,7 (ix)
+   0040 E5                   82 	push	hl
+   0041 DD 6E 04             83 	ld	l,4 (ix)
+   0044 DD 66 05             84 	ld	h,5 (ix)
+   0047 E5                   85 	push	hl
+   0048 CDr00s00             86 	call	___fseq
+   004B F1                   87 	pop	af
+   004C F1                   88 	pop	af
+   004D F1                   89 	pop	af
+   004E F1                   90 	pop	af
+   004F AF                   91 	xor	a,a
+   0050 B5                   92 	or	a,l
+   0051 28 08                93 	jr	Z,00105$
+   0053 21 DB 0F             94 	ld	hl,#0x0FDB
+   0056 11 C9 BF             95 	ld	de,#0xBFC9
+   0059 18 31                96 	jr	00110$
+   005B                      97 00105$:
+                             98 ;../asinf.c:30: else if (x == 0.0) return 0.0;
+   005B DD 7E 04             99 	ld	a,4 (ix)
+   005E DD B6 05            100 	or	a,5 (ix)
+   0061 DD B6 06            101 	or	a,6 (ix)
+   0064 DD B6 07            102 	or	a,7 (ix)
+   0067 20 07               103 	jr	NZ,00102$
+   0069 21 00 00            104 	ld	hl,#0x0000
+   006C 5D                  105 	ld	e,l
+   006D 54                  106 	ld	d,h
+   006E 18 1C               107 	jr	00110$
+   0070                     108 00102$:
+                            109 ;../asinf.c:31: else               return asincosf(x, false);
+   0070 3E 00               110 	ld	a,#0x00
+   0072 F5                  111 	push	af
+   0073 33                  112 	inc	sp
+   0074 DD 6E 06            113 	ld	l,6 (ix)
+   0077 DD 66 07            114 	ld	h,7 (ix)
+   007A E5                  115 	push	hl
+   007B DD 6E 04            116 	ld	l,4 (ix)
+   007E DD 66 05            117 	ld	h,5 (ix)
+   0081 E5                  118 	push	hl
+   0082 CDr00s00            119 	call	_asincosf
+   0085 F1                  120 	pop	af
+   0086 F1                  121 	pop	af
+   0087 33                  122 	inc	sp
+   0088 44                  123 	ld	b,h
+   0089 4D                  124 	ld	c,l
+   008A 69                  125 	ld	l,c
+   008B 60                  126 	ld	h,b
+   008C                     127 00110$:
+   008C DD E1               128 	pop	ix
+   008E C9                  129 	ret
+   008F                     130 _asinf_end::
+                            131 	.area _CODE
+                            132 	.area _CABS

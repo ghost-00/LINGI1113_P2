@@ -1,0 +1,289 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:25:51 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module frexpf
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _frexpf_PARM_2
+                             13 	.globl _frexpf
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (ABS,DATA)
+   0000                      18 	.org 0x0000
+                             19 ;--------------------------------------------------------
+                             20 ; special function bits
+                             21 ;--------------------------------------------------------
+                             22 	.area RSEG    (ABS,DATA)
+   0000                      23 	.org 0x0000
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+                             33 ;--------------------------------------------------------
+                             34 ; overlayable items in internal ram 
+                             35 ;--------------------------------------------------------
+                             36 	.area	OSEG    (OVR,DATA)
+   0000                      37 _frexpf_sloc0_1_0::
+   0000                      38 	.ds 4
+   0004                      39 _frexpf_sloc1_1_0::
+   0004                      40 	.ds 3
+                             41 ;--------------------------------------------------------
+                             42 ; indirectly addressable internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area ISEG    (DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; absolute internal ram data
+                             47 ;--------------------------------------------------------
+                             48 	.area IABS    (ABS,DATA)
+                             49 	.area IABS    (ABS,DATA)
+                             50 ;--------------------------------------------------------
+                             51 ; bit data
+                             52 ;--------------------------------------------------------
+                             53 	.area BSEG    (BIT)
+                             54 ;--------------------------------------------------------
+                             55 ; paged external ram data
+                             56 ;--------------------------------------------------------
+                             57 	.area PSEG    (PAG,XDATA)
+                             58 ;--------------------------------------------------------
+                             59 ; external ram data
+                             60 ;--------------------------------------------------------
+                             61 	.area XSEG    (XDATA)
+   0000                      62 _frexpf_PARM_2:
+   0000                      63 	.ds 3
+   0003                      64 _frexpf_x_1_1:
+   0003                      65 	.ds 4
+   0007                      66 _frexpf_fl_1_1:
+   0007                      67 	.ds 4
+                             68 ;--------------------------------------------------------
+                             69 ; absolute external ram data
+                             70 ;--------------------------------------------------------
+                             71 	.area XABS    (ABS,XDATA)
+                             72 ;--------------------------------------------------------
+                             73 ; external initialized ram data
+                             74 ;--------------------------------------------------------
+                             75 	.area XISEG   (XDATA)
+                             76 	.area HOME    (CODE)
+                             77 	.area GSINIT0 (CODE)
+                             78 	.area GSINIT1 (CODE)
+                             79 	.area GSINIT2 (CODE)
+                             80 	.area GSINIT3 (CODE)
+                             81 	.area GSINIT4 (CODE)
+                             82 	.area GSINIT5 (CODE)
+                             83 	.area GSINIT  (CODE)
+                             84 	.area GSFINAL (CODE)
+                             85 	.area CSEG    (CODE)
+                             86 ;--------------------------------------------------------
+                             87 ; global & static initialisations
+                             88 ;--------------------------------------------------------
+                             89 	.area HOME    (CODE)
+                             90 	.area GSINIT  (CODE)
+                             91 	.area GSFINAL (CODE)
+                             92 	.area GSINIT  (CODE)
+                             93 ;--------------------------------------------------------
+                             94 ; Home
+                             95 ;--------------------------------------------------------
+                             96 	.area HOME    (CODE)
+                             97 	.area HOME    (CODE)
+                             98 ;--------------------------------------------------------
+                             99 ; code
+                            100 ;--------------------------------------------------------
+                            101 	.area CSEG    (CODE)
+                            102 ;------------------------------------------------------------
+                            103 ;Allocation info for local variables in function 'frexpf'
+                            104 ;------------------------------------------------------------
+                            105 ;pw2                       Allocated with name '_frexpf_PARM_2'
+                            106 ;x                         Allocated with name '_frexpf_x_1_1'
+                            107 ;fl                        Allocated with name '_frexpf_fl_1_1'
+                            108 ;i                         Allocated with name '_frexpf_i_1_1'
+                            109 ;sloc0                     Allocated with name '_frexpf_sloc0_1_0'
+                            110 ;sloc1                     Allocated with name '_frexpf_sloc1_1_0'
+                            111 ;------------------------------------------------------------
+                            112 ;	frexpf.c:24: float frexpf(const float x, int *pw2)
+                            113 ;	-----------------------------------------
+                            114 ;	 function frexpf
+                            115 ;	-----------------------------------------
+   0000                     116 _frexpf:
+                    0002    117 	ar2 = 0x02
+                    0003    118 	ar3 = 0x03
+                    0004    119 	ar4 = 0x04
+                    0005    120 	ar5 = 0x05
+                    0006    121 	ar6 = 0x06
+                    0007    122 	ar7 = 0x07
+                    0000    123 	ar0 = 0x00
+                    0001    124 	ar1 = 0x01
+   0000 AA 82               125 	mov	r2,dpl
+   0002 AB 83               126 	mov	r3,dph
+   0004 AC F0               127 	mov	r4,b
+   0006 FD                  128 	mov	r5,a
+   0007 90s00r03            129 	mov	dptr,#_frexpf_x_1_1
+   000A EA                  130 	mov	a,r2
+   000B F0                  131 	movx	@dptr,a
+   000C A3                  132 	inc	dptr
+   000D EB                  133 	mov	a,r3
+   000E F0                  134 	movx	@dptr,a
+   000F A3                  135 	inc	dptr
+   0010 EC                  136 	mov	a,r4
+   0011 F0                  137 	movx	@dptr,a
+   0012 A3                  138 	inc	dptr
+   0013 ED                  139 	mov	a,r5
+   0014 F0                  140 	movx	@dptr,a
+                            141 ;	frexpf.c:29: fl.f=x;
+   0015 90s00r03            142 	mov	dptr,#_frexpf_x_1_1
+   0018 E0                  143 	movx	a,@dptr
+   0019 FA                  144 	mov	r2,a
+   001A A3                  145 	inc	dptr
+   001B E0                  146 	movx	a,@dptr
+   001C FB                  147 	mov	r3,a
+   001D A3                  148 	inc	dptr
+   001E E0                  149 	movx	a,@dptr
+   001F FC                  150 	mov	r4,a
+   0020 A3                  151 	inc	dptr
+   0021 E0                  152 	movx	a,@dptr
+   0022 FD                  153 	mov	r5,a
+   0023 90s00r07            154 	mov	dptr,#_frexpf_fl_1_1
+   0026 EA                  155 	mov	a,r2
+   0027 F0                  156 	movx	@dptr,a
+   0028 A3                  157 	inc	dptr
+   0029 EB                  158 	mov	a,r3
+   002A F0                  159 	movx	@dptr,a
+   002B A3                  160 	inc	dptr
+   002C EC                  161 	mov	a,r4
+   002D F0                  162 	movx	@dptr,a
+   002E A3                  163 	inc	dptr
+   002F ED                  164 	mov	a,r5
+   0030 F0                  165 	movx	@dptr,a
+                            166 ;	frexpf.c:31: i  = ( fl.l >> 23) & 0x000000ff;
+   0031 90s00r07            167 	mov	dptr,#_frexpf_fl_1_1
+   0034 E0                  168 	movx	a,@dptr
+   0035 FA                  169 	mov	r2,a
+   0036 A3                  170 	inc	dptr
+   0037 E0                  171 	movx	a,@dptr
+   0038 FB                  172 	mov	r3,a
+   0039 A3                  173 	inc	dptr
+   003A E0                  174 	movx	a,@dptr
+   003B FC                  175 	mov	r4,a
+   003C A3                  176 	inc	dptr
+   003D E0                  177 	movx	a,@dptr
+   003E FD                  178 	mov	r5,a
+   003F 8C 06               179 	mov	ar6,r4
+   0041 A2 E7               180 	mov	c,acc.7
+   0043 CE                  181 	xch	a,r6
+   0044 33                  182 	rlc	a
+   0045 CE                  183 	xch	a,r6
+   0046 33                  184 	rlc	a
+   0047 CE                  185 	xch	a,r6
+   0048 54 01               186 	anl	a,#0x01
+   004A 30 E0 02            187 	jnb	acc.0,00103$
+   004D 44 FE               188 	orl	a,#0xfe
+   004F                     189 00103$:
+   004F 33                  190 	rlc	a
+   0050 95 E0               191 	subb	a,acc
+                            192 ;	frexpf.c:32: i -= 0x7e;
+   0052 E4                  193 	clr	a
+   0053 FF                  194 	mov	r7,a
+   0054 F8                  195 	mov	r0,a
+   0055 F9                  196 	mov	r1,a
+   0056 EE                  197 	mov	a,r6
+   0057 24 82               198 	add	a,#0x82
+   0059 F5*00               199 	mov	_frexpf_sloc0_1_0,a
+   005B EF                  200 	mov	a,r7
+   005C 34 FF               201 	addc	a,#0xff
+   005E F5*01               202 	mov	(_frexpf_sloc0_1_0 + 1),a
+   0060 E8                  203 	mov	a,r0
+   0061 34 FF               204 	addc	a,#0xff
+   0063 F5*02               205 	mov	(_frexpf_sloc0_1_0 + 2),a
+   0065 E9                  206 	mov	a,r1
+   0066 34 FF               207 	addc	a,#0xff
+   0068 F5*03               208 	mov	(_frexpf_sloc0_1_0 + 3),a
+                            209 ;	frexpf.c:33: *pw2 = i;
+   006A 90s00r00            210 	mov	dptr,#_frexpf_PARM_2
+   006D E0                  211 	movx	a,@dptr
+   006E F5*04               212 	mov	_frexpf_sloc1_1_0,a
+   0070 A3                  213 	inc	dptr
+   0071 E0                  214 	movx	a,@dptr
+   0072 F5*05               215 	mov	(_frexpf_sloc1_1_0 + 1),a
+   0074 A3                  216 	inc	dptr
+   0075 E0                  217 	movx	a,@dptr
+   0076 F5*06               218 	mov	(_frexpf_sloc1_1_0 + 2),a
+   0078 A9*00               219 	mov	r1,_frexpf_sloc0_1_0
+   007A AE*01               220 	mov	r6,(_frexpf_sloc0_1_0 + 1)
+   007C 85*04 82            221 	mov	dpl,_frexpf_sloc1_1_0
+   007F 85*05 83            222 	mov	dph,(_frexpf_sloc1_1_0 + 1)
+   0082 85*06 F0            223 	mov	b,(_frexpf_sloc1_1_0 + 2)
+   0085 E9                  224 	mov	a,r1
+   0086 12s00r00            225 	lcall	__gptrput
+   0089 A3                  226 	inc	dptr
+   008A EE                  227 	mov	a,r6
+   008B 12s00r00            228 	lcall	__gptrput
+                            229 ;	frexpf.c:34: fl.l &= 0x807fffff; /* strip all exponent bits */
+   008E 53 04 7F            230 	anl	ar4,#0x7F
+   0091 53 05 80            231 	anl	ar5,#0x80
+   0094 90s00r07            232 	mov	dptr,#_frexpf_fl_1_1
+   0097 EA                  233 	mov	a,r2
+   0098 F0                  234 	movx	@dptr,a
+   0099 A3                  235 	inc	dptr
+   009A EB                  236 	mov	a,r3
+   009B F0                  237 	movx	@dptr,a
+   009C A3                  238 	inc	dptr
+   009D EC                  239 	mov	a,r4
+   009E F0                  240 	movx	@dptr,a
+   009F A3                  241 	inc	dptr
+   00A0 ED                  242 	mov	a,r5
+   00A1 F0                  243 	movx	@dptr,a
+                            244 ;	frexpf.c:35: fl.l |= 0x3f000000; /* mantissa between 0.5 and 1 */
+   00A2 90s00r07            245 	mov	dptr,#_frexpf_fl_1_1
+   00A5 E0                  246 	movx	a,@dptr
+   00A6 FA                  247 	mov	r2,a
+   00A7 A3                  248 	inc	dptr
+   00A8 E0                  249 	movx	a,@dptr
+   00A9 FB                  250 	mov	r3,a
+   00AA A3                  251 	inc	dptr
+   00AB E0                  252 	movx	a,@dptr
+   00AC FC                  253 	mov	r4,a
+   00AD A3                  254 	inc	dptr
+   00AE E0                  255 	movx	a,@dptr
+   00AF FD                  256 	mov	r5,a
+   00B0 43 05 3F            257 	orl	ar5,#0x3F
+   00B3 90s00r07            258 	mov	dptr,#_frexpf_fl_1_1
+   00B6 EA                  259 	mov	a,r2
+   00B7 F0                  260 	movx	@dptr,a
+   00B8 A3                  261 	inc	dptr
+   00B9 EB                  262 	mov	a,r3
+   00BA F0                  263 	movx	@dptr,a
+   00BB A3                  264 	inc	dptr
+   00BC EC                  265 	mov	a,r4
+   00BD F0                  266 	movx	@dptr,a
+   00BE A3                  267 	inc	dptr
+   00BF ED                  268 	mov	a,r5
+   00C0 F0                  269 	movx	@dptr,a
+                            270 ;	frexpf.c:36: return(fl.f);
+   00C1 90s00r07            271 	mov	dptr,#_frexpf_fl_1_1
+   00C4 E0                  272 	movx	a,@dptr
+   00C5 FA                  273 	mov	r2,a
+   00C6 A3                  274 	inc	dptr
+   00C7 E0                  275 	movx	a,@dptr
+   00C8 FB                  276 	mov	r3,a
+   00C9 A3                  277 	inc	dptr
+   00CA E0                  278 	movx	a,@dptr
+   00CB FC                  279 	mov	r4,a
+   00CC A3                  280 	inc	dptr
+   00CD E0                  281 	movx	a,@dptr
+   00CE 8A 82               282 	mov	dpl,r2
+   00D0 8B 83               283 	mov	dph,r3
+   00D2 8C F0               284 	mov	b,r4
+   00D4 22                  285 	ret
+                            286 	.area CSEG    (CODE)
+                            287 	.area CONST   (CODE)
+                            288 	.area XINIT   (CODE)
+                            289 	.area CABS    (ABS,CODE)

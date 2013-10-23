@@ -1,0 +1,63 @@
+                              1 ; /*-------------------------------------------------------------------------
+                              2 ;
+                              3 ;   crtxpop.asm :- C run-time: pop registers (not bits) from xstack
+                              4 ;
+                              5 ;    This library is free software; you can redistribute it and/or modify it
+                              6 ;    under the terms of the GNU Library General Public License as published by the
+                              7 ;    Free Software Foundation; either version 2, or (at your option) any
+                              8 ;    later version.
+                              9 ;
+                             10 ;    This library is distributed in the hope that it will be useful,
+                             11 ;    but WITHOUT ANY WARRANTY; without even the implied warranty of
+                             12 ;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                             13 ;    GNU Library General Public License for more details.
+                             14 ;
+                             15 ;    You should have received a copy of the GNU Library General Public License
+                             16 ;    along with this program; if not, write to the Free Software
+                             17 ;    Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+                             18 ;
+                             19 ;    In other words, you are welcome to use, share and improve this program.
+                             20 ;    You are forbidden to forbid anyone else to use, share and improve
+                             21 ;    what you give them.   Help stamp out software-hoarding!
+                             22 ; -------------------------------------------------------------------------*/
+                             23 
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable bit register bank
+                             26 ;--------------------------------------------------------
+                             27 	.area BIT_BANK	(REL,OVR,DATA)
+   0000                      28 bits:
+   0000                      29 	.ds 1
+                             30 
+                    0000     31 	ar0 = 0x00
+                    0001     32 	ar1 = 0x01
+                             33 
+                             34 	.area HOME    (CODE)
+                             35 
+                             36 ; Pop registers r0..r7 from xstack
+                             37 ; Expect mask in B
+   0000                      38 __sdcc_xpop_regs::
+   0000 E8                   39 	mov	a,r0
+   0001 A8*00                40 	mov	r0,_spx
+   0003 10 F0 04             41 	jbc	B.0,00101$	;if B(0)=0 then
+   0006 18                   42 	dec	r0
+   0007 E2                   43 	movx	a,@r0		;pop R0
+   0008 15*00                44 	dec	_spx
+   000A                      45 00101$:
+   000A C0 E0                46 	push	acc
+   000C 79 08                47 	mov	r1,#0x08
+   000E                      48 00102$:
+   000E E5 F0                49 	mov	a,B
+   0010                      50 00103$:
+   0010 60 0C                51 	jz	00104$		;if B=0 we are done
+   0012 19                   52 	dec	r1
+   0013 25 E0                53 	add	a,acc		;if B(n) then
+   0015 50 F9                54 	jnc	00103$
+   0017 F5 F0                55 	mov	B,a
+   0019 18                   56 	dec	r0		;pop Rn
+   001A E2                   57 	movx	a,@r0
+   001B F7                   58 	mov	@r1,a
+   001C 80 F0                59 	sjmp	00102$
+   001E                      60 00104$:
+   001E 88*00                61 	mov	_spx,r0
+   0020 D0 00                62 	pop	ar0
+   0022 22                   63 	ret

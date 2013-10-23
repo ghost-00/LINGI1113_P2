@@ -1,0 +1,138 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:11 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module fabsf
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _fabsf
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../fabsf.c:24: float fabsf(const float x) _FLOAT_FUNC_REENTRANT
+                             41 ;	---------------------------------
+                             42 ; Function fabsf
+                             43 ; ---------------------------------
+   0000                      44 _fabsf_start::
+   0000                      45 _fabsf:
+   0000 E8 F8                46 	lda	sp,-8(sp)
+                             47 ;../fabsf.c:28: fl.f = x;
+   0002 F8 04                48 	lda	hl,4(sp)
+   0004 4D                   49 	ld	c,l
+   0005 44                   50 	ld	b,h
+   0006 59                   51 	ld	e,c
+   0007 50                   52 	ld	d,b
+   0008 F8 0A                53 	lda	hl,10(sp)
+   000A 7E                   54 	ld	a,(hl)
+   000B 12                   55 	ld	(de),a
+   000C 13                   56 	inc	de
+   000D 23                   57 	inc	hl
+   000E 7E                   58 	ld	a,(hl)
+   000F 12                   59 	ld	(de),a
+   0010 13                   60 	inc	de
+   0011 23                   61 	inc	hl
+   0012 7E                   62 	ld	a,(hl)
+   0013 12                   63 	ld	(de),a
+   0014 13                   64 	inc	de
+   0015 23                   65 	inc	hl
+   0016 7E                   66 	ld	a,(hl)
+   0017 12                   67 	ld	(de),a
+                             68 ;../fabsf.c:29: fl.l &= 0x7fffffff;
+   0018 F8 04                69 	lda	hl,4(sp)
+   001A 4D                   70 	ld	c,l
+   001B 44                   71 	ld	b,h
+   001C 59                   72 	ld	e,c
+   001D 50                   73 	ld	d,b
+   001E 1A                   74 	ld	a,(de)
+   001F F8 00                75 	lda	hl,0(sp)
+   0021 22                   76 	ld	(hl+),a
+   0022 13                   77 	inc	de
+   0023 1A                   78 	ld	a,(de)
+   0024 22                   79 	ld	(hl+),a
+   0025 13                   80 	inc	de
+   0026 1A                   81 	ld	a,(de)
+   0027 22                   82 	ld	(hl+),a
+   0028 13                   83 	inc	de
+   0029 1A                   84 	ld	a,(de)
+   002A 77                   85 	ld	(hl),a
+   002B 7F                   86 	ld	a,a
+   002C E6 7F                87 	and	a,#0x7F
+   002E 77                   88 	ld	(hl),a
+   002F 59                   89 	ld	e,c
+   0030 50                   90 	ld	d,b
+   0031 F8 00                91 	lda	hl,0(sp)
+   0033 7E                   92 	ld	a,(hl)
+   0034 12                   93 	ld	(de),a
+   0035 13                   94 	inc	de
+   0036 23                   95 	inc	hl
+   0037 7E                   96 	ld	a,(hl)
+   0038 12                   97 	ld	(de),a
+   0039 13                   98 	inc	de
+   003A 23                   99 	inc	hl
+   003B 7E                  100 	ld	a,(hl)
+   003C 12                  101 	ld	(de),a
+   003D 13                  102 	inc	de
+   003E 23                  103 	inc	hl
+   003F 7E                  104 	ld	a,(hl)
+   0040 12                  105 	ld	(de),a
+                            106 ;../fabsf.c:30: return fl.f;
+   0041 F8 04               107 	lda	hl,4(sp)
+   0043 4D                  108 	ld	c,l
+   0044 44                  109 	ld	b,h
+   0045 59                  110 	ld	e,c
+   0046 50                  111 	ld	d,b
+   0047 1A                  112 	ld	a,(de)
+   0048 F8 00               113 	lda	hl,0(sp)
+   004A 22                  114 	ld	(hl+),a
+   004B 13                  115 	inc	de
+   004C 1A                  116 	ld	a,(de)
+   004D 22                  117 	ld	(hl+),a
+   004E 13                  118 	inc	de
+   004F 1A                  119 	ld	a,(de)
+   0050 22                  120 	ld	(hl+),a
+   0051 13                  121 	inc	de
+   0052 1A                  122 	ld	a,(de)
+   0053 32                  123 	ld	(hl-),a
+   0054 2B                  124 	dec	hl
+   0055 2B                  125 	dec	hl
+   0056 5E                  126 	ld	e,(hl)
+   0057 23                  127 	inc	hl
+   0058 56                  128 	ld	d,(hl)
+   0059 23                  129 	inc	hl
+   005A 2A                  130 	ld	a,(hl+)
+   005B 66                  131 	ld	h,(hl)
+   005C 6F                  132 	ld	l,a
+   005D                     133 00101$:
+   005D E8 08               134 	lda	sp,8(sp)
+   005F C9                  135 	ret
+   0060                     136 _fabsf_end::
+                            137 	.area _CODE
+                            138 	.area _CABS

@@ -1,0 +1,238 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:11 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _fsneq
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl ___fsneq
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_fsneq.c:70: char __fsneq (float a1, float a2)
+                             41 ;	---------------------------------
+                             42 ; Function __fsneq
+                             43 ; ---------------------------------
+   0000                      44 ___fsneq_start::
+   0000                      45 ___fsneq:
+   0000 E8 F0                46 	lda	sp,-16(sp)
+                             47 ;../_fsneq.c:74: fl1.f = a1;
+   0002 F8 0C                48 	lda	hl,12(sp)
+   0004 4D                   49 	ld	c,l
+   0005 44                   50 	ld	b,h
+   0006 59                   51 	ld	e,c
+   0007 50                   52 	ld	d,b
+   0008 F8 12                53 	lda	hl,18(sp)
+   000A 7E                   54 	ld	a,(hl)
+   000B 12                   55 	ld	(de),a
+   000C 13                   56 	inc	de
+   000D 23                   57 	inc	hl
+   000E 7E                   58 	ld	a,(hl)
+   000F 12                   59 	ld	(de),a
+   0010 13                   60 	inc	de
+   0011 23                   61 	inc	hl
+   0012 7E                   62 	ld	a,(hl)
+   0013 12                   63 	ld	(de),a
+   0014 13                   64 	inc	de
+   0015 23                   65 	inc	hl
+   0016 7E                   66 	ld	a,(hl)
+   0017 12                   67 	ld	(de),a
+                             68 ;../_fsneq.c:75: fl2.f = a2;
+   0018 F8 08                69 	lda	hl,8(sp)
+   001A 4D                   70 	ld	c,l
+   001B 44                   71 	ld	b,h
+   001C 59                   72 	ld	e,c
+   001D 50                   73 	ld	d,b
+   001E F8 16                74 	lda	hl,22(sp)
+   0020 7E                   75 	ld	a,(hl)
+   0021 12                   76 	ld	(de),a
+   0022 13                   77 	inc	de
+   0023 23                   78 	inc	hl
+   0024 7E                   79 	ld	a,(hl)
+   0025 12                   80 	ld	(de),a
+   0026 13                   81 	inc	de
+   0027 23                   82 	inc	hl
+   0028 7E                   83 	ld	a,(hl)
+   0029 12                   84 	ld	(de),a
+   002A 13                   85 	inc	de
+   002B 23                   86 	inc	hl
+   002C 7E                   87 	ld	a,(hl)
+   002D 12                   88 	ld	(de),a
+                             89 ;../_fsneq.c:77: if (fl1.l == fl2.l)
+   002E F8 0C                90 	lda	hl,12(sp)
+   0030 4D                   91 	ld	c,l
+   0031 44                   92 	ld	b,h
+   0032 59                   93 	ld	e,c
+   0033 50                   94 	ld	d,b
+   0034 1A                   95 	ld	a,(de)
+   0035 F8 04                96 	lda	hl,4(sp)
+   0037 22                   97 	ld	(hl+),a
+   0038 13                   98 	inc	de
+   0039 1A                   99 	ld	a,(de)
+   003A 22                  100 	ld	(hl+),a
+   003B 13                  101 	inc	de
+   003C 1A                  102 	ld	a,(de)
+   003D 22                  103 	ld	(hl+),a
+   003E 13                  104 	inc	de
+   003F 1A                  105 	ld	a,(de)
+   0040 77                  106 	ld	(hl),a
+   0041 F8 08               107 	lda	hl,8(sp)
+   0043 4D                  108 	ld	c,l
+   0044 44                  109 	ld	b,h
+   0045 59                  110 	ld	e,c
+   0046 50                  111 	ld	d,b
+   0047 1A                  112 	ld	a,(de)
+   0048 F8 00               113 	lda	hl,0(sp)
+   004A 22                  114 	ld	(hl+),a
+   004B 13                  115 	inc	de
+   004C 1A                  116 	ld	a,(de)
+   004D 22                  117 	ld	(hl+),a
+   004E 13                  118 	inc	de
+   004F 1A                  119 	ld	a,(de)
+   0050 22                  120 	ld	(hl+),a
+   0051 13                  121 	inc	de
+   0052 1A                  122 	ld	a,(de)
+   0053 22                  123 	ld	(hl+),a
+   0054 7E                  124 	ld	a,(hl)
+   0055 F8 00               125 	lda	hl,0(sp)
+   0057 96                  126 	sub	a,(hl)
+   0058 C2r80s00            127 	jp	NZ,00102$
+   005B F8 05               128 	lda	hl,5(sp)
+   005D 7E                  129 	ld	a,(hl)
+   005E F8 01               130 	lda	hl,1(sp)
+   0060 96                  131 	sub	a,(hl)
+   0061 C2r80s00            132 	jp	NZ,00102$
+   0064 F8 06               133 	lda	hl,6(sp)
+   0066 7E                  134 	ld	a,(hl)
+   0067 F8 02               135 	lda	hl,2(sp)
+   0069 96                  136 	sub	a,(hl)
+   006A C2r80s00            137 	jp	NZ,00102$
+   006D F8 07               138 	lda	hl,7(sp)
+   006F 7E                  139 	ld	a,(hl)
+   0070 F8 03               140 	lda	hl,3(sp)
+   0072 96                  141 	sub	a,(hl)
+   0073 C2r80s00            142 	jp	NZ,00102$
+   0076 18 03               143 	jr	00110$
+   0078                     144 00109$:
+   0078 C3r80s00            145 	jp	00102$
+   007B                     146 00110$:
+                            147 ;../_fsneq.c:78: return (0);
+   007B 1E 00               148 	ld	e,#0x00
+   007D C3rE7s00            149 	jp	00105$
+   0080                     150 00102$:
+                            151 ;../_fsneq.c:79: if (((fl1.l | fl2.l) & 0x7FFFFFFF) == 0)
+   0080 F8 0C               152 	lda	hl,12(sp)
+   0082 4D                  153 	ld	c,l
+   0083 44                  154 	ld	b,h
+   0084 59                  155 	ld	e,c
+   0085 50                  156 	ld	d,b
+   0086 1A                  157 	ld	a,(de)
+   0087 F8 00               158 	lda	hl,0(sp)
+   0089 22                  159 	ld	(hl+),a
+   008A 13                  160 	inc	de
+   008B 1A                  161 	ld	a,(de)
+   008C 22                  162 	ld	(hl+),a
+   008D 13                  163 	inc	de
+   008E 1A                  164 	ld	a,(de)
+   008F 22                  165 	ld	(hl+),a
+   0090 13                  166 	inc	de
+   0091 1A                  167 	ld	a,(de)
+   0092 77                  168 	ld	(hl),a
+   0093 F8 08               169 	lda	hl,8(sp)
+   0095 4D                  170 	ld	c,l
+   0096 44                  171 	ld	b,h
+   0097 59                  172 	ld	e,c
+   0098 50                  173 	ld	d,b
+   0099 1A                  174 	ld	a,(de)
+   009A F8 04               175 	lda	hl,4(sp)
+   009C 22                  176 	ld	(hl+),a
+   009D 13                  177 	inc	de
+   009E 1A                  178 	ld	a,(de)
+   009F 22                  179 	ld	(hl+),a
+   00A0 13                  180 	inc	de
+   00A1 1A                  181 	ld	a,(de)
+   00A2 22                  182 	ld	(hl+),a
+   00A3 13                  183 	inc	de
+   00A4 1A                  184 	ld	a,(de)
+   00A5 77                  185 	ld	(hl),a
+   00A6 F8 00               186 	lda	hl,0(sp)
+   00A8 7E                  187 	ld	a,(hl)
+   00A9 F8 04               188 	lda	hl,4(sp)
+   00AB B6                  189 	or	a,(hl)
+   00AC F8 00               190 	lda	hl,0(sp)
+   00AE 22                  191 	ld	(hl+),a
+   00AF 7E                  192 	ld	a,(hl)
+   00B0 F8 05               193 	lda	hl,5(sp)
+   00B2 B6                  194 	or	a,(hl)
+   00B3 F8 01               195 	lda	hl,1(sp)
+   00B5 22                  196 	ld	(hl+),a
+   00B6 7E                  197 	ld	a,(hl)
+   00B7 F8 06               198 	lda	hl,6(sp)
+   00B9 B6                  199 	or	a,(hl)
+   00BA F8 02               200 	lda	hl,2(sp)
+   00BC 22                  201 	ld	(hl+),a
+   00BD 7E                  202 	ld	a,(hl)
+   00BE F8 07               203 	lda	hl,7(sp)
+   00C0 B6                  204 	or	a,(hl)
+   00C1 F8 03               205 	lda	hl,3(sp)
+   00C3 77                  206 	ld	(hl),a
+   00C4 F8 00               207 	lda	hl,0(sp)
+   00C6 7E                  208 	ld	a,(hl)
+   00C7 B7                  209 	or	a,a
+   00C8 20 13               210 	jr	NZ,00111$
+   00CA 23                  211 	inc	hl
+   00CB 7E                  212 	ld	a,(hl)
+   00CC B7                  213 	or	a,a
+   00CD 20 0E               214 	jr	NZ,00111$
+   00CF 23                  215 	inc	hl
+   00D0 7E                  216 	ld	a,(hl)
+   00D1 B7                  217 	or	a,a
+   00D2 20 09               218 	jr	NZ,00111$
+   00D4 23                  219 	inc	hl
+   00D5 7E                  220 	ld	a,(hl)
+   00D6 E6 7F               221 	and	a,#0x7F
+   00D8 20 03               222 	jr	NZ,00111$
+   00DA C3rE0s00            223 	jp	00112$
+   00DD                     224 00111$:
+   00DD C3rE5s00            225 	jp	00104$
+   00E0                     226 00112$:
+                            227 ;../_fsneq.c:80: return (0);
+   00E0 1E 00               228 	ld	e,#0x00
+   00E2 C3rE7s00            229 	jp	00105$
+   00E5                     230 00104$:
+                            231 ;../_fsneq.c:81: return (1);
+   00E5 1E 01               232 	ld	e,#0x01
+   00E7                     233 00105$:
+   00E7 E8 10               234 	lda	sp,16(sp)
+   00E9 C9                  235 	ret
+   00EA                     236 ___fsneq_end::
+                            237 	.area _CODE
+                            238 	.area _CABS

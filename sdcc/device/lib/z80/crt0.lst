@@ -1,0 +1,63 @@
+                              1 	;; Generic crt0.s for a Z80
+                              2         .module crt0
+                              3        	.globl	_main
+                              4 
+                              5 	.area	_HEADER (ABS)
+                              6 	;; Reset vector
+   0000                       7 	.org 	0
+   0000 C3r00s01              8 	jp	init
+                              9 
+   0008                      10 	.org	0x08
+   0008 ED 4D                11 	reti
+   0010                      12 	.org	0x10
+   0010 ED 4D                13 	reti
+   0018                      14 	.org	0x18
+   0018 ED 4D                15 	reti
+   0020                      16 	.org	0x20
+   0020 ED 4D                17 	reti
+   0028                      18 	.org	0x28
+   0028 ED 4D                19 	reti
+   0030                      20 	.org	0x30
+   0030 ED 4D                21 	reti
+   0038                      22 	.org	0x38
+   0038 ED 4D                23 	reti
+                             24 
+   0100                      25 	.org	0x100
+   0100                      26 init:
+                             27 	;; Stack at the top of memory.
+   0100 31 FF FF             28 	ld	sp,#0xffff
+                             29 
+                             30         ;; Initialise global variables
+   0103 CDr00s00             31         call    gsinit
+   0106 CDr00s00             32 	call	_main
+   0109 C3r04s00             33 	jp	_exit
+                             34 
+                             35 	;; Ordering of segments for the linker.
+                             36 	.area	_HOME
+                             37 	.area	_CODE
+                             38         .area   _GSINIT
+                             39         .area   _GSFINAL
+                             40 
+                             41 	.area	_DATA
+                             42         .area   _BSS
+                             43         .area   _HEAP
+                             44 
+                             45         .area   _CODE
+   0000                      46 __clock::
+   0000 3E 02                47 	ld	a,#2
+   0002 CF                   48         rst     0x08
+   0003 C9                   49 	ret
+                             50 
+   0004                      51 _exit::
+                             52 	;; Exit - special code to the emulator
+   0004 3E 00                53 	ld	a,#0
+   0006 CF                   54         rst     0x08
+   0007                      55 1$:
+   0007 76                   56 	halt
+   0008 18 FD                57 	jr	1$
+                             58 
+                             59         .area   _GSINIT
+   0000                      60 gsinit::
+                             61 
+                             62         .area   _GSFINAL
+   0000 C9                   63         ret

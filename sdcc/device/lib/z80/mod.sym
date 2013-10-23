@@ -1,0 +1,13 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24 Feb-1999  (Zilog Z80 / Hitachi HD64180), page 1.
+
+Symbol Table
+
+    .__.ABS.=  0000 G   |     __div16    **** GX  |     __divu16   **** GX
+    __divu8    **** GX  |   0 __moduch   0007 GR  |   0 __moduch   0000 GR
+  0 __moduin   0012 GR  |   0 __moduin   000C GR  |   0 __modusc   0017 GR
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24 Feb-1999  (Zilog Z80 / Hitachi HD64180), page 2.
+
+Area Table
+
+   0 _CODE      size   28   flags 0

@@ -1,0 +1,157 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:09 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _strstr
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _strstr
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ;  ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; overlayable items in  ram 
+                             22 ;--------------------------------------------------------
+                             23 	.area _OVERLAY
+                             24 ;--------------------------------------------------------
+                             25 ; external initialized ram data
+                             26 ;--------------------------------------------------------
+                             27 ;--------------------------------------------------------
+                             28 ; global & static initialisations
+                             29 ;--------------------------------------------------------
+                             30 	.area _HOME
+                             31 	.area _GSINIT
+                             32 	.area _GSFINAL
+                             33 	.area _GSINIT
+                             34 ;--------------------------------------------------------
+                             35 ; Home
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _HOME
+                             39 ;--------------------------------------------------------
+                             40 ; code
+                             41 ;--------------------------------------------------------
+                             42 	.area _CODE
+                             43 ;../_strstr.c:26: char * strstr (
+                             44 ;	---------------------------------
+                             45 ; Function strstr
+                             46 ; ---------------------------------
+   0000                      47 _strstr_start::
+   0000                      48 _strstr:
+   0000 DD E5                49 	push	ix
+   0002 DD 21 00 00          50 	ld	ix,#0
+   0006 DD 39                51 	add	ix,sp
+   0008 21 F8 FF             52 	ld	hl,#-8
+   000B 39                   53 	add	hl,sp
+   000C F9                   54 	ld	sp,hl
+                             55 ;../_strstr.c:31: const char * cp = str1;
+   000D DD 7E 04             56 	ld	a,4 (ix)
+   0010 DD 77 FE             57 	ld	-2 (ix),a
+   0013 DD 7E 05             58 	ld	a,5 (ix)
+   0016 DD 77 FF             59 	ld	-1 (ix),a
+                             60 ;../_strstr.c:35: if ( !*str2 )
+   0019 DD 7E 06             61 	ld	a,6 (ix)
+   001C DD 77 FA             62 	ld	-6 (ix),a
+   001F DD 7E 07             63 	ld	a,7 (ix)
+   0022 DD 77 FB             64 	ld	-5 (ix),a
+   0025 DD 6E FA             65 	ld	l,-6 (ix)
+   0028 DD 66 FB             66 	ld	h,-5 (ix)
+   002B 7E                   67 	ld	a,(hl)
+   002C B7                   68 	or	a,a
+   002D 20 09                69 	jr	NZ,00122$
+                             70 ;../_strstr.c:36: return str1;
+   002F DD 6E FE             71 	ld	l,-2 (ix)
+   0032 DD 66 FF             72 	ld	h,-1 (ix)
+   0035 C3rB8s00             73 	jp	00113$
+                             74 ;../_strstr.c:38: while (*cp)
+   0038                      75 00122$:
+   0038 DD 7E FE             76 	ld	a,-2 (ix)
+   003B DD 77 FC             77 	ld	-4 (ix),a
+   003E DD 7E FF             78 	ld	a,-1 (ix)
+   0041 DD 77 FD             79 	ld	-3 (ix),a
+   0044                      80 00110$:
+   0044 DD 6E FC             81 	ld	l,-4 (ix)
+   0047 DD 66 FD             82 	ld	h,-3 (ix)
+   004A 7E                   83 	ld	a,(hl)
+   004B B7                   84 	or	a,a
+   004C CArB5s00             85 	jp	Z,00112$
+                             86 ;../_strstr.c:41: s2 = str2;
+   004F DD 6E FA             87 	ld	l,-6 (ix)
+   0052 DD 66 FB             88 	ld	h,-5 (ix)
+                             89 ;../_strstr.c:43: while ( *s1 && *s2 && !(*s1-*s2) )
+   0055 DD 5E FC             90 	ld	e,-4 (ix)
+   0058 DD 56 FD             91 	ld	d,-3 (ix)
+   005B DD 75 F8             92 	ld	-8 (ix),l
+   005E DD 74 F9             93 	ld	-7 (ix),h
+   0061                      94 00105$:
+   0061 1A                   95 	ld	a,(de)
+   0062 4F                   96 	ld	c,a
+   0063 B7                   97 	or	a,a
+   0064 28 26                98 	jr	Z,00107$
+   0066 DD 6E F8             99 	ld	l,-8 (ix)
+   0069 DD 66 F9            100 	ld	h,-7 (ix)
+   006C 6E                  101 	ld	l,(hl)
+   006D AF                  102 	xor	a,a
+   006E B5                  103 	or	a,l
+   006F 28 1B               104 	jr	Z,00107$
+   0071 79                  105 	ld	a,c
+   0072 17                  106 	rla	
+   0073 9F                  107 	sbc	a,a
+   0074 47                  108 	ld	b,a
+   0075 7D                  109 	ld	a,l
+   0076 17                  110 	rla	
+   0077 9F                  111 	sbc	a,a
+   0078 67                  112 	ld	h,a
+   0079 79                  113 	ld	a,c
+   007A 95                  114 	sub	a,l
+   007B 6F                  115 	ld	l,a
+   007C 78                  116 	ld	a,b
+   007D 9C                  117 	sbc	a,h
+   007E B5                  118 	or	a,l
+   007F 20 0B               119 	jr	NZ,00107$
+                            120 ;../_strstr.c:44: s1++, s2++;
+   0081 13                  121 	inc	de
+   0082 DD 34 F8            122 	inc	-8 (ix)
+   0085 20 DA               123 	jr	NZ,00105$
+   0087 DD 34 F9            124 	inc	-7 (ix)
+   008A 18 D5               125 	jr	00105$
+   008C                     126 00107$:
+                            127 ;../_strstr.c:46: if (!*s2)
+   008C DD 6E F8            128 	ld	l,-8 (ix)
+   008F DD 66 F9            129 	ld	h,-7 (ix)
+   0092 7E                  130 	ld	a,(hl)
+   0093 B7                  131 	or	a,a
+   0094 20 08               132 	jr	NZ,00109$
+                            133 ;../_strstr.c:47: return( (char*)cp );
+   0096 DD 6E FE            134 	ld	l,-2 (ix)
+   0099 DD 66 FF            135 	ld	h,-1 (ix)
+   009C 18 1A               136 	jr	00113$
+   009E                     137 00109$:
+                            138 ;../_strstr.c:49: cp++;
+   009E DD 34 FC            139 	inc	-4 (ix)
+   00A1 20 03               140 	jr	NZ,00125$
+   00A3 DD 34 FD            141 	inc	-3 (ix)
+   00A6                     142 00125$:
+   00A6 DD 7E FC            143 	ld	a,-4 (ix)
+   00A9 DD 77 FE            144 	ld	-2 (ix),a
+   00AC DD 7E FD            145 	ld	a,-3 (ix)
+   00AF DD 77 FF            146 	ld	-1 (ix),a
+   00B2 C3r44s00            147 	jp	00110$
+   00B5                     148 00112$:
+                            149 ;../_strstr.c:52: return (NULL) ;
+   00B5 21 00 00            150 	ld	hl,#0x0000
+   00B8                     151 00113$:
+   00B8 DD F9               152 	ld	sp,ix
+   00BA DD E1               153 	pop	ix
+   00BC C9                  154 	ret
+   00BD                     155 _strstr_end::
+                            156 	.area _CODE
+                            157 	.area _CABS

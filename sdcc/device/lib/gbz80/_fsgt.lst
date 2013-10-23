@@ -1,0 +1,259 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:11 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _fsgt
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl ___fsgt
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_fsgt.c:98: char __fsgt (float a1, float a2)
+                             41 ;	---------------------------------
+                             42 ; Function __fsgt
+                             43 ; ---------------------------------
+   0000                      44 ___fsgt_start::
+   0000                      45 ___fsgt:
+   0000 E8 F0                46 	lda	sp,-16(sp)
+                             47 ;../_fsgt.c:102: fl1.f = a1;
+   0002 F8 0C                48 	lda	hl,12(sp)
+   0004 4D                   49 	ld	c,l
+   0005 44                   50 	ld	b,h
+   0006 59                   51 	ld	e,c
+   0007 50                   52 	ld	d,b
+   0008 F8 12                53 	lda	hl,18(sp)
+   000A 7E                   54 	ld	a,(hl)
+   000B 12                   55 	ld	(de),a
+   000C 13                   56 	inc	de
+   000D 23                   57 	inc	hl
+   000E 7E                   58 	ld	a,(hl)
+   000F 12                   59 	ld	(de),a
+   0010 13                   60 	inc	de
+   0011 23                   61 	inc	hl
+   0012 7E                   62 	ld	a,(hl)
+   0013 12                   63 	ld	(de),a
+   0014 13                   64 	inc	de
+   0015 23                   65 	inc	hl
+   0016 7E                   66 	ld	a,(hl)
+   0017 12                   67 	ld	(de),a
+                             68 ;../_fsgt.c:103: fl2.f = a2;
+   0018 F8 08                69 	lda	hl,8(sp)
+   001A 4D                   70 	ld	c,l
+   001B 44                   71 	ld	b,h
+   001C 59                   72 	ld	e,c
+   001D 50                   73 	ld	d,b
+   001E F8 16                74 	lda	hl,22(sp)
+   0020 7E                   75 	ld	a,(hl)
+   0021 12                   76 	ld	(de),a
+   0022 13                   77 	inc	de
+   0023 23                   78 	inc	hl
+   0024 7E                   79 	ld	a,(hl)
+   0025 12                   80 	ld	(de),a
+   0026 13                   81 	inc	de
+   0027 23                   82 	inc	hl
+   0028 7E                   83 	ld	a,(hl)
+   0029 12                   84 	ld	(de),a
+   002A 13                   85 	inc	de
+   002B 23                   86 	inc	hl
+   002C 7E                   87 	ld	a,(hl)
+   002D 12                   88 	ld	(de),a
+                             89 ;../_fsgt.c:105: if (fl1.l<0 && fl2.l<0) {
+   002E F8 0C                90 	lda	hl,12(sp)
+   0030 4D                   91 	ld	c,l
+   0031 44                   92 	ld	b,h
+   0032 59                   93 	ld	e,c
+   0033 50                   94 	ld	d,b
+   0034 1A                   95 	ld	a,(de)
+   0035 F8 04                96 	lda	hl,4(sp)
+   0037 22                   97 	ld	(hl+),a
+   0038 13                   98 	inc	de
+   0039 1A                   99 	ld	a,(de)
+   003A 22                  100 	ld	(hl+),a
+   003B 13                  101 	inc	de
+   003C 1A                  102 	ld	a,(de)
+   003D 22                  103 	ld	(hl+),a
+   003E 13                  104 	inc	de
+   003F 1A                  105 	ld	a,(de)
+   0040 77                  106 	ld	(hl),a
+   0041 7F                  107 	ld	a,a
+   0042 CB 7F               108 	bit	7,a
+   0044 CArA8s00            109 	jp	Z,00104$
+   0047 F8 08               110 	lda	hl,8(sp)
+   0049 4D                  111 	ld	c,l
+   004A 44                  112 	ld	b,h
+   004B 59                  113 	ld	e,c
+   004C 50                  114 	ld	d,b
+   004D 1A                  115 	ld	a,(de)
+   004E F8 04               116 	lda	hl,4(sp)
+   0050 22                  117 	ld	(hl+),a
+   0051 13                  118 	inc	de
+   0052 1A                  119 	ld	a,(de)
+   0053 22                  120 	ld	(hl+),a
+   0054 13                  121 	inc	de
+   0055 1A                  122 	ld	a,(de)
+   0056 22                  123 	ld	(hl+),a
+   0057 13                  124 	inc	de
+   0058 1A                  125 	ld	a,(de)
+   0059 77                  126 	ld	(hl),a
+   005A 7F                  127 	ld	a,a
+   005B CB 7F               128 	bit	7,a
+   005D CArA8s00            129 	jp	Z,00104$
+                            130 ;../_fsgt.c:106: if (fl2.l > fl1.l)
+   0060 F8 08               131 	lda	hl,8(sp)
+   0062 4D                  132 	ld	c,l
+   0063 44                  133 	ld	b,h
+   0064 59                  134 	ld	e,c
+   0065 50                  135 	ld	d,b
+   0066 1A                  136 	ld	a,(de)
+   0067 F8 04               137 	lda	hl,4(sp)
+   0069 22                  138 	ld	(hl+),a
+   006A 13                  139 	inc	de
+   006B 1A                  140 	ld	a,(de)
+   006C 22                  141 	ld	(hl+),a
+   006D 13                  142 	inc	de
+   006E 1A                  143 	ld	a,(de)
+   006F 22                  144 	ld	(hl+),a
+   0070 13                  145 	inc	de
+   0071 1A                  146 	ld	a,(de)
+   0072 77                  147 	ld	(hl),a
+   0073 F8 0C               148 	lda	hl,12(sp)
+   0075 4D                  149 	ld	c,l
+   0076 44                  150 	ld	b,h
+   0077 59                  151 	ld	e,c
+   0078 50                  152 	ld	d,b
+   0079 1A                  153 	ld	a,(de)
+   007A F8 00               154 	lda	hl,0(sp)
+   007C 22                  155 	ld	(hl+),a
+   007D 13                  156 	inc	de
+   007E 1A                  157 	ld	a,(de)
+   007F 22                  158 	ld	(hl+),a
+   0080 13                  159 	inc	de
+   0081 1A                  160 	ld	a,(de)
+   0082 22                  161 	ld	(hl+),a
+   0083 13                  162 	inc	de
+   0084 1A                  163 	ld	a,(de)
+   0085 77                  164 	ld	(hl),a
+   0086 F8 00               165 	lda	hl,0(sp)
+   0088 54                  166 	ld	d,h
+   0089 5D                  167 	ld	e,l
+   008A F8 04               168 	lda	hl,4(sp)
+   008C 1A                  169 	ld	a,(de)
+   008D 96                  170 	sub	a,(hl)
+   008E 23                  171 	inc	hl
+   008F 13                  172 	inc	de
+   0090 1A                  173 	ld	a,(de)
+   0091 9E                  174 	sbc	a,(hl)
+   0092 23                  175 	inc	hl
+   0093 13                  176 	inc	de
+   0094 1A                  177 	ld	a,(de)
+   0095 9E                  178 	sbc	a,(hl)
+   0096 23                  179 	inc	hl
+   0097 13                  180 	inc	de
+   0098 1A                  181 	ld	a,(de)
+   0099 9E                  182 	sbc	a,(hl)
+   009A 07                  183 	rlca
+   009B D2rA3s00            184 	jp	NC,00102$
+                            185 ;../_fsgt.c:107: return (1);
+   009E 1E 01               186 	ld	e,#0x01
+   00A0 C3rEDs00            187 	jp	00108$
+   00A3                     188 00102$:
+                            189 ;../_fsgt.c:108: return (0);
+   00A3 1E 00               190 	ld	e,#0x00
+   00A5 C3rEDs00            191 	jp	00108$
+   00A8                     192 00104$:
+                            193 ;../_fsgt.c:111: if (fl1.l > fl2.l)
+   00A8 F8 0C               194 	lda	hl,12(sp)
+   00AA 4D                  195 	ld	c,l
+   00AB 44                  196 	ld	b,h
+   00AC 59                  197 	ld	e,c
+   00AD 50                  198 	ld	d,b
+   00AE 1A                  199 	ld	a,(de)
+   00AF F8 00               200 	lda	hl,0(sp)
+   00B1 22                  201 	ld	(hl+),a
+   00B2 13                  202 	inc	de
+   00B3 1A                  203 	ld	a,(de)
+   00B4 22                  204 	ld	(hl+),a
+   00B5 13                  205 	inc	de
+   00B6 1A                  206 	ld	a,(de)
+   00B7 22                  207 	ld	(hl+),a
+   00B8 13                  208 	inc	de
+   00B9 1A                  209 	ld	a,(de)
+   00BA 77                  210 	ld	(hl),a
+   00BB F8 08               211 	lda	hl,8(sp)
+   00BD 4D                  212 	ld	c,l
+   00BE 44                  213 	ld	b,h
+   00BF 59                  214 	ld	e,c
+   00C0 50                  215 	ld	d,b
+   00C1 1A                  216 	ld	a,(de)
+   00C2 F8 04               217 	lda	hl,4(sp)
+   00C4 22                  218 	ld	(hl+),a
+   00C5 13                  219 	inc	de
+   00C6 1A                  220 	ld	a,(de)
+   00C7 22                  221 	ld	(hl+),a
+   00C8 13                  222 	inc	de
+   00C9 1A                  223 	ld	a,(de)
+   00CA 22                  224 	ld	(hl+),a
+   00CB 13                  225 	inc	de
+   00CC 1A                  226 	ld	a,(de)
+   00CD 77                  227 	ld	(hl),a
+   00CE F8 04               228 	lda	hl,4(sp)
+   00D0 54                  229 	ld	d,h
+   00D1 5D                  230 	ld	e,l
+   00D2 F8 00               231 	lda	hl,0(sp)
+   00D4 1A                  232 	ld	a,(de)
+   00D5 96                  233 	sub	a,(hl)
+   00D6 23                  234 	inc	hl
+   00D7 13                  235 	inc	de
+   00D8 1A                  236 	ld	a,(de)
+   00D9 9E                  237 	sbc	a,(hl)
+   00DA 23                  238 	inc	hl
+   00DB 13                  239 	inc	de
+   00DC 1A                  240 	ld	a,(de)
+   00DD 9E                  241 	sbc	a,(hl)
+   00DE 23                  242 	inc	hl
+   00DF 13                  243 	inc	de
+   00E0 1A                  244 	ld	a,(de)
+   00E1 9E                  245 	sbc	a,(hl)
+   00E2 07                  246 	rlca
+   00E3 D2rEBs00            247 	jp	NC,00107$
+                            248 ;../_fsgt.c:112: return (1);
+   00E6 1E 01               249 	ld	e,#0x01
+   00E8 C3rEDs00            250 	jp	00108$
+   00EB                     251 00107$:
+                            252 ;../_fsgt.c:113: return (0);
+   00EB 1E 00               253 	ld	e,#0x00
+   00ED                     254 00108$:
+   00ED E8 10               255 	lda	sp,16(sp)
+   00EF C9                  256 	ret
+   00F0                     257 ___fsgt_end::
+                            258 	.area _CODE
+                            259 	.area _CABS

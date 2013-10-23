@@ -1,0 +1,224 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:25:33 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module cotf
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _cotf
+                             31 ;--------------------------------------------------------
+                             32 ; special function registers
+                             33 ;--------------------------------------------------------
+                             34 ;--------------------------------------------------------
+                             35 ; special function bits
+                             36 ;--------------------------------------------------------
+                             37 ;--------------------------------------------------------
+                             38 ; overlayable register banks
+                             39 ;--------------------------------------------------------
+                             40 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      41 	.ds 8
+                             42 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                      43 	.ds 8
+                             44 ;--------------------------------------------------------
+                             45 ; internal ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area DSEG    (DATA)
+                             48 ;--------------------------------------------------------
+                             49 ; overlayable items in internal ram 
+                             50 ;--------------------------------------------------------
+                             51 	.area OSEG    (OVR,DATA)
+                             52 ;--------------------------------------------------------
+                             53 ; indirectly addressable internal ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area ISEG    (DATA)
+                             56 ;--------------------------------------------------------
+                             57 ; absolute internal ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area IABS    (ABS,DATA)
+                             60 	.area IABS    (ABS,DATA)
+                             61 ;--------------------------------------------------------
+                             62 ; bit data
+                             63 ;--------------------------------------------------------
+                             64 	.area BSEG    (BIT)
+                             65 ;--------------------------------------------------------
+                             66 ; paged external ram data
+                             67 ;--------------------------------------------------------
+                             68 	.area PSEG    (PAG,XDATA)
+                             69 ;--------------------------------------------------------
+                             70 ; external ram data
+                             71 ;--------------------------------------------------------
+                             72 	.area XSEG    (XDATA)
+                             73 ;--------------------------------------------------------
+                             74 ; absolute external ram data
+                             75 ;--------------------------------------------------------
+                             76 	.area XABS    (ABS,XDATA)
+                             77 ;--------------------------------------------------------
+                             78 ; external initialized ram data
+                             79 ;--------------------------------------------------------
+                             80 	.area XISEG   (XDATA)
+                             81 ;--------------------------------------------------------
+                             82 ; global & static initialisations
+                             83 ;--------------------------------------------------------
+                             84 	.area HOME    (CODE)
+                             85 	.area GSINIT  (CODE)
+                             86 	.area GSFINAL (CODE)
+                             87 	.area GSINIT  (CODE)
+                             88 ;--------------------------------------------------------
+                             89 ; Home
+                             90 ;--------------------------------------------------------
+                             91 	.area HOME    (CODE)
+                             92 	.area HOME    (CODE)
+                             93 ;--------------------------------------------------------
+                             94 ; code
+                             95 ;--------------------------------------------------------
+                             96 	.area CSEG    (CODE)
+                             97 ;------------------------------------------------------------
+                             98 ;Allocation info for local variables in function 'cotf'
+                             99 ;------------------------------------------------------------
+                            100 ;x                         Allocated to registers r2 r3 r4 r5 
+                            101 ;y                         Allocated to registers 
+                            102 ;------------------------------------------------------------
+                            103 ;	cotf.c:26: float cotf(const float x) _FLOAT_FUNC_REENTRANT
+                            104 ;	-----------------------------------------
+                            105 ;	 function cotf
+                            106 ;	-----------------------------------------
+   0000                     107 _cotf:
+                    0002    108 	ar2 = 0x02
+                    0003    109 	ar3 = 0x03
+                    0004    110 	ar4 = 0x04
+                    0005    111 	ar5 = 0x05
+                    0006    112 	ar6 = 0x06
+                    0007    113 	ar7 = 0x07
+                    0000    114 	ar0 = 0x00
+                    0001    115 	ar1 = 0x01
+   0000 AA 82               116 	mov	r2,dpl
+   0002 AB 83               117 	mov	r3,dph
+   0004 AC 93               118 	mov	r4,dpx
+   0006 AD F0               119 	mov	r5,b
+                            120 ;	cotf.c:30: y=fabsf(x);
+   0008 C0 02               121 	push	ar2
+   000A C0 03               122 	push	ar3
+   000C C0 04               123 	push	ar4
+   000E C0 05               124 	push	ar5
+   0010 8A 82               125 	mov	dpl,r2
+   0012 8B 83               126 	mov	dph,r3
+   0014 8C 93               127 	mov	dpx,r4
+   0016 8D F0               128 	mov	b,r5
+   0018 12s00r00r00         129 	lcall	_fabsf
+   001C AE 82               130 	mov	r6,dpl
+   001E AF 83               131 	mov	r7,dph
+   0020 A8 93               132 	mov	r0,dpx
+   0022 A9 F0               133 	mov	r1,b
+   0024 D0 05               134 	pop	ar5
+   0026 D0 04               135 	pop	ar4
+   0028 D0 03               136 	pop	ar3
+   002A D0 02               137 	pop	ar2
+                            138 ;	cotf.c:31: if (y<1.0E-30) //This one requires more thinking...
+                            139 ;	genAssign: resultIsFar = TRUE
+   002C 90s00r00r00         140 	mov	dptr,#___fslt_PARM_2
+   0030 74 60               141 	mov	a,#0x60
+   0032 F0                  142 	movx	@dptr,a
+   0033 A3                  143 	inc	dptr
+   0034 74 42               144 	mov	a,#0x42
+   0036 F0                  145 	movx	@dptr,a
+   0037 A3                  146 	inc	dptr
+   0038 74 A2               147 	mov	a,#0xA2
+   003A F0                  148 	movx	@dptr,a
+   003B A3                  149 	inc	dptr
+   003C 74 0D               150 	mov	a,#0x0D
+   003E F0                  151 	movx	@dptr,a
+   003F C0 02               152 	push	ar2
+   0041 C0 03               153 	push	ar3
+   0043 C0 04               154 	push	ar4
+   0045 C0 05               155 	push	ar5
+   0047 8E 82               156 	mov	dpl,r6
+   0049 8F 83               157 	mov	dph,r7
+   004B 88 93               158 	mov	dpx,r0
+   004D 89 F0               159 	mov	b,r1
+   004F 12s00r00r00         160 	lcall	___fslt
+   0053 D0 05               161 	pop	ar5
+   0055 D0 04               162 	pop	ar4
+   0057 D0 03               163 	pop	ar3
+   0059 D0 02               164 	pop	ar2
+   005B E5 82               165 	mov	a,dpl
+   005D 60 39               166 	jz  00105$
+   005F                     167 00110$:
+                            168 ;	cotf.c:33: errno = ERANGE;
+                            169 ;	genAssign: resultIsFar = TRUE
+   005F 90s00r00r00         170 	mov	dptr,#_errno
+   0063 74 22               171 	mov	a,#0x22
+   0065 F0                  172 	movx	@dptr,a
+   0066 E4                  173 	clr	a
+   0067 A3                  174 	inc	dptr
+   0068 F0                  175 	movx	@dptr,a
+                            176 ;	cotf.c:34: if (x<0.0)
+                            177 ;	genAssign: resultIsFar = TRUE
+   0069 90s00r00r00         178 	mov	dptr,#___fslt_PARM_2
+   006D E4                  179 	clr  a
+   006E F0                  180 	movx @dptr,a
+   006F A3                  181 	inc  dptr
+   0070 F0                  182 	movx @dptr,a
+   0071 A3                  183 	inc	dptr
+   0072 E4                  184 	clr  a
+   0073 F0                  185 	movx @dptr,a
+   0074 A3                  186 	inc  dptr
+   0075 F0                  187 	movx @dptr,a
+   0076 8A 82               188 	mov	dpl,r2
+   0078 8B 83               189 	mov	dph,r3
+   007A 8C 93               190 	mov	dpx,r4
+   007C 8D F0               191 	mov	b,r5
+   007E 12s00r00r00         192 	lcall	___fslt
+   0082 E5 82               193 	mov	a,dpl
+   0084 60 09               194 	jz  00102$
+   0086                     195 00111$:
+                            196 ;	cotf.c:35: return -HUGE_VALF;
+   0086 90 7F FF FF         197 	mov	dptr,#0x7FFFFF
+   008A 75 F0 FF            198 	mov	b,#0xFF
+   008D 80 1F               199 	sjmp 00106$
+   008F                     200 00102$:
+                            201 ;	cotf.c:37: return +HUGE_VALF;
+   008F 90 7F FF FF         202 	mov	dptr,#0x7FFFFF
+   0093 75 F0 7F            203 	mov	b,#0x7F
+   0096 80 16               204 	sjmp 00106$
+   0098                     205 00105$:
+                            206 ;	cotf.c:39: return tancotf(x, 1);
+                            207 ;	genAssign: resultIsFar = TRUE
+   0098 90s00r00r00         208 	mov	dptr,#_tancotf_PARM_2
+   009C 74 01               209 	mov	a,#0x01
+   009E F0                  210 	movx	@dptr,a
+   009F E4                  211 	clr	a
+   00A0 A3                  212 	inc	dptr
+   00A1 F0                  213 	movx	@dptr,a
+   00A2 8A 82               214 	mov	dpl,r2
+   00A4 8B 83               215 	mov	dph,r3
+   00A6 8C 93               216 	mov	dpx,r4
+   00A8 8D F0               217 	mov	b,r5
+   00AA 12s00r00r00         218 	lcall	_tancotf
+   00AE                     219 00106$:
+   00AE 22                  220 	ret
+                            221 	.area CSEG    (CODE)
+                            222 	.area CONST   (CODE)
+                            223 	.area XINIT   (CODE)
+                            224 	.area CABS    (ABS,CODE)

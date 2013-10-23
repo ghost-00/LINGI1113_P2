@@ -30,8 +30,8 @@ Kernel configured for up to 4 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1 2 3
 Primary memory available: 4.00 gigabytes
-Default processor set: 107 tasks, 565 threads, 4 processors
-Load average: 2.43, Mach factor: 1.82
+Default processor set: 112 tasks, 612 threads, 4 processors
+Load average: 1.54, Mach factor: 2.45
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -142,8 +142,8 @@ configure:3599: checking lex library
 configure:3618: gcc -o conftest -g -O2   conftest.c   >&5
 Undefined symbols for architecture x86_64:
   "_yywrap", referenced from:
-      _yylex in ccyUd9sp.o
-      _main in ccyUd9sp.o
+      _yylex in ccYkQkmP.o
+      _main in ccYkQkmP.o
 ld: symbol(s) not found for architecture x86_64
 collect2: ld returned 1 exit status
 configure:3624: $? = 1
@@ -2413,7 +2413,7 @@ configure:5285: checking for stricmp
 configure:5341: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_stricmp", referenced from:
-      _main in ccCjvxpz.o
+      _main in ccvSeAYz.o
 ld: symbol(s) not found for architecture x86_64
 collect2: ld returned 1 exit status
 configure:5347: $? = 1
@@ -2531,6 +2531,7 @@ config.status:674: creating man/Makefile
 config.status:674: creating man/fr/Makefile
 config.status:674: creating gputils.spec
 config.status:674: creating config.h
+config.status:905: config.h is unchanged
 config.status:951: executing depfiles commands
 configure:7126: result:
 

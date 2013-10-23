@@ -1,0 +1,114 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:25:38 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _ispunct
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _ispunct
+                             25 ;--------------------------------------------------------
+                             26 ;  ram data
+                             27 ;--------------------------------------------------------
+                             28 	.area DSEG
+                             29 ;--------------------------------------------------------
+                             30 ; overlayable items in  ram 
+                             31 ;--------------------------------------------------------
+                             32 	.area OSEG    (OVR)
+                             33 ;--------------------------------------------------------
+                             34 ; absolute external ram data
+                             35 ;--------------------------------------------------------
+                             36 	.area XABS    (ABS)
+                             37 ;--------------------------------------------------------
+                             38 ; external initialized ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area XISEG
+                             41 ;--------------------------------------------------------
+                             42 ; extended address mode data
+                             43 ;--------------------------------------------------------
+                             44 	.area XSEG
+   0000                      45 _ispunct_c_1_1:
+   0000                      46 	.ds 1
+                             47 ;--------------------------------------------------------
+                             48 ; global & static initialisations
+                             49 ;--------------------------------------------------------
+                             50 	.area HOME (CODE)
+                             51 	.area GSINIT (CODE)
+                             52 	.area GSFINAL (CODE)
+                             53 	.area GSINIT (CODE)
+                             54 ;--------------------------------------------------------
+                             55 ; Home
+                             56 ;--------------------------------------------------------
+                             57 	.area HOME (CODE)
+                             58 	.area HOME (CODE)
+                             59 ;--------------------------------------------------------
+                             60 ; code
+                             61 ;--------------------------------------------------------
+                             62 	.area CSEG (CODE)
+                             63 ;------------------------------------------------------------
+                             64 ;Allocation info for local variables in function 'ispunct'
+                             65 ;------------------------------------------------------------
+                             66 ;c                         Allocated with name '_ispunct_c_1_1'
+                             67 ;------------------------------------------------------------
+                             68 ;../_ispunct.c:27: char ispunct (unsigned char c)
+                             69 ;	-----------------------------------------
+                             70 ;	 function ispunct
+                             71 ;	-----------------------------------------
+   0000                      72 _ispunct:
+                             73 ;../_ispunct.c:29: if ( isprint (c) &&
+   0000 C7s00r00             74 	sta	_ispunct_c_1_1
+   0003 CDs00r00             75 	jsr	_isprint
+   0006 4D                   76 	tsta
+   0007 27 27                77 	beq	00102$
+   0009                      78 00114$:
+                             79 ;../_ispunct.c:30: !islower(c) &&
+   0009 C6s00r00             80 	lda	_ispunct_c_1_1
+   000C CDs00r00             81 	jsr	_islower
+   000F 4D                   82 	tsta
+   0010 26 1E                83 	bne	00102$
+   0012                      84 00115$:
+                             85 ;../_ispunct.c:31: !isupper(c) &&
+   0012 C6s00r00             86 	lda	_ispunct_c_1_1
+   0015 CDs00r00             87 	jsr	_isupper
+   0018 4D                   88 	tsta
+   0019 26 15                89 	bne	00102$
+   001B                      90 00116$:
+                             91 ;../_ispunct.c:32: !isspace(c) &&
+   001B C6s00r00             92 	lda	_ispunct_c_1_1
+   001E CDs00r00             93 	jsr	_isspace
+   0021 4D                   94 	tsta
+   0022 26 0C                95 	bne	00102$
+   0024                      96 00117$:
+                             97 ;../_ispunct.c:33: !isdigit(c) )
+   0024 C6s00r00             98 	lda	_ispunct_c_1_1
+   0027 CDs00r00             99 	jsr	_isdigit
+   002A 4D                  100 	tsta
+   002B 26 03               101 	bne	00102$
+   002D                     102 00118$:
+                            103 ;../_ispunct.c:34: return 1;
+   002D A6 01               104 	lda	#0x01
+   002F 81                  105 	rts
+   0030                     106 00102$:
+                            107 ;../_ispunct.c:35: return 0;
+   0030 4F                  108 	clra
+   0031                     109 00107$:
+   0031 81                  110 	rts
+                            111 	.area CSEG (CODE)
+                            112 	.area CONST   (CODE)
+                            113 	.area XINIT
+                            114 	.area CABS    (ABS,CODE)

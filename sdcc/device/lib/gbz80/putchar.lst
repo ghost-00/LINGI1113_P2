@@ -1,0 +1,18 @@
+                              1 	.area	_CODE
+   0000                       2 _putchar::
+   0000                       3 _putchar_rr_s::
+   0000 21 02 00              4         ld      hl,#2
+   0003 39                    5         add     hl,sp
+                              6 
+   0004 6E                    7         ld      l,(hl)
+   0005 3E 01                 8         ld      a,#1
+   0007 CF                    9         rst     0x08
+                             10 
+   0008 C9                   11         ret
+                             12 
+   0009                      13 _putchar_rr_dbs::
+   0009 6B                   14         ld      l,e
+   000A 3E 01                15 	ld	a,#1
+   000C CF                   16         rst     0x08
+                             17 
+   000D C9                   18         ret

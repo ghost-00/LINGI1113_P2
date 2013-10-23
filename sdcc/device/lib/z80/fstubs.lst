@@ -1,0 +1,5 @@
+                              1         ;; Stubs to match between function names
+                              2         .area	_CODE
+                              3 
+   0000                       4 ___slong2fs_rrx_s::
+   0000 C3r00s00              5         jp      ___slong2fs

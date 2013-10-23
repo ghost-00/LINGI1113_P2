@@ -1,0 +1,14 @@
+                              1         ;; Stubs that hook the heap in
+                              2         .globl  __sdcc_heap_init
+                              3 
+                              4         .area   _GSINIT
+   0000 CDr00s00              5         call    __sdcc_heap_init
+                              6 
+                              7         .area   _HEAP
+   0000                       8 __sdcc_heap_start::
+                              9         ;; For now just allocate 1k of heap.
+   0000                      10         .ds     1023
+                             11 
+                             12         .area   _HEAP_END
+   0000                      13 __sdcc_heap_end::
+   0000                      14         .ds     1

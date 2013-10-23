@@ -1,0 +1,65 @@
+                              1 ; Copyright (C) 2008-2009
+                              2 ; Philipp Klaus Krause, Marco Bodrato
+                              3 
+                              4 ; This file is part of the sdcc Library.  This library is free
+                              5 ; software; you can redistribute it and/or modify it under the
+                              6 ; terms of the GNU General Public License as published by the
+                              7 ; Free Software Foundation; either version 2, or (at your option)
+                              8 ; any later version.
+                              9 
+                             10 ; This library is distributed in the hope that it will be useful,
+                             11 ; but WITHOUT ANY WARRANTY; without even the implied warranty of
+                             12 ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                             13 ; GNU General Public License for more details.
+                             14 
+                             15 ; You should have received a copy of the GNU General Public License along
+                             16 ; with this library; see the file COPYING.  If not, write to the Free
+                             17 ; Software Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
+                             18 ; USA.
+                             19 
+                             20 ; As a special exception, you may use this file as part of a free software
+                             21 ; library without restriction.  Specifically, if other files instantiate
+                             22 ; templates or use macros or inline functions from this file, or you compile
+                             23 ; this file and link it with other files to produce an executable, this
+                             24 ; file does not by itself cause the resulting executable to be covered by
+                             25 ; the GNU General Public License.  This exception does not however
+                             26 ; invalidate any other reasons why the executable file might be covered by
+                             27 ; the GNU General Public License.
+                             28 
+                             29         .area   _CODE
+                             30 
+                             31 	.globl _memmove
+                             32 
+                             33 ; The Z80 has the ldir and lddr instructions, which are perfect for implementing memmove().
+                             34 
+   0000                      35 _memmove:
+   0000 F1                   36 	pop	af
+   0001 E1                   37 	pop	hl
+   0002 D1                   38 	pop	de
+   0003 C1                   39 	pop	bc
+   0004 C5                   40 	push	bc
+   0005 D5                   41 	push	de
+   0006 E5                   42 	push	hl
+   0007 F5                   43 	push	af
+   0008 79                   44 	ld	a, c
+   0009 B0                   45 	or	a, b
+   000A C8                   46 	ret	Z
+   000B E5                   47 	push	hl
+   000C ED 52                48 	sbc	hl, de		; or above cleared carry.
+   000E 19                   49 	add	hl, de		; same carry as the line before
+   000F 38 09                50 	jr	C, memmove_up
+   0011                      51 memmove_down:
+   0011 0B                   52 	dec	bc
+   0012 09                   53 	add	hl, bc
+   0013 EB                   54 	ex      de, hl
+   0014 09                   55 	add	hl, bc
+   0015 03                   56 	inc	bc
+   0016 ED B8                57 	lddr
+   0018 E1                   58 	pop	hl
+   0019 C9                   59 	ret
+   001A                      60 memmove_up:
+   001A EB                   61 	ex      de, hl
+   001B ED B0                62 	ldir
+   001D E1                   63 	pop	hl
+   001E C9                   64 	ret
+                             65 

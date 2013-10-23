@@ -1,0 +1,37 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24 Feb-1999  (GameBoy Z80-like CPU), page 1.
+
+Symbol Table
+
+    .__.ABS.                                                    =  0000 G
+  0 __buf_emitter                                                  0246 GR
+  0 __buf_emitter_end                                              0270 GR
+  0 __buf_emitter_start                                            0246 GR
+  0 __char_emitter                                                 021D GR
+  0 __char_emitter_end                                             0228 GR
+  0 __char_emitter_start                                           021D GR
+    __divuint_rrx_s                                                **** GX
+    __moduint_rrx_s                                                **** GX
+  0 __printf                                                       00B7 GR
+  0 __printf_end                                                   021D GR
+  0 __printf_start                                                 00B7 GR
+  0 __printn                                                       0000 R
+  0 __str_0                                                        00A6 R
+  0 _printf                                                        0228 GR
+  0 _printf_end                                                    0246 GR
+  0 _printf_start                                                  0228 GR
+    _putchar                                                       **** GX
+  0 _sprintf                                                       0270 GR
+  0 _sprintf_end                                                   02A8 GR
+  0 _sprintf_start                                                 0270 GR
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24 Feb-1999  (GameBoy Z80-like CPU), page 2.
+
+Area Table
+
+   0 _CODE                                      size  2A8   flags 0
+   1 _DATA                                      size    0   flags 0
+   2 _OVERLAY                                   size    0   flags 0
+   3 _HOME                                      size    0   flags 0
+   4 _GSINIT                                    size    0   flags 0
+   5 _GSFINAL                                   size    0   flags 0
+   6 _CABS                                      size    0   flags 0

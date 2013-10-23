@@ -1,0 +1,258 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:11 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module _fslt
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl ___fslt
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_fslt.c:98: char __fslt (float a1, float a2)
+                             41 ;	---------------------------------
+                             42 ; Function __fslt
+                             43 ; ---------------------------------
+   0000                      44 ___fslt_start::
+   0000                      45 ___fslt:
+   0000 E8 F0                46 	lda	sp,-16(sp)
+                             47 ;../_fslt.c:102: fl1.f = a1;
+   0002 F8 0C                48 	lda	hl,12(sp)
+   0004 4D                   49 	ld	c,l
+   0005 44                   50 	ld	b,h
+   0006 59                   51 	ld	e,c
+   0007 50                   52 	ld	d,b
+   0008 F8 12                53 	lda	hl,18(sp)
+   000A 7E                   54 	ld	a,(hl)
+   000B 12                   55 	ld	(de),a
+   000C 13                   56 	inc	de
+   000D 23                   57 	inc	hl
+   000E 7E                   58 	ld	a,(hl)
+   000F 12                   59 	ld	(de),a
+   0010 13                   60 	inc	de
+   0011 23                   61 	inc	hl
+   0012 7E                   62 	ld	a,(hl)
+   0013 12                   63 	ld	(de),a
+   0014 13                   64 	inc	de
+   0015 23                   65 	inc	hl
+   0016 7E                   66 	ld	a,(hl)
+   0017 12                   67 	ld	(de),a
+                             68 ;../_fslt.c:103: fl2.f = a2;
+   0018 F8 08                69 	lda	hl,8(sp)
+   001A 4D                   70 	ld	c,l
+   001B 44                   71 	ld	b,h
+   001C 59                   72 	ld	e,c
+   001D 50                   73 	ld	d,b
+   001E F8 16                74 	lda	hl,22(sp)
+   0020 7E                   75 	ld	a,(hl)
+   0021 12                   76 	ld	(de),a
+   0022 13                   77 	inc	de
+   0023 23                   78 	inc	hl
+   0024 7E                   79 	ld	a,(hl)
+   0025 12                   80 	ld	(de),a
+   0026 13                   81 	inc	de
+   0027 23                   82 	inc	hl
+   0028 7E                   83 	ld	a,(hl)
+   0029 12                   84 	ld	(de),a
+   002A 13                   85 	inc	de
+   002B 23                   86 	inc	hl
+   002C 7E                   87 	ld	a,(hl)
+   002D 12                   88 	ld	(de),a
+                             89 ;../_fslt.c:105: if (fl1.l<0 && fl2.l<0) {
+   002E F8 0C                90 	lda	hl,12(sp)
+   0030 4D                   91 	ld	c,l
+   0031 44                   92 	ld	b,h
+   0032 59                   93 	ld	e,c
+   0033 50                   94 	ld	d,b
+   0034 1A                   95 	ld	a,(de)
+   0035 F8 04                96 	lda	hl,4(sp)
+   0037 22                   97 	ld	(hl+),a
+   0038 13                   98 	inc	de
+   0039 1A                   99 	ld	a,(de)
+   003A 22                  100 	ld	(hl+),a
+   003B 13                  101 	inc	de
+   003C 1A                  102 	ld	a,(de)
+   003D 22                  103 	ld	(hl+),a
+   003E 13                  104 	inc	de
+   003F 1A                  105 	ld	a,(de)
+   0040 77                  106 	ld	(hl),a
+   0041 7F                  107 	ld	a,a
+   0042 CB 7F               108 	bit	7,a
+   0044 CArA6s00            109 	jp	Z,00104$
+   0047 F8 08               110 	lda	hl,8(sp)
+   0049 4D                  111 	ld	c,l
+   004A 44                  112 	ld	b,h
+   004B 59                  113 	ld	e,c
+   004C 50                  114 	ld	d,b
+   004D 1A                  115 	ld	a,(de)
+   004E F8 04               116 	lda	hl,4(sp)
+   0050 22                  117 	ld	(hl+),a
+   0051 13                  118 	inc	de
+   0052 1A                  119 	ld	a,(de)
+   0053 22                  120 	ld	(hl+),a
+   0054 13                  121 	inc	de
+   0055 1A                  122 	ld	a,(de)
+   0056 22                  123 	ld	(hl+),a
+   0057 13                  124 	inc	de
+   0058 1A                  125 	ld	a,(de)
+   0059 77                  126 	ld	(hl),a
+   005A 7F                  127 	ld	a,a
+   005B CB 7F               128 	bit	7,a
+   005D CArA6s00            129 	jp	Z,00104$
+                            130 ;../_fslt.c:106: if (fl2.l < fl1.l)
+   0060 F8 08               131 	lda	hl,8(sp)
+   0062 4D                  132 	ld	c,l
+   0063 44                  133 	ld	b,h
+   0064 59                  134 	ld	e,c
+   0065 50                  135 	ld	d,b
+   0066 1A                  136 	ld	a,(de)
+   0067 F8 04               137 	lda	hl,4(sp)
+   0069 22                  138 	ld	(hl+),a
+   006A 13                  139 	inc	de
+   006B 1A                  140 	ld	a,(de)
+   006C 22                  141 	ld	(hl+),a
+   006D 13                  142 	inc	de
+   006E 1A                  143 	ld	a,(de)
+   006F 22                  144 	ld	(hl+),a
+   0070 13                  145 	inc	de
+   0071 1A                  146 	ld	a,(de)
+   0072 77                  147 	ld	(hl),a
+   0073 F8 0C               148 	lda	hl,12(sp)
+   0075 4D                  149 	ld	c,l
+   0076 44                  150 	ld	b,h
+   0077 59                  151 	ld	e,c
+   0078 50                  152 	ld	d,b
+   0079 1A                  153 	ld	a,(de)
+   007A F8 00               154 	lda	hl,0(sp)
+   007C 22                  155 	ld	(hl+),a
+   007D 13                  156 	inc	de
+   007E 1A                  157 	ld	a,(de)
+   007F 22                  158 	ld	(hl+),a
+   0080 13                  159 	inc	de
+   0081 1A                  160 	ld	a,(de)
+   0082 22                  161 	ld	(hl+),a
+   0083 13                  162 	inc	de
+   0084 1A                  163 	ld	a,(de)
+   0085 22                  164 	ld	(hl+),a
+   0086 54                  165 	ld	d,h
+   0087 5D                  166 	ld	e,l
+   0088 F8 00               167 	lda	hl,0(sp)
+   008A 1A                  168 	ld	a,(de)
+   008B 96                  169 	sub	a,(hl)
+   008C 23                  170 	inc	hl
+   008D 13                  171 	inc	de
+   008E 1A                  172 	ld	a,(de)
+   008F 9E                  173 	sbc	a,(hl)
+   0090 23                  174 	inc	hl
+   0091 13                  175 	inc	de
+   0092 1A                  176 	ld	a,(de)
+   0093 9E                  177 	sbc	a,(hl)
+   0094 23                  178 	inc	hl
+   0095 13                  179 	inc	de
+   0096 1A                  180 	ld	a,(de)
+   0097 9E                  181 	sbc	a,(hl)
+   0098 07                  182 	rlca
+   0099 D2rA1s00            183 	jp	NC,00102$
+                            184 ;../_fslt.c:107: return (1);
+   009C 1E 01               185 	ld	e,#0x01
+   009E C3rEBs00            186 	jp	00108$
+   00A1                     187 00102$:
+                            188 ;../_fslt.c:108: return (0);
+   00A1 1E 00               189 	ld	e,#0x00
+   00A3 C3rEBs00            190 	jp	00108$
+   00A6                     191 00104$:
+                            192 ;../_fslt.c:111: if (fl1.l < fl2.l)
+   00A6 F8 0C               193 	lda	hl,12(sp)
+   00A8 4D                  194 	ld	c,l
+   00A9 44                  195 	ld	b,h
+   00AA 59                  196 	ld	e,c
+   00AB 50                  197 	ld	d,b
+   00AC 1A                  198 	ld	a,(de)
+   00AD F8 00               199 	lda	hl,0(sp)
+   00AF 22                  200 	ld	(hl+),a
+   00B0 13                  201 	inc	de
+   00B1 1A                  202 	ld	a,(de)
+   00B2 22                  203 	ld	(hl+),a
+   00B3 13                  204 	inc	de
+   00B4 1A                  205 	ld	a,(de)
+   00B5 22                  206 	ld	(hl+),a
+   00B6 13                  207 	inc	de
+   00B7 1A                  208 	ld	a,(de)
+   00B8 77                  209 	ld	(hl),a
+   00B9 F8 08               210 	lda	hl,8(sp)
+   00BB 4D                  211 	ld	c,l
+   00BC 44                  212 	ld	b,h
+   00BD 59                  213 	ld	e,c
+   00BE 50                  214 	ld	d,b
+   00BF 1A                  215 	ld	a,(de)
+   00C0 F8 04               216 	lda	hl,4(sp)
+   00C2 22                  217 	ld	(hl+),a
+   00C3 13                  218 	inc	de
+   00C4 1A                  219 	ld	a,(de)
+   00C5 22                  220 	ld	(hl+),a
+   00C6 13                  221 	inc	de
+   00C7 1A                  222 	ld	a,(de)
+   00C8 22                  223 	ld	(hl+),a
+   00C9 13                  224 	inc	de
+   00CA 1A                  225 	ld	a,(de)
+   00CB 77                  226 	ld	(hl),a
+   00CC F8 00               227 	lda	hl,0(sp)
+   00CE 54                  228 	ld	d,h
+   00CF 5D                  229 	ld	e,l
+   00D0 F8 04               230 	lda	hl,4(sp)
+   00D2 1A                  231 	ld	a,(de)
+   00D3 96                  232 	sub	a,(hl)
+   00D4 23                  233 	inc	hl
+   00D5 13                  234 	inc	de
+   00D6 1A                  235 	ld	a,(de)
+   00D7 9E                  236 	sbc	a,(hl)
+   00D8 23                  237 	inc	hl
+   00D9 13                  238 	inc	de
+   00DA 1A                  239 	ld	a,(de)
+   00DB 9E                  240 	sbc	a,(hl)
+   00DC 23                  241 	inc	hl
+   00DD 13                  242 	inc	de
+   00DE 1A                  243 	ld	a,(de)
+   00DF 9E                  244 	sbc	a,(hl)
+   00E0 07                  245 	rlca
+   00E1 D2rE9s00            246 	jp	NC,00107$
+                            247 ;../_fslt.c:112: return (1);
+   00E4 1E 01               248 	ld	e,#0x01
+   00E6 C3rEBs00            249 	jp	00108$
+   00E9                     250 00107$:
+                            251 ;../_fslt.c:113: return (0);
+   00E9 1E 00               252 	ld	e,#0x00
+   00EB                     253 00108$:
+   00EB E8 10               254 	lda	sp,16(sp)
+   00ED C9                  255 	ret
+   00EE                     256 ___fslt_end::
+                            257 	.area _CODE
+                            258 	.area _CABS

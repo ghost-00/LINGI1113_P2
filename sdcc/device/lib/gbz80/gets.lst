@@ -1,0 +1,194 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
+                              4 ; This file was generated Wed Oct 23 12:26:13 2013
+                              5 ;--------------------------------------------------------
+                              6 	.module gets
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _gets
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../gets.c:3: char * gets(char *s) {
+                             41 ;	---------------------------------
+                             42 ; Function gets
+                             43 ; ---------------------------------
+   0000                      44 _gets_start::
+   0000                      45 _gets:
+   0000 E8 FB                46 	lda	sp,-5(sp)
+                             47 ;../gets.c:5: unsigned int count=0;
+   0002 F8 02                48 	lda	hl,2(sp)
+   0004 36 00                49 	ld	(hl),#0x00
+   0006 23                   50 	inc	hl
+   0007 36 00                51 	ld	(hl),#0x00
+                             52 ;../gets.c:7: while (1) {
+   0009                      53 00109$:
+                             54 ;../gets.c:8: c=getchar();
+   0009 CDr00s00             55 	call	_getchar
+   000C 4B                   56 	ld	c,e
+   000D F8 04                57 	lda	hl,4(sp)
+   000F 71                   58 	ld	(hl),c
+                             59 ;../gets.c:9: switch(c) {
+   0010 7E                   60 	ld	a,(hl)
+   0011 D6 08                61 	sub	a,#0x08
+   0013 CAr25s00             62 	jp	Z,00101$
+   0016                      63 00118$:
+   0016 7E                   64 	ld	a,(hl)
+   0017 D6 0A                65 	sub	a,#0x0A
+   0019 CAr60s00             66 	jp	Z,00105$
+   001C                      67 00119$:
+   001C 7E                   68 	ld	a,(hl)
+   001D D6 0D                69 	sub	a,#0x0D
+   001F CAr60s00             70 	jp	Z,00105$
+   0022                      71 00120$:
+   0022 C3r88s00             72 	jp	00106$
+                             73 ;../gets.c:10: case '\b': // backspace
+   0025                      74 00101$:
+                             75 ;../gets.c:11: if (count) {
+   0025 F8 02                76 	lda	hl,2(sp)
+   0027 2A                   77 	ld	a,(hl+)
+   0028 B6                   78 	or	a,(hl)
+   0029 CAr09s00             79 	jp	Z,00109$
+                             80 ;../gets.c:12: putchar ('\b');
+   002C 3E 08                81 	ld	a,#0x08
+   002E F5                   82 	push	af
+   002F 33                   83 	inc	sp
+   0030 CDr00s00             84 	call	_putchar
+   0033 E8 01                85 	lda	sp,1(sp)
+                             86 ;../gets.c:13: putchar (' ');
+   0035 3E 20                87 	ld	a,#0x20
+   0037 F5                   88 	push	af
+   0038 33                   89 	inc	sp
+   0039 CDr00s00             90 	call	_putchar
+   003C E8 01                91 	lda	sp,1(sp)
+                             92 ;../gets.c:14: putchar ('\b');
+   003E 3E 08                93 	ld	a,#0x08
+   0040 F5                   94 	push	af
+   0041 33                   95 	inc	sp
+   0042 CDr00s00             96 	call	_putchar
+   0045 E8 01                97 	lda	sp,1(sp)
+                             98 ;../gets.c:15: s--;
+   0047 F8 08                99 	lda	hl,8(sp)
+   0049 2B                  100 	dec	hl
+   004A 5E                  101 	ld	e,(hl)
+   004B 23                  102 	inc	hl
+   004C 56                  103 	ld	d,(hl)
+   004D 1B                  104 	dec	de
+   004E 2B                  105 	dec	hl
+   004F 73                  106 	ld	(hl),e
+   0050 23                  107 	inc	hl
+   0051 72                  108 	ld	(hl),d
+                            109 ;../gets.c:16: count--;
+   0052 F8 03               110 	lda	hl,3(sp)
+   0054 2B                  111 	dec	hl
+   0055 5E                  112 	ld	e,(hl)
+   0056 23                  113 	inc	hl
+   0057 56                  114 	ld	d,(hl)
+   0058 1B                  115 	dec	de
+   0059 2B                  116 	dec	hl
+   005A 73                  117 	ld	(hl),e
+   005B 23                  118 	inc	hl
+   005C 72                  119 	ld	(hl),d
+                            120 ;../gets.c:18: break;
+   005D C3r09s00            121 	jp	00109$
+                            122 ;../gets.c:20: case '\r': // CR or LF
+   0060                     123 00105$:
+                            124 ;../gets.c:21: putchar('\r');
+   0060 3E 0D               125 	ld	a,#0x0D
+   0062 F5                  126 	push	af
+   0063 33                  127 	inc	sp
+   0064 CDr00s00            128 	call	_putchar
+   0067 E8 01               129 	lda	sp,1(sp)
+                            130 ;../gets.c:22: putchar('\n');
+   0069 3E 0A               131 	ld	a,#0x0A
+   006B F5                  132 	push	af
+   006C 33                  133 	inc	sp
+   006D CDr00s00            134 	call	_putchar
+   0070 E8 01               135 	lda	sp,1(sp)
+                            136 ;../gets.c:23: *s=0;
+   0072 F8 07               137 	lda	hl,7(sp)
+   0074 2A                  138 	ld	a,(hl+)
+   0075 5E                  139 	ld	e,(hl)
+   0076 F8 00               140 	lda	hl,0(sp)
+   0078 22                  141 	ld	(hl+),a
+   0079 73                  142 	ld	(hl),e
+   007A 2B                  143 	dec	hl
+   007B 5E                  144 	ld	e,(hl)
+   007C 23                  145 	inc	hl
+   007D 56                  146 	ld	d,(hl)
+   007E 3E 00               147 	ld	a,#0x00
+   0080 12                  148 	ld	(de),a
+                            149 ;../gets.c:24: return s;
+   0081 2B                  150 	dec	hl
+   0082 5E                  151 	ld	e,(hl)
+   0083 23                  152 	inc	hl
+   0084 56                  153 	ld	d,(hl)
+   0085 C3rAFs00            154 	jp	00111$
+                            155 ;../gets.c:25: default:
+   0088                     156 00106$:
+                            157 ;../gets.c:26: *s++=c;
+   0088 F8 08               158 	lda	hl,8(sp)
+   008A 2B                  159 	dec	hl
+   008B 4E                  160 	ld	c,(hl)
+   008C 23                  161 	inc	hl
+   008D 46                  162 	ld	b,(hl)
+   008E F8 04               163 	lda	hl,4(sp)
+   0090 7E                  164 	ld	a,(hl)
+   0091 02                  165 	ld	(bc),a
+   0092 21 01 00            166 	ld	hl,#0x0001
+   0095 09                  167 	add	hl,bc
+   0096 7D                  168 	ld	a,l
+   0097 54                  169 	ld	d,h
+   0098 F8 07               170 	lda	hl,7(sp)
+   009A 22                  171 	ld	(hl+),a
+   009B 72                  172 	ld	(hl),d
+                            173 ;../gets.c:27: count++;
+   009C F8 02               174 	lda	hl,2(sp)
+   009E 34                  175 	inc	(hl)
+   009F 20 02               176 	jr	NZ,00121$
+   00A1 23                  177 	inc	hl
+   00A2 34                  178 	inc	(hl)
+   00A3                     179 00121$:
+                            180 ;../gets.c:28: putchar(c);
+   00A3 23                  181 	inc	hl
+   00A4 7E                  182 	ld	a,(hl)
+   00A5 F5                  183 	push	af
+   00A6 33                  184 	inc	sp
+   00A7 CDr00s00            185 	call	_putchar
+   00AA E8 01               186 	lda	sp,1(sp)
+                            187 ;../gets.c:30: }
+   00AC C3r09s00            188 	jp	00109$
+   00AF                     189 00111$:
+   00AF E8 05               190 	lda	sp,5(sp)
+   00B1 C9                  191 	ret
+   00B2                     192 _gets_end::
+                            193 	.area _CODE
+                            194 	.area _CABS

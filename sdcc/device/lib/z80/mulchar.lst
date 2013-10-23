@@ -1,0 +1,73 @@
+                              1         .area   _CODE
+                              2 
+                              3 ; This multiplication routine is similar to the one
+                              4 ; from Rodnay Zaks, "Programming the Z80".
+                              5 
+                              6 ; Now replaced by a builtin for code generation, but
+                              7 ; still called from some asm files in this directory.
+   0000                       8 __muluchar_rrx_s::
+   0000 21 03 00              9         ld      hl, #2+1
+   0003 54                   10         ld      d, h
+   0004 39                   11         add     hl, sp
+   0005 5E                   12         ld      e, (hl)
+   0006 2B                   13         dec     hl
+   0007 66                   14         ld      h, (hl)
+   0008 6A                   15         ld      l, d
+   0009 06 08                16         ld      b, #8
+   000B                      17 muluchar_rrx_s_loop:
+   000B 29                   18         add     hl, hl
+   000C 30 01                19         jr      nc, muluchar_rrx_s_noadd
+   000E 19                   20         add     hl, de
+   000F                      21 muluchar_rrx_s_noadd:
+   000F 10 FA                22         djnz    muluchar_rrx_s_loop
+   0011 C9                   23         ret
+                             24 
+                             25 ; operands have different sign
+                             26 
+   0012                      27 __mulsuchar_rrx_s::
+   0012 21 03 00             28         ld      hl,#2+1
+   0015 44                   29         ld      b, h
+   0016 39                   30         add     hl,sp
+                             31 
+   0017 5E                   32         ld      e,(hl)
+   0018 2B                   33         dec     hl
+   0019 4E                   34         ld      c,(hl)
+   001A 18 16                35         jr      signexte
+                             36 
+   001C                      37 __muluschar_rrx_s::
+   001C 21 02 00             38         ld      hl,#2
+   001F 44                   39         ld      b, h
+   0020 39                   40         add     hl,sp
+                             41 
+   0021 5E                   42         ld      e,(hl)
+   0022 23                   43         inc     hl
+   0023 4E                   44         ld      c,(hl)
+   0024 18 0C                45         jr      signexte
+                             46 
+                             47 ;; Originally from GBDK by Pascal Felber.
+                             48 
+   0026                      49 __mulschar_rrx_s::
+   0026 21 03 00             50         ld      hl,#2+1
+   0029 39                   51         add     hl,sp
+                             52 
+   002A 5E                   53         ld      e,(hl)
+   002B 2B                   54         dec     hl
+   002C 6E                   55         ld      l,(hl)
+                             56 
+                             57         ;; Fall through
+   002D                      58 __mulschar_rrx_hds::
+                             59         ;; Need to sign extend before going in.
+   002D 4D                   60         ld      c,l
+                             61 
+   002E 7D                   62         ld      a,l
+   002F 17                   63         rla
+   0030 9F                   64         sbc     a,a
+   0031 47                   65         ld      b,a
+   0032                      66 signexte:
+   0032 7B                   67         ld      a,e
+   0033 17                   68         rla
+   0034 9F                   69         sbc     a,a
+   0035 57                   70         ld      d,a
+                             71 
+   0036 C3r00s00             72         jp      __mul16
+                             73 
