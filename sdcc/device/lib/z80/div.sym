@@ -1,19 +1,0 @@
-ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24 Feb-1999  (Zilog Z80 / Hitachi HD64180), page 1.
-
-Symbol Table
-
-    .__.ABS.=  0000 G   |   0 .atmost7   0089 R   |   0 .chkde     004C R
-  0 .divideb   0070 R   |   0 .dodiv     0056 R   |   0 .dorem     0066 R
-  0 .dvloop    00A1 R   |   0 .dvloop7   008D R   |   0 .exit      006F R
-  0 .moretha   0099 R   |   0 .nodrop    00A8 R   |   0 .nodrop7   0092 R
-  0 __div16    003E GR  |   0 __div8     0036 GR  |   0 __divsch   0036 GR
-  0 __divsch   002F GR  |   0 __divsin   003E GR  |   0 __divsuc   0008 GR
-  0 __divu16   007E GR  |   0 __divu8    007B GR  |   0 __divuch   007B GR
-  0 __divuch   0074 GR  |   0 __divuin   007E GR  |   0 __divuin   0000 GR
-  0 __divusc   0021 GR  |   0 __modsuc   0013 GR  |   0 signexte   003A R
-
-ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24 Feb-1999  (Zilog Z80 / Hitachi HD64180), page 2.
-
-Area Table
-
-   0 _CODE      size   B2   flags 0
