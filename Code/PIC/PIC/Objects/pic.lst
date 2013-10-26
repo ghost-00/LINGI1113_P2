@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  1
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
-               00004 ; This file was generated Fri Oct 25 17:17:44 2013
+               00004 ; This file was generated Sat Oct 26 23:35:47 2013
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _EFLOCONbits
                00053         extern _MACON1bits
                00054         extern _MACON2bits
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  2
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _DDRAbits
                00107         extern _TRISAbits
                00108         extern _DDRBbits
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  3
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _T2CONbits
                00161         extern _T1CONbits
                00162         extern _RCONbits
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  4
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EHT1
                00215         extern _EHT2
                00216         extern _EHT3
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  5
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _EDMADSTH
                00269         extern _EDMACS
                00270         extern _EDMACSL
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  6
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _PORTH
                00323         extern _PORTJ
                00324         extern _LATA
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  7
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _TMR3L
                00377         extern _TMR3H
                00378         extern _CMCON
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  8
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _POSTDEC2
                00431         extern _POSTINC2
                00432         extern _INDF2
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE  9
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   00000FEA     00484 FSR0H   equ     0xfea
   00000FE1     00485 FSR1L   equ     0xfe1
   00000FD9     00486 FSR2L   equ     0xfd9
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 10
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -598,7 +598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00538 r0x13   res     1
                00539 r0x14   res     1
                00540 r0x15   res     1
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 11
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -625,47 +625,47 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00559 ; ; Starting pCode block
                00560 S_pic__main     code
 0000 00561 _main:
-               00562 ;       .line   591; pic.c      LED0_TRIS = 0; // Configure 1st led pin as output (yellow)
+               00562 ;       .line   474; pic.c      LED0_TRIS = 0; // Configure 1st led pin as output (yellow)
 0000 9000      00563         BCF     _TRISJbits, 0
-               00564 ;       .line   592; pic.c      LED1_TRIS = 0; // Configure 2nd led pin as output (red)
+               00564 ;       .line   475; pic.c      LED1_TRIS = 0; // Configure 2nd led pin as output (red)
 0002 9200      00565         BCF     _TRISJbits, 1
-               00566 ;       .line   593; pic.c      LED2_TRIS = 0; // Configure 3rd led pin as output (red)
+               00566 ;       .line   476; pic.c      LED2_TRIS = 0; // Configure 3rd led pin as output (red)
 0004 9400      00567         BCF     _TRISJbits, 2
-               00568 ;       .line   595; pic.c      BUTTON0_TRIS = 1; // Configure button0 as input
+               00568 ;       .line   478; pic.c      BUTTON0_TRIS = 1; // Configure button0 as input
 0006 8600      00569         BSF     _TRISBbits, 3
-               00570 ;       .line   596; pic.c      BUTTON1_TRIS = 1; // Configure button1 as input
+               00570 ;       .line   479; pic.c      BUTTON1_TRIS = 1; // Configure button1 as input
 0008 8200      00571         BSF     _TRISBbits, 1
-               00572 ;       .line   598; pic.c      RCONbits.IPEN      = 1;   // Enable interrupts priority levels
+               00572 ;       .line   481; pic.c      RCONbits.IPEN      = 1;   // Enable interrupts priority levels
 000A 8E00      00573         BSF     _RCONbits, 7
-               00574 ;       .line   599; pic.c      INTCON3bits.INT1F  = 0;   // Clear INT1 flag
+               00574 ;       .line   482; pic.c      INTCON3bits.INT1F  = 0;   // Clear INT1 flag
 000C 9000      00575         BCF     _INTCON3bits, 0
-               00576 ;       .line   600; pic.c      INTCON3bits.INT3F  = 0;   // Clear INT3 flag
+               00576 ;       .line   483; pic.c      INTCON3bits.INT3F  = 0;   // Clear INT3 flag
 000E 9400      00577         BCF     _INTCON3bits, 2
-               00578 ;       .line   601; pic.c      INTCON3bits.INT1P  = 1;   // Connect INT1 interrupt (button 1) to high priority
+               00578 ;       .line   484; pic.c      INTCON3bits.INT1P  = 1;   // Connect INT1 interrupt (button 1) to high priority
 0010 8C00      00579         BSF     _INTCON3bits, 6
-               00580 ;       .line   603; pic.c      INTCON2bits.INTEDG1= 0;   // INT1 interrupts on falling edge
+               00580 ;       .line   486; pic.c      INTCON2bits.INTEDG1= 0;   // INT1 interrupts on falling edge
 0012 9A00      00581         BCF     _INTCON2bits, 5
-               00582 ;       .line   604; pic.c      INTCON2bits.INTEDG3= 0;   // INT3 interrupts on falling edge
+               00582 ;       .line   487; pic.c      INTCON2bits.INTEDG3= 0;   // INT3 interrupts on falling edge
 0014 9600      00583         BCF     _INTCON2bits, 3
-               00584 ;       .line   605; pic.c      INTCONbits.GIE     = 1;   // Enable high priority interrupts
+               00584 ;       .line   488; pic.c      INTCONbits.GIE     = 1;   // Enable high priority interrupts
 0016 8E00      00585         BSF     _INTCONbits, 7
-               00586 ;       .line   606; pic.c      INTCON3bits.INT1E  = 1;   // Enable INT1 interrupt (button 1)
+               00586 ;       .line   489; pic.c      INTCON3bits.INT1E  = 1;   // Enable INT1 interrupt (button 1)
 0018 8600      00587         BSF     _INTCON3bits, 3
-               00588 ;       .line   607; pic.c      INTCON3bits.INT3E  = 1;   // Enable INT3 interupt (button 0)
+               00588 ;       .line   490; pic.c      INTCON3bits.INT3E  = 1;   // Enable INT3 interupt (button 0)
 001A 8A00      00589         BSF     _INTCON3bits, 5
-               00590 ;       .line   609; pic.c      T0CONbits.T0CS   = 0; //use timer0 instruction cycle clock
+               00590 ;       .line   492; pic.c      T0CONbits.T0CS   = 0; //use timer0 instruction cycle clock
 001C 9A00      00591         BCF     _T0CONbits, 5
-               00592 ;       .line   610; pic.c      LCDInit();
+               00592 ;       .line   493; pic.c      LCDInit();
 001E EC00 F000 00593         CALL    _LCDInit
-               00594 ;       .line   611; pic.c      init_board();
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 12
+               00594 ;       .line   494; pic.c      init_board();
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 0022 EC00 F000 00595         CALL    _init_board
-               00596 ;       .line   613; pic.c      DisplayString(FIRST_LINE,firstLine);
+               00596 ;       .line   496; pic.c      DisplayString(FIRST_LINE,firstLine);
 0026 0E00      00597         MOVLW   HIGH(_firstLine)
 0028 6E00      00598         MOVWF   r0x01
 002A 0E00      00599         MOVLW   LOW(_firstLine)
@@ -683,7 +683,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0042 EC00 F000 00611         CALL    _DisplayString
 0046 0E04      00612         MOVLW   0x04
 0048 26E1      00613         ADDWF   FSR1L, F
-               00614 ;       .line   614; pic.c      DisplayString(SECOND_LINE,secondLine);
+               00614 ;       .line   497; pic.c      DisplayString(SECOND_LINE,secondLine);
 004A 0E00      00615         MOVLW   HIGH(_secondLine)
 004C 6E00      00616         MOVWF   r0x01
 004E 0E00      00617         MOVLW   LOW(_secondLine)
@@ -701,24 +701,24 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0066 EC00 F000 00629         CALL    _DisplayString
 006A 0E04      00630         MOVLW   0x04
 006C 26E1      00631         ADDWF   FSR1L, F
-               00632 ;       .line   616; pic.c      INTCON2bits.TMR0IP       = 1; // Interruption du au timer = interruption haute
+               00632 ;       .line   499; pic.c      INTCON2bits.TMR0IP       = 1; // Interruption du au timer = interruption haute
 006E 8400      00633         BSF     _INTCON2bits, 2
-               00634 ;       .line   617; pic.c      INTCONbits.TMR0IF = 0; // reset flag
+               00634 ;       .line   500; pic.c      INTCONbits.TMR0IF = 0; // reset flag
 0070 9400      00635         BCF     _INTCONbits, 2
-               00636 ;       .line   618; pic.c      T0CONbits.T08BIT = 1; // use timer0 8-bit counter
+               00636 ;       .line   501; pic.c      T0CONbits.T08BIT = 1; // use timer0 8-bit counter
 0072 8C00      00637         BSF     _T0CONbits, 6
-               00638 ;       .line   619; pic.c      T0CONbits.PSA = 1; // disable timer0 prescaler
+               00638 ;       .line   502; pic.c      T0CONbits.PSA = 1; // disable timer0 prescaler
 0074 8600      00639         BSF     _T0CONbits, 3
-               00640 ;       .line   620; pic.c      INTCONbits.TMR0IE = 1; // On active les interuptions TMR0
+               00640 ;       .line   503; pic.c      INTCONbits.TMR0IE = 1; // On active les interuptions TMR0
 0076 8A00      00641         BSF     _INTCONbits, 5
-               00642 ;       .line   621; pic.c      LED1_IO = 0; //turn off the led
+               00642 ;       .line   504; pic.c      LED1_IO = 0; //turn off the led
 0078 9200      00643         BCF     _LATJbits, 1
-               00644 ;       .line   622; pic.c      LED2_IO = 0;
+               00644 ;       .line   505; pic.c      LED2_IO = 0;
 007A 9400      00645         BCF     _LATJbits, 2
-               00646 ;       .line   623; pic.c      LED0_IO = 0;
+               00646 ;       .line   506; pic.c      LED0_IO = 0;
 007C 9000      00647         BCF     _LATJbits, 0
 007E 0012      00648         RETURN  
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 13
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -728,7 +728,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00650 ; ; Starting pCode block
                00651 S_pic__strlcpy  code
 0000 00652 _strlcpy:
-               00653 ;       .line   559; pic.c      strlcpy(char *dst, const char *src, size_t siz)
+               00653 ;       .line   442; pic.c      strlcpy(char *dst, const char *src, size_t siz)
 0000 CFD9 FFE5 00654         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00655         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00656         MOVFF   r0x00, POSTDEC1
@@ -769,16 +769,16 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0086 CFDB F000 00691         MOVFF   PLUSW2, r0x06
 008A 0E09      00692         MOVLW   0x09
 008C CFDB F000 00693         MOVFF   PLUSW2, r0x07
-               00694 ;       .line   561; pic.c      char       *d = dst;
+               00694 ;       .line   444; pic.c      char       *d = dst;
 0090 C000 F000 00695         MOVFF   r0x00, r0x08
 0094 C000 F000 00696         MOVFF   r0x01, r0x09
 0098 C000 F000 00697         MOVFF   r0x02, r0x0a
-               00698 ;       .line   562; pic.c      const char *s = src;
+               00698 ;       .line   445; pic.c      const char *s = src;
 009C C000 F000 00699         MOVFF   r0x03, r0x0b
 00A0 C000 F000 00700         MOVFF   r0x04, r0x0c
 00A4 C000 F000 00701         MOVFF   r0x05, r0x0d
-               00702 ;       .line   563; pic.c      size_t      n = siz;
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 14
+               00702 ;       .line   446; pic.c      size_t      n = siz;
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -786,12 +786,12 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 00A8 C000 F000 00703         MOVFF   r0x06, r0x0e
 00AC C000 F000 00704         MOVFF   r0x07, r0x0f
-               00705 ;       .line   566; pic.c      if (n != 0)
+               00705 ;       .line   449; pic.c      if (n != 0)
 00B0 5000      00706         MOVF    r0x06, W
 00B2 1000      00707         IORWF   r0x07, W
 00B4 B4D8      00708         BTFSC   STATUS, 2
 00B6 D000      00709         BRA     _00426_DS_
-               00710 ;       .line   568; pic.c      while (--n != 0)
+               00710 ;       .line   451; pic.c      while (--n != 0)
 00B8 C000 F000 00711         MOVFF   r0x03, r0x10
 00BC C000 F000 00712         MOVFF   r0x04, r0x11
 00C0 C000 F000 00713         MOVFF   r0x05, r0x12
@@ -805,7 +805,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D4 5000      00721         MOVF    r0x13, W
 00D6 1000      00722         IORWF   r0x14, W
 00D8 E000      00723         BZ      _00441_DS_
-               00724 ;       .line   570; pic.c      if ((*d++ = *s++) == '\0')
+               00724 ;       .line   453; pic.c      if ((*d++ = *s++) == '\0')
 00DA C000 FFE9 00725         MOVFF   r0x10, FSR0L
 00DE C000 FFF3 00726         MOVFF   r0x11, PRODL
 00E2 5000      00727         MOVF    r0x12, W
@@ -829,7 +829,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0110 5000      00745         MOVF    r0x15, W
 0112 E100      00746         BNZ     _00422_DS_
 0114 00747 _00441_DS_:
-               00748 ;       .line   571; pic.c      break;
+               00748 ;       .line   454; pic.c      break;
 0114 C000 F000 00749         MOVFF   r0x10, r0x0b
 0118 C000 F000 00750         MOVFF   r0x11, r0x0c
 011C C000 F000 00751         MOVFF   r0x12, r0x0d
@@ -838,22 +838,22 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0128 C000 F000 00754         MOVFF   r0x02, r0x0a
 012C C000 F000 00755         MOVFF   r0x13, r0x0e
 0130 C000 F000 00756         MOVFF   r0x14, r0x0f
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 15
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 0134 00757 _00426_DS_:
-               00758 ;       .line   576; pic.c      if (n == 0)
+               00758 ;       .line   459; pic.c      if (n == 0)
 0134 5000      00759         MOVF    r0x0e, W
 0136 1000      00760         IORWF   r0x0f, W
 0138 E100      00761         BNZ     _00433_DS_
-               00762 ;       .line   578; pic.c      if (siz != 0)
+               00762 ;       .line   461; pic.c      if (siz != 0)
 013A 5000      00763         MOVF    r0x06, W
 013C 1000      00764         IORWF   r0x07, W
 013E E000      00765         BZ      _00440_DS_
-               00766 ;       .line   579; pic.c      *d = '\0';          /* NUL-terminate dst */
+               00766 ;       .line   462; pic.c      *d = '\0';          /* NUL-terminate dst */
 0140 0E00      00767         MOVLW   0x00
 0142 6EE5      00768         MOVWF   POSTDEC1
 0144 C000 FFE9 00769         MOVFF   r0x08, FSR0L
@@ -861,7 +861,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 014C 5000      00771         MOVF    r0x0a, W
 014E EC00 F000 00772         CALL    __gptrput1
 0152 00773 _00440_DS_:
-               00774 ;       .line   580; pic.c      while (*s++)
+               00774 ;       .line   463; pic.c      while (*s++)
 0152 C000 F000 00775         MOVFF   r0x0b, r0x00
 0156 C000 F000 00776         MOVFF   r0x0c, r0x01
 015A C000 F000 00777         MOVFF   r0x0d, r0x02
@@ -882,7 +882,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0180 C000 F000 00792         MOVFF   r0x01, r0x0c
 0184 C000 F000 00793         MOVFF   r0x02, r0x0d
 0188 00794 _00433_DS_:
-               00795 ;       .line   586; pic.c      return (s - src - 1);       /* count does not include NUL */
+               00795 ;       .line   469; pic.c      return (s - src - 1);       /* count does not include NUL */
 0188 5000      00796         MOVF    r0x03, W
 018A 5C00      00797         SUBWF   r0x0b, W
 018C 6E00      00798         MOVWF   r0x03
@@ -898,7 +898,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01A2 CFE4 F000 00808         MOVFF   PREINC1, r0x15
 01A6 CFE4 F000 00809         MOVFF   PREINC1, r0x14
 01AA CFE4 F000 00810         MOVFF   PREINC1, r0x13
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 16
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -929,7 +929,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00833 ; ; Starting pCode block
                00834 S_pic__DisplayString    code
 0000 00835 _DisplayString:
-               00836 ;       .line   550; pic.c      DisplayString(BYTE pos, char* text)
+               00836 ;       .line   433; pic.c      DisplayString(BYTE pos, char* text)
 0000 CFD9 FFE5 00837         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00838         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00839         MOVFF   r0x00, POSTDEC1
@@ -948,7 +948,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0036 CFDB F000 00852         MOVFF   PLUSW2, r0x02
 003A 0E05      00853         MOVLW   0x05
 003C CFDB F000 00854         MOVFF   PLUSW2, r0x03
-               00855 ;       .line   552; pic.c      BYTE l= strlen(text)+1;
+               00855 ;       .line   435; pic.c      BYTE l= strlen(text)+1;
 0040 5000      00856         MOVF    r0x03, W
 0042 6EE5      00857         MOVWF   POSTDEC1
 0044 5000      00858         MOVF    r0x02, W
@@ -958,7 +958,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 004C EC00 F000 00862         CALL    _strlen
 0050 6E00      00863         MOVWF   r0x04
 0052 CFF3 F000 00864         MOVFF   PRODL, r0x05
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 17
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -967,11 +967,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0056 0E03      00865         MOVLW   0x03
 0058 26E1      00866         ADDWF   FSR1L, F
 005A 2A00      00867         INCF    r0x04, F
-               00868 ;       .line   553; pic.c      BYTE max= 32-pos;
+               00868 ;       .line   436; pic.c      BYTE max= 32-pos;
 005C 5000      00869         MOVF    r0x00, W
 005E 0820      00870         SUBLW   0x20
 0060 6E00      00871         MOVWF   r0x05
-               00872 ;       .line   554; pic.c      strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+               00872 ;       .line   437; pic.c      strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
 0062 6A00      00873         CLRF    r0x06
 0064 0E00      00874         MOVLW   LOW(_LCDText)
 0066 2600      00875         ADDWF   r0x00, F
@@ -1008,7 +1008,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00A4 EC00 F000 00906         CALL    _strlcpy
 00A8 0E08      00907         MOVLW   0x08
 00AA 26E1      00908         ADDWF   FSR1L, F
-               00909 ;       .line   555; pic.c      LCDUpdate();
+               00909 ;       .line   438; pic.c      LCDUpdate();
 00AC EC00 F000 00910         CALL    _LCDUpdate
 00B0 CFE4 F000 00911         MOVFF   PREINC1, r0x07
 00B4 CFE4 F000 00912         MOVFF   PREINC1, r0x06
@@ -1018,7 +1018,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00C4 CFE4 F000 00916         MOVFF   PREINC1, r0x02
 00C8 CFE4 F000 00917         MOVFF   PREINC1, r0x01
 00CC CFE4 F000 00918         MOVFF   PREINC1, r0x00
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 18
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1030,7 +1030,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00922 ; ; Starting pCode block
                00923 S_pic__DisplayWORD      code
 0000 00924 _DisplayWORD:
-               00925 ;       .line   531; pic.c      DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
+               00925 ;       .line   414; pic.c      DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
 0000 CFD9 FFE5 00926         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00927         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00928         MOVFF   r0x00, POSTDEC1
@@ -1045,7 +1045,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0028 CFDB F000 00937         MOVFF   PLUSW2, r0x01
 002C 0E04      00938         MOVLW   0x04
 002E CFDB F000 00939         MOVFF   PLUSW2, r0x02
-               00940 ;       .line   539; pic.c      ultoa(w, WDigit, radix);
+               00940 ;       .line   422; pic.c      ultoa(w, WDigit, radix);
 0032 6A00      00941         CLRF    r0x03
 0034 6A00      00942         CLRF    r0x04
 0036 0E0A      00943         MOVLW   0x0a
@@ -1065,7 +1065,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0052 EC00 F000 00957         CALL    _ultoa
 0056 0E07      00958         MOVLW   0x07
 0058 26E1      00959         ADDWF   FSR1L, F
-               00960 ;       .line   540; pic.c      for(j = 0; j < strlen((char*)WDigit); j++)
+               00960 ;       .line   423; pic.c      for(j = 0; j < strlen((char*)WDigit); j++)
 005A 6A00      00961         CLRF    r0x01
 005C 00962 _00394_DS_:
 005C 0E00      00963         MOVLW   HIGH(_DisplayWORD_WDigit_1_1)
@@ -1078,7 +1078,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 006A 6EE5      00970         MOVWF   POSTDEC1
 006C 5000      00971         MOVF    r0x03, W
 006E 6EE5      00972         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 19
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1104,7 +1104,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0098 5C00      00990         SUBWF   r0x04, W
 009A 00991 _00404_DS_:
 009A E200      00992         BC      _00397_DS_
-               00993 ;       .line   542; pic.c      LCDText[LCDPos++] = WDigit[j];
+               00993 ;       .line   425; pic.c      LCDText[LCDPos++] = WDigit[j];
 009C C000 F000 00994         MOVFF   r0x00, r0x02
 00A0 2A00      00995         INCF    r0x00, F
 00A2 6A00      00996         CLRF    r0x03
@@ -1124,11 +1124,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00C4 C000 FFE9 01010         MOVFF   r0x02, FSR0L
 00C8 C000 FFEA 01011         MOVFF   r0x03, FSR0H
 00CC C000 FFEF 01012         MOVFF   r0x04, INDF0
-               01013 ;       .line   540; pic.c      for(j = 0; j < strlen((char*)WDigit); j++)
+               01013 ;       .line   423; pic.c      for(j = 0; j < strlen((char*)WDigit); j++)
 00D0 2A00      01014         INCF    r0x01, F
 00D2 D000      01015         BRA     _00394_DS_
 00D4 01016 _00397_DS_:
-               01017 ;       .line   544; pic.c      if(LCDPos < 32u)
+               01017 ;       .line   427; pic.c      if(LCDPos < 32u)
 00D4 C000 F000 01018         MOVFF   r0x00, r0x01
 00D8 6A00      01019         CLRF    r0x02
 00DA 0E00      01020         MOVLW   0x00
@@ -1138,13 +1138,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00E2 5C00      01024         SUBWF   r0x01, W
 00E4 01025 _00405_DS_:
 00E4 E200      01026         BC      _00393_DS_
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 20
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               01027 ;       .line   545; pic.c      LCDText[LCDPos] = 0;
+               01027 ;       .line   428; pic.c      LCDText[LCDPos] = 0;
 00E6 6A00      01028         CLRF    r0x01
 00E8 0E00      01029         MOVLW   LOW(_LCDText)
 00EA 2600      01030         ADDWF   r0x00, F
@@ -1155,7 +1155,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00F8 0E00      01035         MOVLW   0x00
 00FA 6EEF      01036         MOVWF   INDF0
 00FC 01037 _00393_DS_:
-               01038 ;       .line   546; pic.c      LCDUpdate();
+               01038 ;       .line   429; pic.c      LCDUpdate();
 00FC EC00 F000 01039         CALL    _LCDUpdate
 0100 CFE4 F000 01040         MOVFF   PREINC1, r0x05
 0104 CFE4 F000 01041         MOVFF   PREINC1, r0x04
@@ -1169,12 +1169,12 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01049 ; ; Starting pCode block
                01050 S_pic__init_board       code
 0000 01051 _init_board:
-               01052 ;       .line   525; pic.c      init_board(void) {
+               01052 ;       .line   408; pic.c      init_board(void) {
 0000 CFD9 FFE5 01053         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01054         MOVFF   FSR1L, FSR2L
-               01055 ;       .line   526; pic.c      TRISJbits.TRISJ0=0; // configure PORTJ0 for output (LED)
+               01055 ;       .line   409; pic.c      TRISJbits.TRISJ0=0; // configure PORTJ0 for output (LED)
 0008 9000      01056         BCF     _TRISJbits, 0
-               01057 ;       .line   527; pic.c      TRISJbits.TRISJ1=0; // configure PORTJ1 for output (LED)
+               01057 ;       .line   410; pic.c      TRISJbits.TRISJ1=0; // configure PORTJ1 for output (LED)
 000A 9200      01058         BCF     _TRISJbits, 1
 000C CFE4 FFD9 01059         MOVFF   PREINC1, FSR2L
 0010 0012      01060         RETURN  
@@ -1182,7 +1182,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01062 ; ; Starting pCode block
                01063 S_pic__blink    code
 0000 01064 _blink:
-               01065 ;       .line   466; pic.c      blink()
+               01065 ;       .line   349; pic.c      blink()
 0000 CFD9 FFE5 01066         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01067         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01068         MOVFF   r0x00, POSTDEC1
@@ -1191,14 +1191,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0014 C000 FFE5 01071         MOVFF   r0x03, POSTDEC1
 0018 C000 FFE5 01072         MOVFF   r0x04, POSTDEC1
 001C C000 FFE5 01073         MOVFF   r0x05, POSTDEC1
-               01074 ;       .line   468; pic.c      strlcpy(temp1,firstLine,16);
+               01074 ;       .line   351; pic.c      strlcpy(temp1,firstLine,16);
 0020 0E00      01075         MOVLW   HIGH(_temp1)
 0022 6E00      01076         MOVWF   r0x01
 0024 0E00      01077         MOVLW   LOW(_temp1)
 0026 6E00      01078         MOVWF   r0x00
 0028 0E80      01079         MOVLW   0x80
 002A 6E00      01080         MOVWF   r0x02
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 21
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1229,7 +1229,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0058 EC00 F000 01103         CALL    _strlcpy
 005C 0E08      01104         MOVLW   0x08
 005E 26E1      01105         ADDWF   FSR1L, F
-               01106 ;       .line   469; pic.c      strlcpy(temp2,secondLine,16);
+               01106 ;       .line   352; pic.c      strlcpy(temp2,secondLine,16);
 0060 0E00      01107         MOVLW   HIGH(_temp2)
 0062 6E00      01108         MOVWF   r0x01
 0064 0E00      01109         MOVLW   LOW(_temp2)
@@ -1258,7 +1258,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0092 6EE5      01132         MOVWF   POSTDEC1
 0094 5000      01133         MOVF    r0x00, W
 0096 6EE5      01134         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 22
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1268,38 +1268,38 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 009C 0E08      01136         MOVLW   0x08
 009E 26E1      01137         ADDWF   FSR1L, F
 00A0 0000      01138         BANKSEL _bin
-               01139 ;       .line   471; pic.c      if(bin)//Rentre si bin = 1 => Déjà afficher quelque chose sur écran sans "trou"/curseur
+               01139 ;       .line   354; pic.c      if(bin)//Rentre si bin = 1 => Déjà afficher quelque chose sur écran sans "trou"/curseur
 00A2 5100      01140         MOVF    _bin, W, B
 00A4 0000      01141         BANKSEL (_bin + 1)
 00A6 1100      01142         IORWF   (_bin + 1), W, B
 00A8 B4D8      01143         BTFSC   STATUS, 2
 00AA D000      01144         BRA     _00360_DS_
 00AC 0000      01145         BANKSEL _currentMode
-               01146 ;       .line   473; pic.c      if(currentMode==TIME)
+               01146 ;       .line   356; pic.c      if(currentMode==TIME)
 00AE 5100      01147         MOVF    _currentMode, W, B
 00B0 0A01      01148         XORLW   0x01
 00B2 E100      01149         BNZ     _00357_DS_
-               01150 ;       .line   475; pic.c      temp1[0]=' ';
+               01150 ;       .line   358; pic.c      temp1[0]=' ';
 00B4 0E20      01151         MOVLW   0x20
 00B6 0000      01152         BANKSEL _temp1
 00B8 6F00      01153         MOVWF   _temp1, B
-               01154 ;       .line   476; pic.c      temp1[1]=' ';
+               01154 ;       .line   359; pic.c      temp1[1]=' ';
 00BA 0E20      01155         MOVLW   0x20
 00BC 0000      01156         BANKSEL (_temp1 + 1)
 00BE 6F00      01157         MOVWF   (_temp1 + 1), B
-               01158 ;       .line   477; pic.c      temp1[2]=' ';
+               01158 ;       .line   360; pic.c      temp1[2]=' ';
 00C0 0E20      01159         MOVLW   0x20
 00C2 0000      01160         BANKSEL (_temp1 + 2)
 00C4 6F00      01161         MOVWF   (_temp1 + 2), B
-               01162 ;       .line   478; pic.c      temp1[3]=' ';
+               01162 ;       .line   361; pic.c      temp1[3]=' ';
 00C6 0E20      01163         MOVLW   0x20
 00C8 0000      01164         BANKSEL (_temp1 + 3)
 00CA 6F00      01165         MOVWF   (_temp1 + 3), B
-               01166 ;       .line   479; pic.c      temp1[4]=' ';
+               01166 ;       .line   362; pic.c      temp1[4]=' ';
 00CC 0E20      01167         MOVLW   0x20
 00CE 0000      01168         BANKSEL (_temp1 + 4)
 00D0 6F00      01169         MOVWF   (_temp1 + 4), B
-               01170 ;       .line   480; pic.c      DisplayString(FIRST_LINE,temp1);
+               01170 ;       .line   363; pic.c      DisplayString(FIRST_LINE,temp1);
 00D2 0E00      01171         MOVLW   HIGH(_temp1)
 00D4 6E00      01172         MOVWF   r0x01
 00D6 0E00      01173         MOVLW   LOW(_temp1)
@@ -1317,8 +1317,8 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00EE EC00 F000 01185         CALL    _DisplayString
 00F2 0E04      01186         MOVLW   0x04
 00F4 26E1      01187         ADDWF   FSR1L, F
-               01188 ;       .line   481; pic.c      DisplayString(SECOND_LINE,temp2);
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 23
+               01188 ;       .line   364; pic.c      DisplayString(SECOND_LINE,temp2);
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1344,31 +1344,31 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 011A D000      01206         BRA     _00358_DS_
 011C 01207 _00357_DS_:
 011C 0000      01208         BANKSEL _currentMode
-               01209 ;       .line   483; pic.c      else if(currentMode==ALARM)
+               01209 ;       .line   366; pic.c      else if(currentMode==ALARM)
 011E 5100      01210         MOVF    _currentMode, W, B
 0120 0A02      01211         XORLW   0x02
 0122 E100      01212         BNZ     _00354_DS_
-               01213 ;       .line   485; pic.c      temp2[0]=' ';
+               01213 ;       .line   368; pic.c      temp2[0]=' ';
 0124 0E20      01214         MOVLW   0x20
 0126 0000      01215         BANKSEL _temp2
 0128 6F00      01216         MOVWF   _temp2, B
-               01217 ;       .line   486; pic.c      temp2[1]=' ';
+               01217 ;       .line   369; pic.c      temp2[1]=' ';
 012A 0E20      01218         MOVLW   0x20
 012C 0000      01219         BANKSEL (_temp2 + 1)
 012E 6F00      01220         MOVWF   (_temp2 + 1), B
-               01221 ;       .line   487; pic.c      temp2[2]=' ';
+               01221 ;       .line   370; pic.c      temp2[2]=' ';
 0130 0E20      01222         MOVLW   0x20
 0132 0000      01223         BANKSEL (_temp2 + 2)
 0134 6F00      01224         MOVWF   (_temp2 + 2), B
-               01225 ;       .line   488; pic.c      temp2[3]=' ';
+               01225 ;       .line   371; pic.c      temp2[3]=' ';
 0136 0E20      01226         MOVLW   0x20
 0138 0000      01227         BANKSEL (_temp2 + 3)
 013A 6F00      01228         MOVWF   (_temp2 + 3), B
-               01229 ;       .line   489; pic.c      temp2[4]=' ';
+               01229 ;       .line   372; pic.c      temp2[4]=' ';
 013C 0E20      01230         MOVLW   0x20
 013E 0000      01231         BANKSEL (_temp2 + 4)
 0140 6F00      01232         MOVWF   (_temp2 + 4), B
-               01233 ;       .line   490; pic.c      DisplayString(FIRST_LINE,temp1);
+               01233 ;       .line   373; pic.c      DisplayString(FIRST_LINE,temp1);
 0142 0E00      01234         MOVLW   HIGH(_temp1)
 0144 6E00      01235         MOVWF   r0x01
 0146 0E00      01236         MOVLW   LOW(_temp1)
@@ -1378,7 +1378,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 014E 5000      01240         MOVF    r0x02, W
 0150 6EE5      01241         MOVWF   POSTDEC1
 0152 5000      01242         MOVF    r0x01, W
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 24
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1392,7 +1392,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 015E EC00 F000 01248         CALL    _DisplayString
 0162 0E04      01249         MOVLW   0x04
 0164 26E1      01250         ADDWF   FSR1L, F
-               01251 ;       .line   491; pic.c      DisplayString(SECOND_LINE,temp2);
+               01251 ;       .line   374; pic.c      DisplayString(SECOND_LINE,temp2);
 0166 0E00      01252         MOVLW   HIGH(_temp2)
 0168 6E00      01253         MOVWF   r0x01
 016A 0E00      01254         MOVLW   LOW(_temp2)
@@ -1413,14 +1413,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 018A D000      01269         BRA     _00358_DS_
 018C 01270 _00354_DS_:
 018C 0000      01271         BANKSEL _currentMode
-               01272 ;       .line   493; pic.c      else if(currentMode==EDIT_T)
+               01272 ;       .line   376; pic.c      else if(currentMode==EDIT_T)
 018E 5100      01273         MOVF    _currentMode, W, B
 0190 0A03      01274         XORLW   0x03
 0192 E000      01275         BZ      _00376_DS_
 0194 D000      01276         BRA     _00351_DS_
 0196 01277 _00376_DS_:
 0196 0000      01278         BANKSEL (_posC + 1)
-               01279 ;       .line   495; pic.c      temp1[firstTab[posC]]=' ';
+               01279 ;       .line   378; pic.c      temp1[firstTab[posC]]=' ';
 0198 5100      01280         MOVF    (_posC + 1), W, B
 019A 6EE5      01281         MOVWF   POSTDEC1
 019C 0000      01282         BANKSEL _posC
@@ -1438,7 +1438,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01B8 0E00      01294         MOVLW   LOW(_firstTab)
 01BA 2600      01295         ADDWF   r0x00, F
 01BC 0E00      01296         MOVLW   HIGH(_firstTab)
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 25
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1457,7 +1457,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01DC C000 FFEA 01307         MOVFF   r0x01, FSR0H
 01E0 0E20      01308         MOVLW   0x20
 01E2 6EEF      01309         MOVWF   INDF0
-               01310 ;       .line   496; pic.c      DisplayString(FIRST_LINE,temp1);
+               01310 ;       .line   379; pic.c      DisplayString(FIRST_LINE,temp1);
 01E4 0E00      01311         MOVLW   HIGH(_temp1)
 01E6 6E00      01312         MOVWF   r0x01
 01E8 0E00      01313         MOVLW   LOW(_temp1)
@@ -1475,7 +1475,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0200 EC00 F000 01325         CALL    _DisplayString
 0204 0E04      01326         MOVLW   0x04
 0206 26E1      01327         ADDWF   FSR1L, F
-               01328 ;       .line   497; pic.c      DisplayString(SECOND_LINE,temp2);
+               01328 ;       .line   380; pic.c      DisplayString(SECOND_LINE,temp2);
 0208 0E00      01329         MOVLW   HIGH(_temp2)
 020A 6E00      01330         MOVWF   r0x01
 020C 0E00      01331         MOVLW   LOW(_temp2)
@@ -1496,9 +1496,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 022C D000      01346         BRA     _00358_DS_
 022E 01347 _00351_DS_:
 022E 0000      01348         BANKSEL _currentMode
-               01349 ;       .line   499; pic.c      else if(currentMode==EDIT_A)
+               01349 ;       .line   382; pic.c      else if(currentMode==EDIT_A)
 0230 5100      01350         MOVF    _currentMode, W, B
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 26
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1509,7 +1509,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0236 D000      01353         BRA     _00348_DS_
 0238 01354 _00378_DS_:
 0238 0000      01355         BANKSEL (_posA + 1)
-               01356 ;       .line   501; pic.c      temp2[secondTab[posA]]=' ';
+               01356 ;       .line   384; pic.c      temp2[secondTab[posA]]=' ';
 023A 5100      01357         MOVF    (_posA + 1), W, B
 023C 6EE5      01358         MOVWF   POSTDEC1
 023E 0000      01359         BANKSEL _posA
@@ -1540,7 +1540,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 027E C000 FFEA 01384         MOVFF   r0x01, FSR0H
 0282 0E20      01385         MOVLW   0x20
 0284 6EEF      01386         MOVWF   INDF0
-               01387 ;       .line   502; pic.c      DisplayString(FIRST_LINE,temp1);
+               01387 ;       .line   385; pic.c      DisplayString(FIRST_LINE,temp1);
 0286 0E00      01388         MOVLW   HIGH(_temp1)
 0288 6E00      01389         MOVWF   r0x01
 028A 0E00      01390         MOVLW   LOW(_temp1)
@@ -1558,13 +1558,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02A2 EC00 F000 01402         CALL    _DisplayString
 02A6 0E04      01403         MOVLW   0x04
 02A8 26E1      01404         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 27
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 27
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               01405 ;       .line   503; pic.c      DisplayString(SECOND_LINE,temp2);
+               01405 ;       .line   386; pic.c      DisplayString(SECOND_LINE,temp2);
 02AA 0E00      01406         MOVLW   HIGH(_temp2)
 02AC 6E00      01407         MOVWF   r0x01
 02AE 0E00      01408         MOVLW   LOW(_temp2)
@@ -1585,20 +1585,20 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02CE D000      01423         BRA     _00358_DS_
 02D0 01424 _00348_DS_:
 02D0 0000      01425         BANKSEL _currentMode
-               01426 ;       .line   506; pic.c      else if(currentMode==HELLO)
+               01426 ;       .line   389; pic.c      else if(currentMode==HELLO)
 02D2 5100      01427         MOVF    _currentMode, W, B
-02D4 0A06      01428         XORLW   0x06
+02D4 0A05      01428         XORLW   0x05
 02D6 E100      01429         BNZ     _00345_DS_
-               01430 ;       .line   508; pic.c      info_A();
+               01430 ;       .line   391; pic.c      info_A();
 02D8 EC00 F000 01431         CALL    _info_A
 02DC D000      01432         BRA     _00358_DS_
 02DE 01433 _00345_DS_:
 02DE 0000      01434         BANKSEL _currentMode
-               01435 ;       .line   510; pic.c      else if(currentMode==RINGTONE)
+               01435 ;       .line   393; pic.c      else if(currentMode==RINGTONE)
 02E0 5100      01436         MOVF    _currentMode, W, B
-02E2 0A07      01437         XORLW   0x07
+02E2 0A06      01437         XORLW   0x06
 02E4 E100      01438         BNZ     _00358_DS_
-               01439 ;       .line   513; pic.c      DisplayString(FIRST_LINE,"Good morning Louvain-La-Neuve");
+               01439 ;       .line   396; pic.c      DisplayString(FIRST_LINE,"Good morning Louvain-La-Neuve");
 02E6 0E00      01440         MOVLW   UPPER(__str_3)
 02E8 6EE5      01441         MOVWF   POSTDEC1
 02EA 0E00      01442         MOVLW   HIGH(__str_3)
@@ -1611,14 +1611,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02FA 0E04      01449         MOVLW   0x04
 02FC 26E1      01450         ADDWF   FSR1L, F
 02FE 01451 _00358_DS_:
-               01452 ;       .line   515; pic.c      bin--;
+               01452 ;       .line   398; pic.c      bin--;
 02FE 0EFF      01453         MOVLW   0xff
 0300 0000      01454         BANKSEL _bin
 0302 2700      01455         ADDWF   _bin, F, B
 0304 E200      01456         BC      _10446_DS_
 0306 0000      01457         BANKSEL (_bin + 1)
 0308 0700      01458         DECF    (_bin + 1), F, B
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 28
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1627,7 +1627,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 030A 01459 _10446_DS_:
 030A D000      01460         BRA     _00362_DS_
 030C 01461 _00360_DS_:
-               01462 ;       .line   519; pic.c      DisplayString(FIRST_LINE,firstLine);
+               01462 ;       .line   402; pic.c      DisplayString(FIRST_LINE,firstLine);
 030C 0E00      01463         MOVLW   HIGH(_firstLine)
 030E 6E00      01464         MOVWF   r0x01
 0310 0E00      01465         MOVLW   LOW(_firstLine)
@@ -1645,7 +1645,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0328 EC00 F000 01477         CALL    _DisplayString
 032C 0E04      01478         MOVLW   0x04
 032E 26E1      01479         ADDWF   FSR1L, F
-               01480 ;       .line   520; pic.c      DisplayString(SECOND_LINE,secondLine);
+               01480 ;       .line   403; pic.c      DisplayString(SECOND_LINE,secondLine);
 0330 0E00      01481         MOVLW   HIGH(_secondLine)
 0332 6E00      01482         MOVWF   r0x01
 0334 0E00      01483         MOVLW   LOW(_secondLine)
@@ -1664,7 +1664,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0350 0E04      01496         MOVLW   0x04
 0352 26E1      01497         ADDWF   FSR1L, F
 0354 0000      01498         BANKSEL _bin
-               01499 ;       .line   521; pic.c      bin++;
+               01499 ;       .line   404; pic.c      bin++;
 0356 2B00      01500         INCF    _bin, F, B
 0358 E300      01501         BNC     _20447_DS_
 035A 0000      01502         BANKSEL (_bin + 1)
@@ -1678,7 +1678,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 036E CFE4 F000 01510         MOVFF   PREINC1, r0x01
 0372 CFE4 F000 01511         MOVFF   PREINC1, r0x00
 0376 CFE4 FFD9 01512         MOVFF   PREINC1, FSR2L
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 29
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1689,63 +1689,63 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01515 ; ; Starting pCode block
                01516 S_pic__info_A   code
 0000 01517 _info_A:
-               01518 ;       .line   442; pic.c      info_A()
+               01518 ;       .line   325; pic.c      info_A()
 0000 CFD9 FFE5 01519         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01520         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01521         MOVFF   r0x00, POSTDEC1
 000C C000 FFE5 01522         MOVFF   r0x01, POSTDEC1
 0010 C000 FFE5 01523         MOVFF   r0x02, POSTDEC1
 0014 0000      01524         BANKSEL _isAlarm
-               01525 ;       .line   444; pic.c      if (isAlarm)
+               01525 ;       .line   327; pic.c      if (isAlarm)
 0016 5100      01526         MOVF    _isAlarm, W, B
 0018 0000      01527         BANKSEL (_isAlarm + 1)
 001A 1100      01528         IORWF   (_isAlarm + 1), W, B
 001C B4D8      01529         BTFSC   STATUS, 2
 001E D000      01530         BRA     _00335_DS_
-               01531 ;       .line   447; pic.c      tempA[0] = ' ';
+               01531 ;       .line   330; pic.c      tempA[0] = ' ';
 0020 0E20      01532         MOVLW   0x20
 0022 0000      01533         BANKSEL _tempA
 0024 6F00      01534         MOVWF   _tempA, B
-               01535 ;       .line   448; pic.c      tempA[1] = ' ';
+               01535 ;       .line   331; pic.c      tempA[1] = ' ';
 0026 0E20      01536         MOVLW   0x20
 0028 0000      01537         BANKSEL (_tempA + 1)
 002A 6F00      01538         MOVWF   (_tempA + 1), B
-               01539 ;       .line   449; pic.c      tempA[2] = ' ';
+               01539 ;       .line   332; pic.c      tempA[2] = ' ';
 002C 0E20      01540         MOVLW   0x20
 002E 0000      01541         BANKSEL (_tempA + 2)
 0030 6F00      01542         MOVWF   (_tempA + 2), B
 0032 0000      01543         BANKSEL (_secondLine + 9)
-               01544 ;       .line   450; pic.c      tempA[3] = secondLine[9];
+               01544 ;       .line   333; pic.c      tempA[3] = secondLine[9];
 0034 5100      01545         MOVF    (_secondLine + 9), W, B
 0036 0000      01546         BANKSEL (_tempA + 3)
 0038 6F00      01547         MOVWF   (_tempA + 3), B
 003A 0000      01548         BANKSEL (_secondLine + 10)
-               01549 ;       .line   451; pic.c      tempA[4] = secondLine[10];
+               01549 ;       .line   334; pic.c      tempA[4] = secondLine[10];
 003C 5100      01550         MOVF    (_secondLine + 10), W, B
 003E 0000      01551         BANKSEL (_tempA + 4)
 0040 6F00      01552         MOVWF   (_tempA + 4), B
 0042 0000      01553         BANKSEL (_secondLine + 11)
-               01554 ;       .line   452; pic.c      tempA[5] = secondLine[11];
+               01554 ;       .line   335; pic.c      tempA[5] = secondLine[11];
 0044 5100      01555         MOVF    (_secondLine + 11), W, B
 0046 0000      01556         BANKSEL (_tempA + 5)
 0048 6F00      01557         MOVWF   (_tempA + 5), B
 004A 0000      01558         BANKSEL (_secondLine + 12)
-               01559 ;       .line   453; pic.c      tempA[6] = secondLine[12];
+               01559 ;       .line   336; pic.c      tempA[6] = secondLine[12];
 004C 5100      01560         MOVF    (_secondLine + 12), W, B
 004E 0000      01561         BANKSEL (_tempA + 6)
 0050 6F00      01562         MOVWF   (_tempA + 6), B
 0052 0000      01563         BANKSEL (_secondLine + 13)
-               01564 ;       .line   454; pic.c      tempA[7] = secondLine[13];
+               01564 ;       .line   337; pic.c      tempA[7] = secondLine[13];
 0054 5100      01565         MOVF    (_secondLine + 13), W, B
 0056 0000      01566         BANKSEL (_tempA + 7)
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 30
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 0058 6F00      01567         MOVWF   (_tempA + 7), B
-               01568 ;       .line   456; pic.c      DisplayString(FIRST_LINE, "Alarm is ON");
+               01568 ;       .line   339; pic.c      DisplayString(FIRST_LINE, "Alarm is ON");
 005A 0E00      01569         MOVLW   UPPER(__str_0)
 005C 6EE5      01570         MOVWF   POSTDEC1
 005E 0E00      01571         MOVLW   HIGH(__str_0)
@@ -1757,7 +1757,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 006A EC00 F000 01577         CALL    _DisplayString
 006E 0E04      01578         MOVLW   0x04
 0070 26E1      01579         ADDWF   FSR1L, F
-               01580 ;       .line   457; pic.c      DisplayString(SECOND_LINE,tempA);
+               01580 ;       .line   340; pic.c      DisplayString(SECOND_LINE,tempA);
 0072 0E00      01581         MOVLW   HIGH(_tempA)
 0074 6E00      01582         MOVWF   r0x01
 0076 0E00      01583         MOVLW   LOW(_tempA)
@@ -1777,7 +1777,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0094 26E1      01597         ADDWF   FSR1L, F
 0096 D000      01598         BRA     _00337_DS_
 0098 01599 _00335_DS_:
-               01600 ;       .line   461; pic.c      DisplayString(FIRST_LINE, "Alarm is off");
+               01600 ;       .line   344; pic.c      DisplayString(FIRST_LINE, "Alarm is off");
 0098 0E00      01601         MOVLW   UPPER(__str_1)
 009A 6EE5      01602         MOVWF   POSTDEC1
 009C 0E00      01603         MOVLW   HIGH(__str_1)
@@ -1789,7 +1789,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00A8 EC00 F000 01609         CALL    _DisplayString
 00AC 0E04      01610         MOVLW   0x04
 00AE 26E1      01611         ADDWF   FSR1L, F
-               01612 ;       .line   462; pic.c      DisplayString(SECOND_LINE,"");
+               01612 ;       .line   345; pic.c      DisplayString(SECOND_LINE,"");
 00B0 0E00      01613         MOVLW   UPPER(__str_2)
 00B2 6EE5      01614         MOVWF   POSTDEC1
 00B4 0E00      01615         MOVLW   HIGH(__str_2)
@@ -1798,7 +1798,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00BA 6EE5      01618         MOVWF   POSTDEC1
 00BC 0E10      01619         MOVLW   0x10
 00BE 6EE5      01620         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 31
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1817,14 +1817,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01631 ; ; Starting pCode block
                01632 S_pic__changeTime       code
 0000 01633 _changeTime:
-               01634 ;       .line   421; pic.c      changeTime()
+               01634 ;       .line   304; pic.c      changeTime()
 0000 CFD9 FFE5 01635         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01636         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01637         MOVFF   r0x00, POSTDEC1
 000C C000 FFE5 01638         MOVFF   r0x01, POSTDEC1
 0010 C000 FFE5 01639         MOVFF   r0x02, POSTDEC1
 0014 0000      01640         BANKSEL (_posC + 1)
-               01641 ;       .line   423; pic.c      firstLine[firstTab[posC]]++;
+               01641 ;       .line   306; pic.c      firstLine[firstTab[posC]]++;
 0016 5100      01642         MOVF    (_posC + 1), W, B
 0018 6EE5      01643         MOVWF   POSTDEC1
 001A 0000      01644         BANKSEL _posC
@@ -1858,50 +1858,50 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0064 C000 FFE9 01672         MOVFF   r0x00, FSR0L
 0068 C000 FFEA 01673         MOVFF   r0x01, FSR0H
 006C C000 FFEF 01674         MOVFF   r0x02, INDF0
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 32
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 0070 0000      01675         BANKSEL (_firstLine + 13)
-               01676 ;       .line   427; pic.c      if((firstLine[13]>=':')
+               01676 ;       .line   310; pic.c      if((firstLine[13]>=':')
 0072 5100      01677         MOVF    (_firstLine + 13), W, B
 0074 0F80      01678         ADDLW   0x80
 0076 0F46      01679         ADDLW   0x46
 0078 E200      01680         BC      _00305_DS_
 007A 0000      01681         BANKSEL (_firstLine + 10)
-               01682 ;       .line   428; pic.c      ||(firstLine[10]>=':')
+               01682 ;       .line   311; pic.c      ||(firstLine[10]>=':')
 007C 5100      01683         MOVF    (_firstLine + 10), W, B
 007E 0F80      01684         ADDLW   0x80
 0080 0F46      01685         ADDLW   0x46
 0082 E200      01686         BC      _00305_DS_
 0084 0000      01687         BANKSEL (_firstLine + 12)
-               01688 ;       .line   429; pic.c      ||(firstLine[12]>='6')
+               01688 ;       .line   312; pic.c      ||(firstLine[12]>='6')
 0086 5100      01689         MOVF    (_firstLine + 12), W, B
 0088 0F80      01690         ADDLW   0x80
 008A 0F4A      01691         ADDLW   0x4a
 008C E200      01692         BC      _00305_DS_
 008E 0000      01693         BANKSEL (_firstLine + 9)
-               01694 ;       .line   430; pic.c      ||(firstLine[9]>='6')
+               01694 ;       .line   313; pic.c      ||(firstLine[9]>='6')
 0090 5100      01695         MOVF    (_firstLine + 9), W, B
 0092 0F80      01696         ADDLW   0x80
 0094 0F4A      01697         ADDLW   0x4a
 0096 E200      01698         BC      _00305_DS_
 0098 0000      01699         BANKSEL (_firstLine + 7)
-               01700 ;       .line   431; pic.c      ||(firstLine[7]>=':'))
+               01700 ;       .line   314; pic.c      ||(firstLine[7]>=':'))
 009A 5100      01701         MOVF    (_firstLine + 7), W, B
 009C 0F80      01702         ADDLW   0x80
 009E 0F46      01703         ADDLW   0x46
 00A0 E300      01704         BNC     _00306_DS_
 00A2 01705 _00305_DS_:
-               01706 ;       .line   433; pic.c      firstLine[firstTab[posC]]='0';
+               01706 ;       .line   316; pic.c      firstLine[firstTab[posC]]='0';
 00A2 C000 FFE9 01707         MOVFF   r0x00, FSR0L
 00A6 C000 FFEA 01708         MOVFF   r0x01, FSR0H
 00AA 0E30      01709         MOVLW   0x30
 00AC 6EEF      01710         MOVWF   INDF0
 00AE 01711 _00306_DS_:
-               01712 ;       .line   435; pic.c      if(((firstLine[6]>='2')&&(firstLine[7]>='4'))
+               01712 ;       .line   318; pic.c      if(((firstLine[6]>='2')&&(firstLine[7]>='4'))
 00AE C000 F000 01713         MOVFF   (_firstLine + 6), r0x02
 00B2 5000      01714         MOVF    r0x02, W
 00B4 0F80      01715         ADDLW   0x80
@@ -1913,19 +1913,19 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00C0 0F4C      01721         ADDLW   0x4c
 00C2 E200      01722         BC      _00311_DS_
 00C4 01723 _00314_DS_:
-               01724 ;       .line   436; pic.c      ||(firstLine[6]>='3'))//24h
+               01724 ;       .line   319; pic.c      ||(firstLine[6]>='3'))//24h
 00C4 5000      01725         MOVF    r0x02, W
 00C6 0F80      01726         ADDLW   0x80
 00C8 0F4D      01727         ADDLW   0x4d
 00CA E300      01728         BNC     _00315_DS_
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 33
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 00CC 01729 _00311_DS_:
-               01730 ;       .line   438; pic.c      firstLine[firstTab[posC]]='0';
+               01730 ;       .line   321; pic.c      firstLine[firstTab[posC]]='0';
 00CC C000 FFE9 01731         MOVFF   r0x00, FSR0L
 00D0 C000 FFEA 01732         MOVFF   r0x01, FSR0H
 00D4 0E30      01733         MOVLW   0x30
@@ -1940,17 +1940,17 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01742 ; ; Starting pCode block
                01743 S_pic__move     code
 0000 01744 _move:
-               01745 ;       .line   391; pic.c      move()
+               01745 ;       .line   274; pic.c      move()
 0000 CFD9 FFE5 01746         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01747         MOVFF   FSR1L, FSR2L
 0008 0000      01748         BANKSEL _currentMode
-               01749 ;       .line   393; pic.c      if(currentMode==EDIT_T)
+               01749 ;       .line   276; pic.c      if(currentMode==EDIT_T)
 000A 5100      01750         MOVF    _currentMode, W, B
 000C 0A03      01751         XORLW   0x03
 000E E100      01752         BNZ     _00285_DS_
 0010 01753 _00294_DS_:
 0010 0000      01754         BANKSEL _posC
-               01755 ;       .line   396; pic.c      if(posC==LEN_C)
+               01755 ;       .line   279; pic.c      if(posC==LEN_C)
 0012 5100      01756         MOVF    _posC, W, B
 0014 0A05      01757         XORLW   0x05
 0016 E100      01758         BNZ     _00295_DS_
@@ -1961,24 +1961,24 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 001E D000      01763         BRA     _00277_DS_
 0020 01764 _00296_DS_:
 0020 0000      01765         BANKSEL _posC
-               01766 ;       .line   398; pic.c      posC=0;
+               01766 ;       .line   281; pic.c      posC=0;
 0022 6B00      01767         CLRF    _posC, B
 0024 0000      01768         BANKSEL (_posC + 1)
 0026 6B00      01769         CLRF    (_posC + 1), B
 0028 0000      01770         BANKSEL _currentMode
-               01771 ;       .line   399; pic.c      currentMode=ACCUEIL;
+               01771 ;       .line   282; pic.c      currentMode=ACCUEIL;
 002A 6B00      01772         CLRF    _currentMode, B
 002C D000      01773         BRA     _00287_DS_
 002E 01774 _00277_DS_:
 002E 0000      01775         BANKSEL _posC
-               01776 ;       .line   403; pic.c      posC++;/*On passe à la prochaine position*/
+               01776 ;       .line   286; pic.c      posC++;/*On passe à la prochaine position*/
 0030 2B00      01777         INCF    _posC, F, B
 0032 E300      01778         BNC     _30448_DS_
 0034 0000      01779         BANKSEL (_posC + 1)
 0036 2B00      01780         INCF    (_posC + 1), F, B
 0038 01781 _30448_DS_:
 0038 D000      01782         BRA     _00287_DS_
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 34
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1986,13 +1986,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 003A 01783 _00285_DS_:
 003A 0000      01784         BANKSEL _currentMode
-               01785 ;       .line   406; pic.c      else if(currentMode==EDIT_A)
+               01785 ;       .line   289; pic.c      else if(currentMode==EDIT_A)
 003C 5100      01786         MOVF    _currentMode, W, B
 003E 0A04      01787         XORLW   0x04
 0040 E100      01788         BNZ     _00287_DS_
 0042 01789 _00298_DS_:
 0042 0000      01790         BANKSEL _posA
-               01791 ;       .line   409; pic.c      if(posA==LEN_A)
+               01791 ;       .line   292; pic.c      if(posA==LEN_A)
 0044 5100      01792         MOVF    _posA, W, B
 0046 0A04      01793         XORLW   0x04
 0048 E100      01794         BNZ     _00299_DS_
@@ -2003,17 +2003,17 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0050 D000      01799         BRA     _00280_DS_
 0052 01800 _00300_DS_:
 0052 0000      01801         BANKSEL _posA
-               01802 ;       .line   411; pic.c      posA=0;
+               01802 ;       .line   294; pic.c      posA=0;
 0054 6B00      01803         CLRF    _posA, B
 0056 0000      01804         BANKSEL (_posA + 1)
 0058 6B00      01805         CLRF    (_posA + 1), B
 005A 0000      01806         BANKSEL _currentMode
-               01807 ;       .line   412; pic.c      currentMode=ACCUEIL;
+               01807 ;       .line   295; pic.c      currentMode=ACCUEIL;
 005C 6B00      01808         CLRF    _currentMode, B
 005E D000      01809         BRA     _00287_DS_
 0060 01810 _00280_DS_:
 0060 0000      01811         BANKSEL _posA
-               01812 ;       .line   416; pic.c      posA++;/*On passe à la prochaine position*/
+               01812 ;       .line   299; pic.c      posA++;/*On passe à la prochaine position*/
 0062 2B00      01813         INCF    _posA, F, B
 0064 E300      01814         BNC     _40449_DS_
 0066 0000      01815         BANKSEL (_posA + 1)
@@ -2026,11 +2026,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01822 ; ; Starting pCode block
                01823 S_pic__actionButton2    code
 0000 01824 _actionButton2:
-               01825 ;       .line   344; pic.c      actionButton2()
+               01825 ;       .line   227; pic.c      actionButton2()
 0000 CFD9 FFE5 01826         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01827         MOVFF   FSR1L, FSR2L
-               01828 ;       .line   346; pic.c      switch(currentMode)
-0008 0E08      01829         MOVLW   0x08
+               01828 ;       .line   229; pic.c      switch(currentMode)
+0008 0E07      01829         MOVLW   0x07
 000A 0000      01830         BANKSEL _currentMode
 000C 5D00      01831         SUBWF   _currentMode, W, B
 000E B0D8      01832         BTFSC   STATUS, 0
@@ -2038,7 +2038,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0012 C000 FFE5 01834         MOVFF   r0x00, POSTDEC1
 0016 C000 FFE5 01835         MOVFF   r0x01, POSTDEC1
 001A 6A00      01836         CLRF    r0x01
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 35
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2071,742 +2071,740 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0052 EF00 F000 01861         GOTO    _00261_DS_
 0056 EF00 F000 01862         GOTO    _00262_DS_
 005A EF00 F000 01863         GOTO    _00263_DS_
-005E EF00 F000 01864         GOTO    _00267_DS_
-0062 EF00 F000 01865         GOTO    _00259_DS_
-0066 EF00 F000 01866         GOTO    _00264_DS_
-006A 01867 _00258_DS_:
-               01868 ;       .line   351; pic.c      currentMode=HELLO;
-006A 0E06      01869         MOVLW   0x06
-006C 0000      01870         BANKSEL _currentMode
-006E 6F00      01871         MOVWF   _currentMode, B
-               01872 ;       .line   352; pic.c      break;
-0070 D000      01873         BRA     _00267_DS_
-0072 01874 _00259_DS_:
-0072 0000      01875         BANKSEL _currentMode
-               01876 ;       .line   356; pic.c      currentMode=ACCUEIL;
-0074 6B00      01877         CLRF    _currentMode, B
-               01878 ;       .line   357; pic.c      break;
-0076 D000      01879         BRA     _00267_DS_
-0078 01880 _00260_DS_:
-               01881 ;       .line   361; pic.c      currentMode=ALARM;
-0078 0E02      01882         MOVLW   0x02
-007A 0000      01883         BANKSEL _currentMode
-007C 6F00      01884         MOVWF   _currentMode, B
-               01885 ;       .line   362; pic.c      break;
-007E D000      01886         BRA     _00267_DS_
-0080 01887 _00261_DS_:
-               01888 ;       .line   366; pic.c      currentMode=TIME;
-0080 0E01      01889         MOVLW   0x01
-0082 0000      01890         BANKSEL _currentMode
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 36
+005E EF00 F000 01864         GOTO    _00259_DS_
+0062 EF00 F000 01865         GOTO    _00264_DS_
+0066 01866 _00258_DS_:
+               01867 ;       .line   234; pic.c      currentMode=HELLO;
+0066 0E05      01868         MOVLW   0x05
+0068 0000      01869         BANKSEL _currentMode
+006A 6F00      01870         MOVWF   _currentMode, B
+               01871 ;       .line   235; pic.c      break;
+006C D000      01872         BRA     _00267_DS_
+006E 01873 _00259_DS_:
+006E 0000      01874         BANKSEL _currentMode
+               01875 ;       .line   239; pic.c      currentMode=ACCUEIL;
+0070 6B00      01876         CLRF    _currentMode, B
+               01877 ;       .line   240; pic.c      break;
+0072 D000      01878         BRA     _00267_DS_
+0074 01879 _00260_DS_:
+               01880 ;       .line   244; pic.c      currentMode=ALARM;
+0074 0E02      01881         MOVLW   0x02
+0076 0000      01882         BANKSEL _currentMode
+0078 6F00      01883         MOVWF   _currentMode, B
+               01884 ;       .line   245; pic.c      break;
+007A D000      01885         BRA     _00267_DS_
+007C 01886 _00261_DS_:
+               01887 ;       .line   249; pic.c      currentMode=TIME;
+007C 0E01      01888         MOVLW   0x01
+007E 0000      01889         BANKSEL _currentMode
+0080 6F00      01890         MOVWF   _currentMode, B
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0084 6F00      01891         MOVWF   _currentMode, B
-               01892 ;       .line   367; pic.c      break;
-0086 D000      01893         BRA     _00267_DS_
-0088 01894 _00262_DS_:
-               01895 ;       .line   371; pic.c      changeTime();
-0088 EC00 F000 01896         CALL    _changeTime
-               01897 ;       .line   372; pic.c      break;
-008C D000      01898         BRA     _00267_DS_
-008E 01899 _00263_DS_:
-               01900 ;       .line   376; pic.c      setAlarm();
-008E EC00 F000 01901         CALL    _setAlarm
-               01902 ;       .line   377; pic.c      break;
-0092 D000      01903         BRA     _00267_DS_
-0094 01904 _00264_DS_:
-0094 0000      01905         BANKSEL _ringtone
-               01906 ;       .line   382; pic.c      ringtone=0;
-0096 6B00      01907         CLRF    _ringtone, B
-0098 0000      01908         BANKSEL (_ringtone + 1)
-009A 6B00      01909         CLRF    (_ringtone + 1), B
-               01910 ;       .line   383; pic.c      LED2_IO = 0;
-009C 9400      01911         BCF     _LATJbits, 2
-009E 0000      01912         BANKSEL _currentMode
-               01913 ;       .line   384; pic.c      currentMode=ACCUEIL;
-00A0 6B00      01914         CLRF    _currentMode, B
-00A2 01915 _00267_DS_:
-               01916 ;       .line   388; pic.c      }
-00A2 CFE4 FFD9 01917         MOVFF   PREINC1, FSR2L
-00A6 0012      01918         RETURN  
-               01919 
-               01920 ; ; Starting pCode block
-               01921 S_pic__actionButton1    code
-0000 01922 _actionButton1:
-               01923 ;       .line   297; pic.c      actionButton1()
-0000 CFD9 FFE5 01924         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 01925         MOVFF   FSR1L, FSR2L
-               01926 ;       .line   299; pic.c      switch(currentMode)
-0008 0E08      01927         MOVLW   0x08
-000A 0000      01928         BANKSEL _currentMode
-000C 5D00      01929         SUBWF   _currentMode, W, B
-000E B0D8      01930         BTFSC   STATUS, 0
-0010 D000      01931         BRA     _00249_DS_
-0012 C000 FFE5 01932         MOVFF   r0x00, POSTDEC1
-0016 C000 FFE5 01933         MOVFF   r0x01, POSTDEC1
-001A 6A00      01934         CLRF    r0x01
-001C 0000      01935         BANKSEL _currentMode
-001E 3500      01936         RLCF    _currentMode, W, B
-0020 3600      01937         RLCF    r0x01, F
-0022 34E8      01938         RLCF    WREG, W
-0024 3600      01939         RLCF    r0x01, F
-0026 0BFC      01940         ANDLW   0xfc
-0028 6E00      01941         MOVWF   r0x00
-002A 0E00      01942         MOVLW   UPPER(_00253_DS_)
-002C 6EFB      01943         MOVWF   PCLATU
-002E 0E00      01944         MOVLW   HIGH(_00253_DS_)
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 37
+               01891 ;       .line   250; pic.c      break;
+0082 D000      01892         BRA     _00267_DS_
+0084 01893 _00262_DS_:
+               01894 ;       .line   254; pic.c      changeTime();
+0084 EC00 F000 01895         CALL    _changeTime
+               01896 ;       .line   255; pic.c      break;
+0088 D000      01897         BRA     _00267_DS_
+008A 01898 _00263_DS_:
+               01899 ;       .line   259; pic.c      setAlarm();
+008A EC00 F000 01900         CALL    _setAlarm
+               01901 ;       .line   260; pic.c      break;
+008E D000      01902         BRA     _00267_DS_
+0090 01903 _00264_DS_:
+0090 0000      01904         BANKSEL _ringtone
+               01905 ;       .line   265; pic.c      ringtone=0;
+0092 6B00      01906         CLRF    _ringtone, B
+0094 0000      01907         BANKSEL (_ringtone + 1)
+0096 6B00      01908         CLRF    (_ringtone + 1), B
+               01909 ;       .line   266; pic.c      LED2_IO = 0;
+0098 9400      01910         BCF     _LATJbits, 2
+009A 0000      01911         BANKSEL _currentMode
+               01912 ;       .line   267; pic.c      currentMode=ACCUEIL;
+009C 6B00      01913         CLRF    _currentMode, B
+009E 01914 _00267_DS_:
+               01915 ;       .line   271; pic.c      }
+009E CFE4 FFD9 01916         MOVFF   PREINC1, FSR2L
+00A2 0012      01917         RETURN  
+               01918 
+               01919 ; ; Starting pCode block
+               01920 S_pic__actionButton1    code
+0000 01921 _actionButton1:
+               01922 ;       .line   180; pic.c      actionButton1()
+0000 CFD9 FFE5 01923         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 01924         MOVFF   FSR1L, FSR2L
+               01925 ;       .line   182; pic.c      switch(currentMode)
+0008 0E07      01926         MOVLW   0x07
+000A 0000      01927         BANKSEL _currentMode
+000C 5D00      01928         SUBWF   _currentMode, W, B
+000E B0D8      01929         BTFSC   STATUS, 0
+0010 D000      01930         BRA     _00249_DS_
+0012 C000 FFE5 01931         MOVFF   r0x00, POSTDEC1
+0016 C000 FFE5 01932         MOVFF   r0x01, POSTDEC1
+001A 6A00      01933         CLRF    r0x01
+001C 0000      01934         BANKSEL _currentMode
+001E 3500      01935         RLCF    _currentMode, W, B
+0020 3600      01936         RLCF    r0x01, F
+0022 34E8      01937         RLCF    WREG, W
+0024 3600      01938         RLCF    r0x01, F
+0026 0BFC      01939         ANDLW   0xfc
+0028 6E00      01940         MOVWF   r0x00
+002A 0E00      01941         MOVLW   UPPER(_00253_DS_)
+002C 6EFB      01942         MOVWF   PCLATU
+002E 0E00      01943         MOVLW   HIGH(_00253_DS_)
+0030 6EFA      01944         MOVWF   PCLATH
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 37
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0030 6EFA      01945         MOVWF   PCLATH
-0032 0E00      01946         MOVLW   LOW(_00253_DS_)
-0034 2600      01947         ADDWF   r0x00, F
-0036 5000      01948         MOVF    r0x01, W
-0038 22FA      01949         ADDWFC  PCLATH, F
-003A B0D8      01950         BTFSC   STATUS, 0
-003C 2AFB      01951         INCF    PCLATU, F
-003E 5000      01952         MOVF    r0x00, W
-0040 CFE4 F000 01953         MOVFF   PREINC1, r0x01
-0044 CFE4 F000 01954         MOVFF   PREINC1, r0x00
-0048 6EF9      01955         MOVWF   PCL
-004A 01956 _00253_DS_:
-004A EF00 F000 01957         GOTO    _00241_DS_
-004E EF00 F000 01958         GOTO    _00242_DS_
-0052 EF00 F000 01959         GOTO    _00243_DS_
-0056 EF00 F000 01960         GOTO    _00244_DS_
-005A EF00 F000 01961         GOTO    _00245_DS_
-005E EF00 F000 01962         GOTO    _00249_DS_
-0062 EF00 F000 01963         GOTO    _00240_DS_
-0066 EF00 F000 01964         GOTO    _00246_DS_
-006A 01965 _00240_DS_:
-006A 0000      01966         BANKSEL _currentMode
-               01967 ;       .line   304; pic.c      currentMode=ACCUEIL;
-006C 6B00      01968         CLRF    _currentMode, B
-               01969 ;       .line   305; pic.c      break;
-006E D000      01970         BRA     _00249_DS_
-0070 01971 _00241_DS_:
-               01972 ;       .line   309; pic.c      currentMode=TIME;
-0070 0E01      01973         MOVLW   0x01
-0072 0000      01974         BANKSEL _currentMode
-0074 6F00      01975         MOVWF   _currentMode, B
-               01976 ;       .line   310; pic.c      break;
-0076 D000      01977         BRA     _00249_DS_
-0078 01978 _00242_DS_:
-               01979 ;       .line   314; pic.c      currentMode=EDIT_T;
-0078 0E03      01980         MOVLW   0x03
-007A 0000      01981         BANKSEL _currentMode
-007C 6F00      01982         MOVWF   _currentMode, B
-               01983 ;       .line   315; pic.c      break;
-007E D000      01984         BRA     _00249_DS_
-0080 01985 _00243_DS_:
-               01986 ;       .line   319; pic.c      currentMode=EDIT_A;
-0080 0E04      01987         MOVLW   0x04
-0082 0000      01988         BANKSEL _currentMode
-0084 6F00      01989         MOVWF   _currentMode, B
-               01990 ;       .line   320; pic.c      break;
-0086 D000      01991         BRA     _00249_DS_
-0088 01992 _00244_DS_:
-               01993 ;       .line   324; pic.c      move();
-0088 EC00 F000 01994         CALL    _move
-               01995 ;       .line   325; pic.c      break;
-008C D000      01996         BRA     _00249_DS_
-008E 01997 _00245_DS_:
-               01998 ;       .line   329; pic.c      move();
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 38
+0032 0E00      01945         MOVLW   LOW(_00253_DS_)
+0034 2600      01946         ADDWF   r0x00, F
+0036 5000      01947         MOVF    r0x01, W
+0038 22FA      01948         ADDWFC  PCLATH, F
+003A B0D8      01949         BTFSC   STATUS, 0
+003C 2AFB      01950         INCF    PCLATU, F
+003E 5000      01951         MOVF    r0x00, W
+0040 CFE4 F000 01952         MOVFF   PREINC1, r0x01
+0044 CFE4 F000 01953         MOVFF   PREINC1, r0x00
+0048 6EF9      01954         MOVWF   PCL
+004A 01955 _00253_DS_:
+004A EF00 F000 01956         GOTO    _00241_DS_
+004E EF00 F000 01957         GOTO    _00242_DS_
+0052 EF00 F000 01958         GOTO    _00243_DS_
+0056 EF00 F000 01959         GOTO    _00244_DS_
+005A EF00 F000 01960         GOTO    _00245_DS_
+005E EF00 F000 01961         GOTO    _00240_DS_
+0062 EF00 F000 01962         GOTO    _00246_DS_
+0066 01963 _00240_DS_:
+0066 0000      01964         BANKSEL _currentMode
+               01965 ;       .line   187; pic.c      currentMode=ACCUEIL;
+0068 6B00      01966         CLRF    _currentMode, B
+               01967 ;       .line   188; pic.c      break;
+006A D000      01968         BRA     _00249_DS_
+006C 01969 _00241_DS_:
+               01970 ;       .line   192; pic.c      currentMode=TIME;
+006C 0E01      01971         MOVLW   0x01
+006E 0000      01972         BANKSEL _currentMode
+0070 6F00      01973         MOVWF   _currentMode, B
+               01974 ;       .line   193; pic.c      break;
+0072 D000      01975         BRA     _00249_DS_
+0074 01976 _00242_DS_:
+               01977 ;       .line   197; pic.c      currentMode=EDIT_T;
+0074 0E03      01978         MOVLW   0x03
+0076 0000      01979         BANKSEL _currentMode
+0078 6F00      01980         MOVWF   _currentMode, B
+               01981 ;       .line   198; pic.c      break;
+007A D000      01982         BRA     _00249_DS_
+007C 01983 _00243_DS_:
+               01984 ;       .line   202; pic.c      currentMode=EDIT_A;
+007C 0E04      01985         MOVLW   0x04
+007E 0000      01986         BANKSEL _currentMode
+0080 6F00      01987         MOVWF   _currentMode, B
+               01988 ;       .line   203; pic.c      break;
+0082 D000      01989         BRA     _00249_DS_
+0084 01990 _00244_DS_:
+               01991 ;       .line   207; pic.c      move();
+0084 EC00 F000 01992         CALL    _move
+               01993 ;       .line   208; pic.c      break;
+0088 D000      01994         BRA     _00249_DS_
+008A 01995 _00245_DS_:
+               01996 ;       .line   212; pic.c      move();
+008A EC00 F000 01997         CALL    _move
+               01998 ;       .line   213; pic.c      break;
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 38
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-008E EC00 F000 01999         CALL    _move
-               02000 ;       .line   330; pic.c      break;
-0092 D000      02001         BRA     _00249_DS_
-0094 02002 _00246_DS_:
-0094 0000      02003         BANKSEL _ringtone
-               02004 ;       .line   335; pic.c      ringtone=0;
-0096 6B00      02005         CLRF    _ringtone, B
-0098 0000      02006         BANKSEL (_ringtone + 1)
-009A 6B00      02007         CLRF    (_ringtone + 1), B
-               02008 ;       .line   336; pic.c      LED2_IO = 0;
-009C 9400      02009         BCF     _LATJbits, 2
-009E 0000      02010         BANKSEL _currentMode
-               02011 ;       .line   337; pic.c      currentMode=ACCUEIL;
-00A0 6B00      02012         CLRF    _currentMode, B
-00A2 02013 _00249_DS_:
-               02014 ;       .line   341; pic.c      }
-00A2 CFE4 FFD9 02015         MOVFF   PREINC1, FSR2L
-00A6 0012      02016         RETURN  
-               02017 
-               02018 ; ; Starting pCode block
-               02019 S_pic__setAlarm code
-0000 02020 _setAlarm:
-               02021 ;       .line   263; pic.c      setAlarm()
-0000 CFD9 FFE5 02022         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 02023         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 02024         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 02025         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 02026         MOVFF   r0x02, POSTDEC1
-0014 0000      02027         BANKSEL _posA
-               02028 ;       .line   266; pic.c      if(posA!=0)
-0016 5100      02029         MOVF    _posA, W, B
-0018 0000      02030         BANKSEL (_posA + 1)
-001A 1100      02031         IORWF   (_posA + 1), W, B
-001C B4D8      02032         BTFSC   STATUS, 2
-001E D000      02033         BRA     _00217_DS_
-0020 0000      02034         BANKSEL (_posA + 1)
-               02035 ;       .line   268; pic.c      secondLine[secondTab[posA]]++; //+1
-0022 5100      02036         MOVF    (_posA + 1), W, B
-0024 6EE5      02037         MOVWF   POSTDEC1
-0026 0000      02038         BANKSEL _posA
-0028 5100      02039         MOVF    _posA, W, B
-002A 6EE5      02040         MOVWF   POSTDEC1
-002C 0E00      02041         MOVLW   0x00
-002E 6EE5      02042         MOVWF   POSTDEC1
-0030 0E02      02043         MOVLW   0x02
-0032 6EE5      02044         MOVWF   POSTDEC1
-0034 EC00 F000 02045         CALL    __mulint
-0038 6E00      02046         MOVWF   r0x00
-003A CFF3 F000 02047         MOVFF   PRODL, r0x01
-003E 0E04      02048         MOVLW   0x04
-0040 26E1      02049         ADDWF   FSR1L, F
-0042 0E00      02050         MOVLW   LOW(_secondTab)
-0044 2600      02051         ADDWF   r0x00, F
-0046 0E00      02052         MOVLW   HIGH(_secondTab)
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 39
+008E D000      01999         BRA     _00249_DS_
+0090 02000 _00246_DS_:
+0090 0000      02001         BANKSEL _ringtone
+               02002 ;       .line   218; pic.c      ringtone=0;
+0092 6B00      02003         CLRF    _ringtone, B
+0094 0000      02004         BANKSEL (_ringtone + 1)
+0096 6B00      02005         CLRF    (_ringtone + 1), B
+               02006 ;       .line   219; pic.c      LED2_IO = 0;
+0098 9400      02007         BCF     _LATJbits, 2
+009A 0000      02008         BANKSEL _currentMode
+               02009 ;       .line   220; pic.c      currentMode=ACCUEIL;
+009C 6B00      02010         CLRF    _currentMode, B
+009E 02011 _00249_DS_:
+               02012 ;       .line   224; pic.c      }
+009E CFE4 FFD9 02013         MOVFF   PREINC1, FSR2L
+00A2 0012      02014         RETURN  
+               02015 
+               02016 ; ; Starting pCode block
+               02017 S_pic__setAlarm code
+0000 02018 _setAlarm:
+               02019 ;       .line   146; pic.c      setAlarm()
+0000 CFD9 FFE5 02020         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 02021         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 02022         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 02023         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 02024         MOVFF   r0x02, POSTDEC1
+0014 0000      02025         BANKSEL _posA
+               02026 ;       .line   149; pic.c      if(posA!=0)
+0016 5100      02027         MOVF    _posA, W, B
+0018 0000      02028         BANKSEL (_posA + 1)
+001A 1100      02029         IORWF   (_posA + 1), W, B
+001C B4D8      02030         BTFSC   STATUS, 2
+001E D000      02031         BRA     _00217_DS_
+0020 0000      02032         BANKSEL (_posA + 1)
+               02033 ;       .line   151; pic.c      secondLine[secondTab[posA]]++; //+1
+0022 5100      02034         MOVF    (_posA + 1), W, B
+0024 6EE5      02035         MOVWF   POSTDEC1
+0026 0000      02036         BANKSEL _posA
+0028 5100      02037         MOVF    _posA, W, B
+002A 6EE5      02038         MOVWF   POSTDEC1
+002C 0E00      02039         MOVLW   0x00
+002E 6EE5      02040         MOVWF   POSTDEC1
+0030 0E02      02041         MOVLW   0x02
+0032 6EE5      02042         MOVWF   POSTDEC1
+0034 EC00 F000 02043         CALL    __mulint
+0038 6E00      02044         MOVWF   r0x00
+003A CFF3 F000 02045         MOVFF   PRODL, r0x01
+003E 0E04      02046         MOVLW   0x04
+0040 26E1      02047         ADDWF   FSR1L, F
+0042 0E00      02048         MOVLW   LOW(_secondTab)
+0044 2600      02049         ADDWF   r0x00, F
+0046 0E00      02050         MOVLW   HIGH(_secondTab)
+0048 2200      02051         ADDWFC  r0x01, F
+004A C000 FFE9 02052         MOVFF   r0x00, FSR0L
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 39
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0048 2200      02053         ADDWFC  r0x01, F
-004A C000 FFE9 02054         MOVFF   r0x00, FSR0L
-004E C000 FFEA 02055         MOVFF   r0x01, FSR0H
-0052 CFEE F000 02056         MOVFF   POSTINC0, r0x00
-0056 CFEF F000 02057         MOVFF   INDF0, r0x01
-005A 0E00      02058         MOVLW   LOW(_secondLine)
-005C 2600      02059         ADDWF   r0x00, F
-005E 0E00      02060         MOVLW   HIGH(_secondLine)
-0060 2200      02061         ADDWFC  r0x01, F
-0062 C000 FFE9 02062         MOVFF   r0x00, FSR0L
-0066 C000 FFEA 02063         MOVFF   r0x01, FSR0H
-006A CFEF F000 02064         MOVFF   INDF0, r0x02
-006E 2A00      02065         INCF    r0x02, F
-0070 C000 FFE9 02066         MOVFF   r0x00, FSR0L
-0074 C000 FFEA 02067         MOVFF   r0x01, FSR0H
-0078 C000 FFEF 02068         MOVFF   r0x02, INDF0
-007C 0000      02069         BANKSEL (_secondLine + 13)
-               02070 ;       .line   269; pic.c      if((secondLine[13]>=':')
-007E 5100      02071         MOVF    (_secondLine + 13), W, B
-0080 0F80      02072         ADDLW   0x80
-0082 0F46      02073         ADDLW   0x46
-0084 E200      02074         BC      _00204_DS_
-0086 0000      02075         BANKSEL (_secondLine + 10)
-               02076 ;       .line   270; pic.c      ||(secondLine[10]>=':')
-0088 5100      02077         MOVF    (_secondLine + 10), W, B
-008A 0F80      02078         ADDLW   0x80
-008C 0F46      02079         ADDLW   0x46
-008E E200      02080         BC      _00204_DS_
-0090 0000      02081         BANKSEL (_secondLine + 12)
-               02082 ;       .line   271; pic.c      ||(secondLine[12]>='6')
-0092 5100      02083         MOVF    (_secondLine + 12), W, B
-0094 0F80      02084         ADDLW   0x80
-0096 0F4A      02085         ADDLW   0x4a
-0098 E200      02086         BC      _00204_DS_
-009A 0000      02087         BANKSEL (_secondLine + 9)
-               02088 ;       .line   272; pic.c      ||(secondLine[9]>=':'))
-009C 5100      02089         MOVF    (_secondLine + 9), W, B
-009E 0F80      02090         ADDLW   0x80
-00A0 0F46      02091         ADDLW   0x46
-00A2 E300      02092         BNC     _00205_DS_
-00A4 02093 _00204_DS_:
-               02094 ;       .line   274; pic.c      secondLine[secondTab[posA]]='0';
-00A4 C000 FFE9 02095         MOVFF   r0x00, FSR0L
-00A8 C000 FFEA 02096         MOVFF   r0x01, FSR0H
-00AC 0E30      02097         MOVLW   0x30
-00AE 6EEF      02098         MOVWF   INDF0
-00B0 02099 _00205_DS_:
-               02100 ;       .line   276; pic.c      if(((secondLine[9]>='2')&&(secondLine[10]>='4'))
-00B0 C000 F000 02101         MOVFF   (_secondLine + 9), r0x02
-00B4 5000      02102         MOVF    r0x02, W
-00B6 0F80      02103         ADDLW   0x80
-00B8 0F4E      02104         ADDLW   0x4e
-00BA E300      02105         BNC     _00212_DS_
-00BC 0000      02106         BANKSEL (_secondLine + 10)
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 40
+004E C000 FFEA 02053         MOVFF   r0x01, FSR0H
+0052 CFEE F000 02054         MOVFF   POSTINC0, r0x00
+0056 CFEF F000 02055         MOVFF   INDF0, r0x01
+005A 0E00      02056         MOVLW   LOW(_secondLine)
+005C 2600      02057         ADDWF   r0x00, F
+005E 0E00      02058         MOVLW   HIGH(_secondLine)
+0060 2200      02059         ADDWFC  r0x01, F
+0062 C000 FFE9 02060         MOVFF   r0x00, FSR0L
+0066 C000 FFEA 02061         MOVFF   r0x01, FSR0H
+006A CFEF F000 02062         MOVFF   INDF0, r0x02
+006E 2A00      02063         INCF    r0x02, F
+0070 C000 FFE9 02064         MOVFF   r0x00, FSR0L
+0074 C000 FFEA 02065         MOVFF   r0x01, FSR0H
+0078 C000 FFEF 02066         MOVFF   r0x02, INDF0
+007C 0000      02067         BANKSEL (_secondLine + 13)
+               02068 ;       .line   152; pic.c      if((secondLine[13]>=':')
+007E 5100      02069         MOVF    (_secondLine + 13), W, B
+0080 0F80      02070         ADDLW   0x80
+0082 0F46      02071         ADDLW   0x46
+0084 E200      02072         BC      _00204_DS_
+0086 0000      02073         BANKSEL (_secondLine + 10)
+               02074 ;       .line   153; pic.c      ||(secondLine[10]>=':')
+0088 5100      02075         MOVF    (_secondLine + 10), W, B
+008A 0F80      02076         ADDLW   0x80
+008C 0F46      02077         ADDLW   0x46
+008E E200      02078         BC      _00204_DS_
+0090 0000      02079         BANKSEL (_secondLine + 12)
+               02080 ;       .line   154; pic.c      ||(secondLine[12]>='6')
+0092 5100      02081         MOVF    (_secondLine + 12), W, B
+0094 0F80      02082         ADDLW   0x80
+0096 0F4A      02083         ADDLW   0x4a
+0098 E200      02084         BC      _00204_DS_
+009A 0000      02085         BANKSEL (_secondLine + 9)
+               02086 ;       .line   155; pic.c      ||(secondLine[9]>=':'))
+009C 5100      02087         MOVF    (_secondLine + 9), W, B
+009E 0F80      02088         ADDLW   0x80
+00A0 0F46      02089         ADDLW   0x46
+00A2 E300      02090         BNC     _00205_DS_
+00A4 02091 _00204_DS_:
+               02092 ;       .line   157; pic.c      secondLine[secondTab[posA]]='0';
+00A4 C000 FFE9 02093         MOVFF   r0x00, FSR0L
+00A8 C000 FFEA 02094         MOVFF   r0x01, FSR0H
+00AC 0E30      02095         MOVLW   0x30
+00AE 6EEF      02096         MOVWF   INDF0
+00B0 02097 _00205_DS_:
+               02098 ;       .line   159; pic.c      if(((secondLine[9]>='2')&&(secondLine[10]>='4'))
+00B0 C000 F000 02099         MOVFF   (_secondLine + 9), r0x02
+00B4 5000      02100         MOVF    r0x02, W
+00B6 0F80      02101         ADDLW   0x80
+00B8 0F4E      02102         ADDLW   0x4e
+00BA E300      02103         BNC     _00212_DS_
+00BC 0000      02104         BANKSEL (_secondLine + 10)
+00BE 5100      02105         MOVF    (_secondLine + 10), W, B
+00C0 0F80      02106         ADDLW   0x80
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 40
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-00BE 5100      02107         MOVF    (_secondLine + 10), W, B
-00C0 0F80      02108         ADDLW   0x80
-00C2 0F4C      02109         ADDLW   0x4c
-00C4 E200      02110         BC      _00209_DS_
-00C6 02111 _00212_DS_:
-               02112 ;       .line   277; pic.c      ||(secondLine[9]>='3'))//24h
-00C6 5000      02113         MOVF    r0x02, W
-00C8 0F80      02114         ADDLW   0x80
-00CA 0F4D      02115         ADDLW   0x4d
-00CC E300      02116         BNC     _00219_DS_
-00CE 02117 _00209_DS_:
-               02118 ;       .line   279; pic.c      secondLine[secondTab[posA]]='0';
-00CE C000 FFE9 02119         MOVFF   r0x00, FSR0L
-00D2 C000 FFEA 02120         MOVFF   r0x01, FSR0H
-00D6 0E30      02121         MOVLW   0x30
-00D8 6EEF      02122         MOVWF   INDF0
-00DA D000      02123         BRA     _00219_DS_
-00DC 02124 _00217_DS_:
-00DC 0000      02125         BANKSEL (_secondLine + 7)
-               02126 ;       .line   284; pic.c      if(secondLine[7]=='N')
-00DE 5100      02127         MOVF    (_secondLine + 7), W, B
-00E0 0A4E      02128         XORLW   0x4e
-00E2 E100      02129         BNZ     _00214_DS_
-               02130 ;       .line   286; pic.c      isAlarm=1;
-00E4 0E01      02131         MOVLW   0x01
-00E6 0000      02132         BANKSEL _isAlarm
-00E8 6F00      02133         MOVWF   _isAlarm, B
-00EA 0000      02134         BANKSEL (_isAlarm + 1)
-00EC 6B00      02135         CLRF    (_isAlarm + 1), B
-               02136 ;       .line   287; pic.c      secondLine[7]='Y';
-00EE 0E59      02137         MOVLW   0x59
-00F0 0000      02138         BANKSEL (_secondLine + 7)
-00F2 6F00      02139         MOVWF   (_secondLine + 7), B
-00F4 D000      02140         BRA     _00219_DS_
-00F6 02141 _00214_DS_:
-               02142 ;       .line   291; pic.c      secondLine[7]='N';
-00F6 0E4E      02143         MOVLW   0x4e
-00F8 0000      02144         BANKSEL (_secondLine + 7)
-00FA 6F00      02145         MOVWF   (_secondLine + 7), B
-00FC 0000      02146         BANKSEL _isAlarm
-               02147 ;       .line   292; pic.c      isAlarm=0;
-00FE 6B00      02148         CLRF    _isAlarm, B
-0100 0000      02149         BANKSEL (_isAlarm + 1)
-0102 6B00      02150         CLRF    (_isAlarm + 1), B
-0104 02151 _00219_DS_:
-0104 CFE4 F000 02152         MOVFF   PREINC1, r0x02
-0108 CFE4 F000 02153         MOVFF   PREINC1, r0x01
-010C CFE4 F000 02154         MOVFF   PREINC1, r0x00
-0110 CFE4 FFD9 02155         MOVFF   PREINC1, FSR2L
-0114 0012      02156         RETURN  
-               02157 
-               02158 ; ; Starting pCode block
-               02159 S_pic__checkAlarm       code
-0000 02160 _checkAlarm:
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 41
+00C2 0F4C      02107         ADDLW   0x4c
+00C4 E200      02108         BC      _00209_DS_
+00C6 02109 _00212_DS_:
+               02110 ;       .line   160; pic.c      ||(secondLine[9]>='3'))//24h
+00C6 5000      02111         MOVF    r0x02, W
+00C8 0F80      02112         ADDLW   0x80
+00CA 0F4D      02113         ADDLW   0x4d
+00CC E300      02114         BNC     _00219_DS_
+00CE 02115 _00209_DS_:
+               02116 ;       .line   162; pic.c      secondLine[secondTab[posA]]='0';
+00CE C000 FFE9 02117         MOVFF   r0x00, FSR0L
+00D2 C000 FFEA 02118         MOVFF   r0x01, FSR0H
+00D6 0E30      02119         MOVLW   0x30
+00D8 6EEF      02120         MOVWF   INDF0
+00DA D000      02121         BRA     _00219_DS_
+00DC 02122 _00217_DS_:
+00DC 0000      02123         BANKSEL (_secondLine + 7)
+               02124 ;       .line   167; pic.c      if(secondLine[7]=='N')
+00DE 5100      02125         MOVF    (_secondLine + 7), W, B
+00E0 0A4E      02126         XORLW   0x4e
+00E2 E100      02127         BNZ     _00214_DS_
+               02128 ;       .line   169; pic.c      isAlarm=1;
+00E4 0E01      02129         MOVLW   0x01
+00E6 0000      02130         BANKSEL _isAlarm
+00E8 6F00      02131         MOVWF   _isAlarm, B
+00EA 0000      02132         BANKSEL (_isAlarm + 1)
+00EC 6B00      02133         CLRF    (_isAlarm + 1), B
+               02134 ;       .line   170; pic.c      secondLine[7]='Y';
+00EE 0E59      02135         MOVLW   0x59
+00F0 0000      02136         BANKSEL (_secondLine + 7)
+00F2 6F00      02137         MOVWF   (_secondLine + 7), B
+00F4 D000      02138         BRA     _00219_DS_
+00F6 02139 _00214_DS_:
+               02140 ;       .line   174; pic.c      secondLine[7]='N';
+00F6 0E4E      02141         MOVLW   0x4e
+00F8 0000      02142         BANKSEL (_secondLine + 7)
+00FA 6F00      02143         MOVWF   (_secondLine + 7), B
+00FC 0000      02144         BANKSEL _isAlarm
+               02145 ;       .line   175; pic.c      isAlarm=0;
+00FE 6B00      02146         CLRF    _isAlarm, B
+0100 0000      02147         BANKSEL (_isAlarm + 1)
+0102 6B00      02148         CLRF    (_isAlarm + 1), B
+0104 02149 _00219_DS_:
+0104 CFE4 F000 02150         MOVFF   PREINC1, r0x02
+0108 CFE4 F000 02151         MOVFF   PREINC1, r0x01
+010C CFE4 F000 02152         MOVFF   PREINC1, r0x00
+0110 CFE4 FFD9 02153         MOVFF   PREINC1, FSR2L
+0114 0012      02154         RETURN  
+               02155 
+               02156 ; ; Starting pCode block
+               02157 S_pic__checkAlarm       code
+0000 02158 _checkAlarm:
+               02159 ;       .line   133; pic.c      checkAlarm()
+0000 CFD9 FFE5 02160         MOVFF   FSR2L, POSTDEC1
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 41
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               02161 ;       .line   250; pic.c      checkAlarm()
-0000 CFD9 FFE5 02162         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 02163         MOVFF   FSR1L, FSR2L
-0008 0000      02164         BANKSEL (_firstLine + 6)
-               02165 ;       .line   252; pic.c      if((firstLine[6]==secondLine[9])
-000A 5100      02166         MOVF    (_firstLine + 6), W, B
-000C 0000      02167         BANKSEL (_secondLine + 9)
-000E 1900      02168         XORWF   (_secondLine + 9), W, B
-0010 E100      02169         BNZ     _00180_DS_
-0012 02170 _00189_DS_:
-0012 0000      02171         BANKSEL (_firstLine + 7)
-               02172 ;       .line   253; pic.c      &&(firstLine[7]==secondLine[10])
-0014 5100      02173         MOVF    (_firstLine + 7), W, B
-0016 0000      02174         BANKSEL (_secondLine + 10)
-0018 1900      02175         XORWF   (_secondLine + 10), W, B
-001A E100      02176         BNZ     _00180_DS_
-001C 02177 _00191_DS_:
-001C 0000      02178         BANKSEL (_firstLine + 9)
-               02179 ;       .line   254; pic.c      &&(firstLine[9]==secondLine[12])
-001E 5100      02180         MOVF    (_firstLine + 9), W, B
-0020 0000      02181         BANKSEL (_secondLine + 12)
-0022 1900      02182         XORWF   (_secondLine + 12), W, B
-0024 E100      02183         BNZ     _00180_DS_
-0026 02184 _00193_DS_:
-0026 0000      02185         BANKSEL (_firstLine + 10)
-               02186 ;       .line   255; pic.c      &&(firstLine[10]==secondLine[13])
-0028 5100      02187         MOVF    (_firstLine + 10), W, B
-002A 0000      02188         BANKSEL (_secondLine + 13)
-002C 1900      02189         XORWF   (_secondLine + 13), W, B
-002E E100      02190         BNZ     _00180_DS_
-0030 02191 _00195_DS_:
-0030 0000      02192         BANKSEL (_firstLine + 12)
-               02193 ;       .line   256; pic.c      &&(firstLine[12]=='0')
-0032 5100      02194         MOVF    (_firstLine + 12), W, B
-0034 0A30      02195         XORLW   0x30
-0036 E100      02196         BNZ     _00180_DS_
-0038 02197 _00197_DS_:
-0038 0000      02198         BANKSEL (_firstLine + 13)
-               02199 ;       .line   257; pic.c      &&(firstLine[13]=='0'))
-003A 5100      02200         MOVF    (_firstLine + 13), W, B
-003C 0A30      02201         XORLW   0x30
-003E E100      02202         BNZ     _00180_DS_
-               02203 ;       .line   259; pic.c      ringtone=30;//30 secondes d'alarme
-0040 0E1E      02204         MOVLW   0x1e
-0042 0000      02205         BANKSEL _ringtone
-0044 6F00      02206         MOVWF   _ringtone, B
-0046 0000      02207         BANKSEL (_ringtone + 1)
-0048 6B00      02208         CLRF    (_ringtone + 1), B
-004A 02209 _00180_DS_:
-004A CFE4 FFD9 02210         MOVFF   PREINC1, FSR2L
-004E 0012      02211         RETURN  
-               02212 
-               02213 ; ; Starting pCode block
-               02214 S_pic__increment        code
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 42
+0004 CFE1 FFD9 02161         MOVFF   FSR1L, FSR2L
+0008 0000      02162         BANKSEL (_firstLine + 6)
+               02163 ;       .line   135; pic.c      if((firstLine[6]==secondLine[9])
+000A 5100      02164         MOVF    (_firstLine + 6), W, B
+000C 0000      02165         BANKSEL (_secondLine + 9)
+000E 1900      02166         XORWF   (_secondLine + 9), W, B
+0010 E100      02167         BNZ     _00180_DS_
+0012 02168 _00189_DS_:
+0012 0000      02169         BANKSEL (_firstLine + 7)
+               02170 ;       .line   136; pic.c      &&(firstLine[7]==secondLine[10])
+0014 5100      02171         MOVF    (_firstLine + 7), W, B
+0016 0000      02172         BANKSEL (_secondLine + 10)
+0018 1900      02173         XORWF   (_secondLine + 10), W, B
+001A E100      02174         BNZ     _00180_DS_
+001C 02175 _00191_DS_:
+001C 0000      02176         BANKSEL (_firstLine + 9)
+               02177 ;       .line   137; pic.c      &&(firstLine[9]==secondLine[12])
+001E 5100      02178         MOVF    (_firstLine + 9), W, B
+0020 0000      02179         BANKSEL (_secondLine + 12)
+0022 1900      02180         XORWF   (_secondLine + 12), W, B
+0024 E100      02181         BNZ     _00180_DS_
+0026 02182 _00193_DS_:
+0026 0000      02183         BANKSEL (_firstLine + 10)
+               02184 ;       .line   138; pic.c      &&(firstLine[10]==secondLine[13])
+0028 5100      02185         MOVF    (_firstLine + 10), W, B
+002A 0000      02186         BANKSEL (_secondLine + 13)
+002C 1900      02187         XORWF   (_secondLine + 13), W, B
+002E E100      02188         BNZ     _00180_DS_
+0030 02189 _00195_DS_:
+0030 0000      02190         BANKSEL (_firstLine + 12)
+               02191 ;       .line   139; pic.c      &&(firstLine[12]=='0')
+0032 5100      02192         MOVF    (_firstLine + 12), W, B
+0034 0A30      02193         XORLW   0x30
+0036 E100      02194         BNZ     _00180_DS_
+0038 02195 _00197_DS_:
+0038 0000      02196         BANKSEL (_firstLine + 13)
+               02197 ;       .line   140; pic.c      &&(firstLine[13]=='0'))
+003A 5100      02198         MOVF    (_firstLine + 13), W, B
+003C 0A30      02199         XORLW   0x30
+003E E100      02200         BNZ     _00180_DS_
+               02201 ;       .line   142; pic.c      ringtone=30;//30 secondes d'alarme
+0040 0E1E      02202         MOVLW   0x1e
+0042 0000      02203         BANKSEL _ringtone
+0044 6F00      02204         MOVWF   _ringtone, B
+0046 0000      02205         BANKSEL (_ringtone + 1)
+0048 6B00      02206         CLRF    (_ringtone + 1), B
+004A 02207 _00180_DS_:
+004A CFE4 FFD9 02208         MOVFF   PREINC1, FSR2L
+004E 0012      02209         RETURN  
+               02210 
+               02211 ; ; Starting pCode block
+               02212 S_pic__increment        code
+0000 02213 _increment:
+               02214 ;       .line   96; pic.c       increment()
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 42
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0000 02215 _increment:
-               02216 ;       .line   213; pic.c      increment()
-0000 CFD9 FFE5 02217         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 02218         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 02219         MOVFF   r0x00, POSTDEC1
-               02220 ;       .line   215; pic.c      firstLine[13]++;
-000C C000 F000 02221         MOVFF   (_firstLine + 13), r0x00
-0010 2A00      02222         INCF    r0x00, F
-0012 5000      02223         MOVF    r0x00, W
-0014 0000      02224         BANKSEL (_firstLine + 13)
-0016 6F00      02225         MOVWF   (_firstLine + 13), B
-               02226 ;       .line   216; pic.c      if(firstLine[13]==':')// char après '9'
-0018 5000      02227         MOVF    r0x00, W
-001A 0A3A      02228         XORLW   0x3a
-001C E000      02229         BZ      _00158_DS_
-001E D000      02230         BRA     _00149_DS_
-0020 02231 _00158_DS_:
-               02232 ;       .line   218; pic.c      firstLine[13]='0';
-0020 0E30      02233         MOVLW   0x30
-0022 0000      02234         BANKSEL (_firstLine + 13)
-0024 6F00      02235         MOVWF   (_firstLine + 13), B
-               02236 ;       .line   219; pic.c      firstLine[12]++;
-0026 C000 F000 02237         MOVFF   (_firstLine + 12), r0x00
-002A 2A00      02238         INCF    r0x00, F
-002C 5000      02239         MOVF    r0x00, W
-002E 0000      02240         BANKSEL (_firstLine + 12)
-0030 6F00      02241         MOVWF   (_firstLine + 12), B
-               02242 ;       .line   221; pic.c      if(firstLine[12]=='6')// 60 sec
-0032 5000      02243         MOVF    r0x00, W
-0034 0A36      02244         XORLW   0x36
-0036 E000      02245         BZ      _00160_DS_
-0038 D000      02246         BRA     _00149_DS_
-003A 02247 _00160_DS_:
-               02248 ;       .line   223; pic.c      firstLine[12]='0';
-003A 0E30      02249         MOVLW   0x30
-003C 0000      02250         BANKSEL (_firstLine + 12)
-003E 6F00      02251         MOVWF   (_firstLine + 12), B
-               02252 ;       .line   224; pic.c      firstLine[10]++;
-0040 C000 F000 02253         MOVFF   (_firstLine + 10), r0x00
-0044 2A00      02254         INCF    r0x00, F
-0046 5000      02255         MOVF    r0x00, W
-0048 0000      02256         BANKSEL (_firstLine + 10)
-004A 6F00      02257         MOVWF   (_firstLine + 10), B
-               02258 ;       .line   226; pic.c      if(firstLine[10]==':')
-004C 5000      02259         MOVF    r0x00, W
-004E 0A3A      02260         XORLW   0x3a
-0050 E100      02261         BNZ     _00149_DS_
-               02262 ;       .line   228; pic.c      firstLine[10]='0';
-0052 0E30      02263         MOVLW   0x30
-0054 0000      02264         BANKSEL (_firstLine + 10)
-0056 6F00      02265         MOVWF   (_firstLine + 10), B
-               02266 ;       .line   229; pic.c      firstLine[9]++;
-0058 C000 F000 02267         MOVFF   (_firstLine + 9), r0x00
-005C 2A00      02268         INCF    r0x00, F
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 43
+0000 CFD9 FFE5 02215         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 02216         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 02217         MOVFF   r0x00, POSTDEC1
+               02218 ;       .line   98; pic.c       firstLine[13]++;
+000C C000 F000 02219         MOVFF   (_firstLine + 13), r0x00
+0010 2A00      02220         INCF    r0x00, F
+0012 5000      02221         MOVF    r0x00, W
+0014 0000      02222         BANKSEL (_firstLine + 13)
+0016 6F00      02223         MOVWF   (_firstLine + 13), B
+               02224 ;       .line   99; pic.c       if(firstLine[13]==':')// char après '9'
+0018 5000      02225         MOVF    r0x00, W
+001A 0A3A      02226         XORLW   0x3a
+001C E000      02227         BZ      _00158_DS_
+001E D000      02228         BRA     _00149_DS_
+0020 02229 _00158_DS_:
+               02230 ;       .line   101; pic.c      firstLine[13]='0';
+0020 0E30      02231         MOVLW   0x30
+0022 0000      02232         BANKSEL (_firstLine + 13)
+0024 6F00      02233         MOVWF   (_firstLine + 13), B
+               02234 ;       .line   102; pic.c      firstLine[12]++;
+0026 C000 F000 02235         MOVFF   (_firstLine + 12), r0x00
+002A 2A00      02236         INCF    r0x00, F
+002C 5000      02237         MOVF    r0x00, W
+002E 0000      02238         BANKSEL (_firstLine + 12)
+0030 6F00      02239         MOVWF   (_firstLine + 12), B
+               02240 ;       .line   104; pic.c      if(firstLine[12]=='6')// 60 sec
+0032 5000      02241         MOVF    r0x00, W
+0034 0A36      02242         XORLW   0x36
+0036 E000      02243         BZ      _00160_DS_
+0038 D000      02244         BRA     _00149_DS_
+003A 02245 _00160_DS_:
+               02246 ;       .line   106; pic.c      firstLine[12]='0';
+003A 0E30      02247         MOVLW   0x30
+003C 0000      02248         BANKSEL (_firstLine + 12)
+003E 6F00      02249         MOVWF   (_firstLine + 12), B
+               02250 ;       .line   107; pic.c      firstLine[10]++;
+0040 C000 F000 02251         MOVFF   (_firstLine + 10), r0x00
+0044 2A00      02252         INCF    r0x00, F
+0046 5000      02253         MOVF    r0x00, W
+0048 0000      02254         BANKSEL (_firstLine + 10)
+004A 6F00      02255         MOVWF   (_firstLine + 10), B
+               02256 ;       .line   109; pic.c      if(firstLine[10]==':')
+004C 5000      02257         MOVF    r0x00, W
+004E 0A3A      02258         XORLW   0x3a
+0050 E100      02259         BNZ     _00149_DS_
+               02260 ;       .line   111; pic.c      firstLine[10]='0';
+0052 0E30      02261         MOVLW   0x30
+0054 0000      02262         BANKSEL (_firstLine + 10)
+0056 6F00      02263         MOVWF   (_firstLine + 10), B
+               02264 ;       .line   112; pic.c      firstLine[9]++;
+0058 C000 F000 02265         MOVFF   (_firstLine + 9), r0x00
+005C 2A00      02266         INCF    r0x00, F
+005E 5000      02267         MOVF    r0x00, W
+0060 0000      02268         BANKSEL (_firstLine + 9)
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 43
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-005E 5000      02269         MOVF    r0x00, W
-0060 0000      02270         BANKSEL (_firstLine + 9)
-0062 6F00      02271         MOVWF   (_firstLine + 9), B
-               02272 ;       .line   231; pic.c      if(firstLine[9]=='6')
-0064 5000      02273         MOVF    r0x00, W
-0066 0A36      02274         XORLW   0x36
-0068 E100      02275         BNZ     _00149_DS_
-               02276 ;       .line   233; pic.c      firstLine[9]='0';
-006A 0E30      02277         MOVLW   0x30
-006C 0000      02278         BANKSEL (_firstLine + 9)
-006E 6F00      02279         MOVWF   (_firstLine + 9), B
-               02280 ;       .line   234; pic.c      firstLine[7]++;
-0070 C000 F000 02281         MOVFF   (_firstLine + 7), r0x00
-0074 2A00      02282         INCF    r0x00, F
-0076 5000      02283         MOVF    r0x00, W
-0078 0000      02284         BANKSEL (_firstLine + 7)
-007A 6F00      02285         MOVWF   (_firstLine + 7), B
-               02286 ;       .line   235; pic.c      if(firstLine[7]=='4')// 24h
-007C 5000      02287         MOVF    r0x00, W
-007E 0A34      02288         XORLW   0x34
-0080 E100      02289         BNZ     _00149_DS_
-               02290 ;       .line   237; pic.c      firstLine[7]='0';
-0082 0E30      02291         MOVLW   0x30
-0084 0000      02292         BANKSEL (_firstLine + 7)
-0086 6F00      02293         MOVWF   (_firstLine + 7), B
-               02294 ;       .line   238; pic.c      firstLine[6]++;
-0088 C000 F000 02295         MOVFF   (_firstLine + 6), r0x00
-008C 2A00      02296         INCF    r0x00, F
-008E 5000      02297         MOVF    r0x00, W
-0090 0000      02298         BANKSEL (_firstLine + 6)
-0092 6F00      02299         MOVWF   (_firstLine + 6), B
-               02300 ;       .line   239; pic.c      if(firstLine[6]=='3')//24h
-0094 5000      02301         MOVF    r0x00, W
-0096 0A33      02302         XORLW   0x33
-0098 E100      02303         BNZ     _00149_DS_
-               02304 ;       .line   241; pic.c      firstLine[6]='0';
-009A 0E30      02305         MOVLW   0x30
-009C 0000      02306         BANKSEL (_firstLine + 6)
-009E 6F00      02307         MOVWF   (_firstLine + 6), B
-00A0 02308 _00149_DS_:
-00A0 CFE4 F000 02309         MOVFF   PREINC1, r0x00
-00A4 CFE4 FFD9 02310         MOVFF   PREINC1, FSR2L
-00A8 0012      02311         RETURN  
-               02312 
-               02313 ; ; Starting pCode block
-               02314 S_pic__HighISR  code
-0000 02315 _HighISR:
-               02316 ;       .line   162; pic.c      HighISR (void) __interrupt (1)
-0000 CFE8 FFE5 02317         MOVFF   WREG, POSTDEC1
-0004 CFD8 FFE5 02318         MOVFF   STATUS, POSTDEC1
-0008 CFE0 FFE5 02319         MOVFF   BSR, POSTDEC1
-000C CFF3 FFE5 02320         MOVFF   PRODL, POSTDEC1
-0010 CFF4 FFE5 02321         MOVFF   PRODH, POSTDEC1
-0014 CFE9 FFE5 02322         MOVFF   FSR0L, POSTDEC1
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 44
+0062 6F00      02269         MOVWF   (_firstLine + 9), B
+               02270 ;       .line   114; pic.c      if(firstLine[9]=='6')
+0064 5000      02271         MOVF    r0x00, W
+0066 0A36      02272         XORLW   0x36
+0068 E100      02273         BNZ     _00149_DS_
+               02274 ;       .line   116; pic.c      firstLine[9]='0';
+006A 0E30      02275         MOVLW   0x30
+006C 0000      02276         BANKSEL (_firstLine + 9)
+006E 6F00      02277         MOVWF   (_firstLine + 9), B
+               02278 ;       .line   117; pic.c      firstLine[7]++;
+0070 C000 F000 02279         MOVFF   (_firstLine + 7), r0x00
+0074 2A00      02280         INCF    r0x00, F
+0076 5000      02281         MOVF    r0x00, W
+0078 0000      02282         BANKSEL (_firstLine + 7)
+007A 6F00      02283         MOVWF   (_firstLine + 7), B
+               02284 ;       .line   118; pic.c      if(firstLine[7]=='4')// 24h
+007C 5000      02285         MOVF    r0x00, W
+007E 0A34      02286         XORLW   0x34
+0080 E100      02287         BNZ     _00149_DS_
+               02288 ;       .line   120; pic.c      firstLine[7]='0';
+0082 0E30      02289         MOVLW   0x30
+0084 0000      02290         BANKSEL (_firstLine + 7)
+0086 6F00      02291         MOVWF   (_firstLine + 7), B
+               02292 ;       .line   121; pic.c      firstLine[6]++;
+0088 C000 F000 02293         MOVFF   (_firstLine + 6), r0x00
+008C 2A00      02294         INCF    r0x00, F
+008E 5000      02295         MOVF    r0x00, W
+0090 0000      02296         BANKSEL (_firstLine + 6)
+0092 6F00      02297         MOVWF   (_firstLine + 6), B
+               02298 ;       .line   122; pic.c      if(firstLine[6]=='3')//24h
+0094 5000      02299         MOVF    r0x00, W
+0096 0A33      02300         XORLW   0x33
+0098 E100      02301         BNZ     _00149_DS_
+               02302 ;       .line   124; pic.c      firstLine[6]='0';
+009A 0E30      02303         MOVLW   0x30
+009C 0000      02304         BANKSEL (_firstLine + 6)
+009E 6F00      02305         MOVWF   (_firstLine + 6), B
+00A0 02306 _00149_DS_:
+00A0 CFE4 F000 02307         MOVFF   PREINC1, r0x00
+00A4 CFE4 FFD9 02308         MOVFF   PREINC1, FSR2L
+00A8 0012      02309         RETURN  
+               02310 
+               02311 ; ; Starting pCode block
+               02312 S_pic__HighISR  code
+0000 02313 _HighISR:
+               02314 ;       .line   45; pic.c       HighISR (void) __interrupt (1)
+0000 CFE8 FFE5 02315         MOVFF   WREG, POSTDEC1
+0004 CFD8 FFE5 02316         MOVFF   STATUS, POSTDEC1
+0008 CFE0 FFE5 02317         MOVFF   BSR, POSTDEC1
+000C CFF3 FFE5 02318         MOVFF   PRODL, POSTDEC1
+0010 CFF4 FFE5 02319         MOVFF   PRODH, POSTDEC1
+0014 CFE9 FFE5 02320         MOVFF   FSR0L, POSTDEC1
+0018 CFEA FFE5 02321         MOVFF   FSR0H, POSTDEC1
+001C CFFA FFE5 02322         MOVFF   PCLATH, POSTDEC1
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 44
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0018 CFEA FFE5 02323         MOVFF   FSR0H, POSTDEC1
-001C CFFA FFE5 02324         MOVFF   PCLATH, POSTDEC1
-0020 CFFB FFE5 02325         MOVFF   PCLATU, POSTDEC1
-0024 CFD9 FFE5 02326         MOVFF   FSR2L, POSTDEC1
-0028 CFE1 FFD9 02327         MOVFF   FSR1L, FSR2L
-002C C000 FFE5 02328         MOVFF   r0x00, POSTDEC1
-0030 C000 FFE5 02329         MOVFF   r0x01, POSTDEC1
-0034 C000 FFE5 02330         MOVFF   r0x02, POSTDEC1
-               02331 ;       .line   164; pic.c      if(INTCON3bits.INT1F)
-0038 A000      02332         BTFSS   _INTCON3bits, 0
-003A D000      02333         BRA     _00106_DS_
-               02334 ;       .line   167; pic.c      actionButton1();
-003C EC00 F000 02335         CALL    _actionButton1
-               02336 ;       .line   168; pic.c      INTCON3bits.INT1F  = 0;
-0040 9000      02337         BCF     _INTCON3bits, 0
-0042 02338 _00106_DS_:
-               02339 ;       .line   171; pic.c      if(INTCON3bits.INT3F)
-0042 A400      02340         BTFSS   _INTCON3bits, 2
-0044 D000      02341         BRA     _00108_DS_
-               02342 ;       .line   174; pic.c      actionButton2();
-0046 EC00 F000 02343         CALL    _actionButton2
-               02344 ;       .line   175; pic.c      INTCON3bits.INT3F  = 0;
-004A 9400      02345         BCF     _INTCON3bits, 2
-004C 02346 _00108_DS_:
-               02347 ;       .line   178; pic.c      if(INTCONbits.TMR0IF)
-004C A400      02348         BTFSS   _INTCONbits, 2
-004E D000      02349         BRA     _00120_DS_
-0050 0000      02350         BANKSEL _count
-               02351 ;       .line   181; pic.c      count++;
-0052 2B00      02352         INCF    _count, F, B
-0054 E300      02353         BNC     _50450_DS_
-0056 0000      02354         BANKSEL (_count + 1)
-0058 2B00      02355         INCF    (_count + 1), F, B
-005A 02356 _50450_DS_:
-               02357 ;       .line   182; pic.c      if(count>=CLOCK)
-005A 0E5B      02358         MOVLW   0x5b
-005C 0000      02359         BANKSEL (_count + 1)
-005E 5D00      02360         SUBWF   (_count + 1), W, B
-0060 E100      02361         BNZ     _00129_DS_
-0062 0E01      02362         MOVLW   0x01
-0064 0000      02363         BANKSEL _count
-0066 5D00      02364         SUBWF   _count, W, B
-0068 02365 _00129_DS_:
-0068 A0D8      02366         BTFSS   STATUS, 0
-006A D000      02367         BRA     _00117_DS_
-               02368 ;       .line   184; pic.c      count=count-CLOCK;
-006C 0EFF      02369         MOVLW   0xff
-006E 0000      02370         BANKSEL _count
-0070 2700      02371         ADDWF   _count, F, B
-0072 0EA4      02372         MOVLW   0xa4
-0074 0000      02373         BANKSEL (_count + 1)
-0076 2300      02374         ADDWFC  (_count + 1), F, B
-0078 0000      02375         BANKSEL _currentMode
-               02376 ;       .line   185; pic.c      if(currentMode==ACCUEIL)
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 45
+0020 CFFB FFE5 02323         MOVFF   PCLATU, POSTDEC1
+0024 CFD9 FFE5 02324         MOVFF   FSR2L, POSTDEC1
+0028 CFE1 FFD9 02325         MOVFF   FSR1L, FSR2L
+002C C000 FFE5 02326         MOVFF   r0x00, POSTDEC1
+0030 C000 FFE5 02327         MOVFF   r0x01, POSTDEC1
+0034 C000 FFE5 02328         MOVFF   r0x02, POSTDEC1
+               02329 ;       .line   47; pic.c       if(INTCON3bits.INT1F)
+0038 A000      02330         BTFSS   _INTCON3bits, 0
+003A D000      02331         BRA     _00106_DS_
+               02332 ;       .line   50; pic.c       actionButton1();
+003C EC00 F000 02333         CALL    _actionButton1
+               02334 ;       .line   51; pic.c       INTCON3bits.INT1F  = 0;
+0040 9000      02335         BCF     _INTCON3bits, 0
+0042 02336 _00106_DS_:
+               02337 ;       .line   54; pic.c       if(INTCON3bits.INT3F)
+0042 A400      02338         BTFSS   _INTCON3bits, 2
+0044 D000      02339         BRA     _00108_DS_
+               02340 ;       .line   57; pic.c       actionButton2();
+0046 EC00 F000 02341         CALL    _actionButton2
+               02342 ;       .line   58; pic.c       INTCON3bits.INT3F  = 0;
+004A 9400      02343         BCF     _INTCON3bits, 2
+004C 02344 _00108_DS_:
+               02345 ;       .line   61; pic.c       if(INTCONbits.TMR0IF)
+004C A400      02346         BTFSS   _INTCONbits, 2
+004E D000      02347         BRA     _00120_DS_
+0050 0000      02348         BANKSEL _count
+               02349 ;       .line   64; pic.c       count++;
+0052 2B00      02350         INCF    _count, F, B
+0054 E300      02351         BNC     _50450_DS_
+0056 0000      02352         BANKSEL (_count + 1)
+0058 2B00      02353         INCF    (_count + 1), F, B
+005A 02354 _50450_DS_:
+               02355 ;       .line   65; pic.c       if(count>=CLOCK)
+005A 0E5B      02356         MOVLW   0x5b
+005C 0000      02357         BANKSEL (_count + 1)
+005E 5D00      02358         SUBWF   (_count + 1), W, B
+0060 E100      02359         BNZ     _00129_DS_
+0062 0E01      02360         MOVLW   0x01
+0064 0000      02361         BANKSEL _count
+0066 5D00      02362         SUBWF   _count, W, B
+0068 02363 _00129_DS_:
+0068 A0D8      02364         BTFSS   STATUS, 0
+006A D000      02365         BRA     _00117_DS_
+               02366 ;       .line   67; pic.c       count=count-CLOCK;
+006C 0EFF      02367         MOVLW   0xff
+006E 0000      02368         BANKSEL _count
+0070 2700      02369         ADDWF   _count, F, B
+0072 0EA4      02370         MOVLW   0xa4
+0074 0000      02371         BANKSEL (_count + 1)
+0076 2300      02372         ADDWFC  (_count + 1), F, B
+0078 0000      02373         BANKSEL _currentMode
+               02374 ;       .line   68; pic.c       if(currentMode==ACCUEIL)
+007A 5100      02375         MOVF    _currentMode, W, B
+007C E100      02376         BNZ     _00110_DS_
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 45
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-007A 5100      02377         MOVF    _currentMode, W, B
-007C E100      02378         BNZ     _00110_DS_
-               02379 ;       .line   187; pic.c      DisplayString(FIRST_LINE,firstLine);
-007E 0E00      02380         MOVLW   HIGH(_firstLine)
-0080 6E00      02381         MOVWF   r0x01
-0082 0E00      02382         MOVLW   LOW(_firstLine)
-0084 6E00      02383         MOVWF   r0x00
-0086 0E80      02384         MOVLW   0x80
-0088 6E00      02385         MOVWF   r0x02
-008A 5000      02386         MOVF    r0x02, W
-008C 6EE5      02387         MOVWF   POSTDEC1
-008E 5000      02388         MOVF    r0x01, W
-0090 6EE5      02389         MOVWF   POSTDEC1
-0092 5000      02390         MOVF    r0x00, W
-0094 6EE5      02391         MOVWF   POSTDEC1
-0096 0E00      02392         MOVLW   0x00
-0098 6EE5      02393         MOVWF   POSTDEC1
-009A EC00 F000 02394         CALL    _DisplayString
-009E 0E04      02395         MOVLW   0x04
-00A0 26E1      02396         ADDWF   FSR1L, F
-               02397 ;       .line   188; pic.c      DisplayString(SECOND_LINE,secondLine);
-00A2 0E00      02398         MOVLW   HIGH(_secondLine)
-00A4 6E00      02399         MOVWF   r0x01
-00A6 0E00      02400         MOVLW   LOW(_secondLine)
-00A8 6E00      02401         MOVWF   r0x00
-00AA 0E80      02402         MOVLW   0x80
-00AC 6E00      02403         MOVWF   r0x02
-00AE 5000      02404         MOVF    r0x02, W
-00B0 6EE5      02405         MOVWF   POSTDEC1
-00B2 5000      02406         MOVF    r0x01, W
-00B4 6EE5      02407         MOVWF   POSTDEC1
-00B6 5000      02408         MOVF    r0x00, W
-00B8 6EE5      02409         MOVWF   POSTDEC1
-00BA 0E10      02410         MOVLW   0x10
-00BC 6EE5      02411         MOVWF   POSTDEC1
-00BE EC00 F000 02412         CALL    _DisplayString
-00C2 0E04      02413         MOVLW   0x04
-00C4 26E1      02414         ADDWF   FSR1L, F
-00C6 D000      02415         BRA     _00111_DS_
-00C8 02416 _00110_DS_:
-               02417 ;       .line   192; pic.c      blink();
-00C8 EC00 F000 02418         CALL    _blink
-00CC 02419 _00111_DS_:
-00CC 0000      02420         BANKSEL _isAlarm
-               02421 ;       .line   194; pic.c      if(isAlarm==1)
-00CE 5100      02422         MOVF    _isAlarm, W, B
-00D0 0A01      02423         XORLW   0x01
-00D2 E100      02424         BNZ     _00130_DS_
-00D4 0000      02425         BANKSEL (_isAlarm + 1)
-00D6 5100      02426         MOVF    (_isAlarm + 1), W, B
-00D8 E000      02427         BZ      _00131_DS_
-00DA 02428 _00130_DS_:
-00DA D000      02429         BRA     _00113_DS_
-00DC 02430 _00131_DS_:
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 46
+               02377 ;       .line   70; pic.c       DisplayString(FIRST_LINE,firstLine);
+007E 0E00      02378         MOVLW   HIGH(_firstLine)
+0080 6E00      02379         MOVWF   r0x01
+0082 0E00      02380         MOVLW   LOW(_firstLine)
+0084 6E00      02381         MOVWF   r0x00
+0086 0E80      02382         MOVLW   0x80
+0088 6E00      02383         MOVWF   r0x02
+008A 5000      02384         MOVF    r0x02, W
+008C 6EE5      02385         MOVWF   POSTDEC1
+008E 5000      02386         MOVF    r0x01, W
+0090 6EE5      02387         MOVWF   POSTDEC1
+0092 5000      02388         MOVF    r0x00, W
+0094 6EE5      02389         MOVWF   POSTDEC1
+0096 0E00      02390         MOVLW   0x00
+0098 6EE5      02391         MOVWF   POSTDEC1
+009A EC00 F000 02392         CALL    _DisplayString
+009E 0E04      02393         MOVLW   0x04
+00A0 26E1      02394         ADDWF   FSR1L, F
+               02395 ;       .line   71; pic.c       DisplayString(SECOND_LINE,secondLine);
+00A2 0E00      02396         MOVLW   HIGH(_secondLine)
+00A4 6E00      02397         MOVWF   r0x01
+00A6 0E00      02398         MOVLW   LOW(_secondLine)
+00A8 6E00      02399         MOVWF   r0x00
+00AA 0E80      02400         MOVLW   0x80
+00AC 6E00      02401         MOVWF   r0x02
+00AE 5000      02402         MOVF    r0x02, W
+00B0 6EE5      02403         MOVWF   POSTDEC1
+00B2 5000      02404         MOVF    r0x01, W
+00B4 6EE5      02405         MOVWF   POSTDEC1
+00B6 5000      02406         MOVF    r0x00, W
+00B8 6EE5      02407         MOVWF   POSTDEC1
+00BA 0E10      02408         MOVLW   0x10
+00BC 6EE5      02409         MOVWF   POSTDEC1
+00BE EC00 F000 02410         CALL    _DisplayString
+00C2 0E04      02411         MOVLW   0x04
+00C4 26E1      02412         ADDWF   FSR1L, F
+00C6 D000      02413         BRA     _00111_DS_
+00C8 02414 _00110_DS_:
+               02415 ;       .line   75; pic.c       blink();
+00C8 EC00 F000 02416         CALL    _blink
+00CC 02417 _00111_DS_:
+00CC 0000      02418         BANKSEL _isAlarm
+               02419 ;       .line   77; pic.c       if(isAlarm==1)
+00CE 5100      02420         MOVF    _isAlarm, W, B
+00D0 0A01      02421         XORLW   0x01
+00D2 E100      02422         BNZ     _00130_DS_
+00D4 0000      02423         BANKSEL (_isAlarm + 1)
+00D6 5100      02424         MOVF    (_isAlarm + 1), W, B
+00D8 E000      02425         BZ      _00131_DS_
+00DA 02426 _00130_DS_:
+00DA D000      02427         BRA     _00113_DS_
+00DC 02428 _00131_DS_:
+               02429 ;       .line   80; pic.c       checkAlarm();
+00DC EC00 F000 02430         CALL    _checkAlarm
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 46
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               02431 ;       .line   197; pic.c      checkAlarm();
-00DC EC00 F000 02432         CALL    _checkAlarm
-00E0 02433 _00113_DS_:
-00E0 0000      02434         BANKSEL (_ringtone + 1)
-               02435 ;       .line   199; pic.c      if(ringtone>0)
-00E2 5100      02436         MOVF    (_ringtone + 1), W, B
-00E4 0F80      02437         ADDLW   0x80
-00E6 0F80      02438         ADDLW   0x80
-00E8 E100      02439         BNZ     _00132_DS_
-00EA 0E01      02440         MOVLW   0x01
-00EC 0000      02441         BANKSEL _ringtone
-00EE 5D00      02442         SUBWF   _ringtone, W, B
-00F0 02443 _00132_DS_:
-00F0 E300      02444         BNC     _00115_DS_
-               02445 ;       .line   202; pic.c      currentMode=RINGTONE;
-00F2 0E07      02446         MOVLW   0x07
-00F4 0000      02447         BANKSEL _currentMode
-00F6 6F00      02448         MOVWF   _currentMode, B
-               02449 ;       .line   203; pic.c      ringtone--;
-00F8 0EFF      02450         MOVLW   0xff
-00FA 0000      02451         BANKSEL _ringtone
-00FC 2700      02452         ADDWF   _ringtone, F, B
-00FE E200      02453         BC      _60451_DS_
-0100 0000      02454         BANKSEL (_ringtone + 1)
-0102 0700      02455         DECF    (_ringtone + 1), F, B
-0104 02456 _60451_DS_:
-               02457 ;       .line   204; pic.c      LED2_IO ^= 1;
-0104 6A00      02458         CLRF    r0x00
-0106 B400      02459         BTFSC   _LATJbits, 2
-0108 2A00      02460         INCF    r0x00, F
-010A 0E01      02461         MOVLW   0x01
-010C 1A00      02462         XORWF   r0x00, F
-010E 5000      02463         MOVF    r0x00, W
-0110 0B01      02464         ANDLW   0x01
-0112 44E8      02465         RLNCF   WREG, W
-0114 44E8      02466         RLNCF   WREG, W
-0116 6EF4      02467         MOVWF   PRODH
-0118 5000      02468         MOVF    _LATJbits, W
-011A 0BFB      02469         ANDLW   0xfb
-011C 10F4      02470         IORWF   PRODH, W
-011E 6E00      02471         MOVWF   _LATJbits
-0120 02472 _00115_DS_:
-               02473 ;       .line   206; pic.c      increment();
-0120 EC00 F000 02474         CALL    _increment
-0124 02475 _00117_DS_:
-               02476 ;       .line   208; pic.c      INTCONbits.TMR0IF = 0;
-0124 9400      02477         BCF     _INTCONbits, 2
-0126 02478 _00120_DS_:
-0126 CFE4 F000 02479         MOVFF   PREINC1, r0x02
-012A CFE4 F000 02480         MOVFF   PREINC1, r0x01
-012E CFE4 F000 02481         MOVFF   PREINC1, r0x00
-0132 CFE4 FFD9 02482         MOVFF   PREINC1, FSR2L
-0136 CFE4 FFFB 02483         MOVFF   PREINC1, PCLATU
-013A CFE4 FFFA 02484         MOVFF   PREINC1, PCLATH
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 47
+00E0 02431 _00113_DS_:
+00E0 0000      02432         BANKSEL (_ringtone + 1)
+               02433 ;       .line   82; pic.c       if(ringtone>0)
+00E2 5100      02434         MOVF    (_ringtone + 1), W, B
+00E4 0F80      02435         ADDLW   0x80
+00E6 0F80      02436         ADDLW   0x80
+00E8 E100      02437         BNZ     _00132_DS_
+00EA 0E01      02438         MOVLW   0x01
+00EC 0000      02439         BANKSEL _ringtone
+00EE 5D00      02440         SUBWF   _ringtone, W, B
+00F0 02441 _00132_DS_:
+00F0 E300      02442         BNC     _00115_DS_
+               02443 ;       .line   85; pic.c       currentMode=RINGTONE;
+00F2 0E06      02444         MOVLW   0x06
+00F4 0000      02445         BANKSEL _currentMode
+00F6 6F00      02446         MOVWF   _currentMode, B
+               02447 ;       .line   86; pic.c       ringtone--;
+00F8 0EFF      02448         MOVLW   0xff
+00FA 0000      02449         BANKSEL _ringtone
+00FC 2700      02450         ADDWF   _ringtone, F, B
+00FE E200      02451         BC      _60451_DS_
+0100 0000      02452         BANKSEL (_ringtone + 1)
+0102 0700      02453         DECF    (_ringtone + 1), F, B
+0104 02454 _60451_DS_:
+               02455 ;       .line   87; pic.c       LED2_IO ^= 1;
+0104 6A00      02456         CLRF    r0x00
+0106 B400      02457         BTFSC   _LATJbits, 2
+0108 2A00      02458         INCF    r0x00, F
+010A 0E01      02459         MOVLW   0x01
+010C 1A00      02460         XORWF   r0x00, F
+010E 5000      02461         MOVF    r0x00, W
+0110 0B01      02462         ANDLW   0x01
+0112 44E8      02463         RLNCF   WREG, W
+0114 44E8      02464         RLNCF   WREG, W
+0116 6EF4      02465         MOVWF   PRODH
+0118 5000      02466         MOVF    _LATJbits, W
+011A 0BFB      02467         ANDLW   0xfb
+011C 10F4      02468         IORWF   PRODH, W
+011E 6E00      02469         MOVWF   _LATJbits
+0120 02470 _00115_DS_:
+               02471 ;       .line   89; pic.c       increment();
+0120 EC00 F000 02472         CALL    _increment
+0124 02473 _00117_DS_:
+               02474 ;       .line   91; pic.c       INTCONbits.TMR0IF = 0;
+0124 9400      02475         BCF     _INTCONbits, 2
+0126 02476 _00120_DS_:
+0126 CFE4 F000 02477         MOVFF   PREINC1, r0x02
+012A CFE4 F000 02478         MOVFF   PREINC1, r0x01
+012E CFE4 F000 02479         MOVFF   PREINC1, r0x00
+0132 CFE4 FFD9 02480         MOVFF   PREINC1, FSR2L
+0136 CFE4 FFFB 02481         MOVFF   PREINC1, PCLATU
+013A CFE4 FFFA 02482         MOVFF   PREINC1, PCLATH
+013E CFE4 FFEA 02483         MOVFF   PREINC1, FSR0H
+0142 CFE4 FFE9 02484         MOVFF   PREINC1, FSR0L
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 47
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-013E CFE4 FFEA 02485         MOVFF   PREINC1, FSR0H
-0142 CFE4 FFE9 02486         MOVFF   PREINC1, FSR0L
-0146 CFE4 FFF4 02487         MOVFF   PREINC1, PRODH
-014A CFE4 FFF3 02488         MOVFF   PREINC1, PRODL
-014E CFE4 FFE0 02489         MOVFF   PREINC1, BSR
-0152 CFE4 FFD8 02490         MOVFF   PREINC1, STATUS
-0156 CFE4 FFE8 02491         MOVFF   PREINC1, WREG
-015A 0010      02492         RETFIE  
-               02493 
-               02494 ; ; Starting pCode block
-015C 02495 __str_0:
-015C 6C41 7261 02496         DB      0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x69, 0x73, 0x20, 0x4f, 0x4e, 0x00
+0146 CFE4 FFF4 02485         MOVFF   PREINC1, PRODH
+014A CFE4 FFF3 02486         MOVFF   PREINC1, PRODL
+014E CFE4 FFE0 02487         MOVFF   PREINC1, BSR
+0152 CFE4 FFD8 02488         MOVFF   PREINC1, STATUS
+0156 CFE4 FFE8 02489         MOVFF   PREINC1, WREG
+015A 0010      02490         RETFIE  
+               02491 
+               02492 ; ; Starting pCode block
+015C 02493 __str_0:
+015C 6C41 7261 02494         DB      0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x69, 0x73, 0x20, 0x4f, 0x4e, 0x00
      206D 7369 
      4F20 004E 
-               02497 ; ; Starting pCode block
-0168 02498 __str_1:
-0168 6C41 7261 02499         DB      0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x69, 0x73, 0x20, 0x6f, 0x66, 0x66
+               02495 ; ; Starting pCode block
+0168 02496 __str_1:
+0168 6C41 7261 02497         DB      0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x69, 0x73, 0x20, 0x6f, 0x66, 0x66
      206D 7369 
      6F20 6666 
-0174 0000      02500         DB      0x00
-               02501 ; ; Starting pCode block
-0176 02502 __str_2:
-0176 0000      02503         DB      0x00
-               02504 ; ; Starting pCode block
-0178 02505 __str_3:
-0178 6F47 646F 02506         DB      0x47, 0x6f, 0x6f, 0x64, 0x20, 0x6d, 0x6f, 0x72, 0x6e, 0x69, 0x6e, 0x67
+0174 0000      02498         DB      0x00
+               02499 ; ; Starting pCode block
+0176 02500 __str_2:
+0176 0000      02501         DB      0x00
+               02502 ; ; Starting pCode block
+0178 02503 __str_3:
+0178 6F47 646F 02504         DB      0x47, 0x6f, 0x6f, 0x64, 0x20, 0x6d, 0x6f, 0x72, 0x6e, 0x69, 0x6e, 0x67
      6D20 726F 
      696E 676E 
-0184 4C20 756F 02507         DB      0x20, 0x4c, 0x6f, 0x75, 0x76, 0x61, 0x69, 0x6e, 0x2d, 0x4c, 0x61, 0x2d
+0184 4C20 756F 02505         DB      0x20, 0x4c, 0x6f, 0x75, 0x76, 0x61, 0x69, 0x6e, 0x2d, 0x4c, 0x61, 0x2d
      6176 6E69 
      4C2D 2D61 
-0190 654E 7675 02508         DB      0x4e, 0x65, 0x75, 0x76, 0x65, 0x00
+0190 654E 7675 02506         DB      0x4e, 0x65, 0x75, 0x76, 0x65, 0x00
      0065      
-               02509 
-               02510 
-               02511 ; Statistics:
-               02512 ; code size:     3842 (0x0f02) bytes ( 2.93%)
-               02513 ;                1921 (0x0781) words
-               02514 ; udata size:       6 (0x0006) bytes ( 0.16%)
-               02515 ; access size:     22 (0x0016) bytes
-               02516 
-               02517 
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 48
+               02507 
+               02508 
+               02509 ; Statistics:
+               02510 ; code size:     3834 (0x0efa) bytes ( 2.93%)
+               02511 ;                1917 (0x077d) words
+               02512 ; udata size:       6 (0x0006) bytes ( 0.16%)
+               02513 ; access size:     22 (0x0016) bytes
+               02514 
+               02515 
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 48
 
 
 SYMBOL TABLE
@@ -2857,29 +2855,29 @@ _00212_DS_                        000000C6
 _00214_DS_                        000000F6
 _00217_DS_                        000000DC
 _00219_DS_                        00000104
-_00240_DS_                        0000006A
-_00241_DS_                        00000070
-_00242_DS_                        00000078
-_00243_DS_                        00000080
-_00244_DS_                        00000088
-_00245_DS_                        0000008E
-_00246_DS_                        00000094
-_00249_DS_                        000000A2
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 49
+_00240_DS_                        00000066
+_00241_DS_                        0000006C
+_00242_DS_                        00000074
+_00243_DS_                        0000007C
+_00244_DS_                        00000084
+_00245_DS_                        0000008A
+_00246_DS_                        00000090
+_00249_DS_                        0000009E
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 49
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 _00253_DS_                        0000004A
-_00258_DS_                        0000006A
-_00259_DS_                        00000072
-_00260_DS_                        00000078
-_00261_DS_                        00000080
-_00262_DS_                        00000088
-_00263_DS_                        0000008E
-_00264_DS_                        00000094
-_00267_DS_                        000000A2
+_00258_DS_                        00000066
+_00259_DS_                        0000006E
+_00260_DS_                        00000074
+_00261_DS_                        0000007C
+_00262_DS_                        00000084
+_00263_DS_                        0000008A
+_00264_DS_                        00000090
+_00267_DS_                        0000009E
 _00271_DS_                        0000004A
 _00277_DS_                        0000002E
 _00280_DS_                        00000060
@@ -2925,7 +2923,7 @@ _20447_DS_                        0000035E
 _30448_DS_                        00000038
 _40449_DS_                        0000006A
 _50450_DS_                        0000005A
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 50
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 50
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2985,7 +2983,7 @@ _CVRCON                           00000000
 _CVRCONbits                       00000000
 _DDRA                             00000000
 _DDRAbits                         00000000
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 51
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 51
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3045,7 +3043,7 @@ _EDMACSH                          00000000
 _EDMACSL                          00000000
 _EDMADST                          00000000
 _EDMADSTH                         00000000
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 52
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 52
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3105,7 +3103,7 @@ _ERXRDPT                          00000000
 _ERXRDPTH                         00000000
 _ERXRDPTL                         00000000
 _ERXST                            00000000
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 53
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 53
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3165,7 +3163,7 @@ _LATE                             00000000
 _LATEbits                         00000000
 _LATF                             00000000
 _LATFbits                         00000000
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 54
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 54
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3225,7 +3223,7 @@ _OSCCONbits                       00000000
 _OSCTUNE                          00000000
 _OSCTUNEbits                      00000000
 _PC                               00000000
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 55
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 55
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3285,7 +3283,7 @@ _PSPCON                           00000000
 _PSPCONbits                       00000000
 _RCON                             00000000
 _RCONbits                         00000000
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 56
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 56
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3345,7 +3343,7 @@ _T3CONbits                        00000000
 _T4CON                            00000000
 _T4CONbits                        00000000
 _TABLAT                           00000000
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 57
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 57
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3405,7 +3403,7 @@ __str_0                           0000015C
 __str_1                           00000168
 __str_2                           00000176
 __str_3                           00000178
-gpasm-0.13.7 beta               Objects/pic.asm10-25-2013  17:17:44         PAGE 58
+gpasm-0.13.7 beta               Objects/pic.asm10-26-2013  23:35:47         PAGE 58
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT

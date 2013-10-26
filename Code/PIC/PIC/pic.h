@@ -20,7 +20,6 @@ typedef enum Mode {
     ALARM,
     EDIT_T,
     EDIT_A,
-    SET_A,
     HELLO,
     RINGTONE
 }Mode;

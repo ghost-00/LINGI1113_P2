@@ -1,0 +1,8 @@
+\select@language {french}
+\select@language {french}
+\contentsline {section}{\numberline {1}Mode d'emploi}{2}{section.1}
+\contentsline {section}{\numberline {2}installation}{2}{section.2}
+\contentsline {section}{\numberline {3}documentation}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Sp\IeC {\'e}cification}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}choix de structure du programme}{3}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}D\IeC {\'e}tails techniques du PIC}{3}{subsection.3.3}

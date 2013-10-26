@@ -1,0 +1,152 @@
+\documentclass{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{graphicx} %intégration d'image
+
+% Math symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% Numbers and units
+\usepackage[squaren, Gray]{SIunits}
+\usepackage{sistyle}
+\usepackage[autolanguage]{numprint}
+%\usepackage{numprint}
+\newcommand\si[2]{\numprint[#2]{#1}}
+\newcommand\np[1]{\numprint{#1}}
+
+\DeclareMathOperator{\newdiff}{d} % use \dif instead
+\newcommand{\dif}{\newdiff\!}
+\newcommand{\fpart}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ffpart}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\fdpart}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\fdif}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\ffdif}[2]{\frac{\dif^2 #1}{\dif #2^2}}
+\newcommand{\constant}{\ensuremath{\mathrm{cst}}}
+
+\newcommand{\bigoh}{\mathcal{O}}
+
+% cfr http://en.wikibooks.org/wiki/LaTeX/Colors
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\definecolor{dkgreen}{rgb}{0.25,0.7,0.35}
+\definecolor{dkred}{rgb}{0.7,0,0}
+
+\usepackage{listings}
+\lstset{
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\rm\small\ttfamily,
+  keywordstyle=\bfseries\color{dkred},
+  frame=single,
+  commentstyle=\color{gray}=small,
+  stringstyle=\color{dkgreen},
+  %backgroundcolor=\color{gray!10},
+  %tabsize=2,
+  rulecolor=\color{black!30},
+  %title=\lstname,
+  breaklines=true,
+  framextopmargin=2pt,
+  framexbottommargin=2pt,
+  extendedchars=true,
+  %inputencoding=utf8x
+}
+
+\usepackage{hyperref}
+
+\lstset{language={Java}}
+
+\title{Système informatique 2 \\ Projet 2 : Programmation sur machine nue \\ Groupe 23}
+\author{Mehdi Dumoulin 45570900 \and Jos zigabe 63271000}
+
+\begin{document}
+
+\maketitle
+\tableofcontents %table de matière cliquable
+\newpage % saut de page
+
+\part*{Rapport projet 2}
+	\section{Mode d'emploi}
+
+	Le programme commence à 00:00:00 et se lance automatiquement.
+A l'aide du \texttt{bouton 1}  l'utilisateur pourra naviguer entre les différents éléments proposés et grâce au \texttt{bouton 2} il pourra effectuer des sélections.\\
+	
+	\subsubsection*{Mode $Accueil$} 
+Au démarrage le mode \texttt{ACCUEIL} est celui qui est proposé à l'utilisateur et dans ce mode l'horloge est affichée de manière classique.\\
+
+Dans un premier temps, un appui sur le \texttt{bouton 2} active le programme et un clignotement indiquera la sélection courante et un appuie sur le \texttt{bouton 1} lui permettra de naviguer entre $Time$ et $Alarm$. A ce niveau du programme, si l'utilisateur appuie de nouveau sur le \texttt{bouton 2}, il entrera dans le mode réglage de l'horloge (\texttt{edit\_T}) ou le mode réglage de l'alarme (\texttt{edit\_A}) en fonction du clignotement actuel. \\
+	Ensuite dans ce mode \texttt{ACCUEIL} l'utilisateur pourrait également appuyer sur le \texttt{bouton 1} et entrer dans ce cas dans un mode que l'on a intitulé \texttt{HELLO} qui affiche les infos relative à l'alarme et un appui sur l'un des deux boutons quittera ce mode. 
+	
+	\subsubsection*{Mode réglage $Time$/$alarm$} 
+Qu'on soit dans le mode $Time$ ou $Alarm$, le \texttt{bouton 2} servira à naviguer dans l'heure et le  \textbf{bouton 1} servira à modifier l'élément sélectionné.\\
+
+Dans le mode réglage de l'alarme, il y a la possibilité d'activer ou de désactiver l'alarme en cliquant sur $N/Y$ (No/Yes) et ensuite il faut sélectionner l'heure et la minute à laquelle l'alarme va s'activer.
+Dans le mode réglage de l'heure, on a la possibilité d'avancer ou de reculer l'heure.  Après avoir réglé les secondes, lors de l'appui sur le bouton de selection (\texttt{bouton 2}), l'horloge se remet en mode veille et le programme retourne ainsi en mode \texttt{ACCUEIL}.
+
+	\section{installation}
+		
+		Pour installer le programme sur le PIC, ouvrez un terminal et situez vous dans le dossier où se trouve l'application. Ensuite tapez la commande \texttt{\$make pic}, le programme se compile et un fichier $pic.hex$ est créé.
+Pour envoyer le fichier sur le PIC tapez la commande  \texttt{\$tftp 192.168.97.60}.
+Ensuite, tapez la commande \texttt{\$binary},  puis \texttt{\$trace}, suivie de \texttt{\$verbose}.
+Enfin, appuyer sur le bouton $reset$ du PIC et tapez la commande \texttt{\$put pic.hex} et le programme sera envoyé au PIC.
+
+	\section{documentation}
+		\subsection{Spécification}
+		Notre programme permet d'afficher l'heure en mode 24h sous le format \texttt{hh:mm:ss}. L'affichage est mis à jour toutes les secondes et l'utilisateur à la possibilité à tout instant de modifier l'heure et de programmer une alarme. La sonnerie de l'alarme étant un clignotement du \texttt{LED01} pendant 30 secondes mais cette alarme peut évidemment être stop avant que les 30 secondes ne soient écoulées.   
+		
+		\subsection{choix de structure du programme}
+		Notre programme fonctionne par interruptions et la méthode \texttt{main} ne sert qu'à configurer les différents paramètres tels que initialiser \texttt{0} et mettre les \texttt{LED} en output ou activer les interruptions et mettre les \texttt{bouton 1} et \texttt{bouton 2} en input. Et dans notre programme on peut identifier trois sortes d'interruptions :\\
+		\begin{enumerate}
+		\item L'interruption du \texttt{timer} qui s'exécute à chaque seconde
+		\item L'interruption due à l'appui du \texttt{bouton 1}
+		\item L'interruption due à l'appui du \texttt{bouton 2}\\
+		\end{enumerate}
+		
+		Notre programme peut se retrouver dans 7 \texttt{Mode} differents et les boutons agirons en fonctions du mode dans lequel ils se trouvent  :\\
+		
+		\begin{tabular}{|p{2cm}|p{13cm}|}
+		\hline
+		\textbf{Mode} & \textbf{Description}\\
+		\hline
+		\multirow{3}{*}{\texttt{ACCUEIL}} & Dans ce mode l'heure est affiché de manière classique, c'est l'interface principale.\\
+		                         &\texttt{bouton 1} : Dans cet interface, une interruption du bouton 1 permet d'affiche l'interface \texttt{HELLO} séquentiellement.\\
+		                         &\texttt{bouton 2} : Une interruption du bouton 2 permettra d'accéder au mode \texttt{Time} qui fera clignoter le $Time$ sur l'écran\\ 
+		\hline
+		\multirow{3}{*}{\texttt{TIME}} & Dans cette interface, le $Time$ sur l'écran LCD clignote en permanence.\\
+		                                              & \texttt{bouton 1} : Une interruption sur le bouton 1 permet de passer au mode \texttt{ALARM}.\\ 
+		                                              &\texttt{bouton 2} : Une interruption sur le bouton 2 permet de passer au mode \texttt{EDIT\_T} qui fera d'ailleurs clignoter le premier élément de l'heure.\\ 
+		\hline
+		\multirow{3}{*}{\texttt{ALARM}} & Dans cette interface, le $Alarm$ sur l'écran LCD clignote en permanence.\\
+													    & \texttt{bouton 1} : Une interruption sur le bouton 1 permet de passer au mode \texttt{TIME}.\\ 
+													    & \texttt{bouton 2} : Une interruption sur le bouton 2 permet de passer au mode \texttt{EDIT\_A} qui fera clignoter l'état actuel du réveil \texttt{Y or N}.\\ 
+		\hline
+		\multirow{3}{*}{\texttt{EDIT\_T}} & Cette interface fait clignoter l'élément courant.\\
+														& \texttt{bouton 1} : un clique sur le bouton 1 permet d'incrémenter de 1 l'élément actuel.\\ 
+														& \texttt{bouton 2} : un clique sur le bouton 2 fait appel à une fonction \texttt{move()} qui incrémente de 1 \texttt{posC} afin de pouvoir passer à l'élément suivant.\\    
+		\hline
+		\multirow{3}{*}{\texttt{EDIT\_A}} & Ce mode fait clignoter l'état actuel du $réveil$\\
+														& \texttt{bouton 1} : un clique sur le bouton 1 nous permettra d'activer ou de désactiver le réveil.\\
+														& \texttt{bouton 2} : un clique sur le bouton 2 fait appel à une fonction \texttt{move()} qui incrémente de 1 \texttt{posA} afin de pouvoir passer à l'élément suivant.\\ 
+		\hline
+		\multirow{2}{*}{\texttt{HELLO}} & Ce mode affiche séquentiellement les infos relatives au réveil.  \\
+													   & Un clique sur l'un des deux boutons nous faire retourner au mode principale.\\
+		\hline
+		\multirow{2}{*}{\texttt{RINGTONE}} & Ce mode ne fait que afficher un message lorsque l'alarme sonne et ne s'active que à cet instant. \\
+															 & Un clique sur l'un des deux boutons nous faire retourner au mode principale.\\
+		\hline
+		\end{tabular}
+		
+		 
+		\subsection{Détails techniques du PIC}
+
+\end{document}

@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Oct 23 2013) (Mac OS X ppc)
-; This file was generated Fri Oct 25 17:17:44 2013
+; This file was generated Sat Oct 26 23:35:47 2013
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -559,41 +559,41 @@ ivec_0x1_HighISR:
 ; ; Starting pCode block
 S_pic__main	code
 _main:
-;	.line	591; pic.c	LED0_TRIS = 0; // Configure 1st led pin as output (yellow)
+;	.line	474; pic.c	LED0_TRIS = 0; // Configure 1st led pin as output (yellow)
 	BCF	_TRISJbits, 0
-;	.line	592; pic.c	LED1_TRIS = 0; // Configure 2nd led pin as output (red)
+;	.line	475; pic.c	LED1_TRIS = 0; // Configure 2nd led pin as output (red)
 	BCF	_TRISJbits, 1
-;	.line	593; pic.c	LED2_TRIS = 0; // Configure 3rd led pin as output (red)
+;	.line	476; pic.c	LED2_TRIS = 0; // Configure 3rd led pin as output (red)
 	BCF	_TRISJbits, 2
-;	.line	595; pic.c	BUTTON0_TRIS = 1; // Configure button0 as input
+;	.line	478; pic.c	BUTTON0_TRIS = 1; // Configure button0 as input
 	BSF	_TRISBbits, 3
-;	.line	596; pic.c	BUTTON1_TRIS = 1; // Configure button1 as input
+;	.line	479; pic.c	BUTTON1_TRIS = 1; // Configure button1 as input
 	BSF	_TRISBbits, 1
-;	.line	598; pic.c	RCONbits.IPEN      = 1;   // Enable interrupts priority levels
+;	.line	481; pic.c	RCONbits.IPEN      = 1;   // Enable interrupts priority levels
 	BSF	_RCONbits, 7
-;	.line	599; pic.c	INTCON3bits.INT1F  = 0;   // Clear INT1 flag
+;	.line	482; pic.c	INTCON3bits.INT1F  = 0;   // Clear INT1 flag
 	BCF	_INTCON3bits, 0
-;	.line	600; pic.c	INTCON3bits.INT3F  = 0;   // Clear INT3 flag
+;	.line	483; pic.c	INTCON3bits.INT3F  = 0;   // Clear INT3 flag
 	BCF	_INTCON3bits, 2
-;	.line	601; pic.c	INTCON3bits.INT1P  = 1;   // Connect INT1 interrupt (button 1) to high priority
+;	.line	484; pic.c	INTCON3bits.INT1P  = 1;   // Connect INT1 interrupt (button 1) to high priority
 	BSF	_INTCON3bits, 6
-;	.line	603; pic.c	INTCON2bits.INTEDG1= 0;   // INT1 interrupts on falling edge
+;	.line	486; pic.c	INTCON2bits.INTEDG1= 0;   // INT1 interrupts on falling edge
 	BCF	_INTCON2bits, 5
-;	.line	604; pic.c	INTCON2bits.INTEDG3= 0;   // INT3 interrupts on falling edge
+;	.line	487; pic.c	INTCON2bits.INTEDG3= 0;   // INT3 interrupts on falling edge
 	BCF	_INTCON2bits, 3
-;	.line	605; pic.c	INTCONbits.GIE     = 1;   // Enable high priority interrupts
+;	.line	488; pic.c	INTCONbits.GIE     = 1;   // Enable high priority interrupts
 	BSF	_INTCONbits, 7
-;	.line	606; pic.c	INTCON3bits.INT1E  = 1;   // Enable INT1 interrupt (button 1)
+;	.line	489; pic.c	INTCON3bits.INT1E  = 1;   // Enable INT1 interrupt (button 1)
 	BSF	_INTCON3bits, 3
-;	.line	607; pic.c	INTCON3bits.INT3E  = 1;   // Enable INT3 interupt (button 0)
+;	.line	490; pic.c	INTCON3bits.INT3E  = 1;   // Enable INT3 interupt (button 0)
 	BSF	_INTCON3bits, 5
-;	.line	609; pic.c	T0CONbits.T0CS   = 0; //use timer0 instruction cycle clock
+;	.line	492; pic.c	T0CONbits.T0CS   = 0; //use timer0 instruction cycle clock
 	BCF	_T0CONbits, 5
-;	.line	610; pic.c	LCDInit();
+;	.line	493; pic.c	LCDInit();
 	CALL	_LCDInit
-;	.line	611; pic.c	init_board();
+;	.line	494; pic.c	init_board();
 	CALL	_init_board
-;	.line	613; pic.c	DisplayString(FIRST_LINE,firstLine);
+;	.line	496; pic.c	DisplayString(FIRST_LINE,firstLine);
 	MOVLW	HIGH(_firstLine)
 	MOVWF	r0x01
 	MOVLW	LOW(_firstLine)
@@ -611,7 +611,7 @@ _main:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	614; pic.c	DisplayString(SECOND_LINE,secondLine);
+;	.line	497; pic.c	DisplayString(SECOND_LINE,secondLine);
 	MOVLW	HIGH(_secondLine)
 	MOVWF	r0x01
 	MOVLW	LOW(_secondLine)
@@ -629,28 +629,28 @@ _main:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	616; pic.c	INTCON2bits.TMR0IP	 = 1; // Interruption du au timer = interruption haute
+;	.line	499; pic.c	INTCON2bits.TMR0IP	 = 1; // Interruption du au timer = interruption haute
 	BSF	_INTCON2bits, 2
-;	.line	617; pic.c	INTCONbits.TMR0IF = 0; // reset flag
+;	.line	500; pic.c	INTCONbits.TMR0IF = 0; // reset flag
 	BCF	_INTCONbits, 2
-;	.line	618; pic.c	T0CONbits.T08BIT = 1; // use timer0 8-bit counter
+;	.line	501; pic.c	T0CONbits.T08BIT = 1; // use timer0 8-bit counter
 	BSF	_T0CONbits, 6
-;	.line	619; pic.c	T0CONbits.PSA = 1; // disable timer0 prescaler
+;	.line	502; pic.c	T0CONbits.PSA = 1; // disable timer0 prescaler
 	BSF	_T0CONbits, 3
-;	.line	620; pic.c	INTCONbits.TMR0IE = 1; // On active les interuptions TMR0
+;	.line	503; pic.c	INTCONbits.TMR0IE = 1; // On active les interuptions TMR0
 	BSF	_INTCONbits, 5
-;	.line	621; pic.c	LED1_IO = 0; //turn off the led
+;	.line	504; pic.c	LED1_IO = 0; //turn off the led
 	BCF	_LATJbits, 1
-;	.line	622; pic.c	LED2_IO = 0;
+;	.line	505; pic.c	LED2_IO = 0;
 	BCF	_LATJbits, 2
-;	.line	623; pic.c	LED0_IO = 0;
+;	.line	506; pic.c	LED0_IO = 0;
 	BCF	_LATJbits, 0
 	RETURN	
 
 ; ; Starting pCode block
 S_pic__strlcpy	code
 _strlcpy:
-;	.line	559; pic.c	strlcpy(char *dst, const char *src, size_t siz)
+;	.line	442; pic.c	strlcpy(char *dst, const char *src, size_t siz)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -691,23 +691,23 @@ _strlcpy:
 	MOVFF	PLUSW2, r0x06
 	MOVLW	0x09
 	MOVFF	PLUSW2, r0x07
-;	.line	561; pic.c	char       *d = dst;
+;	.line	444; pic.c	char       *d = dst;
 	MOVFF	r0x00, r0x08
 	MOVFF	r0x01, r0x09
 	MOVFF	r0x02, r0x0a
-;	.line	562; pic.c	const char *s = src;
+;	.line	445; pic.c	const char *s = src;
 	MOVFF	r0x03, r0x0b
 	MOVFF	r0x04, r0x0c
 	MOVFF	r0x05, r0x0d
-;	.line	563; pic.c	size_t      n = siz;
+;	.line	446; pic.c	size_t      n = siz;
 	MOVFF	r0x06, r0x0e
 	MOVFF	r0x07, r0x0f
-;	.line	566; pic.c	if (n != 0)
+;	.line	449; pic.c	if (n != 0)
 	MOVF	r0x06, W
 	IORWF	r0x07, W
 	BTFSC	STATUS, 2
 	BRA	_00426_DS_
-;	.line	568; pic.c	while (--n != 0)
+;	.line	451; pic.c	while (--n != 0)
 	MOVFF	r0x03, r0x10
 	MOVFF	r0x04, r0x11
 	MOVFF	r0x05, r0x12
@@ -721,7 +721,7 @@ _00422_DS_:
 	MOVF	r0x13, W
 	IORWF	r0x14, W
 	BZ	_00441_DS_
-;	.line	570; pic.c	if ((*d++ = *s++) == '\0')
+;	.line	453; pic.c	if ((*d++ = *s++) == '\0')
 	MOVFF	r0x10, FSR0L
 	MOVFF	r0x11, PRODL
 	MOVF	r0x12, W
@@ -745,7 +745,7 @@ _00422_DS_:
 	MOVF	r0x15, W
 	BNZ	_00422_DS_
 _00441_DS_:
-;	.line	571; pic.c	break;
+;	.line	454; pic.c	break;
 	MOVFF	r0x10, r0x0b
 	MOVFF	r0x11, r0x0c
 	MOVFF	r0x12, r0x0d
@@ -755,15 +755,15 @@ _00441_DS_:
 	MOVFF	r0x13, r0x0e
 	MOVFF	r0x14, r0x0f
 _00426_DS_:
-;	.line	576; pic.c	if (n == 0)
+;	.line	459; pic.c	if (n == 0)
 	MOVF	r0x0e, W
 	IORWF	r0x0f, W
 	BNZ	_00433_DS_
-;	.line	578; pic.c	if (siz != 0)
+;	.line	461; pic.c	if (siz != 0)
 	MOVF	r0x06, W
 	IORWF	r0x07, W
 	BZ	_00440_DS_
-;	.line	579; pic.c	*d = '\0';          /* NUL-terminate dst */
+;	.line	462; pic.c	*d = '\0';          /* NUL-terminate dst */
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVFF	r0x08, FSR0L
@@ -771,7 +771,7 @@ _00426_DS_:
 	MOVF	r0x0a, W
 	CALL	__gptrput1
 _00440_DS_:
-;	.line	580; pic.c	while (*s++)
+;	.line	463; pic.c	while (*s++)
 	MOVFF	r0x0b, r0x00
 	MOVFF	r0x0c, r0x01
 	MOVFF	r0x0d, r0x02
@@ -792,7 +792,7 @@ _00429_DS_:
 	MOVFF	r0x01, r0x0c
 	MOVFF	r0x02, r0x0d
 _00433_DS_:
-;	.line	586; pic.c	return (s - src - 1);       /* count does not include NUL */
+;	.line	469; pic.c	return (s - src - 1);       /* count does not include NUL */
 	MOVF	r0x03, W
 	SUBWF	r0x0b, W
 	MOVWF	r0x03
@@ -833,7 +833,7 @@ _00433_DS_:
 ; ; Starting pCode block
 S_pic__DisplayString	code
 _DisplayString:
-;	.line	550; pic.c	DisplayString(BYTE pos, char* text)
+;	.line	433; pic.c	DisplayString(BYTE pos, char* text)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -852,7 +852,7 @@ _DisplayString:
 	MOVFF	PLUSW2, r0x02
 	MOVLW	0x05
 	MOVFF	PLUSW2, r0x03
-;	.line	552; pic.c	BYTE l= strlen(text)+1;
+;	.line	435; pic.c	BYTE l= strlen(text)+1;
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
@@ -865,11 +865,11 @@ _DisplayString:
 	MOVLW	0x03
 	ADDWF	FSR1L, F
 	INCF	r0x04, F
-;	.line	553; pic.c	BYTE max= 32-pos;
+;	.line	436; pic.c	BYTE max= 32-pos;
 	MOVF	r0x00, W
 	SUBLW	0x20
 	MOVWF	r0x05
-;	.line	554; pic.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+;	.line	437; pic.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
 	CLRF	r0x06
 	MOVLW	LOW(_LCDText)
 	ADDWF	r0x00, F
@@ -906,7 +906,7 @@ _00413_DS_:
 	CALL	_strlcpy
 	MOVLW	0x08
 	ADDWF	FSR1L, F
-;	.line	555; pic.c	LCDUpdate();
+;	.line	438; pic.c	LCDUpdate();
 	CALL	_LCDUpdate
 	MOVFF	PREINC1, r0x07
 	MOVFF	PREINC1, r0x06
@@ -922,7 +922,7 @@ _00413_DS_:
 ; ; Starting pCode block
 S_pic__DisplayWORD	code
 _DisplayWORD:
-;	.line	531; pic.c	DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
+;	.line	414; pic.c	DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -937,7 +937,7 @@ _DisplayWORD:
 	MOVFF	PLUSW2, r0x01
 	MOVLW	0x04
 	MOVFF	PLUSW2, r0x02
-;	.line	539; pic.c	ultoa(w, WDigit, radix);
+;	.line	422; pic.c	ultoa(w, WDigit, radix);
 	CLRF	r0x03
 	CLRF	r0x04
 	MOVLW	0x0a
@@ -957,7 +957,7 @@ _DisplayWORD:
 	CALL	_ultoa
 	MOVLW	0x07
 	ADDWF	FSR1L, F
-;	.line	540; pic.c	for(j = 0; j < strlen((char*)WDigit); j++)
+;	.line	423; pic.c	for(j = 0; j < strlen((char*)WDigit); j++)
 	CLRF	r0x01
 _00394_DS_:
 	MOVLW	HIGH(_DisplayWORD_WDigit_1_1)
@@ -990,7 +990,7 @@ _00394_DS_:
 	SUBWF	r0x04, W
 _00404_DS_:
 	BC	_00397_DS_
-;	.line	542; pic.c	LCDText[LCDPos++] = WDigit[j];
+;	.line	425; pic.c	LCDText[LCDPos++] = WDigit[j];
 	MOVFF	r0x00, r0x02
 	INCF	r0x00, F
 	CLRF	r0x03
@@ -1010,11 +1010,11 @@ _00404_DS_:
 	MOVFF	r0x02, FSR0L
 	MOVFF	r0x03, FSR0H
 	MOVFF	r0x04, INDF0
-;	.line	540; pic.c	for(j = 0; j < strlen((char*)WDigit); j++)
+;	.line	423; pic.c	for(j = 0; j < strlen((char*)WDigit); j++)
 	INCF	r0x01, F
 	BRA	_00394_DS_
 _00397_DS_:
-;	.line	544; pic.c	if(LCDPos < 32u)
+;	.line	427; pic.c	if(LCDPos < 32u)
 	MOVFF	r0x00, r0x01
 	CLRF	r0x02
 	MOVLW	0x00
@@ -1024,7 +1024,7 @@ _00397_DS_:
 	SUBWF	r0x01, W
 _00405_DS_:
 	BC	_00393_DS_
-;	.line	545; pic.c	LCDText[LCDPos] = 0;
+;	.line	428; pic.c	LCDText[LCDPos] = 0;
 	CLRF	r0x01
 	MOVLW	LOW(_LCDText)
 	ADDWF	r0x00, F
@@ -1035,7 +1035,7 @@ _00405_DS_:
 	MOVLW	0x00
 	MOVWF	INDF0
 _00393_DS_:
-;	.line	546; pic.c	LCDUpdate();
+;	.line	429; pic.c	LCDUpdate();
 	CALL	_LCDUpdate
 	MOVFF	PREINC1, r0x05
 	MOVFF	PREINC1, r0x04
@@ -1049,12 +1049,12 @@ _00393_DS_:
 ; ; Starting pCode block
 S_pic__init_board	code
 _init_board:
-;	.line	525; pic.c	init_board(void) {
+;	.line	408; pic.c	init_board(void) {
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	526; pic.c	TRISJbits.TRISJ0=0; // configure PORTJ0 for output (LED)
+;	.line	409; pic.c	TRISJbits.TRISJ0=0; // configure PORTJ0 for output (LED)
 	BCF	_TRISJbits, 0
-;	.line	527; pic.c	TRISJbits.TRISJ1=0; // configure PORTJ1 for output (LED)
+;	.line	410; pic.c	TRISJbits.TRISJ1=0; // configure PORTJ1 for output (LED)
 	BCF	_TRISJbits, 1
 	MOVFF	PREINC1, FSR2L
 	RETURN	
@@ -1062,7 +1062,7 @@ _init_board:
 ; ; Starting pCode block
 S_pic__blink	code
 _blink:
-;	.line	466; pic.c	blink()
+;	.line	349; pic.c	blink()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -1071,7 +1071,7 @@ _blink:
 	MOVFF	r0x03, POSTDEC1
 	MOVFF	r0x04, POSTDEC1
 	MOVFF	r0x05, POSTDEC1
-;	.line	468; pic.c	strlcpy(temp1,firstLine,16);
+;	.line	351; pic.c	strlcpy(temp1,firstLine,16);
 	MOVLW	HIGH(_temp1)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp1)
@@ -1103,7 +1103,7 @@ _blink:
 	CALL	_strlcpy
 	MOVLW	0x08
 	ADDWF	FSR1L, F
-;	.line	469; pic.c	strlcpy(temp2,secondLine,16);
+;	.line	352; pic.c	strlcpy(temp2,secondLine,16);
 	MOVLW	HIGH(_temp2)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp2)
@@ -1136,38 +1136,38 @@ _blink:
 	MOVLW	0x08
 	ADDWF	FSR1L, F
 	BANKSEL	_bin
-;	.line	471; pic.c	if(bin)//Rentre si bin = 1 => Déjà afficher quelque chose sur écran sans "trou"/curseur
+;	.line	354; pic.c	if(bin)//Rentre si bin = 1 => Déjà afficher quelque chose sur écran sans "trou"/curseur
 	MOVF	_bin, W, B
 	BANKSEL	(_bin + 1)
 	IORWF	(_bin + 1), W, B
 	BTFSC	STATUS, 2
 	BRA	_00360_DS_
 	BANKSEL	_currentMode
-;	.line	473; pic.c	if(currentMode==TIME)
+;	.line	356; pic.c	if(currentMode==TIME)
 	MOVF	_currentMode, W, B
 	XORLW	0x01
 	BNZ	_00357_DS_
-;	.line	475; pic.c	temp1[0]=' ';
+;	.line	358; pic.c	temp1[0]=' ';
 	MOVLW	0x20
 	BANKSEL	_temp1
 	MOVWF	_temp1, B
-;	.line	476; pic.c	temp1[1]=' ';
+;	.line	359; pic.c	temp1[1]=' ';
 	MOVLW	0x20
 	BANKSEL	(_temp1 + 1)
 	MOVWF	(_temp1 + 1), B
-;	.line	477; pic.c	temp1[2]=' ';
+;	.line	360; pic.c	temp1[2]=' ';
 	MOVLW	0x20
 	BANKSEL	(_temp1 + 2)
 	MOVWF	(_temp1 + 2), B
-;	.line	478; pic.c	temp1[3]=' ';
+;	.line	361; pic.c	temp1[3]=' ';
 	MOVLW	0x20
 	BANKSEL	(_temp1 + 3)
 	MOVWF	(_temp1 + 3), B
-;	.line	479; pic.c	temp1[4]=' ';
+;	.line	362; pic.c	temp1[4]=' ';
 	MOVLW	0x20
 	BANKSEL	(_temp1 + 4)
 	MOVWF	(_temp1 + 4), B
-;	.line	480; pic.c	DisplayString(FIRST_LINE,temp1);
+;	.line	363; pic.c	DisplayString(FIRST_LINE,temp1);
 	MOVLW	HIGH(_temp1)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp1)
@@ -1185,7 +1185,7 @@ _blink:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	481; pic.c	DisplayString(SECOND_LINE,temp2);
+;	.line	364; pic.c	DisplayString(SECOND_LINE,temp2);
 	MOVLW	HIGH(_temp2)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp2)
@@ -1206,31 +1206,31 @@ _blink:
 	BRA	_00358_DS_
 _00357_DS_:
 	BANKSEL	_currentMode
-;	.line	483; pic.c	else if(currentMode==ALARM)
+;	.line	366; pic.c	else if(currentMode==ALARM)
 	MOVF	_currentMode, W, B
 	XORLW	0x02
 	BNZ	_00354_DS_
-;	.line	485; pic.c	temp2[0]=' ';
+;	.line	368; pic.c	temp2[0]=' ';
 	MOVLW	0x20
 	BANKSEL	_temp2
 	MOVWF	_temp2, B
-;	.line	486; pic.c	temp2[1]=' ';
+;	.line	369; pic.c	temp2[1]=' ';
 	MOVLW	0x20
 	BANKSEL	(_temp2 + 1)
 	MOVWF	(_temp2 + 1), B
-;	.line	487; pic.c	temp2[2]=' ';
+;	.line	370; pic.c	temp2[2]=' ';
 	MOVLW	0x20
 	BANKSEL	(_temp2 + 2)
 	MOVWF	(_temp2 + 2), B
-;	.line	488; pic.c	temp2[3]=' ';
+;	.line	371; pic.c	temp2[3]=' ';
 	MOVLW	0x20
 	BANKSEL	(_temp2 + 3)
 	MOVWF	(_temp2 + 3), B
-;	.line	489; pic.c	temp2[4]=' ';
+;	.line	372; pic.c	temp2[4]=' ';
 	MOVLW	0x20
 	BANKSEL	(_temp2 + 4)
 	MOVWF	(_temp2 + 4), B
-;	.line	490; pic.c	DisplayString(FIRST_LINE,temp1);
+;	.line	373; pic.c	DisplayString(FIRST_LINE,temp1);
 	MOVLW	HIGH(_temp1)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp1)
@@ -1248,7 +1248,7 @@ _00357_DS_:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	491; pic.c	DisplayString(SECOND_LINE,temp2);
+;	.line	374; pic.c	DisplayString(SECOND_LINE,temp2);
 	MOVLW	HIGH(_temp2)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp2)
@@ -1269,14 +1269,14 @@ _00357_DS_:
 	BRA	_00358_DS_
 _00354_DS_:
 	BANKSEL	_currentMode
-;	.line	493; pic.c	else if(currentMode==EDIT_T)
+;	.line	376; pic.c	else if(currentMode==EDIT_T)
 	MOVF	_currentMode, W, B
 	XORLW	0x03
 	BZ	_00376_DS_
 	BRA	_00351_DS_
 _00376_DS_:
 	BANKSEL	(_posC + 1)
-;	.line	495; pic.c	temp1[firstTab[posC]]=' ';
+;	.line	378; pic.c	temp1[firstTab[posC]]=' ';
 	MOVF	(_posC + 1), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	_posC
@@ -1307,7 +1307,7 @@ _00376_DS_:
 	MOVFF	r0x01, FSR0H
 	MOVLW	0x20
 	MOVWF	INDF0
-;	.line	496; pic.c	DisplayString(FIRST_LINE,temp1);
+;	.line	379; pic.c	DisplayString(FIRST_LINE,temp1);
 	MOVLW	HIGH(_temp1)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp1)
@@ -1325,7 +1325,7 @@ _00376_DS_:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	497; pic.c	DisplayString(SECOND_LINE,temp2);
+;	.line	380; pic.c	DisplayString(SECOND_LINE,temp2);
 	MOVLW	HIGH(_temp2)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp2)
@@ -1346,14 +1346,14 @@ _00376_DS_:
 	BRA	_00358_DS_
 _00351_DS_:
 	BANKSEL	_currentMode
-;	.line	499; pic.c	else if(currentMode==EDIT_A)
+;	.line	382; pic.c	else if(currentMode==EDIT_A)
 	MOVF	_currentMode, W, B
 	XORLW	0x04
 	BZ	_00378_DS_
 	BRA	_00348_DS_
 _00378_DS_:
 	BANKSEL	(_posA + 1)
-;	.line	501; pic.c	temp2[secondTab[posA]]=' ';
+;	.line	384; pic.c	temp2[secondTab[posA]]=' ';
 	MOVF	(_posA + 1), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	_posA
@@ -1384,7 +1384,7 @@ _00378_DS_:
 	MOVFF	r0x01, FSR0H
 	MOVLW	0x20
 	MOVWF	INDF0
-;	.line	502; pic.c	DisplayString(FIRST_LINE,temp1);
+;	.line	385; pic.c	DisplayString(FIRST_LINE,temp1);
 	MOVLW	HIGH(_temp1)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp1)
@@ -1402,7 +1402,7 @@ _00378_DS_:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	503; pic.c	DisplayString(SECOND_LINE,temp2);
+;	.line	386; pic.c	DisplayString(SECOND_LINE,temp2);
 	MOVLW	HIGH(_temp2)
 	MOVWF	r0x01
 	MOVLW	LOW(_temp2)
@@ -1423,20 +1423,20 @@ _00378_DS_:
 	BRA	_00358_DS_
 _00348_DS_:
 	BANKSEL	_currentMode
-;	.line	506; pic.c	else if(currentMode==HELLO)
+;	.line	389; pic.c	else if(currentMode==HELLO)
 	MOVF	_currentMode, W, B
-	XORLW	0x06
+	XORLW	0x05
 	BNZ	_00345_DS_
-;	.line	508; pic.c	info_A();
+;	.line	391; pic.c	info_A();
 	CALL	_info_A
 	BRA	_00358_DS_
 _00345_DS_:
 	BANKSEL	_currentMode
-;	.line	510; pic.c	else if(currentMode==RINGTONE)
+;	.line	393; pic.c	else if(currentMode==RINGTONE)
 	MOVF	_currentMode, W, B
-	XORLW	0x07
+	XORLW	0x06
 	BNZ	_00358_DS_
-;	.line	513; pic.c	DisplayString(FIRST_LINE,"Good morning Louvain-La-Neuve");
+;	.line	396; pic.c	DisplayString(FIRST_LINE,"Good morning Louvain-La-Neuve");
 	MOVLW	UPPER(__str_3)
 	MOVWF	POSTDEC1
 	MOVLW	HIGH(__str_3)
@@ -1449,7 +1449,7 @@ _00345_DS_:
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 _00358_DS_:
-;	.line	515; pic.c	bin--;
+;	.line	398; pic.c	bin--;
 	MOVLW	0xff
 	BANKSEL	_bin
 	ADDWF	_bin, F, B
@@ -1459,7 +1459,7 @@ _00358_DS_:
 _10446_DS_:
 	BRA	_00362_DS_
 _00360_DS_:
-;	.line	519; pic.c	DisplayString(FIRST_LINE,firstLine);
+;	.line	402; pic.c	DisplayString(FIRST_LINE,firstLine);
 	MOVLW	HIGH(_firstLine)
 	MOVWF	r0x01
 	MOVLW	LOW(_firstLine)
@@ -1477,7 +1477,7 @@ _00360_DS_:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	520; pic.c	DisplayString(SECOND_LINE,secondLine);
+;	.line	403; pic.c	DisplayString(SECOND_LINE,secondLine);
 	MOVLW	HIGH(_secondLine)
 	MOVWF	r0x01
 	MOVLW	LOW(_secondLine)
@@ -1496,7 +1496,7 @@ _00360_DS_:
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	BANKSEL	_bin
-;	.line	521; pic.c	bin++;
+;	.line	404; pic.c	bin++;
 	INCF	_bin, F, B
 	BNC	_20447_DS_
 	BANKSEL	(_bin + 1)
@@ -1515,57 +1515,57 @@ _00362_DS_:
 ; ; Starting pCode block
 S_pic__info_A	code
 _info_A:
-;	.line	442; pic.c	info_A()
+;	.line	325; pic.c	info_A()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
 	BANKSEL	_isAlarm
-;	.line	444; pic.c	if (isAlarm)
+;	.line	327; pic.c	if (isAlarm)
 	MOVF	_isAlarm, W, B
 	BANKSEL	(_isAlarm + 1)
 	IORWF	(_isAlarm + 1), W, B
 	BTFSC	STATUS, 2
 	BRA	_00335_DS_
-;	.line	447; pic.c	tempA[0] = ' ';
+;	.line	330; pic.c	tempA[0] = ' ';
 	MOVLW	0x20
 	BANKSEL	_tempA
 	MOVWF	_tempA, B
-;	.line	448; pic.c	tempA[1] = ' ';
+;	.line	331; pic.c	tempA[1] = ' ';
 	MOVLW	0x20
 	BANKSEL	(_tempA + 1)
 	MOVWF	(_tempA + 1), B
-;	.line	449; pic.c	tempA[2] = ' ';
+;	.line	332; pic.c	tempA[2] = ' ';
 	MOVLW	0x20
 	BANKSEL	(_tempA + 2)
 	MOVWF	(_tempA + 2), B
 	BANKSEL	(_secondLine + 9)
-;	.line	450; pic.c	tempA[3] = secondLine[9];
+;	.line	333; pic.c	tempA[3] = secondLine[9];
 	MOVF	(_secondLine + 9), W, B
 	BANKSEL	(_tempA + 3)
 	MOVWF	(_tempA + 3), B
 	BANKSEL	(_secondLine + 10)
-;	.line	451; pic.c	tempA[4] = secondLine[10];
+;	.line	334; pic.c	tempA[4] = secondLine[10];
 	MOVF	(_secondLine + 10), W, B
 	BANKSEL	(_tempA + 4)
 	MOVWF	(_tempA + 4), B
 	BANKSEL	(_secondLine + 11)
-;	.line	452; pic.c	tempA[5] = secondLine[11];
+;	.line	335; pic.c	tempA[5] = secondLine[11];
 	MOVF	(_secondLine + 11), W, B
 	BANKSEL	(_tempA + 5)
 	MOVWF	(_tempA + 5), B
 	BANKSEL	(_secondLine + 12)
-;	.line	453; pic.c	tempA[6] = secondLine[12];
+;	.line	336; pic.c	tempA[6] = secondLine[12];
 	MOVF	(_secondLine + 12), W, B
 	BANKSEL	(_tempA + 6)
 	MOVWF	(_tempA + 6), B
 	BANKSEL	(_secondLine + 13)
-;	.line	454; pic.c	tempA[7] = secondLine[13];
+;	.line	337; pic.c	tempA[7] = secondLine[13];
 	MOVF	(_secondLine + 13), W, B
 	BANKSEL	(_tempA + 7)
 	MOVWF	(_tempA + 7), B
-;	.line	456; pic.c	DisplayString(FIRST_LINE, "Alarm is ON");
+;	.line	339; pic.c	DisplayString(FIRST_LINE, "Alarm is ON");
 	MOVLW	UPPER(__str_0)
 	MOVWF	POSTDEC1
 	MOVLW	HIGH(__str_0)
@@ -1577,7 +1577,7 @@ _info_A:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	457; pic.c	DisplayString(SECOND_LINE,tempA);
+;	.line	340; pic.c	DisplayString(SECOND_LINE,tempA);
 	MOVLW	HIGH(_tempA)
 	MOVWF	r0x01
 	MOVLW	LOW(_tempA)
@@ -1597,7 +1597,7 @@ _info_A:
 	ADDWF	FSR1L, F
 	BRA	_00337_DS_
 _00335_DS_:
-;	.line	461; pic.c	DisplayString(FIRST_LINE, "Alarm is off");
+;	.line	344; pic.c	DisplayString(FIRST_LINE, "Alarm is off");
 	MOVLW	UPPER(__str_1)
 	MOVWF	POSTDEC1
 	MOVLW	HIGH(__str_1)
@@ -1609,7 +1609,7 @@ _00335_DS_:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	462; pic.c	DisplayString(SECOND_LINE,"");
+;	.line	345; pic.c	DisplayString(SECOND_LINE,"");
 	MOVLW	UPPER(__str_2)
 	MOVWF	POSTDEC1
 	MOVLW	HIGH(__str_2)
@@ -1631,14 +1631,14 @@ _00337_DS_:
 ; ; Starting pCode block
 S_pic__changeTime	code
 _changeTime:
-;	.line	421; pic.c	changeTime()
+;	.line	304; pic.c	changeTime()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
 	BANKSEL	(_posC + 1)
-;	.line	423; pic.c	firstLine[firstTab[posC]]++;
+;	.line	306; pic.c	firstLine[firstTab[posC]]++;
 	MOVF	(_posC + 1), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	_posC
@@ -1673,43 +1673,43 @@ _changeTime:
 	MOVFF	r0x01, FSR0H
 	MOVFF	r0x02, INDF0
 	BANKSEL	(_firstLine + 13)
-;	.line	427; pic.c	if((firstLine[13]>=':')
+;	.line	310; pic.c	if((firstLine[13]>=':')
 	MOVF	(_firstLine + 13), W, B
 	ADDLW	0x80
 	ADDLW	0x46
 	BC	_00305_DS_
 	BANKSEL	(_firstLine + 10)
-;	.line	428; pic.c	||(firstLine[10]>=':')
+;	.line	311; pic.c	||(firstLine[10]>=':')
 	MOVF	(_firstLine + 10), W, B
 	ADDLW	0x80
 	ADDLW	0x46
 	BC	_00305_DS_
 	BANKSEL	(_firstLine + 12)
-;	.line	429; pic.c	||(firstLine[12]>='6')
+;	.line	312; pic.c	||(firstLine[12]>='6')
 	MOVF	(_firstLine + 12), W, B
 	ADDLW	0x80
 	ADDLW	0x4a
 	BC	_00305_DS_
 	BANKSEL	(_firstLine + 9)
-;	.line	430; pic.c	||(firstLine[9]>='6')
+;	.line	313; pic.c	||(firstLine[9]>='6')
 	MOVF	(_firstLine + 9), W, B
 	ADDLW	0x80
 	ADDLW	0x4a
 	BC	_00305_DS_
 	BANKSEL	(_firstLine + 7)
-;	.line	431; pic.c	||(firstLine[7]>=':'))
+;	.line	314; pic.c	||(firstLine[7]>=':'))
 	MOVF	(_firstLine + 7), W, B
 	ADDLW	0x80
 	ADDLW	0x46
 	BNC	_00306_DS_
 _00305_DS_:
-;	.line	433; pic.c	firstLine[firstTab[posC]]='0';
+;	.line	316; pic.c	firstLine[firstTab[posC]]='0';
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, FSR0H
 	MOVLW	0x30
 	MOVWF	INDF0
 _00306_DS_:
-;	.line	435; pic.c	if(((firstLine[6]>='2')&&(firstLine[7]>='4'))
+;	.line	318; pic.c	if(((firstLine[6]>='2')&&(firstLine[7]>='4'))
 	MOVFF	(_firstLine + 6), r0x02
 	MOVF	r0x02, W
 	ADDLW	0x80
@@ -1721,13 +1721,13 @@ _00306_DS_:
 	ADDLW	0x4c
 	BC	_00311_DS_
 _00314_DS_:
-;	.line	436; pic.c	||(firstLine[6]>='3'))//24h
+;	.line	319; pic.c	||(firstLine[6]>='3'))//24h
 	MOVF	r0x02, W
 	ADDLW	0x80
 	ADDLW	0x4d
 	BNC	_00315_DS_
 _00311_DS_:
-;	.line	438; pic.c	firstLine[firstTab[posC]]='0';
+;	.line	321; pic.c	firstLine[firstTab[posC]]='0';
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, FSR0H
 	MOVLW	0x30
@@ -1742,17 +1742,17 @@ _00315_DS_:
 ; ; Starting pCode block
 S_pic__move	code
 _move:
-;	.line	391; pic.c	move()
+;	.line	274; pic.c	move()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	BANKSEL	_currentMode
-;	.line	393; pic.c	if(currentMode==EDIT_T)
+;	.line	276; pic.c	if(currentMode==EDIT_T)
 	MOVF	_currentMode, W, B
 	XORLW	0x03
 	BNZ	_00285_DS_
 _00294_DS_:
 	BANKSEL	_posC
-;	.line	396; pic.c	if(posC==LEN_C)
+;	.line	279; pic.c	if(posC==LEN_C)
 	MOVF	_posC, W, B
 	XORLW	0x05
 	BNZ	_00295_DS_
@@ -1763,17 +1763,17 @@ _00295_DS_:
 	BRA	_00277_DS_
 _00296_DS_:
 	BANKSEL	_posC
-;	.line	398; pic.c	posC=0;
+;	.line	281; pic.c	posC=0;
 	CLRF	_posC, B
 	BANKSEL	(_posC + 1)
 	CLRF	(_posC + 1), B
 	BANKSEL	_currentMode
-;	.line	399; pic.c	currentMode=ACCUEIL;
+;	.line	282; pic.c	currentMode=ACCUEIL;
 	CLRF	_currentMode, B
 	BRA	_00287_DS_
 _00277_DS_:
 	BANKSEL	_posC
-;	.line	403; pic.c	posC++;/*On passe à la prochaine position*/
+;	.line	286; pic.c	posC++;/*On passe à la prochaine position*/
 	INCF	_posC, F, B
 	BNC	_30448_DS_
 	BANKSEL	(_posC + 1)
@@ -1782,13 +1782,13 @@ _30448_DS_:
 	BRA	_00287_DS_
 _00285_DS_:
 	BANKSEL	_currentMode
-;	.line	406; pic.c	else if(currentMode==EDIT_A)
+;	.line	289; pic.c	else if(currentMode==EDIT_A)
 	MOVF	_currentMode, W, B
 	XORLW	0x04
 	BNZ	_00287_DS_
 _00298_DS_:
 	BANKSEL	_posA
-;	.line	409; pic.c	if(posA==LEN_A)
+;	.line	292; pic.c	if(posA==LEN_A)
 	MOVF	_posA, W, B
 	XORLW	0x04
 	BNZ	_00299_DS_
@@ -1799,17 +1799,17 @@ _00299_DS_:
 	BRA	_00280_DS_
 _00300_DS_:
 	BANKSEL	_posA
-;	.line	411; pic.c	posA=0;
+;	.line	294; pic.c	posA=0;
 	CLRF	_posA, B
 	BANKSEL	(_posA + 1)
 	CLRF	(_posA + 1), B
 	BANKSEL	_currentMode
-;	.line	412; pic.c	currentMode=ACCUEIL;
+;	.line	295; pic.c	currentMode=ACCUEIL;
 	CLRF	_currentMode, B
 	BRA	_00287_DS_
 _00280_DS_:
 	BANKSEL	_posA
-;	.line	416; pic.c	posA++;/*On passe à la prochaine position*/
+;	.line	299; pic.c	posA++;/*On passe à la prochaine position*/
 	INCF	_posA, F, B
 	BNC	_40449_DS_
 	BANKSEL	(_posA + 1)
@@ -1822,11 +1822,11 @@ _00287_DS_:
 ; ; Starting pCode block
 S_pic__actionButton2	code
 _actionButton2:
-;	.line	344; pic.c	actionButton2()
+;	.line	227; pic.c	actionButton2()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	346; pic.c	switch(currentMode)
-	MOVLW	0x08
+;	.line	229; pic.c	switch(currentMode)
+	MOVLW	0x07
 	BANKSEL	_currentMode
 	SUBWF	_currentMode, W, B
 	BTFSC	STATUS, 0
@@ -1861,70 +1861,69 @@ _00271_DS_:
 	GOTO	_00261_DS_
 	GOTO	_00262_DS_
 	GOTO	_00263_DS_
-	GOTO	_00267_DS_
 	GOTO	_00259_DS_
 	GOTO	_00264_DS_
 _00258_DS_:
-;	.line	351; pic.c	currentMode=HELLO;
-	MOVLW	0x06
+;	.line	234; pic.c	currentMode=HELLO;
+	MOVLW	0x05
 	BANKSEL	_currentMode
 	MOVWF	_currentMode, B
-;	.line	352; pic.c	break;
+;	.line	235; pic.c	break;
 	BRA	_00267_DS_
 _00259_DS_:
 	BANKSEL	_currentMode
-;	.line	356; pic.c	currentMode=ACCUEIL;
+;	.line	239; pic.c	currentMode=ACCUEIL;
 	CLRF	_currentMode, B
-;	.line	357; pic.c	break;
+;	.line	240; pic.c	break;
 	BRA	_00267_DS_
 _00260_DS_:
-;	.line	361; pic.c	currentMode=ALARM;
+;	.line	244; pic.c	currentMode=ALARM;
 	MOVLW	0x02
 	BANKSEL	_currentMode
 	MOVWF	_currentMode, B
-;	.line	362; pic.c	break;
+;	.line	245; pic.c	break;
 	BRA	_00267_DS_
 _00261_DS_:
-;	.line	366; pic.c	currentMode=TIME;
+;	.line	249; pic.c	currentMode=TIME;
 	MOVLW	0x01
 	BANKSEL	_currentMode
 	MOVWF	_currentMode, B
-;	.line	367; pic.c	break;
+;	.line	250; pic.c	break;
 	BRA	_00267_DS_
 _00262_DS_:
-;	.line	371; pic.c	changeTime();
+;	.line	254; pic.c	changeTime();
 	CALL	_changeTime
-;	.line	372; pic.c	break;
+;	.line	255; pic.c	break;
 	BRA	_00267_DS_
 _00263_DS_:
-;	.line	376; pic.c	setAlarm();
+;	.line	259; pic.c	setAlarm();
 	CALL	_setAlarm
-;	.line	377; pic.c	break;
+;	.line	260; pic.c	break;
 	BRA	_00267_DS_
 _00264_DS_:
 	BANKSEL	_ringtone
-;	.line	382; pic.c	ringtone=0;
+;	.line	265; pic.c	ringtone=0;
 	CLRF	_ringtone, B
 	BANKSEL	(_ringtone + 1)
 	CLRF	(_ringtone + 1), B
-;	.line	383; pic.c	LED2_IO = 0;
+;	.line	266; pic.c	LED2_IO = 0;
 	BCF	_LATJbits, 2
 	BANKSEL	_currentMode
-;	.line	384; pic.c	currentMode=ACCUEIL;
+;	.line	267; pic.c	currentMode=ACCUEIL;
 	CLRF	_currentMode, B
 _00267_DS_:
-;	.line	388; pic.c	}
+;	.line	271; pic.c	}
 	MOVFF	PREINC1, FSR2L
 	RETURN	
 
 ; ; Starting pCode block
 S_pic__actionButton1	code
 _actionButton1:
-;	.line	297; pic.c	actionButton1()
+;	.line	180; pic.c	actionButton1()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	299; pic.c	switch(currentMode)
-	MOVLW	0x08
+;	.line	182; pic.c	switch(currentMode)
+	MOVLW	0x07
 	BANKSEL	_currentMode
 	SUBWF	_currentMode, W, B
 	BTFSC	STATUS, 0
@@ -1959,80 +1958,79 @@ _00253_DS_:
 	GOTO	_00243_DS_
 	GOTO	_00244_DS_
 	GOTO	_00245_DS_
-	GOTO	_00249_DS_
 	GOTO	_00240_DS_
 	GOTO	_00246_DS_
 _00240_DS_:
 	BANKSEL	_currentMode
-;	.line	304; pic.c	currentMode=ACCUEIL;
+;	.line	187; pic.c	currentMode=ACCUEIL;
 	CLRF	_currentMode, B
-;	.line	305; pic.c	break;
+;	.line	188; pic.c	break;
 	BRA	_00249_DS_
 _00241_DS_:
-;	.line	309; pic.c	currentMode=TIME;
+;	.line	192; pic.c	currentMode=TIME;
 	MOVLW	0x01
 	BANKSEL	_currentMode
 	MOVWF	_currentMode, B
-;	.line	310; pic.c	break;
+;	.line	193; pic.c	break;
 	BRA	_00249_DS_
 _00242_DS_:
-;	.line	314; pic.c	currentMode=EDIT_T;
+;	.line	197; pic.c	currentMode=EDIT_T;
 	MOVLW	0x03
 	BANKSEL	_currentMode
 	MOVWF	_currentMode, B
-;	.line	315; pic.c	break;
+;	.line	198; pic.c	break;
 	BRA	_00249_DS_
 _00243_DS_:
-;	.line	319; pic.c	currentMode=EDIT_A;
+;	.line	202; pic.c	currentMode=EDIT_A;
 	MOVLW	0x04
 	BANKSEL	_currentMode
 	MOVWF	_currentMode, B
-;	.line	320; pic.c	break;
+;	.line	203; pic.c	break;
 	BRA	_00249_DS_
 _00244_DS_:
-;	.line	324; pic.c	move();
+;	.line	207; pic.c	move();
 	CALL	_move
-;	.line	325; pic.c	break;
+;	.line	208; pic.c	break;
 	BRA	_00249_DS_
 _00245_DS_:
-;	.line	329; pic.c	move();
+;	.line	212; pic.c	move();
 	CALL	_move
-;	.line	330; pic.c	break;
+;	.line	213; pic.c	break;
 	BRA	_00249_DS_
 _00246_DS_:
 	BANKSEL	_ringtone
-;	.line	335; pic.c	ringtone=0;
+;	.line	218; pic.c	ringtone=0;
 	CLRF	_ringtone, B
 	BANKSEL	(_ringtone + 1)
 	CLRF	(_ringtone + 1), B
-;	.line	336; pic.c	LED2_IO = 0;
+;	.line	219; pic.c	LED2_IO = 0;
 	BCF	_LATJbits, 2
 	BANKSEL	_currentMode
-;	.line	337; pic.c	currentMode=ACCUEIL;
+;	.line	220; pic.c	currentMode=ACCUEIL;
 	CLRF	_currentMode, B
 _00249_DS_:
-;	.line	341; pic.c	}
+;	.line	224; pic.c	}
 	MOVFF	PREINC1, FSR2L
 	RETURN	
 
 ; ; Starting pCode block
 S_pic__setAlarm	code
 _setAlarm:
-;	.line	263; pic.c	setAlarm()
+;	.line	146; pic.c	setAlarm()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
 	BANKSEL	_posA
-;	.line	266; pic.c	if(posA!=0)
+;	.line	149; pic.c	if(posA!=0)
 	MOVF	_posA, W, B
 	BANKSEL	(_posA + 1)
 	IORWF	(_posA + 1), W, B
 	BTFSC	STATUS, 2
 	BRA	_00217_DS_
 	BANKSEL	(_posA + 1)
-;	.line	268; pic.c	secondLine[secondTab[posA]]++; //+1
+;	.line	151; pic.c	secondLine[secondTab[posA]]++; //+1
 	MOVF	(_posA + 1), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	_posA
@@ -2067,37 +2065,37 @@ _setAlarm:
 	MOVFF	r0x01, FSR0H
 	MOVFF	r0x02, INDF0
 	BANKSEL	(_secondLine + 13)
-;	.line	269; pic.c	if((secondLine[13]>=':')
+;	.line	152; pic.c	if((secondLine[13]>=':')
 	MOVF	(_secondLine + 13), W, B
 	ADDLW	0x80
 	ADDLW	0x46
 	BC	_00204_DS_
 	BANKSEL	(_secondLine + 10)
-;	.line	270; pic.c	||(secondLine[10]>=':')
+;	.line	153; pic.c	||(secondLine[10]>=':')
 	MOVF	(_secondLine + 10), W, B
 	ADDLW	0x80
 	ADDLW	0x46
 	BC	_00204_DS_
 	BANKSEL	(_secondLine + 12)
-;	.line	271; pic.c	||(secondLine[12]>='6')
+;	.line	154; pic.c	||(secondLine[12]>='6')
 	MOVF	(_secondLine + 12), W, B
 	ADDLW	0x80
 	ADDLW	0x4a
 	BC	_00204_DS_
 	BANKSEL	(_secondLine + 9)
-;	.line	272; pic.c	||(secondLine[9]>=':'))
+;	.line	155; pic.c	||(secondLine[9]>=':'))
 	MOVF	(_secondLine + 9), W, B
 	ADDLW	0x80
 	ADDLW	0x46
 	BNC	_00205_DS_
 _00204_DS_:
-;	.line	274; pic.c	secondLine[secondTab[posA]]='0';
+;	.line	157; pic.c	secondLine[secondTab[posA]]='0';
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, FSR0H
 	MOVLW	0x30
 	MOVWF	INDF0
 _00205_DS_:
-;	.line	276; pic.c	if(((secondLine[9]>='2')&&(secondLine[10]>='4'))
+;	.line	159; pic.c	if(((secondLine[9]>='2')&&(secondLine[10]>='4'))
 	MOVFF	(_secondLine + 9), r0x02
 	MOVF	r0x02, W
 	ADDLW	0x80
@@ -2109,13 +2107,13 @@ _00205_DS_:
 	ADDLW	0x4c
 	BC	_00209_DS_
 _00212_DS_:
-;	.line	277; pic.c	||(secondLine[9]>='3'))//24h
+;	.line	160; pic.c	||(secondLine[9]>='3'))//24h
 	MOVF	r0x02, W
 	ADDLW	0x80
 	ADDLW	0x4d
 	BNC	_00219_DS_
 _00209_DS_:
-;	.line	279; pic.c	secondLine[secondTab[posA]]='0';
+;	.line	162; pic.c	secondLine[secondTab[posA]]='0';
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, FSR0H
 	MOVLW	0x30
@@ -2123,28 +2121,28 @@ _00209_DS_:
 	BRA	_00219_DS_
 _00217_DS_:
 	BANKSEL	(_secondLine + 7)
-;	.line	284; pic.c	if(secondLine[7]=='N')
+;	.line	167; pic.c	if(secondLine[7]=='N')
 	MOVF	(_secondLine + 7), W, B
 	XORLW	0x4e
 	BNZ	_00214_DS_
-;	.line	286; pic.c	isAlarm=1;
+;	.line	169; pic.c	isAlarm=1;
 	MOVLW	0x01
 	BANKSEL	_isAlarm
 	MOVWF	_isAlarm, B
 	BANKSEL	(_isAlarm + 1)
 	CLRF	(_isAlarm + 1), B
-;	.line	287; pic.c	secondLine[7]='Y';
+;	.line	170; pic.c	secondLine[7]='Y';
 	MOVLW	0x59
 	BANKSEL	(_secondLine + 7)
 	MOVWF	(_secondLine + 7), B
 	BRA	_00219_DS_
 _00214_DS_:
-;	.line	291; pic.c	secondLine[7]='N';
+;	.line	174; pic.c	secondLine[7]='N';
 	MOVLW	0x4e
 	BANKSEL	(_secondLine + 7)
 	MOVWF	(_secondLine + 7), B
 	BANKSEL	_isAlarm
-;	.line	292; pic.c	isAlarm=0;
+;	.line	175; pic.c	isAlarm=0;
 	CLRF	_isAlarm, B
 	BANKSEL	(_isAlarm + 1)
 	CLRF	(_isAlarm + 1), B
@@ -2158,49 +2156,49 @@ _00219_DS_:
 ; ; Starting pCode block
 S_pic__checkAlarm	code
 _checkAlarm:
-;	.line	250; pic.c	checkAlarm()
+;	.line	133; pic.c	checkAlarm()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	BANKSEL	(_firstLine + 6)
-;	.line	252; pic.c	if((firstLine[6]==secondLine[9])
+;	.line	135; pic.c	if((firstLine[6]==secondLine[9])
 	MOVF	(_firstLine + 6), W, B
 	BANKSEL	(_secondLine + 9)
 	XORWF	(_secondLine + 9), W, B
 	BNZ	_00180_DS_
 _00189_DS_:
 	BANKSEL	(_firstLine + 7)
-;	.line	253; pic.c	&&(firstLine[7]==secondLine[10])
+;	.line	136; pic.c	&&(firstLine[7]==secondLine[10])
 	MOVF	(_firstLine + 7), W, B
 	BANKSEL	(_secondLine + 10)
 	XORWF	(_secondLine + 10), W, B
 	BNZ	_00180_DS_
 _00191_DS_:
 	BANKSEL	(_firstLine + 9)
-;	.line	254; pic.c	&&(firstLine[9]==secondLine[12])
+;	.line	137; pic.c	&&(firstLine[9]==secondLine[12])
 	MOVF	(_firstLine + 9), W, B
 	BANKSEL	(_secondLine + 12)
 	XORWF	(_secondLine + 12), W, B
 	BNZ	_00180_DS_
 _00193_DS_:
 	BANKSEL	(_firstLine + 10)
-;	.line	255; pic.c	&&(firstLine[10]==secondLine[13])
+;	.line	138; pic.c	&&(firstLine[10]==secondLine[13])
 	MOVF	(_firstLine + 10), W, B
 	BANKSEL	(_secondLine + 13)
 	XORWF	(_secondLine + 13), W, B
 	BNZ	_00180_DS_
 _00195_DS_:
 	BANKSEL	(_firstLine + 12)
-;	.line	256; pic.c	&&(firstLine[12]=='0')
+;	.line	139; pic.c	&&(firstLine[12]=='0')
 	MOVF	(_firstLine + 12), W, B
 	XORLW	0x30
 	BNZ	_00180_DS_
 _00197_DS_:
 	BANKSEL	(_firstLine + 13)
-;	.line	257; pic.c	&&(firstLine[13]=='0'))
+;	.line	140; pic.c	&&(firstLine[13]=='0'))
 	MOVF	(_firstLine + 13), W, B
 	XORLW	0x30
 	BNZ	_00180_DS_
-;	.line	259; pic.c	ringtone=30;//30 secondes d'alarme
+;	.line	142; pic.c	ringtone=30;//30 secondes d'alarme
 	MOVLW	0x1e
 	BANKSEL	_ringtone
 	MOVWF	_ringtone, B
@@ -2213,95 +2211,95 @@ _00180_DS_:
 ; ; Starting pCode block
 S_pic__increment	code
 _increment:
-;	.line	213; pic.c	increment()
+;	.line	96; pic.c	increment()
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
-;	.line	215; pic.c	firstLine[13]++;
+;	.line	98; pic.c	firstLine[13]++;
 	MOVFF	(_firstLine + 13), r0x00
 	INCF	r0x00, F
 	MOVF	r0x00, W
 	BANKSEL	(_firstLine + 13)
 	MOVWF	(_firstLine + 13), B
-;	.line	216; pic.c	if(firstLine[13]==':')// char après '9'
+;	.line	99; pic.c	if(firstLine[13]==':')// char après '9'
 	MOVF	r0x00, W
 	XORLW	0x3a
 	BZ	_00158_DS_
 	BRA	_00149_DS_
 _00158_DS_:
-;	.line	218; pic.c	firstLine[13]='0';
+;	.line	101; pic.c	firstLine[13]='0';
 	MOVLW	0x30
 	BANKSEL	(_firstLine + 13)
 	MOVWF	(_firstLine + 13), B
-;	.line	219; pic.c	firstLine[12]++;
+;	.line	102; pic.c	firstLine[12]++;
 	MOVFF	(_firstLine + 12), r0x00
 	INCF	r0x00, F
 	MOVF	r0x00, W
 	BANKSEL	(_firstLine + 12)
 	MOVWF	(_firstLine + 12), B
-;	.line	221; pic.c	if(firstLine[12]=='6')// 60 sec
+;	.line	104; pic.c	if(firstLine[12]=='6')// 60 sec
 	MOVF	r0x00, W
 	XORLW	0x36
 	BZ	_00160_DS_
 	BRA	_00149_DS_
 _00160_DS_:
-;	.line	223; pic.c	firstLine[12]='0';
+;	.line	106; pic.c	firstLine[12]='0';
 	MOVLW	0x30
 	BANKSEL	(_firstLine + 12)
 	MOVWF	(_firstLine + 12), B
-;	.line	224; pic.c	firstLine[10]++;
+;	.line	107; pic.c	firstLine[10]++;
 	MOVFF	(_firstLine + 10), r0x00
 	INCF	r0x00, F
 	MOVF	r0x00, W
 	BANKSEL	(_firstLine + 10)
 	MOVWF	(_firstLine + 10), B
-;	.line	226; pic.c	if(firstLine[10]==':')
+;	.line	109; pic.c	if(firstLine[10]==':')
 	MOVF	r0x00, W
 	XORLW	0x3a
 	BNZ	_00149_DS_
-;	.line	228; pic.c	firstLine[10]='0';
+;	.line	111; pic.c	firstLine[10]='0';
 	MOVLW	0x30
 	BANKSEL	(_firstLine + 10)
 	MOVWF	(_firstLine + 10), B
-;	.line	229; pic.c	firstLine[9]++;
+;	.line	112; pic.c	firstLine[9]++;
 	MOVFF	(_firstLine + 9), r0x00
 	INCF	r0x00, F
 	MOVF	r0x00, W
 	BANKSEL	(_firstLine + 9)
 	MOVWF	(_firstLine + 9), B
-;	.line	231; pic.c	if(firstLine[9]=='6')
+;	.line	114; pic.c	if(firstLine[9]=='6')
 	MOVF	r0x00, W
 	XORLW	0x36
 	BNZ	_00149_DS_
-;	.line	233; pic.c	firstLine[9]='0';
+;	.line	116; pic.c	firstLine[9]='0';
 	MOVLW	0x30
 	BANKSEL	(_firstLine + 9)
 	MOVWF	(_firstLine + 9), B
-;	.line	234; pic.c	firstLine[7]++;
+;	.line	117; pic.c	firstLine[7]++;
 	MOVFF	(_firstLine + 7), r0x00
 	INCF	r0x00, F
 	MOVF	r0x00, W
 	BANKSEL	(_firstLine + 7)
 	MOVWF	(_firstLine + 7), B
-;	.line	235; pic.c	if(firstLine[7]=='4')// 24h
+;	.line	118; pic.c	if(firstLine[7]=='4')// 24h
 	MOVF	r0x00, W
 	XORLW	0x34
 	BNZ	_00149_DS_
-;	.line	237; pic.c	firstLine[7]='0';
+;	.line	120; pic.c	firstLine[7]='0';
 	MOVLW	0x30
 	BANKSEL	(_firstLine + 7)
 	MOVWF	(_firstLine + 7), B
-;	.line	238; pic.c	firstLine[6]++;
+;	.line	121; pic.c	firstLine[6]++;
 	MOVFF	(_firstLine + 6), r0x00
 	INCF	r0x00, F
 	MOVF	r0x00, W
 	BANKSEL	(_firstLine + 6)
 	MOVWF	(_firstLine + 6), B
-;	.line	239; pic.c	if(firstLine[6]=='3')//24h
+;	.line	122; pic.c	if(firstLine[6]=='3')//24h
 	MOVF	r0x00, W
 	XORLW	0x33
 	BNZ	_00149_DS_
-;	.line	241; pic.c	firstLine[6]='0';
+;	.line	124; pic.c	firstLine[6]='0';
 	MOVLW	0x30
 	BANKSEL	(_firstLine + 6)
 	MOVWF	(_firstLine + 6), B
@@ -2313,7 +2311,7 @@ _00149_DS_:
 ; ; Starting pCode block
 S_pic__HighISR	code
 _HighISR:
-;	.line	162; pic.c	HighISR (void) __interrupt (1)
+;	.line	45; pic.c	HighISR (void) __interrupt (1)
 	MOVFF	WREG, POSTDEC1
 	MOVFF	STATUS, POSTDEC1
 	MOVFF	BSR, POSTDEC1
@@ -2328,33 +2326,33 @@ _HighISR:
 	MOVFF	r0x00, POSTDEC1
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
-;	.line	164; pic.c	if(INTCON3bits.INT1F)
+;	.line	47; pic.c	if(INTCON3bits.INT1F)
 	BTFSS	_INTCON3bits, 0
 	BRA	_00106_DS_
-;	.line	167; pic.c	actionButton1();
+;	.line	50; pic.c	actionButton1();
 	CALL	_actionButton1
-;	.line	168; pic.c	INTCON3bits.INT1F  = 0;
+;	.line	51; pic.c	INTCON3bits.INT1F  = 0;
 	BCF	_INTCON3bits, 0
 _00106_DS_:
-;	.line	171; pic.c	if(INTCON3bits.INT3F)
+;	.line	54; pic.c	if(INTCON3bits.INT3F)
 	BTFSS	_INTCON3bits, 2
 	BRA	_00108_DS_
-;	.line	174; pic.c	actionButton2();
+;	.line	57; pic.c	actionButton2();
 	CALL	_actionButton2
-;	.line	175; pic.c	INTCON3bits.INT3F  = 0;
+;	.line	58; pic.c	INTCON3bits.INT3F  = 0;
 	BCF	_INTCON3bits, 2
 _00108_DS_:
-;	.line	178; pic.c	if(INTCONbits.TMR0IF)
+;	.line	61; pic.c	if(INTCONbits.TMR0IF)
 	BTFSS	_INTCONbits, 2
 	BRA	_00120_DS_
 	BANKSEL	_count
-;	.line	181; pic.c	count++;
+;	.line	64; pic.c	count++;
 	INCF	_count, F, B
 	BNC	_50450_DS_
 	BANKSEL	(_count + 1)
 	INCF	(_count + 1), F, B
 _50450_DS_:
-;	.line	182; pic.c	if(count>=CLOCK)
+;	.line	65; pic.c	if(count>=CLOCK)
 	MOVLW	0x5b
 	BANKSEL	(_count + 1)
 	SUBWF	(_count + 1), W, B
@@ -2365,7 +2363,7 @@ _50450_DS_:
 _00129_DS_:
 	BTFSS	STATUS, 0
 	BRA	_00117_DS_
-;	.line	184; pic.c	count=count-CLOCK;
+;	.line	67; pic.c	count=count-CLOCK;
 	MOVLW	0xff
 	BANKSEL	_count
 	ADDWF	_count, F, B
@@ -2373,10 +2371,10 @@ _00129_DS_:
 	BANKSEL	(_count + 1)
 	ADDWFC	(_count + 1), F, B
 	BANKSEL	_currentMode
-;	.line	185; pic.c	if(currentMode==ACCUEIL)
+;	.line	68; pic.c	if(currentMode==ACCUEIL)
 	MOVF	_currentMode, W, B
 	BNZ	_00110_DS_
-;	.line	187; pic.c	DisplayString(FIRST_LINE,firstLine);
+;	.line	70; pic.c	DisplayString(FIRST_LINE,firstLine);
 	MOVLW	HIGH(_firstLine)
 	MOVWF	r0x01
 	MOVLW	LOW(_firstLine)
@@ -2394,7 +2392,7 @@ _00129_DS_:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	188; pic.c	DisplayString(SECOND_LINE,secondLine);
+;	.line	71; pic.c	DisplayString(SECOND_LINE,secondLine);
 	MOVLW	HIGH(_secondLine)
 	MOVWF	r0x01
 	MOVLW	LOW(_secondLine)
@@ -2414,11 +2412,11 @@ _00129_DS_:
 	ADDWF	FSR1L, F
 	BRA	_00111_DS_
 _00110_DS_:
-;	.line	192; pic.c	blink();
+;	.line	75; pic.c	blink();
 	CALL	_blink
 _00111_DS_:
 	BANKSEL	_isAlarm
-;	.line	194; pic.c	if(isAlarm==1)
+;	.line	77; pic.c	if(isAlarm==1)
 	MOVF	_isAlarm, W, B
 	XORLW	0x01
 	BNZ	_00130_DS_
@@ -2428,11 +2426,11 @@ _00111_DS_:
 _00130_DS_:
 	BRA	_00113_DS_
 _00131_DS_:
-;	.line	197; pic.c	checkAlarm();
+;	.line	80; pic.c	checkAlarm();
 	CALL	_checkAlarm
 _00113_DS_:
 	BANKSEL	(_ringtone + 1)
-;	.line	199; pic.c	if(ringtone>0)
+;	.line	82; pic.c	if(ringtone>0)
 	MOVF	(_ringtone + 1), W, B
 	ADDLW	0x80
 	ADDLW	0x80
@@ -2442,11 +2440,11 @@ _00113_DS_:
 	SUBWF	_ringtone, W, B
 _00132_DS_:
 	BNC	_00115_DS_
-;	.line	202; pic.c	currentMode=RINGTONE;
-	MOVLW	0x07
+;	.line	85; pic.c	currentMode=RINGTONE;
+	MOVLW	0x06
 	BANKSEL	_currentMode
 	MOVWF	_currentMode, B
-;	.line	203; pic.c	ringtone--;
+;	.line	86; pic.c	ringtone--;
 	MOVLW	0xff
 	BANKSEL	_ringtone
 	ADDWF	_ringtone, F, B
@@ -2454,7 +2452,7 @@ _00132_DS_:
 	BANKSEL	(_ringtone + 1)
 	DECF	(_ringtone + 1), F, B
 _60451_DS_:
-;	.line	204; pic.c	LED2_IO ^= 1;
+;	.line	87; pic.c	LED2_IO ^= 1;
 	CLRF	r0x00
 	BTFSC	_LATJbits, 2
 	INCF	r0x00, F
@@ -2470,10 +2468,10 @@ _60451_DS_:
 	IORWF	PRODH, W
 	MOVWF	_LATJbits
 _00115_DS_:
-;	.line	206; pic.c	increment();
+;	.line	89; pic.c	increment();
 	CALL	_increment
 _00117_DS_:
-;	.line	208; pic.c	INTCONbits.TMR0IF = 0;
+;	.line	91; pic.c	INTCONbits.TMR0IF = 0;
 	BCF	_INTCONbits, 2
 _00120_DS_:
 	MOVFF	PREINC1, r0x02
@@ -2509,8 +2507,8 @@ __str_3:
 
 
 ; Statistics:
-; code size:	 3842 (0x0f02) bytes ( 2.93%)
-;           	 1921 (0x0781) words
+; code size:	 3834 (0x0efa) bytes ( 2.93%)
+;           	 1917 (0x077d) words
 ; udata size:	    6 (0x0006) bytes ( 0.16%)
 ; access size:	   22 (0x0016) bytes
 
